@@ -20,6 +20,8 @@ register_activation_hook(
     'wp_multisite_manager_context'
 );
 
+
+
 function wp_multisite_manager_context(){
     if (is_multisite()) {
         echo "This is multisite";
@@ -28,4 +30,41 @@ function wp_multisite_manager_context(){
         echo "Sitio normal";
     }
 }
+
+class WP_multisite_manager {
+    
+
+
+	static $init;
+	/**
+	 * Loads the plugin
+	 * @access    public
+	 */
+	public static function init() {
+
+		if ( null == self::$init ) {
+		}
+
+		return self::$init;
+	}
+
+}
+/*
+ * Comienza la ejecución del plugin
+ */
+function wp_multisite_manager_init(){
+	return WP_multisite_manager::init();
+}
+
+
+add_action('wp_head', function(){
+    ?> 
+    <h1 style="background-color:red">Sedici BANNER</h1>
+    <script>
+          alert('Un ejemplo desde Javascript');
+      </script>
+  <?php
+});
+
+
 ?>
