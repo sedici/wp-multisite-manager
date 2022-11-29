@@ -12,19 +12,20 @@
 
  namespace Wp_multisite_manager;
 
-
 /**
  * Register Activation and Deactivation Hooks
  */
-register_activation_hook();
-register_deactivation_hook();
+register_activation_hook(
+    __FILE__,
+    'wp_multisite_manager_context'
+);
 
- /*
- * Starts plugin execution 
- */
-
- /**
- * Si se accede desde afuera de wordpress aborta la ejecución.
- */
-
+function wp_multisite_manager_context(){
+    if (is_multisite()) {
+        echo "This is multisite";
+    }
+    else{
+        echo "Sitio normal";
+    }
+}
 ?>
