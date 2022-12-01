@@ -3,7 +3,7 @@
  * Plugin Name: Multisite-manager
  * Plugin URI: http://sedici.unlp.edu.ar/
  * Description: This plugin allows to create and display a footer or header on all sites of your multisite. 
- * Version: 
+ * Version: 1.0.0
  * Author: SEDICI
  * Author URI: http://sedici.unlp.edu.ar/   
  * Copyright (c) 2015 SEDICI UNLP, http://sedici.unlp.edu.ar
@@ -11,6 +11,18 @@
  */
 
  namespace Wp_multisite_manager;
+
+ define( __NAMESPACE__ . '\MM', __NAMESPACE__ . '\\' );
+ define( MM . 'PLUGIN_NAME', 'wp-multisite-manager' );
+ define( MM . 'PLUGIN_VERSION', '1.0.0' );
+ define( MM . 'PLUGIN_NAME_DIR', plugin_dir_path( __FILE__ ) );
+ define( MM . 'PLUGIN_NAME_URL', plugin_dir_url( __FILE__ ) );
+ define( MM . 'PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
+ define( MM . 'PLUGIN_TEXT_DOMAIN', 'wp-multisite-manager' );
+
+
+
+ require_once 'configuration.php';
 
 /**
  * Register Activation and Deactivation Hooks
@@ -42,6 +54,10 @@ class WP_multisite_manager {
 	 */
 	public static function init() {
 
+        wp_enqueue_style('style', get_stylesheet_uri() );        
+        // Load the header on the DB
+      //  $wpdb->insert('bannerCustom', 
+       // $banner);
 		if ( null == self::$init ) {
 		}
 
@@ -56,10 +72,22 @@ function wp_multisite_manager_init(){
 	return WP_multisite_manager::init();
 }
 
-
+// Agrega el banner al header
 add_action('wp_head', function(){
-    ?> 
-    <h1 style="background-color:red">Sedici BANNER</h1>
+    ?>  
+    <div class="sedici-header">
+        <h1 style="height:5vh; color:#5CB1E3">Desarrollado por prebi sedici
+        <?php 
+         if (is_multisite()) {
+            echo "This is multisite";
+        }
+        else{
+            echo "Sitio normal";
+        }
+        ?>
+        </h1>
+        <img style="height:8vh;width:35vh" src=<?php echo '"'. plugins_url('views/img/prebi-sedici.png',__FILE__) . '"' ?> ></img>
+    </div>
     <script>
           alert('Un ejemplo desde Javascript');
       </script>
