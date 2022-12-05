@@ -1,8 +1,10 @@
 <?php 
 
 namespace Wp_multisite_manager\Core;
-
 use Wp_multisite_manager as MM;
+
+require_once 'class-loader.php';
+
 /**
  * Clase para administrar los hooks y encolar los estilos / scripts
  */
@@ -23,21 +25,32 @@ class Init{
 		$this->plugin_basename = MM\PLUGIN_BASENAME;
 		$this->plugin_text_domain = MM\PLUGIN_TEXT_DOMAIN;
 
-		$this->load_dependencies();
+		$this->loader = new Loader();
 		$this->define_admin_hooks();
 		//$this->define_public_hooks();
 	}
 
 
+	public function run() {
+		$this->loader->run();
+	} 
+
+	function reg_admin_styles(){
+		wp_register_style("mainStyle", plugin_dir_url(__FILE__) . 'admin/css/mainStyle.css');
+
+		wp_enqueue_style("mainStyle");
+	}
+
+
 	private function define_admin_hooks() {
 	
-	$plugin_adminMultisite = new Admin\multisiteAdmin.php();
-	$plugin_adminSinglesite = new Admin\singlesiteAdmin.php();
+	// $plugin_adminMultisite = new Admin\multisiteAdmin.php();
+	
+	// $plugin_adminSinglesite = new Admin\singlesiteAdmin.php();
+	
 	// Register Scripts and Styles
-		wp_register_style($this->plugin_name, plugin_dir_url(__FILE__) . 'admin/css/style.css', array(), $this->version, 'all');
 
-		wp_enqueue_style($this->plugin_name);
-
+		add_action('admin_enqueue_scripts',array($this,'reg_admin_styles'),30);
 
 		// SingleSite
 
@@ -51,5 +64,6 @@ class Init{
 
 
 	}
+
 
 }

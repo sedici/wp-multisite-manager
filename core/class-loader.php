@@ -1,6 +1,6 @@
 <?php
 
-namespace Wp_multisite_manager\Inc\Core;
+namespace Wp_multisite_manager\Core;
 
 /**
  * Registra todas las acciones y filtros del plugin.

@@ -20,7 +20,7 @@
  define( MM . 'PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
  define( MM . 'PLUGIN_TEXT_DOMAIN', 'wp-multisite-manager' );
 
-
+ require_once 'core/class-init.php';
 
  require_once 'configuration.php';
 
@@ -54,11 +54,12 @@ class WP_multisite_manager {
 	 */
 	public static function init() {
 
-        wp_enqueue_style('style', get_stylesheet_uri() );        
-        // Load the header on the DB
+       // Load the header on the DB
       //  $wpdb->insert('bannerCustom', 
-       // $banner);
+     // $banner);
 		if ( null == self::$init ) {
+            self::$init = new Core\Init();
+			self::$init->run();
 		}
 
 		return self::$init;
@@ -68,8 +69,9 @@ class WP_multisite_manager {
 /*
  * Comienza la ejecución del plugin
  */
+
 function wp_multisite_manager_init(){
-	return WP_multisite_manager::init();
+	return wp_multisite_manager::init();
 }
 
 // Agrega el banner al header
@@ -82,7 +84,7 @@ add_action('wp_head', function(){
             echo "This is multisite";
         }
         else{
-            echo "Sitio normal";
+            echo "<p class='pruebaEst'>Sitio normal</p>";
         }
         ?>
         </h1>
@@ -94,5 +96,10 @@ add_action('wp_head', function(){
   <?php
 });
 
+/**
+ * Si se accede desde afuera de wordpress aborta la ejecución.
+ */
+if ( ! defined( 'WPINC' ) ) die;
+wp_multisite_manager_init();
 
 ?>
