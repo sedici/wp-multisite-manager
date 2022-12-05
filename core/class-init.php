@@ -52,6 +52,7 @@ class Init{
 
 		add_action('admin_enqueue_scripts',array($this,'reg_admin_styles'),30);
 
+		add_action('init',array($this,'define_admin_multisite_hooks'),10);
 		// SingleSite
 
 		// Multisite
@@ -64,6 +65,65 @@ class Init{
 
 
 	}
+
+	# Falta agregar restriccion para que se vea solo en multisitio
+
+	public function define_admin_multisite_hooks(){
+		#Registrar sección en el menu para administrar Footer y Header
+		add_menu_page(__('Administrar Footer y Header', $this->plugin_text_domain),
+		__('Configurar multisitio', $this->plugin_text_domain), 
+			'manage_options',
+			$this->plugin_name,  
+			array($this, 'wp_multisite_manager_blocks')
+        );
+		$this->add_block_subpages();
+	}
+
+	public function wp_multisite_manager_blocks()
+    {
+        $url=plugins_url();
+        echo "<h1> Administrar la red de multisitio </h1>
+        <p>Este plugin de Wordpress permite administrar configuraciones gloables para todos los sitios
+		dentro de una red de Multisitio. </p>
+        ";
+		#  <a href=$url/wp-dspace/UtilizaciondelPLuginWP-Dspace.docx>Descargar Manual</a>
+        
+    }
+
+	private function add_block_subpages(){
+
+
+		## Agregar subpágina HEADER
+		$ajax_form_page_hook = add_submenu_page(
+            $this->plugin_name, //parent slug
+            __('Header', $this->plugin_text_domain), //page title
+            __('Header', $this->plugin_text_domain), //menu title
+            'manage_options', //capability
+            'config-header', //menu_slug
+            array($this, 'ajax_form_page_content')// pagina que va a manejar la sección
+        );
+
+
+		## Agregar subpágina FOOTER
+		$ajax_form_page_hook = add_submenu_page(
+            $this->plugin_name, //parent slug
+            __('Footer', $this->plugin_text_domain), //page title
+            __('Footer', $this->plugin_text_domain), //menu title
+            'manage_options', //capability
+            'config-footer', //menu_slug
+            array($this, 'ajax_form_page_content') // pagina que va a manejar la sección
+        );
+	}
+
+	public function ajax_form_header_page_content()
+    {
+        include_once dirname(__DIR__) . '/admin/view/html-form-header-view-ajax.php';
+    }
+
+	public function ajax_form_footer_page_content()
+    {
+        include_once dirname(__DIR__) . '/admin/view/html-form-footer-view-ajax.php';
+    }
 
 
 }
