@@ -20,6 +20,7 @@
  define( MM . 'PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
  define( MM . 'PLUGIN_TEXT_DOMAIN', 'wp-multisite-manager' );
 
+
  require_once 'core/class-init.php';
 
  require_once 'configuration.php';
@@ -45,7 +46,7 @@ function wp_multisite_manager_context(){
 
 class WP_multisite_manager {
     
-
+    static $curr_dir; 
 
 	static $init;
 	/**
@@ -57,6 +58,7 @@ class WP_multisite_manager {
        // Load the header on the DB
       //  $wpdb->insert('bannerCustom', 
      // $banner);
+     
 		if ( null == self::$init ) {
             self::$init = new Core\Init();
 			self::$init->run();
@@ -64,7 +66,9 @@ class WP_multisite_manager {
 
 		return self::$init;
 	}
-
+    public static function curr_dir() {
+        return plugins_url( '.', __FILE__ );
+    }
 }
 /*
  * Comienza la ejecución del plugin
@@ -78,7 +82,11 @@ function wp_multisite_manager_init(){
 add_action('wp_head', function(){
     ?>  
     <div class="sedici-header">
-        <h1 style="height:5vh; color:#5CB1E3">Desarrollado por prebi sedici
+        <!-- <h1 style="height:5vh; color:#5CB1E3">Desarrollado por prebi sedici -->
+        <?php 
+        $banner_file=dirname(__FILE__)."/views/banner-structure.html";
+        readfile($banner_file); 
+        ?>
         <?php 
          if (is_multisite()) {
             echo "This is multisite";
