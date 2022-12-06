@@ -92,7 +92,6 @@ class Init{
 
 	private function add_block_subpages(){
 
-
 		## Agregar subpágina HEADER
 		$ajax_form_page_hook = add_submenu_page(
             $this->plugin_name, //parent slug
@@ -100,9 +99,8 @@ class Init{
             __('Header', $this->plugin_text_domain), //menu title
             'manage_options', //capability
             'config-header', //menu_slug
-            array($this, 'ajax_form_page_content')// pagina que va a manejar la sección
+            array($this, 'ajax_form_header_page_content')// pagina que va a manejar la sección
         );
-
 
 		## Agregar subpágina FOOTER
 		$ajax_form_page_hook = add_submenu_page(
@@ -111,7 +109,7 @@ class Init{
             __('Footer', $this->plugin_text_domain), //menu title
             'manage_options', //capability
             'config-footer', //menu_slug
-            array($this, 'ajax_form_page_content') // pagina que va a manejar la sección
+            array($this, 'ajax_form_footer_page_content') // pagina que va a manejar la sección
         );
 	}
 
@@ -120,6 +118,7 @@ class Init{
         include_once dirname(__DIR__) . '/admin/view/html-form-header-view-ajax.php';
     }
 
+	
 	public function ajax_form_footer_page_content()
     {
         include_once dirname(__DIR__) . '/admin/view/html-form-footer-view-ajax.php';
