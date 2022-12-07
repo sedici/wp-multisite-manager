@@ -35,6 +35,8 @@ register_activation_hook(
 
 
 
+
+
 function wp_multisite_manager_context(){
     if (is_multisite()) {
         echo "This is multisite";
@@ -74,9 +76,12 @@ class WP_multisite_manager {
  * Comienza la ejecución del plugin
  */
 
+
+ 
 function wp_multisite_manager_init(){
 	return wp_multisite_manager::init();
 }
+
 
 // Agrega el banner al header
 add_action('wp_head', function(){

@@ -18,6 +18,8 @@ class Init{
 	 */
 	protected $plugin_basename;
 
+	protected $multisite_administrator;
+
 	public function __construct() {
 
 		$this->plugin_name = MM\PLUGIN_NAME;
@@ -26,6 +28,7 @@ class Init{
 		$this->plugin_text_domain = MM\PLUGIN_TEXT_DOMAIN;
 
 		$this->loader = new Loader();
+		$this->define_admin_multisite_hooks();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
 	}
@@ -33,7 +36,10 @@ class Init{
 
 	public function run() {
 		$this->loader->run();
+		
 	} 
+
+	# Register ADMIN Styles and Scripts --------------------------------------------------------------------
 
 	function reg_admin_styles(){
 		wp_register_style("mainStyle", plugin_dir_url(__FILE__) . 'admin/css/mainStyle.css');
@@ -48,10 +54,32 @@ class Init{
 
 		wp_enqueue_style("multisite-manager-public-css");
 	}
-    private function define_public_hooks() {
-		add_action('wp_enqueue_scripts',array($this,'reg_public_styles'),30);
+
+	# End of Styles and Scripts register --------------------------------------------------------------------
+
+
+
+	# Register ADMIN Hooks --------------------------------------------------------------------
+
+	/*
+	* Esta función define los Hooks de ADMIN para SINGLE SITE
+	*
+	*/
+
+
+	public function define_admin_multisite_hooks(){
+		
+		#Registrar sección en el menu para administrar Footer y Header
+		add_action('network_admin_menu',array($this,'add_Multisite_Menu_Pages'),30);
+
+		#add_action('admin_menu',array($this,'add_Multisite_Menu_Pages'),30); ESTE HOOK SERIA PARA AGREGAR PAGINAS A NIVEL Single site
+ 
+
 	}
-	private function define_admin_hooks() {
+
+
+	private function define_admin_hooks() {  
+		
 	
 	// $plugin_adminMultisite = new Admin\multisiteAdmin.php();
 	
@@ -61,7 +89,6 @@ class Init{
 
 		add_action('admin_enqueue_scripts',array($this,'reg_admin_styles'),30);
 
-		add_action('init',array($this,'define_admin_multisite_hooks'),10);
 		// SingleSite
 
 		// Multisite
@@ -75,10 +102,21 @@ class Init{
 
 	}
 
-	# Falta agregar restriccion para que se vea solo en multisitio
 
-	public function define_admin_multisite_hooks(){
-		#Registrar sección en el menu para administrar Footer y Header
+    private function define_public_hooks() {
+		add_action('wp_enqueue_scripts',array($this,'reg_public_styles'),30);
+	}
+
+
+
+
+	
+
+
+
+	# Register all the MULTISITE Menu pages --------------------------------------------------------------
+
+	public function add_Multisite_Menu_Pages(){
 		add_menu_page(__('Administrar Footer y Header', $this->plugin_text_domain),
 		__('Configurar multisitio', $this->plugin_text_domain), 
 			'manage_options',
@@ -87,7 +125,8 @@ class Init{
         );
 		$this->add_block_subpages();
 	}
-
+	
+	
 	public function wp_multisite_manager_blocks()
     {
         $url=plugins_url();
@@ -132,6 +171,8 @@ class Init{
     {
         include_once dirname(__DIR__) . '/admin/view/html-form-footer-view-ajax.php';
     }
+
+# ------------------------------------------------------------------------------------
 
 
 }
