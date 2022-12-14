@@ -47,7 +47,11 @@ class Init{
 	# Register ADMIN Styles and Scripts --------------------------------------------------------------------
 
 	function reg_admin_styles(){
-		wp_register_style("mainStyle", plugin_dir_url(__FILE__) . 'admin/css/mainStyle.css');
+		$css_url = MM\PLUGIN_NAME_URL.'admin/css/mainStyle.css';
+
+
+
+		wp_register_style("mainStyle", $css_url);
 
 		wp_enqueue_style("mainStyle");
 	}
@@ -92,7 +96,7 @@ class Init{
 	
 	// Register Scripts and Styles
 
-		add_action('admin_enqueue_scripts',array($this,'reg_admin_styles'),30);
+		add_action('wp_enqueue_scripts',array($this,'reg_admin_styles'),30);
 
 		// SingleSite
 
@@ -111,13 +115,6 @@ class Init{
     private function define_public_hooks() {
 		add_action('wp_enqueue_scripts',array($this,'reg_public_styles'),30);
 	}
-
-
-
-
-	
-
-
 
 	# Register all the MULTISITE Menu pages --------------------------------------------------------------
 
