@@ -47,13 +47,13 @@ class Init{
 	# Register ADMIN Styles and Scripts --------------------------------------------------------------------
 
 	function reg_admin_styles(){
-		$css_url = MM\PLUGIN_NAME_URL.'admin/css/mainStyle.css';
+		$css_url = MM\PLUGIN_NAME_URL.'admin/css/administrationStyle.css';
 
 
 
-		wp_register_style("mainStyle", $css_url);
+		wp_register_style("administrationStyle", $css_url);
 
-		wp_enqueue_style("mainStyle");
+		wp_enqueue_style("administrationStyle");
 	}
 
 	function reg_public_styles() {

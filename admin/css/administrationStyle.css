@@ -2,6 +2,14 @@
     background-color: red;
 }
 
+.form-title {
+    font-size: 90px;
+}
+
+#save-changes-button {
+    
+}
+
 .pruebaEst{
     color:green;
 }
