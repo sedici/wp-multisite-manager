@@ -2,8 +2,12 @@
     background-color: red;
 }
 
-.form-title {
-    font-size: 90px;
+.Table-container {
+    
+}
+
+.table-headings {
+    font-size: 25px;
 }
 
 #save-changes-button {

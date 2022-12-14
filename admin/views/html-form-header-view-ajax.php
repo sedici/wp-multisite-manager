@@ -2,11 +2,10 @@
 
 <hr>
 
-<div id="notice_result"></div>
-<table class="form-table">
+<table class="Table-container">
     
     <tr>
-        <th class="form-title" scope="row">Texto</th>
+        <th class="table-headings" scope="row">Texto</th>
     </tr>
 
     <tr>

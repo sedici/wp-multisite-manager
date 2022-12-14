@@ -57,7 +57,7 @@ class Init{
 	}
 
 	function reg_public_styles() {
-		$public_css_url = MM\PLUGIN_NAME_URL.'views/css/RowsAndColumns.css';
+		$public_css_url = MM\PLUGIN_NAME_URL.'views/css/RowAndCol-PublicHeader.css';
 	
 		wp_register_style("multisite-manager-public-css", $public_css_url);
 
