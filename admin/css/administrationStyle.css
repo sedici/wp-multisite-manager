@@ -2,16 +2,19 @@
     background-color: red;
 }
 
-.Table-container {
-    
-}
-
-.table-headings {
-    font-size: 25px;
-}
-
 #save-changes-button {
-    
+    margin-top: 10px;
+    padding: 10px;
+
+    text-align: center;
+    font-size: 16px;
+    border: none;
+    color: antiquewhite;
+    background-color:#cf2e2e;
+}
+
+.filds-titles {
+    color:aqua;
 }
 
 .pruebaEst{
