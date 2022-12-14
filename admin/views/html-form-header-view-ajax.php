@@ -15,7 +15,7 @@
         <tr>
             <th scope='row'> <input type="text"> </th>
             <th scope='row'> <input type="text"> </th>
-            <th scope='row'> <input type="file"> </th>
+            <!--<th scope='row'> <input type="file"> </th> -->
             <th scope='row'> <input type="text"> </th>
         </tr>
     </tbody>
