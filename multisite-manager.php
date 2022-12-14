@@ -20,6 +20,9 @@
  define( MM . 'PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
  define( MM . 'PLUGIN_TEXT_DOMAIN', 'wp-multisite-manager' );
 
+ require_once 'Inc/activator.php';
+ require_once 'Inc/deactivator.php';
+
 
  require_once 'core/class-init.php';
 
@@ -28,10 +31,9 @@
 /**
  * Register Activation and Deactivation Hooks
  */ 
-register_activation_hook(
-    __FILE__,
-    'wp_multisite_manager_context'
-);
+
+
+register_activation_hook( __FILE__, array( MM . 'Inc\Activator', 'activate' ) );
 
 register_deactivation_hook( __FILE__, array( MM . 'Inc\Deactivator', 'deactivate' ) );
 
@@ -53,6 +55,10 @@ class WP_multisite_manager {
     static $curr_dir; 
 
 	static $init;
+
+
+
+
 	/**
 	 * Loads the plugin
 	 * @access    public
@@ -70,6 +76,9 @@ class WP_multisite_manager {
 
 		return self::$init;
 	}
+
+
+
     public static function curr_dir() {
         return plugins_url( '.', __FILE__ );
     }
