@@ -168,13 +168,13 @@ class Init{
 
 	public function ajax_form_header_page_content()
     {
-        include_once dirname(__DIR__) . '/admin/view/html-form-header-view-ajax.php';
+        include_once dirname(__DIR__) . '/admin/views/html-form-header-view-ajax.php';
     }
 
 	
 	public function ajax_form_footer_page_content()
     {
-        include_once dirname(__DIR__) . '/admin/view/html-form-footer-view-ajax.php';
+        include_once dirname(__DIR__) . '/admin/views/html-form-footer-view-ajax.php';
     }
 
 # ------------------------------------------------------------------------------------
