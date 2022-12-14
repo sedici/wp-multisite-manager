@@ -96,7 +96,7 @@ class Init{
 	
 	// Register Scripts and Styles
 
-		add_action('wp_enqueue_scripts',array($this,'reg_admin_styles'),30);
+		add_action('admin_enqueue_scripts',array($this,'reg_admin_styles'),30);
 
 		// SingleSite
 
