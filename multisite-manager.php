@@ -27,11 +27,13 @@
 
 /**
  * Register Activation and Deactivation Hooks
- */
+ */ 
 register_activation_hook(
     __FILE__,
     'wp_multisite_manager_context'
 );
+
+register_deactivation_hook( __FILE__, array( MM . 'Inc\Deactivator', 'deactivate' ) );
 
 
 

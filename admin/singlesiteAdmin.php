@@ -1,5 +1,5 @@
 <?php
-namespace Wp_dspace\Inc\Admin;
+namespace Wp_multisite_manager\Admin;
 
 
 ?>

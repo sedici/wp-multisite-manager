@@ -2,8 +2,10 @@
 
 namespace Wp_multisite_manager\Core;
 use Wp_multisite_manager as MM;
-
+use Wp_multisite_manager\WP_multisite_manager;
+use Wp_multisite_manager\Admin as Admin;
 require_once 'class-loader.php';
+//require_once PLUGIN_NAME_DIR.'/admin/multisiteAdmin.php';
 
 /**
  * Clase para administrar los hooks y encolar los estilos / scripts
@@ -28,6 +30,9 @@ class Init{
 		$this->plugin_text_domain = MM\PLUGIN_TEXT_DOMAIN;
 
 		$this->loader = new Loader();
+
+	//	$this->multisite_administrator = new Admin\multisiteAdmin();
+
 		$this->define_admin_multisite_hooks();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
