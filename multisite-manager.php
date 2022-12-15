@@ -103,14 +103,6 @@ add_action('wp_head', function(){
         $banner_file=dirname(__FILE__)."/views/banner-structure.html";
         readfile($banner_file); 
         ?>
-        <?php 
-         if (is_multisite()) {
-            echo "This is multisite";
-        }
-        else{
-            echo "<p class='pruebaEst'>Sitio normal</p>";
-        }
-        ?>
         </h1>
         <img style="height:8vh;width:35vh" src=<?php echo '"'. plugins_url('views/img/prebi-sedici.png',__FILE__) . '"' ?> ></img>
     </div>
