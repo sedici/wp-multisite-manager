@@ -9,21 +9,32 @@
     
     <!-- Podria agregarse algun placeholder -->
     <div class="general-form-field">
-        <h2 class="filds-titles"> Texto </h2>
+        <h2 class="filds-titles"> Links a redes </h2>
+
+        <input type="text">
+        <br><br>
+        <input type="text">
+        <br><br>
         <input type="text">
     </div>
 
     <hr>
 
     <div class="general-form-field">
-        <h2 class="filds-titles"> Enlace del texto </h2>
-        <input type="text">
+        <h2 class="filds-titles"> Contacto </h2>
+
+        <h4> Mail </h4>
+        <input type="text" placeholder="Ingrese un mail..">
+        <br><br>
+        <h4> Teléfono </h4>
+        <input type="text" placeholder="Ingrese un telefono..">
     </div>
 
     <hr>
 
     <div class="general-form-field">
         <h2 class="filds-titles"> Imagen </h2>
+
         <input type="file">
     </div>
 
@@ -31,6 +42,7 @@
 
     <div class="general-form-field">
         <h2 class="filds-titles"> Enlace de la imagen </h2>
+
         <input type="text">
     </div>
 
