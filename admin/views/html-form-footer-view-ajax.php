@@ -5,48 +5,64 @@
 
 <hr>
 
+<!-- Falta agregar atributos name a los elementos del formulario -->
+<form>
 <div>
     
     <!-- Podria agregarse algun placeholder -->
     <div class="general-form-field">
         <h2 class="filds-titles"> Links a redes </h2>
 
-        <input type="text">
+        <input type="url">
         <br><br>
-        <input type="text">
+        <input type="url">
         <br><br>
-        <input type="text">
+        <input type="url">
     </div>
 
-    <hr>
+    
 
     <div class="general-form-field">
         <h2 class="filds-titles"> Contacto </h2>
 
         <h4> Mail </h4>
-        <input type="text" placeholder="Ingrese un mail..">
+        <input type="email" placeholder="Ingrese un mail">
         <br><br>
         <h4> Teléfono </h4>
-        <input type="text" placeholder="Ingrese un telefono..">
+        <input type="tel" placeholder="Ingrese un telefono..">
     </div>
 
-    <hr>
+    
 
     <div class="general-form-field">
-        <h2 class="filds-titles"> Imagen </h2>
-
-        <input type="file">
-    </div>
-
-    <hr>
-
-    <div class="general-form-field">
-        <h2 class="filds-titles"> Enlace de la imagen </h2>
+        <h2 class="filds-titles"> Texto </h2>
 
         <input type="text">
     </div>
 
-    <hr>
+    
+
+    <div class="general-form-field">
+        <h2 class="filds-titles"> Enlace del texto </h2>
+
+        <input type="text">
+    <div>
+
+    
+
+    <div class="general-form-field">
+        <h2 class="filds-titles"> Imagen </h2>
+        <input type="file">
+    </div>
+
+    
+
+    <div class="general-form-field">
+        <h2 class="filds-titles"> Enlace de la imagen </h2>
+        <input type="text">
+    </div>
+
+    
 
     <div class="general-form-field">
         <button id="save-changes-button" type="button">Guardar cambios</button>
@@ -54,5 +70,6 @@
      
 
 </div>
+</form>
 
 <hr>

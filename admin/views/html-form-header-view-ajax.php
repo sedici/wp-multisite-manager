@@ -5,6 +5,8 @@
 
 <hr>
 
+<!-- Falta agregar atributos name a los elementos del formulario -->
+<form>
 <div>
     
     <!-- Podria agregarse algun placeholder -->
@@ -42,6 +44,8 @@
      
 
 </div>
+</form>
+
 
 <hr>
 
