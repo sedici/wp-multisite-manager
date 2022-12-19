@@ -45,7 +45,7 @@
     <div class="general-form-field">
         <h2 class="filds-titles"> Enlace del texto </h2>
 
-        <input type="text">
+        <input type="url">
     <div>
 
     
@@ -59,13 +59,13 @@
 
     <div class="general-form-field">
         <h2 class="filds-titles"> Enlace de la imagen </h2>
-        <input type="text">
+        <input type="url">
     </div>
 
     
 
     <div class="general-form-field">
-        <button id="save-changes-button" type="button">Guardar cambios</button>
+        <button id="save-changes-button" type="submit">Guardar cambios</button>
     </div>
      
 
