@@ -4,14 +4,14 @@
     a lo largo de todo su multisitio.</p>
 
 <hr>
-
+   
 <!-- Falta agregar atributos name a los elementos del formulario -->
 <form>
 <div>
     
     <!-- Podria agregarse algun placeholder -->
     <div class="general-form-field">
-        <h2 class="filds-titles"> Texto </h2>
+        <h2 class="filds-titles"> Texto <?php plugin_basename($file); ?> </h2>
         <input type="text">
     </div>
 

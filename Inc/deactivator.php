@@ -12,7 +12,10 @@ class Deactivator {
 	 *
 	 */
 	public static function deactivate() {
-
+	
+	# Cuando agreguemos el CPT de Sitios, lo vamos a tener que eliminar aca, para que no quede registrado si se borra 
+	# el plugin
+	
 	}
 
 }

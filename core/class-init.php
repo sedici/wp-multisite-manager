@@ -2,10 +2,12 @@
 
 namespace Wp_multisite_manager\Core;
 use Wp_multisite_manager as MM;
-use Wp_multisite_manager\WP_multisite_manager;
 use Wp_multisite_manager\Admin as Admin;
+
 require_once 'class-loader.php';
-//require_once PLUGIN_NAME_DIR.'/admin/multisiteAdmin.php';
+//require_once '../admin/multisiteAdmin.php';
+$dir = plugin_dir_path( __DIR__ ) . 'admin/multisiteAdmin.php';
+require  $dir ;
 
 /**
  * Clase para administrar los hooks y encolar los estilos / scripts
@@ -31,7 +33,7 @@ class Init{
 
 		$this->loader = new Loader();
 
-	//	$this->multisite_administrator = new Admin\multisiteAdmin();
+		$this->multisite_administrator = new admin\multisiteAdmin();
 
 		$this->define_admin_multisite_hooks();
 		$this->define_admin_hooks();
@@ -56,6 +58,9 @@ class Init{
 		wp_enqueue_style("administrationStyle");
 	}
 
+	
+	# Register PUBLIC Styles and Scripts --------------------------------------------------------------------
+	
 	function reg_public_styles() {
 		$public_css_url = MM\PLUGIN_NAME_URL.'views/css/RowAndCol-PublicHeader.css';
 	
@@ -79,10 +84,7 @@ class Init{
 	public function define_admin_multisite_hooks(){
 		
 		#Registrar sección en el menu para administrar Footer y Header
-		add_action('network_admin_menu',array($this,'add_Multisite_Menu_Pages'),30);
-
-		#add_action('admin_menu',array($this,'add_Multisite_Menu_Pages'),30); ESTE HOOK SERIA PARA AGREGAR PAGINAS A NIVEL Single site
- 
+		add_action('network_admin_menu',array($this,'add_Multisite_Menu_Pages'),30); 
 
 	}
 
@@ -111,8 +113,14 @@ class Init{
 
 	}
 
+	function load_plugin_textdomain() {
+		load_plugin_textdomain( 'wp-multisite-manager', FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
+	  }
 
     private function define_public_hooks() {
+	
+		  
+		add_action( 'plugins_loaded', 'load_plugin_textdomain' );
 		add_action('wp_enqueue_scripts',array($this,'reg_public_styles'),30);
 	}
 

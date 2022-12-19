@@ -7,6 +7,7 @@
  * Author: SEDICI
  * Author URI: http://sedici.unlp.edu.ar/   
  * Copyright (c) 2015 SEDICI UNLP, http://sedici.unlp.edu.ar
+ * Domain Path: /languages
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  */
 
@@ -38,17 +39,6 @@ register_activation_hook( __FILE__, array( MM . 'Inc\Activator', 'activate' ) );
 register_deactivation_hook( __FILE__, array( MM . 'Inc\Deactivator', 'deactivate' ) );
 
 
-
-
-
-function wp_multisite_manager_context(){
-    if (is_multisite()) {
-        echo "This is multisite";
-    }
-    else{
-        echo "Sitio normal";
-    }
-}
 
 class WP_multisite_manager {
     
@@ -115,7 +105,7 @@ add_action('wp_head', function(){
 /**
  * Si se accede desde afuera de wordpress aborta la ejecución.
  */
-if ( ! defined( 'WPINC' ) ) die;
+if ((! defined( 'WPINC' ) ) or (! is_multisite())) die;
 wp_multisite_manager_init();
 
 ?>
