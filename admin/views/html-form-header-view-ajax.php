@@ -6,11 +6,11 @@
 <hr>
    
 <!-- Falta agregar atributos name a los elementos del formulario -->
-<form>
+<form action="" method="post">
 <div>
     
     <!-- Podria agregarse algun placeholder -->
-    <div class="general-form-field">
+    <div class="general-form-field"> <!-- ¿que hace plugin_basename(__FILE__) -->
         <h2 class="filds-titles"> Texto <?php plugin_basename(__FILE__); ?> </h2>
         <input type="text">
     </div>
