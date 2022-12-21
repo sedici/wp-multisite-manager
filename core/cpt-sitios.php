@@ -39,11 +39,32 @@ function cpt_sitios_register() {
         'labels'        => $labels,
         'description'   => "",
         'public'        => true,
-        'has_archive'   => true,
+        'has_archive'   => false,
+        'publicly_queryable' => true,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        'show_in_admin_bar' => true,
+        'menu_icon' => "", //Falta poner
+        'capabilities' => array(
+            'create_posts' => 'create_sitio',
+            'delete_others_posts' => 'delete_others_sitios',
+            'delete_private_posts' => 'delete_private_sitios',
+            'delete_published_posts' => 'delete_published_sitios',
+            'edit_private_posts' => 'edit_private_sitios',
+            'edit_published_posts' => 'edit_published_sitios',
+            'edit_post' => 'edit_sitio',
+            'edit_posts' => 'edit_sitios',
+            'edit_others_posts' => 'edit_other_sitios',
+            'publish_posts' => 'publish_sitios',
+            'read_post' => 'read_sitio',
+            'read_private_posts' => 'read_private_sitios',
+            'delete_post' => 'delete_sitio'
+        ),
+       
     );
 
 
-    register_post_type( 'sitios', $args );
+    register_post_type( 'cpt-sitios', $args );
     
 }
 
