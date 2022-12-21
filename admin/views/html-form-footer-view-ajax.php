@@ -1,17 +1,17 @@
 <h1>Footer</h1>
 
-<p class="comments-about-section">En esta sección usted podrá editar partes del footer global que desea mostrar
-    a lo largo de todo su multisitio.</p>
+<p class="comments-about-section"> <?php _e("En esta sección usted podrá editar partes del footer global que desea mostrar
+    a lo largo de todo su multisitio."); ?> </p>
 
 <hr>
 
 <!-- Falta agregar atributos name a los elementos del formulario -->
-<form>
+<form action="" method="post">
 <div>
     
     <!-- Podria agregarse algun placeholder -->
     <div class="general-form-field">
-        <h2 class="filds-titles"> Links a redes </h2>
+        <h2 class="filds-titles"> <?php _e("Links a redes"); ?> </h2>
 
         <input type="url">
         <br><br>
@@ -23,19 +23,19 @@
     
 
     <div class="general-form-field">
-        <h2 class="filds-titles"> Contacto </h2>
+        <h2 class="filds-titles"> <?php _e("Contacto"); ?> </h2>
 
-        <h4> Mail </h4>
-        <input type="email" placeholder="Ingrese un mail">
+        <h4> <?php _e("Mail"); ?> </h4>
+        <input type="email" placeholder=<?php _e("Ingrese un mail..");?>>
         <br><br>
         <h4> Teléfono </h4>
-        <input type="tel" placeholder="Ingrese un telefono..">
+        <input type="tel" placeholder=<?php _e("Ingrese un telefono..");?>>
     </div>
 
     
 
     <div class="general-form-field">
-        <h2 class="filds-titles"> Texto </h2>
+        <h2 class="filds-titles"><?php _e("Texto");?></h2>
 
         <input type="text">
     </div>
@@ -43,29 +43,29 @@
     
 
     <div class="general-form-field">
-        <h2 class="filds-titles"> Enlace del texto </h2>
+        <h2 class="filds-titles"><?php _e("Enlace del texto");?></h2>
 
-        <input type="text">
+        <input type="url">
     <div>
 
     
 
     <div class="general-form-field">
-        <h2 class="filds-titles"> Imagen </h2>
+        <h2 class="filds-titles"><?php _e("Imagen");?></h2>
         <input type="file">
     </div>
 
     
 
     <div class="general-form-field">
-        <h2 class="filds-titles"> Enlace de la imagen </h2>
-        <input type="text">
+        <h2 class="filds-titles"><?php _e("Enlace de la imagen");?></h2>
+        <input type="url">
     </div>
 
     
 
     <div class="general-form-field">
-        <button id="save-changes-button" type="button">Guardar cambios</button>
+        <button id="save-changes-button" type="submit"><?php _e("Guardar cambios");?></button>
     </div>
      
 

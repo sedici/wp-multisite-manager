@@ -90,7 +90,7 @@ add_action('wp_head', function(){
     <div class="sedici-header">
         <!-- <h1 style="height:5vh; color:#5CB1E3">Desarrollado por prebi sedici -->
         <?php 
-        $banner_file=dirname(__FILE__)."/views/banner-structure.html";
+        $banner_file=dirname(__FILE__)."/views/banner-structure.php";
         readfile($banner_file); 
         ?>
         </h1>
