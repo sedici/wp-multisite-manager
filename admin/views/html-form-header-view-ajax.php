@@ -11,35 +11,35 @@
     
     <!-- Podria agregarse algun placeholder -->
     <div class="general-form-field">
-        <h2 class="filds-titles"> Texto <?php plugin_basename($file); ?> </h2>
+        <h2 class="filds-titles"> Texto <?php plugin_basename(__FILE__); ?> </h2>
         <input type="text">
     </div>
 
-    <hr>
+    
 
     <div class="general-form-field">
-        <h2 class="filds-titles"> Enlace del texto </h2>
+        <h2 class="filds-titles"> <?php _e("Enlace del texto"); ?> </h2>
         <input type="url">
     </div>
 
-    <hr>
+    
 
     <div class="general-form-field">
-        <h2 class="filds-titles"> Imagen </h2>
+        <h2 class="filds-titles"> <?php _e("Imagen"); ?> </h2>
         <input type="file">
     </div>
 
-    <hr>
+    
 
     <div class="general-form-field">
-        <h2 class="filds-titles"> Enlace de la imagen </h2>
+        <h2 class="filds-titles"> <?php _e("Enlace de la imagen"); ?> </h2>
         <input type="url">
     </div>
 
-    <hr>
+    
 
     <div class="general-form-field">
-        <button id="save-changes-button" type="submit">Guardar cambios</button>
+        <button id="save-changes-button" type="submit"><?php _e("Guardar cambios");?></button>
     </div>
      
 
