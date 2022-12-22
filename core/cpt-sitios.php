@@ -68,5 +68,36 @@ function cpt_sitios_register() {
     
 }
 
+/*
+* Agrega las capabilites para editar el custom post.
+*/
+function add_sitio_capabilities() {
+
+    $admins = get_role('administrator');
+
+    $admins->add_cap('create_sitio');
+    $admins->add_cap('delete_private_sitios');
+    $admins->add_cap('delete_others_sitios');
+    $admins->add_cap('delete_published_sitios');
+    $admins->add_cap('edit_published_sitios');
+    $admins->add_cap('edit_sitio');
+    $admins->add_cap('edit_sitios');
+    $admins->add_cap('publish_sitios');
+    $admins->add_cap('read_sitio');
+    $admins->add_cap('delete_sitio');
+    $admins->add_cap('edit_private_sitios');
+    $admins->add_cap('edit_other_sitios');
+    $admins->add_cap('read_private_sitios');
+}
+
+
+/*
+* Agrega los campos personalizados para el custom post.
+*/
+// No se como implementarlo
+function personal_custom_metabox()
+{
+    add_meta_box('sitio_meta', __('Información del personal', 'personal'), array($this, 'personal_display_callback'), 'personal');
+}
 
 ?>
