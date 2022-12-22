@@ -18,6 +18,8 @@ class multisiteAdmin{
       
         add_action('network_admin_menu',array($this,'add_Multisite_Menu_Pages'),30); 
         add_action( 'admin_init', array($this,'header_settings'), 30 );
+        add_action('admin-init','update_button_js');
+        add_action('network_admin_edit_header_update_network_options',array($this,'header_update_network_options'));
 
     }
 
@@ -39,8 +41,28 @@ class multisiteAdmin{
     function header_settings() {
 	    register_setting( 'header_settings', 'title_text' );
         register_setting( 'header_settings', 'title_link' );
-
+        register_setting( 'header_settings', 'image' );
+        register_setting( 'header_settings', 'image_link' );
     }
+
+    function header_update_network_options(){
+        # Me da error , dice que el link expiro. check_admin_referer('ajax_form_header_page_content-options');
+        global $new_whitelist_options;
+        $options = $new_whitelist_options['header_settings'];
+        foreach ($options as $option) {
+            if (isset($_POST[$option])) {
+            update_site_option($option, $_POST[$option]);
+            } else {
+                delete_site_option($option);
+                 }
+            }
+       # echo "aaaaaaaaa";# Hasta aca llega bien
+        wp_redirect(add_query_arg(array('page' => 'config-header',
+        'updated' => 'true'), network_admin_url('settings.php')));
+        exit;
+        }
+
+
 
     # Register all the MULTISITE Menu pages --------------------------------------------------------------
 
@@ -62,6 +84,10 @@ class multisiteAdmin{
         <p>Este plugin de Wordpress permite administrar configuraciones gloables para todos los sitios
 		dentro de una red de Multisitio. </p>
         ";
+        echo "<h2> Actualizar información de los CPT de sitios </h2> 
+            <button id='update-sites-cpt' > Actualizar </button>
+        ";
+
 		#  <a href=$url/wp-dspace/UtilizaciondelPLuginWP-Dspace.docx>Descargar Manual</a>
         
     }
@@ -99,6 +125,25 @@ class multisiteAdmin{
     {
         include_once dirname(__DIR__) . '/admin/views/html-form-footer-view-ajax.php';
     }
+
+    public function update_button_js() {
+        ?>
+        
+            <script>
+            console.log("Add");
+            document.addEventListener('DOMContentLoaded', () => {
+                
+                const button = document.getElementById('update-sites-cpt');
+        
+                button.addEventListener('click', () => {
+                    button.style.color = 'blue';
+                });
+            }
+        
+            </script>
+            <?php
+        } 
+
 
 
 }

@@ -6,7 +6,7 @@
 <hr>
    
 <!-- Falta agregar atributos name a los elementos del formulario -->
-<form method="POST" >
+<form method="POST"  action="edit.php?action=header_update_network_options"" >
     <?php settings_fields( 'header_settings' ); ?>
     <?php do_settings_sections( 'header_settings' ); ?>
     
@@ -41,9 +41,7 @@
 
     
 
-    <div class="general-form-field">
-        <button id="save-changes-button" type="submit"><?php _e("Guardar cambios");?></button>
-    </div>
+    <?php submit_button(); ?>
      
 
 </div>
