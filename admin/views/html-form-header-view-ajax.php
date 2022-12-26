@@ -11,7 +11,10 @@
     <?php do_settings_sections( 'header_settings' ); ?>
     
 <div>
-    
+    <div class="general-form-field">
+        <h2 class="filds-titles"> <?php _e("Habilitado"); ?> </h2>
+        <input type="checkbox" name="enabled" value=1   <?php checked(get_site_option('enabled')); ?> />
+    </div>
     <!-- Podria agregarse algun placeholder -->
     <div class="general-form-field">
         <h2 class="filds-titles"> <?php _e("Texto"); ?> </h2>
