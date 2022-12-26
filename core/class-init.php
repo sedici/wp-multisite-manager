@@ -90,6 +90,14 @@ class Init{
 
 	private function define_admin_hooks() {  
 		
+	//crear instancia cpt stios
+
+	$dir_cpt_sitios = MM\PLUGIN_NAME_DIR.'core/CPT_Sitios.php';
+
+	require_once $dir_cpt_sitios;
+
+	$Sitios_CPT = new CPT_Sitios();
+
 	
 	// $plugin_adminMultisite = new Admin\multisiteAdmin.php();
 	
@@ -98,6 +106,8 @@ class Init{
 	// Register Scripts and Styles
 
 		add_action('admin_enqueue_scripts',array($this,'reg_admin_styles'),30);
+
+		//agregar add_action
 
 		// SingleSite
 

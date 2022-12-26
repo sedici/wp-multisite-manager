@@ -1,9 +1,7 @@
 <?php
 namespace Wp_multisite_manager\Core;
-use Wp_multisite_manager as MM;
 
-
-Class CPT_Sitios {
+class CPT_Sitios {
     // Registra el Post Type Sitio
     function cpt_sitios_register() {
 
