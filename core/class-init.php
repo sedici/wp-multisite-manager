@@ -109,6 +109,8 @@ class Init{
 
 		//agregar add_action
 
+		add_action('init', array($Sitios_CPT,'cpt_sitios_register'),20);
+
 		// SingleSite
 
 		// Multisite
