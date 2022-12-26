@@ -86,9 +86,10 @@ function wp_multisite_manager_init(){
 
 // Agrega el banner al header
 add_action('wp_head', function(){
-    ?>  
+    $enabled = get_site_option('enabled');
+    if ($enabled == 1){ ?>
     <div class="sedici-header">
-        <!-- <h1 style="height:5vh; color:#5CB1E3">Desarrollado por prebi sedici -->
+        <h1 style="height:5vh; color:#5CB1E3"> <?php echo get_site_option('title_text'); ?> </h1>
         <?php 
         $banner_file=dirname(__FILE__)."/views/banner-structure.php";
         readfile($banner_file); 
@@ -100,6 +101,7 @@ add_action('wp_head', function(){
           alert('Un ejemplo desde Javascript');
       </script>
   <?php
+    }
 });
 
 /**

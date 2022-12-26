@@ -39,11 +39,15 @@ class multisiteAdmin{
 
     // Register all the header settings
     function header_settings() {
-	    register_setting( 'header_settings', 'title_text' );
+        register_setting( 'header_settings', 'enabled' );
+        register_setting( 'header_settings', 'title_text' );
         register_setting( 'header_settings', 'title_link' );
         register_setting( 'header_settings', 'image' );
         register_setting( 'header_settings', 'image_link' );
     }
+
+    // Register all the footer settings
+
 
     function header_update_network_options(){
         #check_admin_referer('config-header-options');
