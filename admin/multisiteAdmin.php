@@ -46,19 +46,18 @@ class multisiteAdmin{
     }
 
     function header_update_network_options(){
-        # Me da error , dice que el link expiro. check_admin_referer('ajax_form_header_page_content-options');
-        global $new_whitelist_options;
-        $options = $new_whitelist_options['header_settings'];
+        #check_admin_referer('config-header-options');
+        global $new_allowed_options;
+        $options = $new_allowed_options['header_settings'];
         foreach ($options as $option) {
             if (isset($_POST[$option])) {
-            update_site_option($option, $_POST[$option]);
+                update_site_option($option, $_POST[$option]);
             } else {
                 delete_site_option($option);
                  }
             }
-       # echo "aaaaaaaaa";# Hasta aca llega bien
         wp_redirect(add_query_arg(array('page' => 'config-header',
-        'updated' => 'true'), network_admin_url('settings.php')));
+        'updated' => 'true'), network_admin_url('admin.php')));
         exit;
         }
 
