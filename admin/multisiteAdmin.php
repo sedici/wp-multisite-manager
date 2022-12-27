@@ -42,7 +42,7 @@ class multisiteAdmin{
         register_setting( 'header_settings', 'enabled' );
         register_setting( 'header_settings', 'title_text' );
         register_setting( 'header_settings', 'title_link' );
-        register_setting( 'header_settings', 'image' );
+        register_setting( 'header_settings', 'image', 'header_image_save' );
         register_setting( 'header_settings', 'image_link' );
         register_setting( 'header_settings', 'header_css');
     }
@@ -68,17 +68,32 @@ class multisiteAdmin{
         register_setting( 'footer_settings', 'footer_css' );
     }
 
+    function header_image_save($option){
+        die;
+        if(!empty($_FILES["image"]["tmp_name"])){
+            $urls = wp_handle_upload($_FILES["image"], array('test_form' => FALSE));
+            $temp = $urls["url"];
+            echo $temp;
+            return $temp;  
+        }
+    }
+
     function header_update_network_options(){
         #check_admin_referer('config-header-options');
         global $new_allowed_options;
         $options = $new_allowed_options['header_settings'];
         foreach ($options as $option) {
-            if (isset($_POST[$option])) {
-                update_site_option($option, $_POST[$option]);
+            if($option == "image"){
+                $image_id = media_handle_upload('image',0 );
+                update_site_option($option, $image_id);
+            }
+            else if (isset($_POST[$option])) {
+                    update_site_option($option, $_POST[$option]);
             } else {
                 delete_site_option($option);
                  }
             }
+        
         wp_redirect(add_query_arg(array('page' => 'config-header',
         'updated' => 'true'), network_admin_url('admin.php')));
         exit;

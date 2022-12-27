@@ -6,10 +6,10 @@
 <hr>
    
 <!-- Falta agregar atributos name a los elementos del formulario -->
-<form method="POST"  action="edit.php?action=header_update_network_options" >
+<form method="POST"  action="edit.php?action=header_update_network_options" enctype=multipart/form-data>
     <?php settings_fields( 'header_settings' ); ?>
     <?php do_settings_sections( 'header_settings' ); ?>
-    
+   <h1> <?php echo get_site_option('image'); ?> </h1>
 <div>
     <div class="general-form-field">
         <h2 class="filds-titles"> <?php _e("Habilitado"); ?> </h2>
