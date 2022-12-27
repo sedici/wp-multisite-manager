@@ -1,3 +1,6 @@
+    .header-container{
+        padding-top: 2vh;
+    }
     .column {
         float: left;
         width: 50%;
@@ -9,3 +12,4 @@
         display: table;
         clear: both;
     }
+    

@@ -1,4 +1,4 @@
-<h1>Header</h1>
+<h1>Formulario del header</h1>
 
 <p class="comments-about-section"> <?php _e("En esta sección usted podrá editar partes del header global que desea mostrar
     a lo largo de todo su multisitio.",'wp-multisite-manager'); ?> </p>
@@ -9,7 +9,6 @@
 <form method="POST"  action="edit.php?action=header_update_network_options" enctype=multipart/form-data>
     <?php settings_fields( 'header_settings' ); ?>
     <?php do_settings_sections( 'header_settings' ); ?>
-   <h1> <?php echo get_site_option('image'); ?> </h1>
 <div>
     <div class="general-form-field">
         <h2 class="filds-titles"> <?php _e("Habilitado"); ?> </h2>
@@ -48,10 +47,14 @@
         <textarea name="header_css" value="<?php echo esc_attr( get_site_option('header_css') ); ?>"></textarea>
     </div>
     
-    <span style="font-weight:bold"><?php _e("Referencias de clases CSS"); ?> </span>
+    <h3 style="font-weight:bold"><?php _e("Referencias de clases CSS"); ?> </h3>
     <ul>
-        <li> <span style="font-weight:bold"> banner-container: </span> esta clase envuelve todo el banner. (Aquí se pueden poner los colores de fondo) </li>
-        <li> <span style="font-weight:bold"> header-title: </span> esta clase maneja la etiqueta de texto </li>
+        <li> <span style="font-weight:bold"> header-container: </span> <?php _e("esta clase envuelve todo el header. (Aquí se pueden poner los colores de fondo)");?> </li>
+        <li> <span style="font-weight:bold"> header-title: </span> <?php _e("esta clase maneja la etiqueta de texto");?> </li>
+        <li> <span style="font-weight:bold"> column: </span> <?php _e("esta clase maneja las 2 columnas del header"); ?> </li>
+        <li> <span style="font-weight:bold"> col1 y col2: </span> <?php _e("estas clases manejan la columna de texto (col1) y la columna de imagen (col2)"); ?> </li>
+        <li> <span style="font-weight:bold"> header-image: </span> <?php _e("esta clase maneja la imagen del header"); ?> </li>
+
     </ul>
 
 
