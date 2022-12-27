@@ -1,8 +1,12 @@
 <?php
 namespace Wp_multisite_manager\Core;
 
+//Fixme : Puede que haya cosas que agregar o modificar
+
+//Se muestra el cpt sitios en los sitios del multisitio, no deberia suceder esto
 
 class CPT_Sitios {
+
     // Registra el Post Type Sitio
     function cpt_sitios_register() {
 
@@ -92,6 +96,7 @@ class CPT_Sitios {
     /**
      * Formulario custom post
      */
+    // PARA QUE ME SIRVE EL ARG QUE RECIBE?
     public function sitios_display_callback($unArg)
     {
         $dir = plugin_dir_path( __FILE__ ) . '../views/sitios-view.php';
@@ -103,6 +108,7 @@ class CPT_Sitios {
     */
     function personal_custom_metabox()
     {
+        //Fixme : No estoy seguro de que los parametros esten bien pasados y el arg pasado a display callback no se de que me sirve
         add_meta_box('sitios_meta',__('Informacion del sitio'),array($this,'sitios_display_callback'),'cpt-sitios');
     }
 
