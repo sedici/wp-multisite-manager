@@ -1,6 +1,7 @@
 <?php
 namespace Wp_multisite_manager\Core;
 
+
 class CPT_Sitios {
     // Registra el Post Type Sitio
     function cpt_sitios_register() {
@@ -9,10 +10,10 @@ class CPT_Sitios {
             "name" => __("Sitio", ""),
             "singular_name" => __("Sitio", ""),
 
-            "menu_name" => __("Sitio", ""),
+            "menu_name" => __("Sitios", ""),
             "all_items" => __("Todos los Sitios", ""),
             "add_new" => __("Agregar Sitio", ""),
-            "add_new_item" => __("Agregar nuevo Sitio", ""),
+            "add_new_item" => __("Agregar nuevo sitio", ""),
             "edit_item" => __("Editar Sitio", ""),
             "new_item" => __("Nuevo Sitio", ""),
             "view_item" => __("Ver Sitio", ""),
@@ -41,13 +42,13 @@ class CPT_Sitios {
         $args = array (
             'labels'        => $labels,
             'description'   => "",
-            'public'        => true,
+            'public'        => true, //No deberia ser publico para todos los sitios, sino para quien administra multistio
             'has_archive'   => false,
             'publicly_queryable' => true,
             'show_ui' => true,
-            'show_in_menu' => true,
+            'show_in_menu' => true, 
             'show_in_admin_bar' => true,
-            'menu_icon' => "", //Falta poner
+            'menu_icon' => "none", //Falta poner
             'capabilities' => array(
                 'create_posts' => 'create_sitio',
                 'delete_others_posts' => 'delete_others_sitios',
@@ -76,31 +77,33 @@ class CPT_Sitios {
     */
     function add_sitio_capabilities() {
 
-        $admins = get_role('administrator');
+        $rolAdmin = get_role('administrator');
 
-        $admins->add_cap('create_sitio');
-        $admins->add_cap('delete_private_sitios');
-        $admins->add_cap('delete_others_sitios');
-        $admins->add_cap('delete_published_sitios');
-        $admins->add_cap('edit_published_sitios');
-        $admins->add_cap('edit_sitio');
-        $admins->add_cap('edit_sitios');
-        $admins->add_cap('publish_sitios');
-        $admins->add_cap('read_sitio');
-        $admins->add_cap('delete_sitio');
-        $admins->add_cap('edit_private_sitios');
-        $admins->add_cap('edit_other_sitios');
-        $admins->add_cap('read_private_sitios');
+        $caps = ['create_sitio', 'delete_private_sitios','delete_others_sitios',
+        'delete_published_sitios','edit_published_sitios','edit_sitio','edit_sitios',
+        'publish_sitios', 'read_sitio','delete_sitio','edit_private_sitios',
+        'edit_other_sitios','read_private_sitios'];
+    
+        foreach ($caps as $cap)
+            $rolAdmin->add_cap($cap);    
     }
 
+
+    /**
+     * Formulario custom post
+     */
+    public function sitios_display_callback($unArg)
+    {
+        $dir = plugin_dir_path( __FILE__ ) . '../views/sitios-view.php';
+        include_once($dir);
+    }
 
     /*
     * Agrega los campos personalizados para el custom post.
     */
-    // No se como implementarlo
     function personal_custom_metabox()
     {
-        add_meta_box('sitio_meta', __('Información del personal', 'personal'), array($this, 'personal_display_callback'), 'personal');
+        add_meta_box('sitios_meta',__('Informacion del sitio'),array($this,'sitios_display_callback'),'cpt-sitios');
     }
 
 }

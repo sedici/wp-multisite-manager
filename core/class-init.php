@@ -96,7 +96,7 @@ class Init{
 
 	require_once $dir_cpt_sitios;
 
-	$Sitios_CPT = new CPT_Sitios();
+	$sitiosCPT = new CPT_Sitios();
 
 	
 	// $plugin_adminMultisite = new Admin\multisiteAdmin.php();
@@ -106,10 +106,15 @@ class Init{
 	// Register Scripts and Styles
 
 		add_action('admin_enqueue_scripts',array($this,'reg_admin_styles'),30);
-
-		//agregar add_action
-
-		add_action('init', array($Sitios_CPT,'cpt_sitios_register'),20);
+		
+        // Registra el custom post personal
+		add_action('init', array($sitiosCPT,'cpt_sitios_register'),20);
+		// Registra las capabilities
+		add_action('init', array($sitiosCPT,'add_sitio_capabilities'),20);
+		// Agrega los campos meta al custom post personal
+		add_action('add_meta_boxes', array($sitiosCPT,'personal_custom_metabox'));
+		// Guarda los campos meta
+        //add_action('save_post', $sitiosCPT, 'personal_save_metas');
 
 		// SingleSite
 
