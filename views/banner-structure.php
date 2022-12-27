@@ -1,15 +1,19 @@
-<div class="row">
-    <h1 style="height:5vh; color:#5CB1E3"> <?php echo "hola"; _e("Desarrollado por prebi sedici",'wp-multisite-manager'); ?>
-</div>
+
+<style>
+     <?php echo get_site_option('header_css'); ?>
+</style>
+<div class="banner-container">
 
 <div class="row">
     <div class="column">   
-        <h1> <?php _e("Esta es la columna 1",'wp-multisite-manager'); ?> </h1>
+        <h1 style="margin-left:10vh" class="header-title"> <?php echo get_site_option('title_text'); ?> </h1>
     </div>
 
     <div class="column"> 
-        <h1> <?php _e("Esta es la columna 2",'wp-multisite-manager'); ?> </h1>
+        <h1 > <?php _e("Esta es la columna 2",'wp-multisite-manager'); ?> </h1>
     </div>
+</div>
+
 </div>
 
 

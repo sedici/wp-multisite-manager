@@ -44,10 +44,29 @@ class multisiteAdmin{
         register_setting( 'header_settings', 'title_link' );
         register_setting( 'header_settings', 'image' );
         register_setting( 'header_settings', 'image_link' );
+        register_setting( 'header_settings', 'header_css');
     }
 
     // Register all the footer settings
+    function footer_settings() {
+        register_setting( 'footer_settings', 'footer_enabled' );
+        
+        // Social Media LINKS
+        register_setting( 'footer_settings', 'footer_fb' );
+        register_setting( 'footer_settings', 'footer_tw' );
+        register_setting( 'footer_settings', 'footer_ig' );
+        
+        register_setting( 'footer_settings', 'footer_text' );
+        register_setting( 'footer_settings', 'footer_text_link' );
 
+        register_setting( 'footer_settings', 'footer_logo_1' );
+        register_setting( 'footer_settings', 'footer_logo_link_1' );
+
+        register_setting( 'footer_settings', 'footer_email' );
+        register_setting( 'footer_settings', 'footer_phone' );
+
+        register_setting( 'footer_settings', 'footer_css' );
+    }
 
     function header_update_network_options(){
         #check_admin_referer('config-header-options');

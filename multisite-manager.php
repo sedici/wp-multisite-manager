@@ -88,18 +88,10 @@ function wp_multisite_manager_init(){
 add_action('wp_head', function(){
     $enabled = get_site_option('enabled');
     if ($enabled == 1){ ?>
-    <div class="sedici-header">
-        <h1 style="height:5vh; color:#5CB1E3"> <?php echo get_site_option('title_text'); ?> </h1>
         <?php 
         $banner_file=dirname(__FILE__)."/views/banner-structure.php";
-        readfile($banner_file); 
+        include_once($banner_file); 
         ?>
-        </h1>
-        <img style="height:8vh;width:35vh" src=<?php echo '"'. plugins_url('views/img/prebi-sedici.png',__FILE__) . '"' ?> ></img>
-    </div>
-    <script>
-          alert('Un ejemplo desde Javascript');
-      </script>
   <?php
     }
 });
