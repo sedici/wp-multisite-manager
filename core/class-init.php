@@ -6,8 +6,12 @@ use Wp_multisite_manager\Admin as Admin;
 
 require_once 'class-loader.php';
 //require_once '../admin/multisiteAdmin.php';
-$dir = plugin_dir_path( __DIR__ ) . 'admin/multisiteAdmin.php';
-require  $dir ;
+$dirMultisite = plugin_dir_path( __DIR__ ) . 'admin/multisiteAdmin.php';
+$dirSinglesite = plugin_dir_path( __DIR__ ) . 'admin/singlesiteAdmin.php';
+
+require  $dirSinglesite ;
+require  $dirMultisite ;
+
 
 /**
  * Clase para administrar los hooks y encolar los estilos / scripts
@@ -34,6 +38,9 @@ class Init{
 		$this->loader = new Loader();
 
 		$this->multisite_administrator = new admin\multisiteAdmin($this);
+
+		$this->singlesite_administrator = new admin\singlesiteAdmin($this);
+
 
 		$this->define_admin_multisite_hooks();
 		$this->define_admin_hooks();

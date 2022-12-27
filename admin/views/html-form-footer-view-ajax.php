@@ -11,13 +11,15 @@
     
     <!-- Podria agregarse algun placeholder -->
     <div class="general-form-field">
-        <h2 class="filds-titles"> <?php _e("Links a redes"); ?> </h2>
-
-        <input type="url">
+        <h2 class="filds-titles"> <?php _e("Links de redes sociales"); ?> </h2>
+        <label for="footer_fb"> <?php _e("Enlace de Facebook"); ?>  </label>
+        <input type="url" name="footer_fb" >
         <br><br>
-        <input type="url">
+        <label for="footer_tw"> <?php _e("Enlace de Twitter"); ?>  </label>
+        <input type="url" name="footer_tw">
         <br><br>
-        <input type="url">
+        <label for="footer_tw"> <?php _e("Enlace de Instagram"); ?>  </label>
+        <input type="url" name="footer_ig">
     </div>
 
     
