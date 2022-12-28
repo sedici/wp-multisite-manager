@@ -18,8 +18,10 @@ class multisiteAdmin{
       
         add_action('network_admin_menu',array($this,'add_Multisite_Menu_Pages'),30); 
         add_action( 'admin_init', array($this,'header_settings'), 30 );
+        add_action( 'admin_init', array($this,'footer_settings'), 30 );
         add_action('admin-init','update_button_js');
         add_action('network_admin_edit_header_update_network_options',array($this,'header_update_network_options'));
+        add_action('network_admin_edit_footer_update_network_options',array($this,'footer_update_network_options'));
 
     }
 
@@ -59,11 +61,14 @@ class multisiteAdmin{
         register_setting( 'footer_settings', 'footer_text' );
         register_setting( 'footer_settings', 'footer_text_link' );
 
+        register_setting( 'footer_settings', 'footer_email' );
+        register_setting( 'footer_settings', 'footer_phone' );
+
         register_setting( 'footer_settings', 'footer_logo_1' );
         register_setting( 'footer_settings', 'footer_logo_link_1' );
 
-        register_setting( 'footer_settings', 'footer_email' );
-        register_setting( 'footer_settings', 'footer_phone' );
+        register_setting( 'footer_settings', 'footer_logo_2' );
+        register_setting( 'footer_settings', 'footer_logo_link_2' );
 
         register_setting( 'footer_settings', 'footer_css' );
     }
@@ -91,15 +96,36 @@ class multisiteAdmin{
                     update_site_option($option, $_POST[$option]);
             } else {
                 delete_site_option($option);
-                 }
             }
+        }
         
         wp_redirect(add_query_arg(array('page' => 'config-header',
         'updated' => 'true'), network_admin_url('admin.php')));
         exit;
+    }
+    
+    function footer_update_network_options(){
+        #check_admin_referer('config-header-options');
+        global $new_allowed_options;
+        $options = $new_allowed_options['footer_settings'];
+        foreach ($options as $option) {
+            if($option == "image"){
+                $image_id = media_handle_upload('image',0 );
+                update_site_option($option, $image_id);
+            }
+            else if (isset($_POST[$option])) {
+                update_site_option($option, $_POST[$option]);
+            } else {
+                delete_site_option($option);
+            }
         }
-
-
+            
+        wp_redirect(add_query_arg(array('page' => 'config-footer',
+        'updated' => 'true'), network_admin_url('admin.php')));
+        exit;
+    }
+    
+        
 
     # Register all the MULTISITE Menu pages --------------------------------------------------------------
 
