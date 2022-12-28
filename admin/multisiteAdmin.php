@@ -100,8 +100,8 @@ class multisiteAdmin{
         global $new_allowed_options;
         $options = $new_allowed_options['footer_settings'];
         foreach ($options as $option) {
-            if($option == "image"){
-                $image_id = media_handle_upload('image',0 );
+            if(($option == "footer_logo_1")|| ($option == "footer_logo_2")) {
+                $image_id = media_handle_upload($option,0 );
                 update_site_option($option, $image_id);
             }
             else if (isset($_POST[$option])) {

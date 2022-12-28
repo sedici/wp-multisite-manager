@@ -26,6 +26,7 @@
     </div>
 
     <div class="footer_column">
+       <?php print_logos(); ?>
     </div>
 
 
@@ -65,6 +66,21 @@ function print_contacto(){
     }
 
     echo $section . "</p>";
+}
+
+function print_logos(){
+    $section ="";
+    if(get_site_option('footer_logo_1') != ""){
+       $section= $section. '<a href="' .  get_site_option('footer_logo_link_1') . '">
+            <img class="footer-image" src="' . wp_get_attachment_url(get_site_option('footer_logo_1')) . '"></img>
+        </a>';
+    }
+    if(get_site_option('footer_logo_2') != ""){
+        $section= $section. '<a href="' .  get_site_option('footer_logo_link_2') . '">
+             <img class="footer-image" src="' . wp_get_attachment_url(get_site_option('footer_logo_2')) . '"></img>
+         </a>';
+     }
+     echo $section;
 }
 
 ?>

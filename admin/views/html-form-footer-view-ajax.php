@@ -93,12 +93,13 @@
     
     <h3 style="font-weight:bold"><?php _e("Referencias de clases CSS"); ?> </h3>
     <ul>
-        <li> <span style="font-weight:bold"> header-container: </span> <?php _e("esta clase envuelve todo el header. (Aquí se pueden poner los colores de fondo)");?> </li>
-        <li> <span style="font-weight:bold"> header-title: </span> <?php _e("esta clase maneja la etiqueta de texto");?> </li>
-        <li> <span style="font-weight:bold"> column: </span> <?php _e("esta clase maneja las 2 columnas del header"); ?> </li>
-        <li> <span style="font-weight:bold"> col1 y col2: </span> <?php _e("estas clases manejan la columna de texto (col1) y la columna de imagen (col2)"); ?> </li>
-        <li> <span style="font-weight:bold"> header-image: </span> <?php _e("esta clase maneja la imagen del header"); ?> </li>
-
+        <li> <span style="font-weight:bold"> footer-container: </span> <?php _e("esta clase envuelve todo el footer. (Aquí se pueden poner los colores de fondo)");?> </li>
+        <li> <span style="font-weight:bold"> footer_column: </span> <?php _e("esta clase maneja las 3 columnas del footer"); ?> </li>
+        <li> <span style="font-weight:bold"> footer-image: </span> <?php _e("esta clase maneja las imagenes del footer"); ?> </li>
+        <li> <span style="font-weight:bold"> contact-text: </span> <?php _e("esta clase maneja el texto de la información de contacto"); ?> </li>
+        <li> <span style="font-weight:bold"> contact-container: </span> <?php _e("esta clase maneja el contenedor de la información de contacto"); ?> </li>
+        <li> <span style="font-weight:bold"> media-icon: </span> <?php _e("esta clase maneja los logos de las redes sociales"); ?> </li>
+        <li> <span style="font-weight:bold"> media-container: </span> <?php _e("esta clase maneja el contenedor de las redes sociales"); ?> </li>
     </ul>
 
 
