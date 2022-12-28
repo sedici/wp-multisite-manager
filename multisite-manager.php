@@ -84,17 +84,7 @@ function wp_multisite_manager_init(){
 }
 
 
-// Agrega el banner al header
-add_action('wp_head', function(){
-    $enabled = get_site_option('enabled');
-    if ($enabled == 1){ ?>
-        <?php 
-        $banner_file=dirname(__FILE__)."/views/banner-structure.php";
-        include_once($banner_file); 
-        ?>
-  <?php
-    }
-});
+
 
 /**
  * Si se accede desde afuera de wordpress aborta la ejecución.

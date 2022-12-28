@@ -8,6 +8,10 @@
 <!-- Falta agregar atributos name a los elementos del formulario -->
 <form action="" method="post">
 <div>
+<div class="general-form-field">
+        <h2 class="filds-titles"> <?php _e("Habilitado"); ?> </h2>
+        <input type="checkbox" name="footer_enabled" value=1   <?php checked(get_site_option('enabled')); ?> />
+    </div>
     
     <!-- Podria agregarse algun placeholder -->
     <div class="general-form-field">
