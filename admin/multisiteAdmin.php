@@ -73,15 +73,6 @@ class multisiteAdmin{
         register_setting( 'footer_settings', 'footer_css' );
     }
 
-    function header_image_save($option){
-        die;
-        if(!empty($_FILES["image"]["tmp_name"])){
-            $urls = wp_handle_upload($_FILES["image"], array('test_form' => FALSE));
-            $temp = $urls["url"];
-            echo $temp;
-            return $temp;  
-        }
-    }
 
     function header_update_network_options(){
         #check_admin_referer('config-header-options');

@@ -17,4 +17,34 @@
         display: table;
         clear: both;
     }
+
+
+    /* FOOOTER CSS */
+
+    .footer_column {
+        float: right;
+        width: 31%;
+    }
+
+    .footer_row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
     
+    .contact-text {
+        font-weight: bold;
+    }
+
+    .media-icon{
+        margin-right: 10px;
+    }
+
+    .media-icon:hover{
+        transform: scale(1.05);
+    }
+
+    .contact-container{
+        margin-left: 0vh;
+    }

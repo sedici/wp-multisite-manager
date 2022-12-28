@@ -11,8 +11,8 @@
     </div>
 
     <div class="col2 column"> 
-        <?php $image = wp_get_attachment_url(get_site_option('image'));
-            if($image != ""){
+        <?php
+            if( null !== get_site_option('image')){
         ?>
         <a href="<?php echo wp_get_attachment_url(get_site_option('image_link')) ; ?>">
             <img class="header-image" src="<?php echo  $image; ?>"></img>

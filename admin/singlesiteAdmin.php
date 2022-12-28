@@ -34,10 +34,10 @@ class SinglesiteAdmin{
 
     function registerFooter(){
         $enabled = get_site_option('footer_enabled');
-       // if ($enabled == 1){ 
+        if ($enabled == 1){ 
             $footer_file=plugin_dir_path( __DIR__ )."/views/footer-structure.php";
             include_once($footer_file); 
-       // }
+        }
     }
 
 

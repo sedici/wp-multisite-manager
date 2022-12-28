@@ -39,10 +39,10 @@
         <h2 class="filds-titles"> <?php _e("Contacto"); ?> </h2>
 
         <h4> <?php _e("Mail"); ?> </h4>
-        <input type="email" name="footer_email" value=<?php getValue('footer_email')?> placeholder=<?php _e("Ingrese un mail..");?>>
+        <input type="email" name="footer_email" value=<?php getValue('footer_email')?> >
         <br><br>
         <h4> <?php _e("Teléfono"); ?> </h4>
-        <input type="tel" name="footer_phone" value=<?php getValue('footer_phone')?> placeholder=<?php _e("Ingrese un telefono..");?>>
+        <input type="tel" name="footer_phone" value=<?php getValue('footer_phone')?> >
     </div>
 
     
@@ -86,6 +86,20 @@
     </div>
 
     
+    <div class="general-form-field">
+        <h2 class="filds-titles"> <?php _e("CSS del header"); ?> </h2>
+        <textarea name="footer_css" value=""><?php echo esc_attr( get_site_option('footer_css')); ?></textarea>
+    </div>
+    
+    <h3 style="font-weight:bold"><?php _e("Referencias de clases CSS"); ?> </h3>
+    <ul>
+        <li> <span style="font-weight:bold"> header-container: </span> <?php _e("esta clase envuelve todo el header. (Aquí se pueden poner los colores de fondo)");?> </li>
+        <li> <span style="font-weight:bold"> header-title: </span> <?php _e("esta clase maneja la etiqueta de texto");?> </li>
+        <li> <span style="font-weight:bold"> column: </span> <?php _e("esta clase maneja las 2 columnas del header"); ?> </li>
+        <li> <span style="font-weight:bold"> col1 y col2: </span> <?php _e("estas clases manejan la columna de texto (col1) y la columna de imagen (col2)"); ?> </li>
+        <li> <span style="font-weight:bold"> header-image: </span> <?php _e("esta clase maneja la imagen del header"); ?> </li>
+
+    </ul>
 
 
     <?php submit_button(); ?>
