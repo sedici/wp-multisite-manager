@@ -6,6 +6,11 @@
         width: 50%;
     }
 
+    .header-image{
+        aspect-ratio: 3/2;
+        object-fit: contain;
+    }
+
     /* Clear floats after the columns */
     .row:after {
         content: "";

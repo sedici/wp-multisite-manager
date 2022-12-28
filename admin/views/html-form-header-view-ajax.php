@@ -31,7 +31,7 @@
 
     <div class="general-form-field">
         <h2 class="filds-titles"> <?php _e("Imagen"); ?> </h2>
-        <input type="file" name="image" value="<?php echo esc_attr( get_site_option('image') ); ?>" >
+        <input type="file" name="image" value="" >
     </div>
 
     
@@ -44,7 +44,7 @@
 
     <div class="general-form-field">
         <h2 class="filds-titles"> <?php _e("CSS del header"); ?> </h2>
-        <textarea name="header_css" value="<?php echo esc_attr( get_site_option('header_css') ); ?>"></textarea>
+        <textarea name="header_css" value=""><?php echo esc_attr( get_site_option('header_css')); ?></textarea>
     </div>
     
     <h3 style="font-weight:bold"><?php _e("Referencias de clases CSS"); ?> </h3>
