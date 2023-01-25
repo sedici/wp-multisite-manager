@@ -23,8 +23,9 @@
     /* FOOOTER CSS */
 
     .footer-container{
+        margin-top: 0%;
         display:grid;
-        grid-template-columns: 33% 33% 33%;
+        grid-template-columns: 40% 20% 40%;
     }
 
     .footer_column {
@@ -57,13 +58,22 @@
     }
 
     .contact-container{
-        margin-left: 0vh;
     }
 
     .media-container{
         display: flex;
         justify-content: space-between;
     
+    }
+
+    .footer-image{
+        display:block;
+        max-width: 50%;
+        max-height: 15vh;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 10px;
+
     }
 
   
