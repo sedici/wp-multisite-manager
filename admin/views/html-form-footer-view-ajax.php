@@ -67,7 +67,7 @@
 
     <div class="general-form-field">
         <h4 class="filds-titles"><?php _e("Imagen logo 1");?></h4>
-        <input type="file" name="footer_logo_1" value=<?php getValue('footer_logo_1')?>>
+        <input type="file" name="footer_logo_1" >
     </div>
 
     <div class="general-form-field">
@@ -77,7 +77,7 @@
 
     <div class="general-form-field">
         <h4 class="filds-titles"><?php _e("Imagen logo 2");?></h4>
-        <input type="file" name="footer_logo_2" value=<?php getValue('footer_logo_2')?>>
+        <input type="file" name="footer_logo_2" >
     </div>
 
     <div class="general-form-field">

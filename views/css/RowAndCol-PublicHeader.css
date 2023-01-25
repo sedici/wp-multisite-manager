@@ -1,6 +1,7 @@
     .header-container{
         padding-top: 2vh;
     }
+
     .column {
         float: left;
         width: 50%;
@@ -21,9 +22,18 @@
 
     /* FOOOTER CSS */
 
+    .footer-container{
+        display:grid;
+        grid-template-columns: 33% 33% 33%;
+    }
+
     .footer_column {
-        float: right;
-        width: 31%;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        
     }
 
     .footer_row:after {
@@ -38,7 +48,8 @@
     }
 
     .media-icon{
-        margin-right: 10px;
+        margin-left: 5px;
+        margin-right: 5px;
     }
 
     .media-icon:hover{
@@ -48,3 +59,18 @@
     .contact-container{
         margin-left: 0vh;
     }
+
+    .media-container{
+        display: flex;
+        justify-content: space-between;
+    
+    }
+
+  
+
+    @media only screen and (max-width: 600px) {
+        .footer-container{
+            display:grid;
+            grid-template-columns: 100%;
+        } 
+      }
