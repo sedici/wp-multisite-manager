@@ -50,7 +50,6 @@ class Init{
 
 	public function run() {
 		$this->loader->run();
-		
 	} 
 
 	# Register ADMIN Styles and Scripts --------------------------------------------------------------------
@@ -96,8 +95,6 @@ class Init{
 
 
 	private function define_admin_hooks() {  
-		
-	//crear instancia cpt stios
 
 	$dir_cpt_sitios = MM\PLUGIN_NAME_DIR.'core/CPT_Sitios.php';
 

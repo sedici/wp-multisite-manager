@@ -2,8 +2,13 @@
 <form action="" method="POST">
 
     <div>
-        <h4> <?php _e("Ingrese Nombre del sitio") ?> <h4>
+        <h4> <?php _e("Ingrese nombre del sitio") ?> <h4>
         <input type='text' name="title_site"> </input>
+    </div>
+
+    <div>
+        <h4> <?php _e("Ingrese URL del sitio") ?> <h4>
+        <input type='url' name="site_url"> </input>
     </div>
 
     <div>

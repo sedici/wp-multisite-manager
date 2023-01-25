@@ -11,10 +11,10 @@ class CPT_Sitios {
     function cpt_sitios_register() {
 
         $labels = array(
-            "name" => __("Sitio", ""),
-            "singular_name" => __("Sitio", ""),
+            "name" => __("Sitios CPT", ""),
+            "singular_name" => __("Sitio CPT", ""),
 
-            "menu_name" => __("Sitios", ""),
+            "menu_name" => __("Sitios CPT", ""),
             "all_items" => __("Todos los Sitios", ""),
             "add_new" => __("Agregar Sitio", ""),
             "add_new_item" => __("Agregar nuevo sitio", ""),
@@ -32,11 +32,6 @@ class CPT_Sitios {
             "remove_featured_image" => __("Remover la imagen", ""),
             "use_featured_image" => __("Utilizar la imagen", ""),
 
-            /* No estoy seguro de si estas labels sirven
-            "archives" => __("Archivar al personal", ""),
-            "insert_into_item" => __("Insert en Personal", ""),
-            "uploaded_to_this_item" => __("Subir al personal", ""),
-            */
             "filter_items_list" => __("Filtrar lista de sitios", ""),
             "items_list_navigation" => __("Navegación de la lista de sitios", ""),
             "items_list" => __("Lista de Sitios", ""),
@@ -46,12 +41,12 @@ class CPT_Sitios {
         $args = array (
             'labels'        => $labels,
             'description'   => "",
-            'public'        => true, //No deberia ser publico para todos los sitios, sino para quien administra multistio
+            'public'        => false, 
             'has_archive'   => false,
             'publicly_queryable' => true,
-            'show_ui' => true,
             'show_in_menu' => true, 
             'show_in_admin_bar' => true,
+            'show_ui' => true,
             'menu_icon' => "none", //Falta poner
             'capabilities' => array(
                 'create_posts' => 'create_sitio',
@@ -77,7 +72,7 @@ class CPT_Sitios {
     }
 
     /*
-    * Agrega las capabilites para editar el custom post.
+    * Agrega al rol admin las capabilites (de las que ya existen) para editar el custom post.
     */
     function add_sitio_capabilities() {
 
@@ -96,7 +91,6 @@ class CPT_Sitios {
     /**
      * Formulario custom post
      */
-    // PARA QUE ME SIRVE EL ARG QUE RECIBE?
     public function sitios_display_callback($unArg)
     {
         $dir = plugin_dir_path( __FILE__ ) . '../views/sitios-view.php';
@@ -108,7 +102,6 @@ class CPT_Sitios {
     */
     function personal_custom_metabox()
     {
-        //Fixme : No estoy seguro de que los parametros esten bien pasados y el arg pasado a display callback no se de que me sirve
         add_meta_box('sitios_meta',__('Informacion del sitio'),array($this,'sitios_display_callback'),'cpt-sitios');
     }
 
