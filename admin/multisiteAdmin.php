@@ -80,8 +80,10 @@ class multisiteAdmin{
         $options = $new_allowed_options['header_settings'];
         foreach ($options as $option) {
             if($option == "image"){
-                $image_id = media_handle_upload('image',0 );
-                update_site_option($option, $image_id);
+                if($_FILES[$option]['name'] !== null ){
+                    $image_id = media_handle_upload($option,0 );
+                    update_site_option($option, $image_id);
+                }
             }
             else if (isset($_POST[$option])) {
                     update_site_option($option, $_POST[$option]);

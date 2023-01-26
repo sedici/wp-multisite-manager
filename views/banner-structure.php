@@ -16,7 +16,7 @@
             if(!is_wp_error($image)){
         ?>
         <a href="<?php echo get_site_option('image_link') ; ?>">
-            <img class="header-image" src="<?php echo  wp_get_attachment_url(get_site_option('image_link')); ?>"></img>
+            <img class="header-image" src="<?php echo  wp_get_attachment_url(get_site_option('image')); ?>"></img>
     </a>
         <?php } ?>
     </div>
