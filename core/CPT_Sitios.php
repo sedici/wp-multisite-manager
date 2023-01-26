@@ -3,8 +3,6 @@ namespace Wp_multisite_manager\Core;
 
 //Fixme : Puede que haya cosas que agregar o modificar
 
-//Se muestra el cpt sitios en los sitios del multisitio, no deberia suceder esto
-
 class CPT_Sitios {
 
     // Registra el Post Type Sitio
@@ -88,26 +86,37 @@ class CPT_Sitios {
     }
 
 
-    /**
+    /*
      * Formulario custom post
      */
     public function sitios_display_callback($unArg)
     {
-        $dir = plugin_dir_path( __FILE__ ) . '../views/sitios-view.php';
+        $dir = plugin_dir_path( __FILE__ ) . '../views/CPT_Sitios_Form.php';
         include_once($dir);
     }
 
     /*
     * Agrega los campos personalizados para el custom post.
     */
-    function personal_custom_metabox()
-    {
+    function sitios_custom_metabox() {
         add_meta_box('sitios_meta',__('Informacion del sitio'),array($this,'sitios_display_callback'),'cpt-sitios');
     }
 
+    /*
+     * Guarda los campos personalizados del post
+     */
+    function sitios_save_metas($idsitio){
+
+        $sitio = get_post($idsitio);
+
+        if ($sitio->post_type == 'cpt-sitios') {
+
+            update_post_meta();
+
+        }
+
+    }
+
 }
-
-
-
 
 ?>

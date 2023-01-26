@@ -88,37 +88,59 @@ class Init{
 
 
 	public function define_admin_multisite_hooks(){
+		/*
+		if( /*Estoy a nivel network admin  ) {
+			$dir_cpt_sitios = MM\PLUGIN_NAME_DIR.'core/CPT_Sitios.php';
+
+			require_once $dir_cpt_sitios;
+
+			$sitiosCPT = new CPT_Sitios();
+
+			// Registra el custom post personal
+			add_action('init', array($sitiosCPT,'cpt_sitios_register'),20);
+			// Registra las capabilities
+			add_action('init', array($sitiosCPT,'add_sitio_capabilities'),20);
+			// Agrega los campos meta al custom post personal
+			add_action('add_meta_boxes', array($sitiosCPT,'personal_custom_metabox'));
+			// Guarda los campos meta
+			//add_action('save_post', $sitiosCPT, 'personal_save_metas');
 		
+		}
+		*/
 		#Registrar sección en el menu para administrar Footer y Header
 
 	}
 
+	private function define_admin_hooks() {
 
-	private function define_admin_hooks() {  
+		$dir_cpt_sitios = MM\PLUGIN_NAME_DIR.'core/CPT_Sitios.php';
 
-	$dir_cpt_sitios = MM\PLUGIN_NAME_DIR.'core/CPT_Sitios.php';
+		require_once $dir_cpt_sitios;
 
-	require_once $dir_cpt_sitios;
+		$sitiosCPT = new CPT_Sitios();
 
-	$sitiosCPT = new CPT_Sitios();
-
-	
-	// $plugin_adminMultisite = new Admin\multisiteAdmin.php();
-	
-	// $plugin_adminSinglesite = new Admin\singlesiteAdmin.php();
-	
-	// Register Scripts and Styles
-
-		add_action('admin_enqueue_scripts',array($this,'reg_admin_styles'),30);
-		
-        // Registra el custom post personal
+		// Registra el custom post sitios
 		add_action('init', array($sitiosCPT,'cpt_sitios_register'),20);
+
 		// Registra las capabilities
 		add_action('init', array($sitiosCPT,'add_sitio_capabilities'),20);
-		// Agrega los campos meta al custom post personal
-		add_action('add_meta_boxes', array($sitiosCPT,'personal_custom_metabox'));
+
+		// Agrega los campos meta al custom post sitios
+		add_action('add_meta_boxes', array($sitiosCPT,'sitios_custom_metabox'));
+
 		// Guarda los campos meta
-        //add_action('save_post', $sitiosCPT, 'personal_save_metas');
+		//add_action('save_post', array($sitiosCPT, 'sitios_save_metas'));
+	
+
+
+		// $plugin_adminMultisite = new Admin\multisiteAdmin.php();
+	
+		// $plugin_adminSinglesite = new Admin\singlesiteAdmin.php();
+	
+		// Register Scripts and Styles
+
+		add_action('admin_enqueue_scripts',array($this,'reg_admin_styles'),30);
+
 
 		// SingleSite
 
