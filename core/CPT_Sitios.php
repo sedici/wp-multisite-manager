@@ -110,20 +110,46 @@ class CPT_Sitios {
 
         $sitio = get_post($idsitio);
 
+        // Si el post que se guardo es del tipo CPT-Sitios
         if ($sitio->post_type == 'cpt-sitios') {
 
             $fields = ["site_url","site_description","site_screenshot"];
 
             foreach ($fields as $field){
-                // Si el campo esta seteado
-                if(isset($_POST[$field])){
-                    update_post_meta($idsitio, $field, $_POST[$field]);
+
+                if($field == 'site_screenshot'){
+                    var_dump($_FILES);
+                    var_dump($_POST);
+                    die;
+                    // Si esta seteada correctamente la imagen
+                    if(isset($_FILES[$field]['name'])){
+                        $image_id = media_handle_upload($field,0 );
+                        update_post_meta($idsitio, $field, $image_id);
+                    }
+                }
+                
+
+                    // Si es la screenshot, la tengo que manejar diferente
+                   
+
+                    // En el caso de que no sea la screenshot, subo el campo con normalidad
+                    else{
+                        // Si el campo esta seteado
+                         if(isset($_POST[$field])){
+                            update_post_meta($idsitio, $field, $_POST[$field]);
+                         }
+                    }
+
                 }
             }
 
         }
 
-    }
+        // Permite cargar imagenes en el formulario de CPT Sitios
+        public function update_edit_form() {
+            echo 'enctype="multipart/form-data"';
+        }
+
 
 }
 
