@@ -1,15 +1,26 @@
     .header-container{
         padding-top: 2vh;
+        height: 8vh;
+        margin-top: 0%;
+        display:grid;
+        grid-template-columns: 50% 50%;
     }
 
-    .column {
+    .header-col1 {
         float: left;
-        width: 50%;
+    }
+
+    .header-col2{
+        display: flex;
+        justify-content: end;
+        margin-right: 1vw;
+        margin-bottom: 1vh;
     }
 
     .header-image{
-        aspect-ratio: 3/2;
+        max-height:7vh;
         object-fit: contain;
+       
     }
 
     /* Clear floats after the columns */
@@ -18,6 +29,8 @@
         display: table;
         clear: both;
     }
+
+
 
 
     /* FOOOTER CSS */
@@ -73,12 +86,25 @@
         margin-left: auto;
         margin-right: auto;
         margin-bottom: 10px;
-
     }
+
 
   
 
     @media only screen and (max-width: 600px) {
+
+        .header-container{
+            display:grid;
+            grid-template-columns: 60% 40%; 
+        }
+
+        .header-image{
+            max-height:100%; 
+            max-width: 100%;
+            object-fit: contain;
+           
+        }
+
         .footer-container{
             display:grid;
             grid-template-columns: 100%;
