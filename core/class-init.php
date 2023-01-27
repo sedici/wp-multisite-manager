@@ -117,23 +117,29 @@ class Init{
 
 		require_once $dir_cpt_sitios;
 
-		$sitiosCPT = new CPT_Sitios();
+		// Solo debemos registrar el CPT de sitios si es el sitio principal
 
-		// Registra el custom post sitios
-		add_action('init', array($sitiosCPT,'cpt_sitios_register'),20);
+		if(is_main_site()){
+			$sitiosCPT = new CPT_Sitios();
 
-		// Registra las capabilities
-		add_action('init', array($sitiosCPT,'add_sitio_capabilities'),20);
+			// Registra el custom post sitios
+			add_action('init', array($sitiosCPT,'cpt_sitios_register'),20);
 
-		// Agrega los campos meta al custom post sitios
-		add_action('add_meta_boxes', array($sitiosCPT,'sitios_custom_metabox'));
+			// Registra las capabilities
+			add_action('init', array($sitiosCPT,'add_sitio_capabilities'),20);
 
-		// Guarda los campos meta
-		add_action('save_post', array($sitiosCPT, 'sitios_save_metas'));
+			// Agrega los campos meta al custom post sitios
+			add_action('add_meta_boxes', array($sitiosCPT,'sitios_custom_metabox'));
 
-		// Permite que se guarden imagenes en el formulario del CPT de Sitios
-		add_action('post_edit_form_tag', array($sitiosCPT, 'update_edit_form'));
+			// Guarda los campos meta
+			add_action('save_post', array($sitiosCPT, 'sitios_save_metas'));
 
+			// Permite que se guarden imagenes en el formulario del CPT de Sitios
+			add_action('post_edit_form_tag', array($sitiosCPT, 'update_edit_form'));
+
+		}
+
+		
 	
 
 
@@ -169,10 +175,6 @@ class Init{
 		add_action( 'plugins_loaded', 'load_plugin_textdomain' );
 		add_action('wp_enqueue_scripts',array($this,'reg_public_styles'),30);
 	}
-
-
-	
-# ------------------------------------------------------------------------------------
 
 
 

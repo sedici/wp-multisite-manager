@@ -144,10 +144,29 @@ class multisiteAdmin{
         ";
         echo "<h2> Actualizar información de los CPT de sitios </h2> 
             <button id='update-sites-cpt' > Actualizar </button>
+
         ";
+        echo $this->print_custom_posts();
 
 		#  <a href=$url/wp-dspace/UtilizaciondelPLuginWP-Dspace.docx>Descargar Manual</a>
         
+    }
+
+    private function print_custom_posts(){
+        $args = array(
+            'post_type' => 'cpt-sitios',
+            'posts_per_page' => -1
+        );
+        $query = new \WP_Query($args);
+        if ($query->have_posts()): 
+            echo '<p>';
+            while ($query->have_posts()): $query->the_post();
+                    echo 'Id: ' . get_the_ID() . "   Título:" .  get_the_title() ;
+                    echo "<br></br>";
+            endwhile;
+            echo '</p>';
+            wp_reset_postdata();
+        endif;
     }
 
 	private function add_block_subpages(){

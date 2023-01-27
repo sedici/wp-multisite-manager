@@ -45,7 +45,7 @@ class CPT_Sitios {
             'show_in_menu' => true, 
             'show_in_admin_bar' => true,
             'show_ui' => true,
-            'menu_icon' => "none", //Falta poner
+            'menu_icon' => "dashicons-info", //Falta poner
             'capabilities' => array(
                 'create_posts' => 'create_sitio',
                 'delete_others_posts' => 'delete_others_sitios',
