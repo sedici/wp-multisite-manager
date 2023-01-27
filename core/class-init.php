@@ -129,7 +129,7 @@ class Init{
 		add_action('add_meta_boxes', array($sitiosCPT,'sitios_custom_metabox'));
 
 		// Guarda los campos meta
-		//add_action('save_post', array($sitiosCPT, 'sitios_save_metas'));
+		add_action('save_post', array($sitiosCPT, 'sitios_save_metas'));
 	
 
 

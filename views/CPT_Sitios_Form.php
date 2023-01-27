@@ -3,7 +3,7 @@
 
     <div>
         <h4> <?php _e("Ingrese nombre del sitio") ?> <h4>
-        <input type='text' name="title_site"> </input>
+        <input type='text' name="site_title"> </input>
     </div>
 
     <div>
@@ -13,7 +13,7 @@
 
     <div>
         <h4> <?php _e("Ingrese una descripción") ?> <h4>
-        <input type='text' name="desc_site"> </input>
+        <input type='text' name="site_description"> </input>
     </div>
 
     <div>

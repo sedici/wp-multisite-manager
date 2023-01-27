@@ -105,13 +105,21 @@ class CPT_Sitios {
     /*
      * Guarda los campos personalizados del post
      */
-    function sitios_save_metas($idsitio){
+    function sitios_save_metas($idsitio){  
+
 
         $sitio = get_post($idsitio);
 
         if ($sitio->post_type == 'cpt-sitios') {
 
-            update_post_meta();
+            $fields = ["site_url","site_description","site_screenshot"];
+
+            foreach ($fields as $field){
+                // Si el campo esta seteado
+                if(isset($_POST[$field])){
+                    update_post_meta($idsitio, $field, $_POST[$field]);
+                }
+            }
 
         }
 
