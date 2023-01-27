@@ -13,7 +13,7 @@ class SinglesiteAdmin{
 		$this->plugin_basename = MM\PLUGIN_BASENAME;
 		$this->plugin_text_domain = MM\PLUGIN_TEXT_DOMAIN;
 
-        // Hook register
+        // Hook register 
 
         // Agrega el bloque personalizado antes de cargar el header
         add_action('wp_head', array($this,'registerHeader'));
@@ -43,4 +43,5 @@ class SinglesiteAdmin{
 
 }
 
+    
 ?>

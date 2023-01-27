@@ -50,7 +50,6 @@ class Init{
 
 	public function run() {
 		$this->loader->run();
-		
 	} 
 
 	# Register ADMIN Styles and Scripts --------------------------------------------------------------------
@@ -89,22 +88,63 @@ class Init{
 
 
 	public function define_admin_multisite_hooks(){
+		/*
+		if( /*Estoy a nivel network admin  ) {
+			$dir_cpt_sitios = MM\PLUGIN_NAME_DIR.'core/CPT_Sitios.php';
+
+			require_once $dir_cpt_sitios;
+
+			$sitiosCPT = new CPT_Sitios();
+
+			// Registra el custom post personal
+			add_action('init', array($sitiosCPT,'cpt_sitios_register'),20);
+			// Registra las capabilities
+			add_action('init', array($sitiosCPT,'add_sitio_capabilities'),20);
+			// Agrega los campos meta al custom post personal
+			add_action('add_meta_boxes', array($sitiosCPT,'personal_custom_metabox'));
+			// Guarda los campos meta
+			//add_action('save_post', $sitiosCPT, 'personal_save_metas');
 		
+		}
+		*/
 		#Registrar sección en el menu para administrar Footer y Header
 
 	}
 
+	private function define_admin_hooks() {
 
-	private function define_admin_hooks() {  
-		
+		$dir_cpt_sitios = MM\PLUGIN_NAME_DIR.'core/CPT_Sitios.php';
+
+		require_once $dir_cpt_sitios;
+
+		$sitiosCPT = new CPT_Sitios();
+
+		// Registra el custom post sitios
+		add_action('init', array($sitiosCPT,'cpt_sitios_register'),20);
+
+		// Registra las capabilities
+		add_action('init', array($sitiosCPT,'add_sitio_capabilities'),20);
+
+		// Agrega los campos meta al custom post sitios
+		add_action('add_meta_boxes', array($sitiosCPT,'sitios_custom_metabox'));
+
+		// Guarda los campos meta
+		add_action('save_post', array($sitiosCPT, 'sitios_save_metas'));
+
+		// Permite que se guarden imagenes en el formulario del CPT de Sitios
+		add_action('post_edit_form_tag', array($sitiosCPT, 'update_edit_form'));
+
 	
-	// $plugin_adminMultisite = new Admin\multisiteAdmin.php();
+
+
+		// $plugin_adminMultisite = new Admin\multisiteAdmin.php();
 	
-	// $plugin_adminSinglesite = new Admin\singlesiteAdmin.php();
+		// $plugin_adminSinglesite = new Admin\singlesiteAdmin.php();
 	
-	// Register Scripts and Styles
+		// Register Scripts and Styles
 
 		add_action('admin_enqueue_scripts',array($this,'reg_admin_styles'),30);
+
 
 		// SingleSite
 
@@ -130,8 +170,10 @@ class Init{
 		add_action('wp_enqueue_scripts',array($this,'reg_public_styles'),30);
 	}
 
+
 	
 # ------------------------------------------------------------------------------------
+
 
 
 }
