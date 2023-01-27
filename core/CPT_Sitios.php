@@ -107,7 +107,6 @@ class CPT_Sitios {
      */
     function sitios_save_metas($idsitio){  
 
-
         $sitio = get_post($idsitio);
 
         // Si el post que se guardo es del tipo CPT-Sitios
@@ -117,21 +116,14 @@ class CPT_Sitios {
 
             foreach ($fields as $field){
 
+                // Si es la screenshot, la tengo que manejar diferente    
                 if($field == 'site_screenshot'){
-                    var_dump($_FILES);
-                    var_dump($_POST);
-                    die;
                     // Si esta seteada correctamente la imagen
-                    if(isset($_FILES[$field]['name'])){
+                    if( ($_FILES[$field]['name'] !== "") and (!is_wp_error( $_FILES[$field]['name']) ) ){
                         $image_id = media_handle_upload($field,0 );
                         update_post_meta($idsitio, $field, $image_id);
                     }
                 }
-                
-
-                    // Si es la screenshot, la tengo que manejar diferente
-                   
-
                     // En el caso de que no sea la screenshot, subo el campo con normalidad
                     else{
                         // Si el campo esta seteado
@@ -143,6 +135,17 @@ class CPT_Sitios {
                 }
             }
 
+        }
+
+        public function process_image($field,$idsitio){
+            if(isset($_FILES[$field]['name'])){
+                $image_id = media_handle_upload($field,0 );
+                update_post_meta($idsitio, $field, $image_id);
+            }
+            else if (get_post_meta($idsitio) == null){
+                $image_id = media_handle_upload($field,0 );
+                update_post_meta($idsitio, $field, $image_id);
+            }
         }
 
         // Permite cargar imagenes en el formulario de CPT Sitios

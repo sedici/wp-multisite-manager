@@ -24,9 +24,17 @@
     </div>
 
     <div>
-        <h4> <?php _e("Ingrese unas screenshot del sitio") ?> <h4>
-        <input type='file' name="site_screenshot[]" > </input>
+        <h4> <?php _e("Ingrese una screenshot del sitio") ?> <h4>
+        <input type='file' name="site_screenshot" > </input>
+
     </div>
+    <?php
+            $image = get_post_info('site_screenshot');
+            if(!is_wp_error($image)){
+        ?>
+        <p style="font-weight:bold"> Screenshot actual </p> 
+            <img class="header-image" style="max-height:25vh; border:5px solid black; border-radius:5px" src="<?php echo  wp_get_attachment_url(get_post_info('site_screenshot')); ?>"></img>
+        <?php } ?>
 
 
 
