@@ -51,8 +51,8 @@
     <ul>
         <li> <span style="font-weight:bold"> header-container: </span> <?php _e("esta clase envuelve todo el header. (Aquí se pueden poner los colores de fondo)");?> </li>
         <li> <span style="font-weight:bold"> header-title: </span> <?php _e("esta clase maneja la etiqueta de texto");?> </li>
-        <li> <span style="font-weight:bold"> column: </span> <?php _e("esta clase maneja las 2 columnas del header"); ?> </li>
-        <li> <span style="font-weight:bold"> col1 y col2: </span> <?php _e("estas clases manejan la columna de texto (col1) y la columna de imagen (col2)"); ?> </li>
+        <li> <span style="font-weight:bold"> header-column: </span> <?php _e("esta clase maneja las 2 columnas del header"); ?> </li>
+        <li> <span style="font-weight:bold"> header-col1 y header-col2: </span> <?php _e("estas clases manejan la columna de texto (col1) y la columna de imagen (col2)"); ?> </li>
         <li> <span style="font-weight:bold"> header-image: </span> <?php _e("esta clase maneja la imagen del header"); ?> </li>
 
     </ul>

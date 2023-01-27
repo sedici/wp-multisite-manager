@@ -3,14 +3,13 @@
      <?php echo get_site_option('header_css'); ?>
 </style>
 <div class="header-container">
-<div class="row">
-    <div class="col1 column">   
+    <div class="header-col1 header-column">   
         <h1 style="margin-left:10vh" class="header-title">  
             <a href="<?php echo get_site_option('title_link'); ?> "> <?php echo get_site_option('title_text'); ?> </a>
         </h1>
     </div>
 
-    <div class="col2 column"> 
+    <div class="header-col2 header-column"> 
         <?php
             $image = get_site_option('image');
             if(!is_wp_error($image)){
