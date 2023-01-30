@@ -12,7 +12,7 @@
 
     <!-- SECOND COLUMN -->
     <div class="col2 footer_column"> 
-            <h1  class="header-title">  
+            <h1  class="footer-title">  
                 <a href="<?php echo get_site_option('footer_text_link'); ?> "> <?php echo get_site_option('footer_text'); ?> </a>
             </h1>
         <div class="media-container">

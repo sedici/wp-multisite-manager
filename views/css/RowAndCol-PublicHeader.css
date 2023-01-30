@@ -10,6 +10,10 @@
         float: left;
     }
 
+    .header-title{
+        margin-left: 5vh;
+    }
+
     .header-col2{
         display: flex;
         justify-content: end;
@@ -51,6 +55,7 @@
     }
 
     .footer_row:after {
+
         content: "";
         display: table;
         clear: both;
@@ -95,7 +100,7 @@
 
         .header-container{
             display:grid;
-            grid-template-columns: 60% 40%; 
+            grid-template-columns: 50% 50%; 
         }
 
         .header-image{
@@ -103,6 +108,10 @@
             max-width: 100%;
             object-fit: contain;
            
+        }
+
+        .header-title{
+            margin-left: 10vw;;
         }
 
         .footer-container{
