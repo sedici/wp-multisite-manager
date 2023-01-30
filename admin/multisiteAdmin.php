@@ -25,19 +25,6 @@ class multisiteAdmin{
 
     }
 
-    
-    public function add_admin_menu(){
-        
-    }
-
-
-    // Function to check if a Form was submitted
-  /*  public function check_for_event_submissions(){
-        if (isset($_POST['event'])){
-            
-        }
-    }
-    */
 
     // Register all the header settings
     function header_settings() {
@@ -137,7 +124,6 @@ class multisiteAdmin{
 	
 	public function wp_multisite_manager_blocks()
     {
-        $url=plugins_url();
 
         echo "<h1> Administrar la red de multisitio </h1>
         <p>Este plugin de Wordpress permite administrar configuraciones gloables para todos los sitios
@@ -148,15 +134,16 @@ class multisiteAdmin{
         
         echo "<br></br><h2> Sitios actuales </h2>";
 
-        echo $this->print_custom_posts();
+        echo $this->print_sites_list();
 
 
-
+        # Útil para agregar manual en un futuro:
+        #  $url=plugins_url();
 		#  <a href=$url/wp-dspace/UtilizaciondelPLuginWP-Dspace.docx>Descargar Manual</a>
         
     }
 
-    private function print_custom_posts(){
+    private function print_sites_list(){
         $args = array(
             'post_type' => 'cpt-sitios',
             'posts_per_page' => -1
@@ -166,11 +153,15 @@ class multisiteAdmin{
             while ($query->have_posts()): $query->the_post();
                     echo "<div class='site-container' id=" . get_the_ID() . ">";
                     echo "<span class='site-title'>" .  get_the_title() . "</span><br>" ;
-                    echo "<span style='font-weight:bold; font-size:medium;'>" . _e("Descripción") .":". get_post_meta(get_the_ID(),'site_description')[0];
+                    echo "<span >" . _e("Descripción") .": </span><br>". get_post_meta(get_the_ID(),'site_description')[0];
                     echo "</div><br></br>";
             endwhile;
             wp_reset_postdata();
         endif;
+    }
+
+    private function print_site_screenshot(){
+        echo "<span >" . _e("Descripción") .": </span><br>". get_post_meta(get_the_ID(),'site_screenshot')[0];
     }
 
 	private function add_block_subpages(){
@@ -182,7 +173,7 @@ class multisiteAdmin{
             __('Header', $this->plugin_text_domain), //menu title
             'manage_options', //capability
             'config-header', //menu_slug
-            array($this, 'ajax_form_header_page_content')// pagina que va a manejar la sección
+            array($this, 'ajax_form_header_page_content')// página que va a manejar la sección
         );
 
 		## Agregar subpágina FOOTER
@@ -192,7 +183,7 @@ class multisiteAdmin{
             __('Footer', $this->plugin_text_domain), //menu title
             'manage_options', //capability
             'config-footer', //menu_slug
-            array($this, 'ajax_form_footer_page_content') // pagina que va a manejar la sección
+            array($this, 'ajax_form_footer_page_content') // página que va a manejar la sección
         );
 	}
 

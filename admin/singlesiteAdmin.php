@@ -21,7 +21,12 @@ class SinglesiteAdmin{
         // Agrega el bloque personalizado antes de cargar el footer
         add_action('wp_footer', array($this,'registerFooter'));
 
-        }
+        // Registra el shortcode para mostrar los sitios en el estilo portafolio
+        add_action('show_sites_portfolio',array($this,'show_portfolio'));
+
+    }
+
+    // Funciónes para agregar Footer y Header
 
 
     function registerHeader(){
@@ -40,6 +45,7 @@ class SinglesiteAdmin{
         }
     }
 
+    // Función para manejar los shortcodes
 
 }
 

@@ -102,6 +102,7 @@ class CPT_Sitios {
         add_meta_box('sitios_meta',__('Informacion del sitio'),array($this,'sitios_display_callback'),'cpt-sitios');
     }
 
+
     /*
      * Guarda los campos personalizados del post
      */
@@ -117,27 +118,14 @@ class CPT_Sitios {
             foreach ($fields as $field){
 
                 // Si es la screenshot, la tengo que manejar diferente    
-                if($field == 'site_screenshot'){
-
-                    // Si esta seteada correctamente la imagen
-                    if( ($_FILES[$field]['name'] !== "") and (!is_wp_error( $_FILES[$field]['name']) ) ){
-
-                        // Si quiero cargar una imagen , y ya existe una, elimino la anterior
-                        if(get_post_meta(get_the_ID(),'site_screenshot')[0] !== null ){
-                            wp_delete_attachment(get_post_meta(get_the_ID(),'site_screenshot')[0]);
-                        }
-                        
-                        $image_id = media_handle_upload($field,0 );
-                        update_post_meta($idsitio, $field, $image_id);
-                    }
+                if( $field == 'site_screenshot') {
+                    
+                    $this -> process_screenshot($idsitio);
                 }
                     // En el caso de que no sea la screenshot, subo el campo con normalidad
-                    else{
-                        // Si el campo esta seteado
-                         if(isset($_POST[$field])){
-                            update_post_meta($idsitio, $field, $_POST[$field]);
-                         }
-                    }
+                elseif(isset($_POST[$field])){
+                    update_post_meta($idsitio, $field, $_POST[$field]);
+                }  
 
                 }
             }
@@ -145,12 +133,38 @@ class CPT_Sitios {
         }
 
 
+    public function process_screenshot($idsitio){
+        $field = "site_screenshot";
+        if( (!empty($_FILES)) and (isset($_FILES[$field]['name'])) and ($_FILES[$field]['name']!== "") ){
+
+        // Si esta seteada correctamente la imagen
+           if (!is_wp_error( $_FILES[$field]['name']) ){
+                                   
+           // Si quiero cargar una imagen , y ya existe una, elimino la anterior
+                   if(get_post_meta(get_the_ID(),'site_screenshot')){
+                   
+                       wp_delete_attachment(get_post_meta(get_the_ID(),'site_screenshot')[0]);
+                                                   
+                   }
+                                               
+               }
+               $image_id = media_handle_upload($field,0 );
+               
+               if(!is_wp_error($image_id) ) {
+                   update_post_meta($idsitio, $field, $image_id);
+               }
+
+       }
+    }
+
         // Permite cargar imagenes en el formulario de CPT Sitios
         public function update_edit_form() {
             echo 'enctype="multipart/form-data"';
         }
+        
+        #FIXME: Hay que hacer un refactoring para eliminar los condicionales
+       
 
-
-}
+}       
 
 ?>
