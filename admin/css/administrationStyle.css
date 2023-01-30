@@ -26,6 +26,15 @@
 
 }
 
-.pruebaEst{
-    color:green;
+
+.site-title{
+    font-size:medium;
+    font-weight: bold;
+}
+
+.site-container{
+    width: 20vw;
+    border: solid 2px black;
+    padding:5px;
+    border-radius: 5px;
 }

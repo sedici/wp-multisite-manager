@@ -138,15 +138,19 @@ class multisiteAdmin{
 	public function wp_multisite_manager_blocks()
     {
         $url=plugins_url();
+
         echo "<h1> Administrar la red de multisitio </h1>
         <p>Este plugin de Wordpress permite administrar configuraciones gloables para todos los sitios
-		dentro de una red de Multisitio. </p>
-        ";
-        echo "<h2> Actualizar información de los CPT de sitios </h2> 
-            <button id='update-sites-cpt' > Actualizar </button>
+		dentro de una red de Multisitio. </p>";
 
-        ";
+        echo "<h2> Actualizar información de los CPT de sitios </h2> 
+            <button id='update-sites-cpt' > Actualizar </button>";
+        
+        echo "<br></br><h2> Sitios actuales </h2>";
+
         echo $this->print_custom_posts();
+
+
 
 		#  <a href=$url/wp-dspace/UtilizaciondelPLuginWP-Dspace.docx>Descargar Manual</a>
         
@@ -159,12 +163,12 @@ class multisiteAdmin{
         );
         $query = new \WP_Query($args);
         if ($query->have_posts()): 
-            echo '<p>';
             while ($query->have_posts()): $query->the_post();
-                    echo 'Id: ' . get_the_ID() . "   Título:" .  get_the_title() ;
-                    echo "<br></br>";
+                    echo "<div class='site-container' id=" . get_the_ID() . ">";
+                    echo "<span class='site-title'>" .  get_the_title() . "</span><br>" ;
+                    echo "<span style='font-weight:bold; font-size:medium;'>" . _e("Descripción") .":". get_post_meta(get_the_ID(),'site_description')[0];
+                    echo "</div><br></br>";
             endwhile;
-            echo '</p>';
             wp_reset_postdata();
         endif;
     }
