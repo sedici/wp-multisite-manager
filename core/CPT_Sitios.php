@@ -119,7 +119,6 @@ class CPT_Sitios {
 
                 // Si es la screenshot, la tengo que manejar diferente    
                 if( $field == 'site_screenshot') {
-                    
                     $this -> process_screenshot($idsitio);
                 }
                     // En el caso de que no sea la screenshot, subo el campo con normalidad
@@ -135,16 +134,14 @@ class CPT_Sitios {
 
     public function process_screenshot($idsitio){
         $field = "site_screenshot";
-        if( (!empty($_FILES)) and (isset($_FILES[$field]['name'])) and ($_FILES[$field]['name']!== "") ){
+        if( (!empty($_FILES)) and (!empty($_FILES[$field]['name'])) ){
 
         // Si esta seteada correctamente la imagen
            if (!is_wp_error( $_FILES[$field]['name']) ){
                                    
            // Si quiero cargar una imagen , y ya existe una, elimino la anterior
                    if(get_post_meta(get_the_ID(),'site_screenshot')){
-                   
                        wp_delete_attachment(get_post_meta(get_the_ID(),'site_screenshot')[0]);
-                                                   
                    }
                                                
                }

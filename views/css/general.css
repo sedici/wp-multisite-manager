@@ -1,0 +1,33 @@
+
+/* CSS Para vista de Portafolio (Shortcode) */
+
+.sites-portfolio{
+    background-color: antiquewhite;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    padding:5vh;
+
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+}
+
+.sites-portfolio-box{
+    text-align: center;
+    padding: 2vh;
+    border: solid 5px black;
+    border-radius: 5px;
+    height: 40vh;
+    width: 100%;
+}
+
+.sites-portfolio-title{
+    font-size: medium;
+    font-weight: bold;
+}
+
+.sites-empty-field{
+    color:red;
+    font-weight:bold
+}
+
