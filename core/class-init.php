@@ -154,7 +154,13 @@ class Init{
 
     }
 
-    function show_portfolio(){
+    function show_portfolio($attr){
+
+		$parameters = shortcode_atts( array(
+			'widget_color'=>'turquoise',
+            'box_color' => 'white', 
+        ), $attr );
+
 		$content = "";
 		$args = array(
             'post_type' => 'cpt-sitios',
@@ -165,16 +171,16 @@ class Init{
 		if(!$query->have_posts()):
 			return _e("No hay sitios cargados.");
         else: 
-			$content= $content . "<div class='sites-portfolio'>";
+			$content= $content . "<div class='sites-portfolio' style='background-color:". $parameters['widget_color'] . "'>";
             while ($query->have_posts()): $query->the_post();
                     $content = $content . 
-						"<div class='sites-portfolio-box' id='" . get_the_ID() . "'>
-								<span class='sites-portfolio-title'>" .  get_the_title() . "</span><br></br>
-								<span class='sites-portfolio-title'> Descripción: </span>
-								<p>". print_description() . 
-							"</span><br></br><span class='sites-portfolio-title'> Screenshot: </span>
-							<br></br>". 
-							$this->print_screenshot('site_screenshot',get_the_ID()) ."</div>";
+						"<div class='sites-portfolio-box' style='background-color:". $parameters['box_color'] . "' id='" . get_the_ID() . "'>
+								<span class='sites-portfolio-title'>" .  get_the_title() . "</span>
+								
+							<br>". 
+							$this->print_screenshot('site_screenshot',get_the_ID()) ."
+							<span class='sites-portfolio-title'> Descripción: </span>
+								<p>". print_description() . "</div>" ;
             endwhile;
 			$content = $content . "</div>";
             wp_reset_postdata();
@@ -188,7 +194,7 @@ class Init{
 			$image = $this->get_image($post_id,'site_screenshot');
 			if(!is_wp_error($image)){
 				$content ='
-					<div><img style="object-fit:contain; width:40vh;height:100%;  border:5px solid black; border-radius:5px" src="';
+					<div><img class="sites-portfolio-img" src="';
 				$image_src = wp_get_attachment_url($this->get_image($post_id,$field)) ;
 
 				$content = $content . $image_src .  '"></img></div>';
