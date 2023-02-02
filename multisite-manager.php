@@ -12,7 +12,6 @@
  */
 
  namespace Wp_multisite_manager;
-
  define( __NAMESPACE__ . '\MM', __NAMESPACE__ . '\\' );
  define( MM . 'PLUGIN_NAME', 'wp-multisite-manager' );
  define( MM . 'PLUGIN_VERSION', '1.0.0' );

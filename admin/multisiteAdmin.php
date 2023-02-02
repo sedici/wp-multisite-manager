@@ -3,6 +3,8 @@ namespace Wp_multisite_manager\Admin;
 
 use Wp_multisite_manager as MM;
 
+require_once WP_PLUGIN_DIR . '/wp-multisite-manager/helpers.php'; 
+
 
 class multisiteAdmin{
 
@@ -23,8 +25,85 @@ class multisiteAdmin{
         add_action('network_admin_edit_header_update_network_options',array($this,'header_update_network_options'));
         add_action('network_admin_edit_footer_update_network_options',array($this,'footer_update_network_options'));
 
+        add_action('wp_ajax_update_sites_cpt',array($this,'update_all_cpt')  );
+        add_action( 'wp_ajax_nopriv_update_sites_cpt', array($this,'update_all_cpt') );
+
+
+		// Registro la llamada ajax para invocar
+		add_action('admin_enqueue_scripts', array($this,'update_cpt_ajax') );
+
     }
 
+    function update_cpt_ajax(){
+		wp_register_script('update_sitios_cpt',  MM\PLUGIN_NAME_URL . 'admin/js/updateCPT-ajax.js', array('jquery'), '1', true );
+		wp_enqueue_script('update_sitios_cpt');	
+		wp_localize_script('update_sitios_cpt','ucpt_vars',array('url'=>admin_url('admin-ajax.php')));
+
+
+	}
+
+	function update_all_cpt(){
+        $sites = get_sites();
+        $sitesArray= array();
+
+        $cant= 0;
+        foreach ($sites as $site){
+            array_push($sitesArray,$site->blog_id);
+        }
+
+ 	    $args = array(  
+            'post_type' => 'cpt-sitios',
+            'post_status' => array('publish', 'pending', 'draft', 'future', 'private', 'inherit'),
+            'posts_per_page' => -1,
+            'orderby' => 'title',
+            'order' => 'ASC',
+        );
+        $loop = new \WP_Query($args); 
+        while ( $loop->have_posts() ) : $loop->the_post(); 
+            $cpt_site_id = get_post_meta(get_the_ID(),'site_blog_id',true);
+            if (in_array($cpt_site_id,$sitesArray)){
+                $key = array_search($cpt_site_id, $sitesArray);
+                if( $key ){
+                    unset($sitesArray[$key]);
+                }
+            }
+
+        endwhile;	
+        wp_reset_postdata(); 
+        print var_dump($sitesArray);
+        foreach ($sitesArray as $site){
+            $this->create_cpt_post($site);
+        }
+        return $sitesArray;
+}
+
+    function create_cpt_post($site){
+
+        switch_to_blog($site);
+
+
+        $site_name = get_bloginfo('name');
+        $site_description = get_bloginfo('description');
+        $site_url = get_bloginfo('url');
+
+        restore_current_blog();
+
+        $post_id = wp_insert_post(array (
+            'post_type' => 'cpt-sitios',
+            'post_title' => $site_name,
+            'post_content' => $site_description,
+            'post_status' => 'pending',
+
+         ));
+
+         if ($post_id) {
+            // insert post meta
+            add_post_meta($post_id, 'site_url', $site_url);
+            add_post_meta($post_id, 'site_description', $site_description);
+            add_post_meta($post_id, 'site_blog_id', $site);
+         }
+
+    }
 
     // Register all the header settings
     function header_settings() {
@@ -125,13 +204,17 @@ class multisiteAdmin{
 	public function wp_multisite_manager_blocks()
     {
 
-        echo "<h1> Administrar la red de multisitio </h1>
-        <p>Este plugin de Wordpress permite administrar configuraciones gloables para todos los sitios
-		dentro de una red de Multisitio. </p>";
+        echo 
+        "<h1> Administrar la red de multisitio </h1>
 
-        echo "<h2> Actualizar información de los CPT de sitios </h2> 
-            <button id='update-sites-cpt' > Actualizar </button>";
-        
+        <p>Este plugin de Wordpress permite administrar configuraciones gloables para todos los sitios
+		dentro de una red de Multisitio. </p>
+
+        <h2> Actualizar información de los CPT de sitios </h2>
+
+        <button id='update-cpt-button' > Actualizar </button> <br></br>";
+        $this->print_sites_count();
+        echo "<p id='update-result'></p>";
         echo "<br></br><h2> Sitios actuales </h2>";
 
         echo $this->print_sites_list();
@@ -143,18 +226,32 @@ class multisiteAdmin{
         
     }
 
+    private function print_sites_count(){
+        $sites = count(get_sites());
+
+        $sites_cpt = wp_count_posts('cpt-sitios')->publish;
+
+        echo  "<span style='font-weight:bold;'> " . $sites .  __(" sitios / ") . $sites_cpt . __(" CPT de sitios");
+
+    }
+
     private function print_sites_list(){
         $args = array(
             'post_type' => 'cpt-sitios',
             'posts_per_page' => -1
         );
+
         $query = new \WP_Query($args);
         if ($query->have_posts()): 
             while ($query->have_posts()): $query->the_post();
                     echo "<div class='site-container' id=" . get_the_ID() . ">";
-                    echo "<span class='site-title'>" .  get_the_title() . "</span><br>" ;
-                    echo "<span >" . _e("Descripción") .": </span><br>". get_post_meta(get_the_ID(),'site_description')[0];
+                    echo "<span class='site-title'>" .  get_the_title() . "</span><br></br>" ;
+                    echo "<span >" . _e("Descripción") .": </span><br>". print_description();
+                    $url= get_post_meta(get_the_ID(),'site_url',true);
+                    echo "<br></br><span> Url: <a href='" . $url . "'>" . $url . "</a></span>";
+
                     echo "</div><br></br>";
+                    
             endwhile;
             wp_reset_postdata();
         endif;
@@ -192,30 +289,16 @@ class multisiteAdmin{
         include_once dirname(__DIR__) . '/admin/views/html-form-header-view-ajax.php';
     }
 
-	
+
 	public function ajax_form_footer_page_content()
     {
         include_once dirname(__DIR__) . '/admin/views/html-form-footer-view-ajax.php';
     }
 
-    public function update_button_js() {
-        ?>
-        
-            <script>
-            console.log("Add");
-            document.addEventListener('DOMContentLoaded', () => {
-                
-                const button = document.getElementById('update-sites-cpt');
-        
-                button.addEventListener('click', () => {
-                    button.style.color = 'blue';
-                });
-            }
-        
-            </script>
-            <?php
-        } 
 
+    public function update_sites_cpt(){
+        $sites_list = get_sites();
+    }
 
 
 }

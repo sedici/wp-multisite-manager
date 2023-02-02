@@ -125,6 +125,7 @@ class Init{
 
 	
 		// Register Scripts and Styles
+		
 
 		add_action('admin_enqueue_scripts',array($this,'reg_admin_styles'),30);
 
@@ -133,7 +134,6 @@ class Init{
 	function load_plugin_textdomain() {
 		load_plugin_textdomain( 'wp-multisite-manager', FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
 	  }
-
 
 
     private function define_public_hooks() {
