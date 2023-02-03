@@ -74,16 +74,19 @@ class multisiteAdmin{
             *    para solo dejar los sitios que no tengan un CPT asociado
             */
             if (in_array($cpt_site_id,$sitesArray)){
+
                 $key = array_search($cpt_site_id, $sitesArray);
-                if( $key ){
+                if( $key !== false ){
                     unset($sitesArray[$key]);
                 }
             }
+
         endwhile;	
         wp_reset_postdata(); 
 
         // Para cada ID de sitio que no tiene un CPT, llamo a la función create_cpt_post
         foreach ($sitesArray as $site){
+
             $this->create_cpt_post($site);
         }
         return $sitesArray;
