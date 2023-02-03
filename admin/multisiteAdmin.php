@@ -43,14 +43,19 @@ class multisiteAdmin{
 	}
 
 	function update_all_cpt(){
+
+        // Recupero los sitios en $sites, creo el array vacío $sitesArray
         $sites = get_sites();
         $sitesArray= array();
 
         $cant= 0;
+
+        // Guardo todos los IDS de los sitios en el array $sitesArray
         foreach ($sites as $site){
             array_push($sitesArray,$site->blog_id);
         }
 
+        // Recupero todos los CPT de cpt-sitios
  	    $args = array(  
             'post_type' => 'cpt-sitios',
             'post_status' => array('publish', 'pending', 'draft', 'future', 'private', 'inherit'),
@@ -58,19 +63,26 @@ class multisiteAdmin{
             'orderby' => 'title',
             'order' => 'ASC',
         );
+
+        // Itero sobre los CPT de sitios
         $loop = new \WP_Query($args); 
         while ( $loop->have_posts() ) : $loop->the_post(); 
+  
             $cpt_site_id = get_post_meta(get_the_ID(),'site_blog_id',true);
+
+            /* Si el CPT, tiene asociado un id de sitio, elimino ese id del array $sitesArray, 
+            *    para solo dejar los sitios que no tengan un CPT asociado
+            */
             if (in_array($cpt_site_id,$sitesArray)){
                 $key = array_search($cpt_site_id, $sitesArray);
                 if( $key ){
                     unset($sitesArray[$key]);
                 }
             }
-
         endwhile;	
         wp_reset_postdata(); 
-        print var_dump($sitesArray);
+
+        // Para cada ID de sitio que no tiene un CPT, llamo a la función create_cpt_post
         foreach ($sitesArray as $site){
             $this->create_cpt_post($site);
         }
@@ -81,7 +93,8 @@ class multisiteAdmin{
 
         switch_to_blog($site);
 
-
+        global $wpdb;
+        $site_creation= $wpdb->get_var( $wpdb->prepare( "SELECT registered FROM $wpdb->blogs WHERE blog_id = %d",$site) );
         $site_name = get_bloginfo('name');
         $site_description = get_bloginfo('description');
         $site_url = get_bloginfo('url');
@@ -101,6 +114,8 @@ class multisiteAdmin{
             add_post_meta($post_id, 'site_url', $site_url);
             add_post_meta($post_id, 'site_description', $site_description);
             add_post_meta($post_id, 'site_blog_id', $site);
+            add_post_meta($post_id, 'site_creation_date', $site_creation);
+
          }
 
     }
@@ -229,13 +244,19 @@ class multisiteAdmin{
     private function print_sites_count(){
         $sites = count(get_sites());
 
-        $sites_cpt = wp_count_posts('cpt-sitios')->publish;
+        $sites_cpt = wp_count_posts('cpt-sitios')->publish + wp_count_posts('cpt-sitios')->pending;
 
         echo  "<span style='font-weight:bold;'> " . $sites .  __(" sitios / ") . $sites_cpt . __(" CPT de sitios");
 
     }
 
     private function print_sites_list(){
+
+        if ( ! class_exists( 'WP_List_Table' ) ) {
+
+            require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
+        }
+
         $args = array(
             'post_type' => 'cpt-sitios',
             'posts_per_page' => -1
@@ -249,6 +270,8 @@ class multisiteAdmin{
                     echo "<span >" . _e("Descripción") .": </span><br>". print_description();
                     $url= get_post_meta(get_the_ID(),'site_url',true);
                     echo "<br></br><span> Url: <a href='" . $url . "'>" . $url . "</a></span>";
+                    $creation_date = get_post_meta(get_the_ID(),'site_creation_date',true);
+                    echo "<br></br><span>". __("Fecha de creación") . ": </span><br></br>" . $creation_date ;
 
                     echo "</div><br></br>";
                     
