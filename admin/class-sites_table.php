@@ -1,5 +1,10 @@
 <?php 
-    class Sites_table extends WP_List_Table{
+
+require_once WP_PLUGIN_DIR . '/wp-multisite-manager/admin/class-wp-list-table.php'; 
+
+
+
+    class Sites_table extends TablitaDemo\WP_List_Table{
         
         function __construct() {
             parent::__construct( array(
@@ -20,7 +25,7 @@
             }
             if ( $which == "bottom" ){
                //Código para agregar abajo de la tabla
-               echo"Hi, I'm after the table";
+               echo "";
             }
          }
 
@@ -39,6 +44,9 @@
             );
         }
 
+        public function no_items() {
+            _e( 'No hay CPT de sitios aún.');
+        }		
 
         /**
          * Indica según que columnas se podra ordenar las filas de la tabla
@@ -53,4 +61,15 @@
         *}
         */
 
+        function prepare_items(){
+
+           // global $wpdb, $_wp_column_headers;
+            //$screen = get_current_screen();        
+       // 
+
+            /* -- Preparing your query -- */
+         //   $query = "SELECT * FROM $wpdb->links";
+       // }
+
     }
+}

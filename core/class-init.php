@@ -123,6 +123,14 @@ class Init{
 
 		}
 
+		if ( ! defined('ABSPATH') ) {
+			/** Set up WordPress environment */
+			require_once( dirname( __FILE__ ) . '/wp-load.php' );
+		}
+
+		// Llama a la función que registra los shortcodes
+		add_action('init', array($this,'shortcodes_init'));
+
 	
 		// Register Scripts and Styles
 		
@@ -142,8 +150,7 @@ class Init{
 		add_action( 'plugins_loaded', 'load_plugin_textdomain' );
 		add_action('wp_enqueue_scripts',array($this,'reg_public_styles'),30);
 		
-		// Llama a la función que registra los shortcodes
-		add_action('init', array($this,'shortcodes_init'));
+
 	}
 
 
@@ -160,23 +167,23 @@ class Init{
 			'widget_color'=>'turquoise',
             'box_color' => 'white', 
         ), $attr );
-
 		$content = "";
+
 		$args = array(
             'post_type' => 'cpt-sitios',
-            'posts_per_page' => -1
+            'posts_per_page' => -1,
+			'post_status' => array('publish', 'pending', 'draft', 'future', 'private', 'inherit'),
         );
-        $query = new \WP_Query($args);
+		switch_to_blog(1);
 
-		if(!$query->have_posts()):
-			return _e("No hay sitios cargados.");
-        else: 
-			$content= $content . "<div class='sites-portfolio' style='background-color:". $parameters['widget_color'] . "'>";
-            while ($query->have_posts()): $query->the_post();
+        $query = new \WP_Query($args);
+		$content= $content . "<div class='sites-portfolio' style='background-color:". $parameters['widget_color'] . "'>";
+
+
+		while ( $query->have_posts() ): $query->the_post();
                     $content = $content . 
 						"<div class='sites-portfolio-box' style='background-color:". $parameters['box_color'] . "' id='" . get_the_ID() . "'>
-								<span class='sites-portfolio-title'>" .  get_the_title() . "</span>
-								
+								<span class='sites-portfolio-title'>" .  get_the_title() . "</span>	
 							<br>". 
 							$this->print_screenshot('site_screenshot',get_the_ID()) ."
 							<span class='sites-portfolio-title'> Descripción: </span>
@@ -184,7 +191,7 @@ class Init{
             endwhile;
 			$content = $content . "</div>";
             wp_reset_postdata();
-        endif;
+		restore_current_blog();
 		return $content;
 	}
 

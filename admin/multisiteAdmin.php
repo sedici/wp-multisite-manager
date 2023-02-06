@@ -1,9 +1,13 @@
 <?php
 namespace Wp_multisite_manager\Admin;
 
+use Sites_table;
 use Wp_multisite_manager as MM;
 
 require_once WP_PLUGIN_DIR . '/wp-multisite-manager/helpers.php'; 
+
+require_once WP_PLUGIN_DIR . '/wp-multisite-manager/admin/class-sites_table.php'; 
+
 
 
 class multisiteAdmin{
@@ -236,8 +240,16 @@ class multisiteAdmin{
         echo "<br></br><h2> Sitios actuales </h2>";
 
         echo $this->print_sites_list();
-
-
+        echo '
+        <div id="nds-wp-list-table-demo">			
+        <div id="nds-post-body">		
+        <form id="nds-user-list-form" method="get">'; 
+            $cpt_list_table = new Sites_table();
+            $cpt_list_table->display(); 
+        echo '
+        </form>
+            </div>			
+        </div>';
         # Útil para agregar manual en un futuro:
         #  $url=plugins_url();
 		#  <a href=$url/wp-dspace/UtilizaciondelPLuginWP-Dspace.docx>Descargar Manual</a>
