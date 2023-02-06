@@ -121,6 +121,9 @@ class Init{
 			// Permite que se guarden imagenes en el formulario del CPT de Sitios
 			add_action('post_edit_form_tag', array($sitiosCPT, 'update_edit_form'));
 
+			// Llama a la función que registra los shortcodes
+			add_action('init', array($this,'shortcodes_init'));
+
 		}
 
 		if ( ! defined('ABSPATH') ) {
@@ -128,8 +131,7 @@ class Init{
 			require_once( dirname( __FILE__ ) . '/wp-load.php' );
 		}
 
-		// Llama a la función que registra los shortcodes
-		add_action('init', array($this,'shortcodes_init'));
+
 
 	
 		// Register Scripts and Styles
@@ -174,7 +176,6 @@ class Init{
             'posts_per_page' => -1,
 			'post_status' => array('publish', 'pending', 'draft', 'future', 'private', 'inherit'),
         );
-		switch_to_blog(1);
 
         $query = new \WP_Query($args);
 		$content= $content . "<div class='sites-portfolio' style='background-color:". $parameters['widget_color'] . "'>";
@@ -191,7 +192,6 @@ class Init{
             endwhile;
 			$content = $content . "</div>";
             wp_reset_postdata();
-		restore_current_blog();
 		return $content;
 	}
 
