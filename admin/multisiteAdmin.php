@@ -4,9 +4,9 @@ namespace Wp_multisite_manager\Admin;
 use Sites_table;
 use Wp_multisite_manager as MM;
 
-require_once WP_PLUGIN_DIR . '/wp-multisite-manager/helpers.php'; 
+require_once plugin_dir_path( __DIR__ ) . 'helpers.php'; 
 
-require_once WP_PLUGIN_DIR . '/wp-multisite-manager/admin/class-sites_table.php'; 
+require_once plugin_dir_path( __DIR__ ) . 'admin/class-sites_table.php'; 
 
 
 

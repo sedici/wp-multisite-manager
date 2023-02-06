@@ -1,6 +1,6 @@
 <?php 
 
-require_once WP_PLUGIN_DIR . '/wp-multisite-manager/admin/class-wp-list-table.php'; 
+require_once plugin_dir_path( __DIR__ ) . 'admin/class-wp-list-table.php'; 
 
 
 

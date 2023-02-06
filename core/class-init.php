@@ -5,8 +5,9 @@ use Wp_multisite_manager as MM;
 use Wp_multisite_manager\Admin as Admin;
 
 require_once 'class-loader.php';
-require_once WP_PLUGIN_DIR . '/wp-multisite-manager/helpers.php'; 
-//require_once '../admin/multisiteAdmin.php';
+
+require_once plugin_dir_path( __DIR__ ) . 'helpers.php'; 
+
 $dirMultisite = plugin_dir_path( __DIR__ ) . 'admin/multisiteAdmin.php';
 $dirSinglesite = plugin_dir_path( __DIR__ ) . 'admin/singlesiteAdmin.php';
 
