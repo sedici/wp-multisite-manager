@@ -2,6 +2,7 @@
 
 require_once plugin_dir_path( __DIR__ ) . 'admin/class-wp-list-table.php'; 
 
+require_once plugin_dir_path( __DIR__ ) . 'helpers.php'; 
 
 
     class Sites_table extends TablitaDemo\WP_List_Table{
@@ -34,14 +35,16 @@ require_once plugin_dir_path( __DIR__ ) . 'admin/class-wp-list-table.php';
          * Define las columnas de la tabla
          * @return array $columns, devuelve este array con las columnas
          */
-        function get_columns() {
-            return $columns= array(
-                'col_site_cpt_id'=>__('ID'),
-                'col_site_title'=>__('Nombre'),
-                'col_site_description'=>__('Descripción'),
-                'col_site_url'=>__('Url'),
-                'col_site_id'=>__('ID del sitio')
+        public function get_columns() {
+            $table_columns= array(
+                'cb'		=> '<input type="checkbox" />',
+                'id'=>__('ID'),
+                'title'=>__('Nombre'),
+                'description'=>__('Descripción'),
+                'url'=>__('Url'),
+                'creation'=>__('Fecha de creación')
             );
+            return $table_columns;
         }
 
         public function no_items() {
@@ -61,15 +64,57 @@ require_once plugin_dir_path( __DIR__ ) . 'admin/class-wp-list-table.php';
         *}
         */
 
-        function prepare_items(){
+        public function get_cpt_data(){
 
-           // global $wpdb, $_wp_column_headers;
-            //$screen = get_current_screen();        
-       // 
+            $args = array(
+                'post_type' => 'cpt-sitios',
+                'posts_per_page' => -1
+            );
+    
+            $query = new \WP_Query($args);
+            $itemsArray= array();
 
-            /* -- Preparing your query -- */
-         //   $query = "SELECT * FROM $wpdb->links";
-       // }
+            if ($query->have_posts()): 
+                while ($query->have_posts()): $query->the_post();
+                        $item = array();
 
-    }
+                        $item['id'] = get_the_ID();
+                        $item['title'] =  get_the_title();
+                        $item['description'] = print_description();
+                        $item['url'] = get_post_meta(get_the_ID(),'site_url',true);
+                        $item['creation'] = get_post_meta(get_the_ID(),'site_creation_date',true);
+                        array_push($itemsArray,$item);
+                        
+                endwhile;
+                wp_reset_postdata();
+            endif;
+
+            return $itemsArray;
+
+        }
+
+
+
+
+
+        public function prepare_items(){
+
+            $this->items = $this->get_cpt_data();
+     
+        }
+
+        public function column_default( $item, $column_name ) {		
+            switch ( $column_name ) {			
+                case 'title':
+                case 'description':
+                case 'url':
+                case 'creation':
+                case 'ID':
+                    return $item[$column_name];
+                default:
+                  return $item[$column_name];
+            }
+        }
+
+
 }

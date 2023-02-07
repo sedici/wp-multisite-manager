@@ -96,6 +96,13 @@ class multisiteAdmin{
         return $sitesArray;
 }
 
+
+
+    /**
+     * Crea un CPT y agrega la metadata correspondiente al blog id que recibe por parametro
+     *      
+     * @param integer $site Es el ID de sitio para el cual vamos a crear el CPT
+    */
     function create_cpt_post($site){
 
         switch_to_blog($site);
@@ -213,6 +220,8 @@ class multisiteAdmin{
     # Register all the MULTISITE Menu pages --------------------------------------------------------------
 
 	public function add_Multisite_Menu_Pages(){
+        $this->cpt_list_table = new Sites_table();
+
 		add_menu_page(__('Administrar Footer y Header', $this->plugin_text_domain),
 		__('Configurar multisitio', $this->plugin_text_domain), 
 			'manage_options',
@@ -244,8 +253,8 @@ class multisiteAdmin{
         <div id="nds-wp-list-table-demo">			
         <div id="nds-post-body">		
         <form id="nds-user-list-form" method="get">'; 
-            $cpt_list_table = new Sites_table();
-            $cpt_list_table->display(); 
+            $this->cpt_list_table->prepare_items(); 
+            $this->cpt_list_table->display(); 
         echo '
         </form>
             </div>			
