@@ -38,8 +38,8 @@ require_once plugin_dir_path( __DIR__ ) . 'helpers.php';
         public function get_columns() {
             $table_columns= array(
                 'cb'		=> '<input type="checkbox" />',
-                'id'=>__('ID'),
-                'title'=>__('Nombre'),
+                'ID'=>__('ID'),
+                'post_title'=>__('Nombre'),
                 'description'=>__('Descripción'),
                 'url'=>__('Url'),
                 'creation'=>__('Fecha de creación')
@@ -72,24 +72,20 @@ require_once plugin_dir_path( __DIR__ ) . 'helpers.php';
             );
     
             $query = new \WP_Query($args);
-            $itemsArray= array();
 
-            if ($query->have_posts()): 
-                while ($query->have_posts()): $query->the_post();
-                        $item = array();
 
-                        $item['id'] = get_the_ID();
-                        $item['title'] =  get_the_title();
-                        $item['description'] = print_description();
-                        $item['url'] = get_post_meta(get_the_ID(),'site_url',true);
-                        $item['creation'] = get_post_meta(get_the_ID(),'site_creation_date',true);
-                        array_push($itemsArray,$item);
-                        
-                endwhile;
-                wp_reset_postdata();
-            endif;
+            return  array_map( fn($post) =>
+                                        array_merge(
+                                            $post->to_array(),
+                                            [
+                                                "description"=>get_post_meta($post->ID,'site_description',true), 
+                                                "creation"=>get_post_meta($post->ID,'site_creation_date',true),
+                                                "url"=>get_post_meta($post->ID,'site_url',true)
+                                            ]
+                                        ), $query->get_posts() );
 
-            return $itemsArray;
+           
+
 
         }
 
@@ -105,11 +101,11 @@ require_once plugin_dir_path( __DIR__ ) . 'helpers.php';
 
         public function column_default( $item, $column_name ) {		
             switch ( $column_name ) {			
-                case 'title':
+                case 'post_title':  
                 case 'description':
                 case 'url':
                 case 'creation':
-                case 'ID':
+                case 'post_ID':
                     return $item[$column_name];
                 default:
                   return $item[$column_name];
