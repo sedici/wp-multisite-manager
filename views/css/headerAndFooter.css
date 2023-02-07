@@ -1,5 +1,4 @@
     .header-container{
-        padding-top: 2vh;
         height: 8vh;
         margin-top: 0%;
         display:grid;
@@ -28,19 +27,20 @@
     }
 
 
-
+    a{
+        text-decoration: none;
+    }
 
 
     /* FOOOTER CSS */
 
     .footer-container{
-        margin-top: 0%;
         display:grid;
         grid-template-columns: 40% 20% 40%;
     }
 
     .footer_column {
-
+        height:20vh;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -69,7 +69,14 @@
         transform: scale(1.05);
     }
 
-    
+    .footer-title{
+        font-family: inherit;
+        font-style: inherit;
+
+
+        font-size: 23px;
+        font-weight: 600;
+    }
 
     .media-container{
         display: flex;
@@ -83,7 +90,6 @@
         max-height: 15vh;
         margin-left: auto;
         margin-right: auto;
-        margin-bottom: 10px;
     }
 
 

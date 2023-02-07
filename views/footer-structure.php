@@ -68,7 +68,8 @@ function print_contacto(){
 }
 
 function print_logos(){
-    $section = "<h1>" . "</h1>";
+    switch_to_blog(1);
+    $section = "";
     $image_1= get_site_option('footer_logo_1');
     $image_2= get_site_option('footer_logo_2');
     if( !is_wp_error($image_1)){
@@ -81,6 +82,7 @@ function print_logos(){
              <img class="footer-image" src="' . wp_get_attachment_url(get_site_option('footer_logo_2')) . '"></img>
          </a>';
      }
+     restore_current_blog();
      echo $section;
 }
 
