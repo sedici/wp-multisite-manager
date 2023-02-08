@@ -167,7 +167,7 @@ class Init{
     function show_portfolio($attr){
 
 		$parameters = shortcode_atts( array(
-			'widget_color'=>'turquoise',
+			'widget_color'=>'dark',
             'box_color' => 'white', 
         ), $attr );
 		$content = "";
