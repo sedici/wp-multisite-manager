@@ -51,20 +51,23 @@ require_once plugin_dir_path( __DIR__ ) . 'helpers.php';
             _e( 'No hay CPT de sitios aún.');
         }		
 
-        /**
+    /*
          * Indica según que columnas se podra ordenar las filas de la tabla
          * @return array $sortable, el array de columnas que pueden ser ordenadas
-         *
-         * public function get_sortable_columns() {
-         *   return $sortable = array(
-         *   'col_link_id'=>'link_id',
-         *   'col_link_name'=>'link_name',
-         *   'col_link_visible'=>'link_visible'
-         *   );
-        *}
-        */
+         */
+          public function get_sortable_columns() {
+            return $sortable = array(
+            'post_title'=>'post_title',
+            'creation'=>'creation',
+            );
+        }
+      
 
         public function get_cpt_data(){
+
+            // Agarro el campo según el que ordenar, y si es ascendente o descendente
+            $orderby = ( isset( $_GET['orderby'] ) ) ? esc_sql( $_GET['orderby'] ) : 'post_title';
+            $order = ( isset( $_GET['order'] ) ) ? esc_sql( $_GET['order'] ) : 'ASC';
 
             $args = array(
                 'post_type' => 'cpt-sitios',
@@ -74,7 +77,7 @@ require_once plugin_dir_path( __DIR__ ) . 'helpers.php';
             $query = new \WP_Query($args);
 
 
-            return  array_map( fn($post) =>
+            $result =  array_map( fn($post) =>
                                         array_merge(
                                             $post->to_array(),
                                             [
@@ -84,13 +87,29 @@ require_once plugin_dir_path( __DIR__ ) . 'helpers.php';
                                             ]
                                         ), $query->get_posts() );
 
-           
+            $key = array_column($result, $orderby);
 
+            if($order == "desc"){
+                array_multisort($key, SORT_DESC, $result);
+            }
+            else{
+                array_multisort($key, SORT_ASC, $result);
+            }
+          
+            return $result;
+
+            /*
+            var_dump($result);
+            usort($result, function ($item1, $item2) {
+                if ($item1['post_title'] == $item2['post_title']) return 0;
+                   return ($item1['post_title'] < $item2['post_title'] and $order='asc' ) ? 1 : -1;
+            });
+            */
+            return $result;
 
         }
 
-
-
+      
 
 
         public function prepare_items(){

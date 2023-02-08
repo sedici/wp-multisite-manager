@@ -235,6 +235,11 @@ class multisiteAdmin{
 	public function wp_multisite_manager_blocks()
     {
 
+        if ( ! class_exists( 'WP_List_Table' ) ) {
+
+            require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
+        }
+
         echo 
         "<h1> Administrar la red de multisitio </h1>
 
@@ -248,7 +253,6 @@ class multisiteAdmin{
         echo "<p id='update-result'></p>";
         echo "<br></br><h2> Sitios actuales </h2>";
 
-        echo $this->print_sites_list();
         echo '
         <div id="nds-wp-list-table-demo">			
         <div id="nds-post-body">		
@@ -274,36 +278,7 @@ class multisiteAdmin{
 
     }
 
-    private function print_sites_list(){
-
-        if ( ! class_exists( 'WP_List_Table' ) ) {
-
-            require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
-        }
-
-        $args = array(
-            'post_type' => 'cpt-sitios',
-            'posts_per_page' => -1
-        );
-
-        $query = new \WP_Query($args);
-        if ($query->have_posts()): 
-            while ($query->have_posts()): $query->the_post();
-                    echo "<div class='site-container' id=" . get_the_ID() . ">";
-                    echo "<span class='site-title'>" .  get_the_title() . "</span><br></br>" ;
-                    echo "<span >" . _e("Descripción") .": </span><br>". print_description();
-                    $url= get_post_meta(get_the_ID(),'site_url',true);
-                    echo "<br></br><span> Url: <a href='" . $url . "'>" . $url . "</a></span>";
-                    $creation_date = get_post_meta(get_the_ID(),'site_creation_date',true);
-                    echo "<br></br><span>". __("Fecha de creación") . ": </span><br></br>" . $creation_date ;
-
-                    echo "</div><br></br>";
-                    
-            endwhile;
-            wp_reset_postdata();
-        endif;
-    }
-
+   
     private function print_site_screenshot(){
         echo "<span >" . _e("Descripción") .": </span><br>". get_post_meta(get_the_ID(),'site_screenshot')[0];
     }
