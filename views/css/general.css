@@ -2,31 +2,50 @@
 /* CSS Para vista de Portafolio (Shortcode) */
 
 .sites-portfolio{
-    background-color: antiquewhite;
+    background-color:rgb(255, 255, 255);
     margin: auto;
     display: grid;
     grid-template-columns: 33% 33% 33%;
-    padding:5vh;
 
-    grid-column-gap: 20px;
+    width: 150%;
+    grid-column-gap: 10px;
     grid-row-gap: 20px;
+
+    font-family:'Times New Roman';
 }
 
 .sites-portfolio-box{
-    text-align: center;
+    text-align: left;
     padding: 2vh;
-    border: solid 5px black;
+    border: solid 1px rgb(218, 180, 180);
     border-radius: 5px;
-    height: 40vh;
+    height: 100%;
     width: 100%;
     overflow:scroll;
+}
+
+.sites-portfolio-img{
+    object-fit:fill; 
+    border: solid 1px;
+    width:200%;
+    height:200%;  
+    margin-bottom: 5%;
 }
 
 .sites-portfolio-title{
     font-size: medium;
     font-weight: bold;
-    color:black;
     margin-bottom: 10%;
+}
+
+#site-title{
+    font-size:200%;
+    color: dimgray;
+}
+
+#site-desc{
+    color: darkgray;
+    font-size:150%;
 }
 
 .sites-empty-field{
@@ -34,13 +53,8 @@
     font-weight:bold
 }
 
-.sites-portfolio-img{
-    object-fit:contain; 
-    width:40vh;
-    height:100%;  
-    border:5px solid black; 
-    border-radius:5px;
-    margin-top: 15%;
-    margin-bottom: 15%;
-}
+@media only screen and (max-width: 600px) {
 
+
+
+}
