@@ -198,7 +198,7 @@ class Init{
 
 
 	function print_screenshot($field,$post_id){
-		if(get_post_meta(get_the_ID(),'site_description') and (!empty(get_post_meta(get_the_ID(),'site_description')[0]) ))
+		if(get_post_meta(get_the_ID(),'site_screenshot') and (!empty(get_post_meta(get_the_ID(),'site_screenshot')[0]) ))
 		{
 			$image = $this->get_image($post_id,'site_screenshot');
 			if(!is_wp_error($image)){
