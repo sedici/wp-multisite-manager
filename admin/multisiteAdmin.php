@@ -29,6 +29,8 @@ class multisiteAdmin{
         add_action('network_admin_edit_header_update_network_options',array($this,'header_update_network_options'));
         add_action('network_admin_edit_footer_update_network_options',array($this,'footer_update_network_options'));
 
+
+        // Registro la acción Update_all_cpt para la llamada AJAX
         add_action('wp_ajax_update_sites_cpt',array($this,'update_all_cpt')  );
         add_action( 'wp_ajax_nopriv_update_sites_cpt', array($this,'update_all_cpt') );
 
@@ -237,7 +239,6 @@ class multisiteAdmin{
         if ( ! class_exists( 'WP_List_Table' ) ) {
             require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
         }
-        $leninAsesino = "true";
 
         include plugin_dir_path( __DIR__ ) . 'admin/views/administration-menu.php';
         
