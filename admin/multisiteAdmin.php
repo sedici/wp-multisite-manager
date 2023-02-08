@@ -234,38 +234,12 @@ class multisiteAdmin{
 	
 	public function wp_multisite_manager_blocks()
     {
-
         if ( ! class_exists( 'WP_List_Table' ) ) {
-
             require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
         }
+        $leninAsesino = "true";
 
-        echo 
-        "<h1> Administrar la red de multisitio </h1>
-
-        <p>Este plugin de Wordpress permite administrar configuraciones gloables para todos los sitios
-		dentro de una red de Multisitio. </p>
-
-        <h2> Actualizar información de los CPT de sitios </h2>
-
-        <button id='update-cpt-button' > Actualizar </button> <br></br>";
-        $this->print_sites_count();
-        echo "<p id='update-result'></p>";
-        echo "<br></br><h2> Sitios actuales </h2>";
-
-        echo '
-        <div id="nds-wp-list-table-demo">			
-        <div id="nds-post-body">		
-        <form id="nds-user-list-form" method="get">'; 
-            $this->cpt_list_table->prepare_items(); 
-            $this->cpt_list_table->display(); 
-        echo '
-        </form>
-            </div>			
-        </div>';
-        # Útil para agregar manual en un futuro:
-        #  $url=plugins_url();
-		#  <a href=$url/wp-dspace/UtilizaciondelPLuginWP-Dspace.docx>Descargar Manual</a>
+        include plugin_dir_path( __DIR__ ) . 'admin/views/administration-menu.php';
         
     }
 

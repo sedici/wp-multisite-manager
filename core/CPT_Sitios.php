@@ -89,9 +89,9 @@ class CPT_Sitios {
     /*
      * Formulario custom post
      */
-    public function sitios_display_callback($unArg)
+    public function sitios_display_callback()
     {
-        $dir = plugin_dir_path( __FILE__ ) . '../views/CPT_Sitios_Form.php';
+        $dir = plugin_dir_path( __FILE__ ) . '../admin/views/CPT_Sitios_Form.php';
         include_once($dir);
     }
 

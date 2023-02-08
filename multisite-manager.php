@@ -26,7 +26,6 @@
 
  require_once 'core/class-init.php';
 
- require_once 'configuration.php';
 
 /**
  * Register Activation and Deactivation Hooks

@@ -179,22 +179,23 @@ class Init{
         );
 
         $query = new \WP_Query($args);
-		$content= $content . "<div class='sites-portfolio' style='background-color:". $parameters['widget_color'] . "'>";
-
+		echo "<div class='sites-portfolio' style='background-color:". $parameters['widget_color'] . "'>";
 
 		while ( $query->have_posts() ): $query->the_post();
-                    $content = $content . 
-						"<div class='sites-portfolio-box' style='background-color:". $parameters['box_color'] . "' id='" . get_the_ID() . "'>
-								<span class='sites-portfolio-title'>" .  get_the_title() . "</span>	
-							<br>". 
-							$this->print_screenshot('site_screenshot',get_the_ID()) ."
-							<span class='sites-portfolio-title'> Descripción: </span>
-								<p>". print_description() . "</div>" ;
-            endwhile;
-			$content = $content . "</div>";
-            wp_reset_postdata();
-		return $content;
+
+					$site_title =get_the_title();
+					$site_description= print_description();
+					$site_screenshot= $this->print_screenshot('site_screenshot',get_the_ID());
+                    $site_id= get_the_ID();
+					include plugin_dir_path( __DIR__ ) . '/views/portfolio-box.php';
+	
+         endwhile;
+
+		echo "</div>";
+        wp_reset_postdata();
+	return true;
 	}
+
 
 	function print_screenshot($field,$post_id){
 		if(get_post_meta(get_the_ID(),'site_description') and (!empty(get_post_meta(get_the_ID(),'site_description')[0]) ))
