@@ -32,7 +32,7 @@ class SinglesiteAdmin{
     function registerHeader(){
         $enabled = get_site_option('enabled');
         if ($enabled == 1){ 
-            $banner_file=plugin_dir_path( __DIR__ )."/views/banner-structure.php";
+            $banner_file=plugin_dir_path( __DIR__ )."/templates/banner-structure.php";
             include_once($banner_file); 
         }
     }
@@ -40,7 +40,7 @@ class SinglesiteAdmin{
     function registerFooter(){
         $enabled = get_site_option('footer_enabled');
         if ($enabled == 1){ 
-            $footer_file=plugin_dir_path( __DIR__ )."/views/footer-structure.php";
+            $footer_file=plugin_dir_path( __DIR__ )."/templates/footer-structure.php";
             include_once($footer_file); 
         }
     }

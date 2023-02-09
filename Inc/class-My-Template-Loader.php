@@ -28,7 +28,7 @@ class My_Template_Loader extends Gamajo_Template_Loader {
 	 * @since 1.0.0
 	 * @type string
 	 */
-	protected $theme_template_directory = 'views';
+	protected $theme_template_directory = 'templates';
  
 	/**
 	 * Reference to the root directory path of this plugin.
@@ -36,7 +36,7 @@ class My_Template_Loader extends Gamajo_Template_Loader {
 	 * @since 1.0.0
 	 * @type string
 	 */
-	protected $plugin_directory = MM\PLUGIN_NAME_URL;
+	protected $plugin_directory = MM\PLUGIN_NAME_DIR;
  
 }
 

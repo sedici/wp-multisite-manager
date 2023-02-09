@@ -18,18 +18,18 @@ require_once plugin_dir_path( __DIR__ ) . 'helpers.php';
          /**
          * Agrega información arriba y abajo de la tabla
          * @param string $which, es el que permite saber si agregamos la "marca" antes (bottom) o después (top) de la tabla
-         */
-         function extra_tablenav( $which ) {
-            if ( $which == "top" ){
-               //Código para agregar arriba de la tabla
+         
+        * function extra_tablenav( $which ) {
+        *    if ( $which == "top" ){
+        *       //Código para agregar arriba de la tabla
 
-            }
-            if ( $which == "bottom" ){
-               //Código para agregar abajo de la tabla
-               echo "";
-            }
-         }
-
+        *    }
+        *    if ( $which == "bottom" ){
+        *       //Código para agregar abajo de la tabla
+        *       echo "";
+        *    }
+        * }
+        */
 
          /**
          * Define las columnas de la tabla
@@ -50,8 +50,8 @@ require_once plugin_dir_path( __DIR__ ) . 'helpers.php';
 
         protected function get_views(){
             $status_links = array(
-                __("Todos") => __("<a href='admin.php?page=wp-multisite-manager&ss=false'>Todos</a>"),
-                __("Sin screenshot") => __("<a href='admin.php?page=wp-multisite-manager&ss=true'>Sin screenshot</a>"),
+                __("Todos") => "<a href='admin.php?page=wp-multisite-manager&ss=false'>". __("Todos") . "</a>",
+                __("Sin screenshot") =>"<a href='admin.php?page=wp-multisite-manager&ss=true'>".  __("Sin screenshot") . "</a>",
             );
             return $status_links;
         }
@@ -96,6 +96,7 @@ require_once plugin_dir_path( __DIR__ ) . 'helpers.php';
                                             ]
                                         ), $query->get_posts() );
 
+            // Si esta activo el filtro, elimino los posts que no tienen screenshot
             $screenshot_filter = ( isset( $_GET['ss'] ) ) ? $_GET['ss'] : 'false';
             if($screenshot_filter !== "false"){
               $result =  array_filter($result,fn($post)=> ($this->has_screenshot($post['ID']) == "Si")
@@ -115,6 +116,8 @@ require_once plugin_dir_path( __DIR__ ) . 'helpers.php';
             return $result;
 
         }
+
+        
 
         function get_image($post_id,$field){
             return get_post_meta($post_id, $field,true);
