@@ -53,8 +53,23 @@
     font-weight:bold
 }
 
+
+@media only screen and (max-width: 959px) {
+    .sites-portfolio{
+        display:grid;
+        grid-template-columns: 50% 50%;
+        width: 100%;
+    }
+
+}
+
 @media only screen and (max-width: 600px) {
 
+    .sites-portfolio{
+        display:grid;
+        grid-template-columns: 100%;
+        width: 100%;
+    }
 
 
 }
