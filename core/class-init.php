@@ -3,10 +3,14 @@
 namespace Wp_multisite_manager\Core;
 use Wp_multisite_manager as MM;
 use Wp_multisite_manager\Admin as Admin;
+use Wp_multisite_manager\Inc as Inc;
 
 require_once 'class-loader.php';
 
 require_once plugin_dir_path( __DIR__ ) . 'helpers.php'; 
+
+require plugin_dir_path( __DIR__ ) . 'Inc/class-My-Template-Loader.php';
+
 
 $dirMultisite = plugin_dir_path( __DIR__ ) . 'admin/multisiteAdmin.php';
 $dirSinglesite = plugin_dir_path( __DIR__ ) . 'admin/singlesiteAdmin.php';
@@ -187,6 +191,10 @@ class Init{
 					$site_description= print_description();
 					$site_screenshot= $this->print_screenshot('site_screenshot',get_the_ID());
                     $site_id= get_the_ID();
+
+
+					$template_Loader = new Inc\My_Template_Loader;
+					//var_dump($template_Loader->get_template_part("portfolio","box"));
 					include plugin_dir_path( __DIR__ ) . '/views/portfolio-box.php';
 	
          endwhile;
@@ -218,8 +226,4 @@ class Init{
 	function get_image($post_id,$field){
 		return get_post_meta($post_id, $field,true);
 	}
-
-
-
-
 }

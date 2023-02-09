@@ -253,10 +253,7 @@ class multisiteAdmin{
 
     }
 
-   
-    private function print_site_screenshot(){
-        echo "<span >" . _e("Descripción") .": </span><br>". get_post_meta(get_the_ID(),'site_screenshot')[0];
-    }
+    
 
 	private function add_block_subpages(){
 

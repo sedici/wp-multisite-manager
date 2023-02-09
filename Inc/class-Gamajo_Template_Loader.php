@@ -1,4 +1,6 @@
 <?php
+namespace Wp_multisite_manager\Inc;
+
 /**
  * Template Loader for Plugins.
  *

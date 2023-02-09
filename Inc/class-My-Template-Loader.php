@@ -1,5 +1,9 @@
 <?php
- 
+namespace Wp_multisite_manager\Inc;
+use Wp_multisite_manager as MM;
+
+ require 'class-Gamajo_Template_Loader.php';
+
 /**
  * Template loader for PW Sample Plugin.
  *
@@ -16,7 +20,7 @@ class My_Template_Loader extends Gamajo_Template_Loader {
 	 * @since 1.0.0
 	 * @type string
 	 */
-	protected $filter_prefix = '';
+	protected $filter_prefix = 'mm';
  
 	/**
 	 * Directory name where custom templates for this plugin should be found in the theme.

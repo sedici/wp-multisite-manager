@@ -12,6 +12,7 @@
         <br></br><h2> Sitios actuales </h2>
         <div id="nds-wp-list-table-demo">			
         <div id="nds-post-body">		
+        <?php $this->cpt_list_table->views(); ?>
         <form id="nds-user-list-form" method="get">
     
         <?php   $this->cpt_list_table->prepare_items(); 
