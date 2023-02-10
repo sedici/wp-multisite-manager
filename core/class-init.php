@@ -200,7 +200,6 @@ class Init{
 
 		echo "</div>";
         wp_reset_postdata();
-	return true;
 	}
 
 

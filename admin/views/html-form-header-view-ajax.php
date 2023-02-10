@@ -1,3 +1,14 @@
+<script type="text/javascript">
+
+function addInput(e){
+    e.value++;
+    return false;
+}
+
+</script>
+
+
+
 <h1>Formulario del header</h1>
 
 <p class="comments-about-section"> <?php _e("En esta sección usted podrá editar partes del header global que desea mostrar
@@ -34,7 +45,11 @@
         <input type="file" name="image" value="" >
     </div>
 
-    
+
+
+    <button id="add-img-input" class="add-btn" value=0 onClick="return addInput(this);"> + </button>
+    <button id="delete-img-input" class="delete-btn" value=0 onClick="return addInput(this);"> - </button>
+
 
     <div class="general-form-field">
         <h2 class="filds-titles"> <?php _e("Enlace de la imagen"); ?> </h2>

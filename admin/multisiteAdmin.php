@@ -144,6 +144,15 @@ class multisiteAdmin{
         register_setting( 'header_settings', 'image', 'header_image_save' );
         register_setting( 'header_settings', 'image_link' );
         register_setting( 'header_settings', 'header_css');
+
+      /*  register_setting( 'header_settings', 'header_images');
+
+        $fake = [
+                    ["image_id"=>1,"image_link"=>"www.pablo.com"],
+                    ["image_id"=>2,"image_link"=>"www.juancito.com"],
+        ];
+        update_site_option('header_array', $fake);
+        */
     }
 
     // Register all the footer settings
@@ -168,6 +177,7 @@ class multisiteAdmin{
         register_setting( 'footer_settings', 'footer_logo_link_2' );
 
         register_setting( 'footer_settings', 'footer_css' );
+
     }
 
 
@@ -230,7 +240,8 @@ class multisiteAdmin{
 			$this->plugin_name,  
 			array($this, 'wp_multisite_manager_blocks')
         );
-		$this->add_block_subpages();
+        $this->add_block_subpages();
+
 	}
 	
 	
@@ -239,6 +250,7 @@ class multisiteAdmin{
         if ( ! class_exists( 'WP_List_Table' ) ) {
             require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
         }
+
 
         include plugin_dir_path( __DIR__ ) . 'admin/views/administration-menu.php';
         
