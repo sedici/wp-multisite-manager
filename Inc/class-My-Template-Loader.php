@@ -21,6 +21,9 @@ class My_Template_Loader extends Gamajo_Template_Loader {
 	 * @type string
 	 */
 	protected $filter_prefix = 'mm';
+
+
+	private static $instances = [];
  
 	/**
 	 * Directory name where custom templates for this plugin should be found in the theme.
@@ -37,6 +40,17 @@ class My_Template_Loader extends Gamajo_Template_Loader {
 	 * @type string
 	 */
 	protected $plugin_directory = MM\PLUGIN_NAME_DIR;
+
+	public static function getInstance(): My_Template_Loader
+	{
+		$cls = static::class;
+		if (!isset(self::$instances[$cls])) {
+            self::$instances[$cls] = new static();
+        }
+
+        return self::$instances[$cls];
+    }
+	
  
 }
 

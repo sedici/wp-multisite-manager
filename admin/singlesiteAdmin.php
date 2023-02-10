@@ -3,6 +3,9 @@ namespace Wp_multisite_manager\Admin;
 
 use Wp_multisite_manager as MM;
 
+use Wp_multisite_manager\Inc as Inc;
+
+
 
 class SinglesiteAdmin{
 
@@ -30,18 +33,22 @@ class SinglesiteAdmin{
 
 
     function registerHeader(){
+
+
         $enabled = get_site_option('enabled');
         if ($enabled == 1){ 
-            $banner_file=plugin_dir_path( __DIR__ )."/templates/banner-structure.php";
-            include_once($banner_file); 
+
+            $templateLoader = Inc\My_Template_Loader::getInstance();	
+		    $templateLoader->get_template_part("banner","structure",true);
+
         }
     }
 
     function registerFooter(){
         $enabled = get_site_option('footer_enabled');
         if ($enabled == 1){ 
-            $footer_file=plugin_dir_path( __DIR__ )."/templates/footer-structure.php";
-            include_once($footer_file); 
+            $templateLoader = Inc\My_Template_Loader::getInstance();	
+		    $templateLoader->get_template_part("footer","structure",true);
         }
     }
 
