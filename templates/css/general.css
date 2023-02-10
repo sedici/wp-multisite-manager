@@ -55,16 +55,20 @@
 
 /* CSS Para Modal */
 
-.modal-container {
-
+#modal-container{
+    display: none;
 }
 
 .modal {
 
 }
 
+.cta {
+
+}
+
 .modal-close {
-    
+
 }
 
 

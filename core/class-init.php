@@ -191,6 +191,8 @@ class Init{
 						'box-color'=> $parameters['box_color']
 					];
 
+					
+
 					$templateLoader = Inc\My_Template_Loader::getInstance();
 
 					$templateLoader->set_template_data($template_data);
@@ -210,7 +212,7 @@ class Init{
 			$image = $this->get_image($post_id,'site_screenshot');
 			if(!is_wp_error($image)){
 				$content ='
-					<div><img class="sites-portfolio-img" src="';
+					<div class="cta"><img class="sites-portfolio-img" src="';
 				$image_src = wp_get_attachment_url($this->get_image($post_id,$field)) ;
 
 				$content = $content . $image_src .  '"></img></div>';
@@ -221,6 +223,20 @@ class Init{
 			return "<span style='color:red;font-weight:bold'> No hay screenshot </p>";
 		}
 	}
+
+	
+	/* Registra el ajax del modal */
+	function update_modal_ajax(){
+		wp_register_script('update_modal_cpt',  MM\PLUGIN_NAME_URL . 'templates/js/modal-ajax.js', array('jquery'), '1', true );
+		wp_enqueue_script('update_modal_cpt');	
+		wp_localize_script('update_modal_cpt','modal_vars');
+	}
+
+
+	function print_modal($field,$post_id,$data){
+		
+	}
+	
 
 	function get_image($post_id,$field){
 		return get_post_meta($post_id, $field,true);
