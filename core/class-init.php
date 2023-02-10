@@ -44,14 +44,11 @@ class Init{
 		$this->loader = new Loader();
 
 		$this->multisite_administrator = new admin\multisiteAdmin($this);
-
 		$this->singlesite_administrator = new admin\singlesiteAdmin($this);
-
 
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
 	}
-
 
 	public function run() {
 		$this->loader->run();
@@ -194,13 +191,11 @@ class Init{
 						'box-color'=> $parameters['box_color']
 					];
 
-					$template_Loader = new Inc\My_Template_Loader;
-					$template_Loader->set_template_data($template_data);
-					
+					$templateLoader = Inc\My_Template_Loader::getInstance();
 
-					$template_Loader->get_template_part("portfolio","box",true);
-					$template_Loader->unset_template_data();
-	
+					$templateLoader->set_template_data($template_data);
+					$templateLoader->get_template_part("PUBLIC","portfolio_box",true);
+					$templateLoader->unset_template_data();
          endwhile;
 
 		echo "</div>";
