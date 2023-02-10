@@ -13,7 +13,7 @@ Las principales son:
 
 - [x] Shortcode para listar los CPT de sitios al estilo "Portafolio"
 
-- [] Shortcode para listar los CPT de sitios al estilo "Carrousel"
+- [ ] Shortcode para listar los CPT de sitios al estilo "Carrousel"
 
 ## Shortcodes
 
