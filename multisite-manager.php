@@ -3,7 +3,7 @@
  * Plugin Name: Multisite-manager
  * Plugin URI: http://sedici.unlp.edu.ar/
  * Description: This plugin allows to create and display a footer or header on all sites of your multisite. 
- * Version: 1.0.0
+ * Version: 1.0 (Beta)
  * Author: SEDICI
  * Author URI: http://sedici.unlp.edu.ar/   
  * Copyright (c) 2015 SEDICI UNLP, http://sedici.unlp.edu.ar
