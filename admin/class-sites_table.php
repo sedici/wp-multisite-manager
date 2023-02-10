@@ -18,18 +18,18 @@ require_once plugin_dir_path( __DIR__ ) . 'helpers.php';
          /**
          * Agrega información arriba y abajo de la tabla
          * @param string $which, es el que permite saber si agregamos la "marca" antes (bottom) o después (top) de la tabla
-         */
-         function extra_tablenav( $which ) {
-            if ( $which == "top" ){
-               //Código para agregar arriba de la tabla
-               echo "Listado de CPT sitios";
-            }
-            if ( $which == "bottom" ){
-               //Código para agregar abajo de la tabla
-               echo "";
-            }
-         }
+         
+        * function extra_tablenav( $which ) {
+        *    if ( $which == "top" ){
+        *       //Código para agregar arriba de la tabla
 
+        *    }
+        *    if ( $which == "bottom" ){
+        *       //Código para agregar abajo de la tabla
+        *       echo "";
+        *    }
+        * }
+        */
 
          /**
          * Define las columnas de la tabla
@@ -41,10 +41,19 @@ require_once plugin_dir_path( __DIR__ ) . 'helpers.php';
                 'ID'=>__('ID'),
                 'post_title'=>__('Nombre'),
                 'description'=>__('Descripción'),
+                'screenshot'=>__('Screenshot'),
                 'url'=>__('Url'),
                 'creation'=>__('Fecha de creación')
             );
             return $table_columns;
+        }
+
+        protected function get_views(){
+            $status_links = array(
+                __("Todos") => "<a href='admin.php?page=wp-multisite-manager&ss=false'>". __("Todos") . "</a>",
+                __("Sin screenshot") =>"<a href='admin.php?page=wp-multisite-manager&ss=true'>".  __("Sin screenshot") . "</a>",
+            );
+            return $status_links;
         }
 
         public function no_items() {
@@ -75,20 +84,28 @@ require_once plugin_dir_path( __DIR__ ) . 'helpers.php';
             );
     
             $query = new \WP_Query($args);
-
-
+                                 
             $result =  array_map( fn($post) =>
                                         array_merge(
                                             $post->to_array(),
                                             [
                                                 "description"=>get_post_meta($post->ID,'site_description',true), 
                                                 "creation"=>get_post_meta($post->ID,'site_creation_date',true),
-                                                "url"=>get_post_meta($post->ID,'site_url',true)
+                                                "url"=>get_post_meta($post->ID,'site_url',true),
+                                                "screenshot"=>$this->has_screenshot($post->ID)
                                             ]
                                         ), $query->get_posts() );
 
-            $key = array_column($result, $orderby);
+            // Si esta activo el filtro, elimino los posts que no tienen screenshot
+            $screenshot_filter = ( isset( $_GET['ss'] ) ) ? $_GET['ss'] : 'false';
+            if($screenshot_filter !== "false"){
+              $result =  array_filter($result,fn($post)=> ($this->has_screenshot($post['ID']) == "Si")
 
+            );
+            }
+
+            $key = array_column($result, $orderby);
+                                                                                
             if($order == "desc"){
                 array_multisort($key, SORT_DESC, $result);
             }
@@ -98,19 +115,26 @@ require_once plugin_dir_path( __DIR__ ) . 'helpers.php';
           
             return $result;
 
-            /*
-            var_dump($result);
-            usort($result, function ($item1, $item2) {
-                if ($item1['post_title'] == $item2['post_title']) return 0;
-                   return ($item1['post_title'] < $item2['post_title'] and $order='asc' ) ? 1 : -1;
-            });
-            */
-            return $result;
-
         }
 
-      
+        
 
+        function get_image($post_id,$field){
+            return get_post_meta($post_id, $field,true);
+        }
+
+        public function has_screenshot($post_id){
+            if(get_post_meta($post_id,'site_screenshot') and (!empty(get_post_meta($post_id,'site_screenshot')[0]) ))
+            {
+                $image = $this->get_image($post_id,'site_screenshot');
+                if(!is_wp_error($image)){
+                    return __("Si");
+             } 
+            }
+            else{
+                return __("No");
+            }
+        }
 
         public function prepare_items(){
 

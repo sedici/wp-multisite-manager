@@ -3,10 +3,14 @@
 namespace Wp_multisite_manager\Core;
 use Wp_multisite_manager as MM;
 use Wp_multisite_manager\Admin as Admin;
+use Wp_multisite_manager\Inc as Inc;
 
 require_once 'class-loader.php';
 
 require_once plugin_dir_path( __DIR__ ) . 'helpers.php'; 
+
+require plugin_dir_path( __DIR__ ) . 'Inc/class-My-Template-Loader.php';
+
 
 $dirMultisite = plugin_dir_path( __DIR__ ) . 'admin/multisiteAdmin.php';
 $dirSinglesite = plugin_dir_path( __DIR__ ) . 'admin/singlesiteAdmin.php';
@@ -70,14 +74,14 @@ class Init{
 	
 	function reg_public_styles() {
 		
-		$public_css_HYF_url = MM\PLUGIN_NAME_URL.'views/css/headerAndFooter.css';
+		$public_css_HYF_url = MM\PLUGIN_NAME_URL.'templates/css/headerAndFooter.css';
 
 	
 		wp_register_style("multisite-manager-hyf-css", $public_css_HYF_url);
 
 		wp_enqueue_style("multisite-manager-hyf-css");
 
-		$public_css_GENERAL_url = MM\PLUGIN_NAME_URL.'views/css/general.css';
+		$public_css_GENERAL_url = MM\PLUGIN_NAME_URL.'templates/css/general.css';
 		wp_register_style("multisite-manager-general-css", $public_css_GENERAL_url);
 
 		wp_enqueue_style("multisite-manager-general-css");
@@ -182,12 +186,20 @@ class Init{
 		echo "<div class='sites-portfolio' style='background-color:". $parameters['widget_color'] . "'>";
 
 		while ( $query->have_posts() ): $query->the_post();
+					$template_data= [
+						'site_title' => get_the_title(),
+						'site_description' => print_description(),
+						'site_screenshot' => $this->print_screenshot('site_screenshot',get_the_ID()),
+                    	'site_id' => get_the_ID(),
+						'box-color'=> $parameters['box_color']
+					];
 
-					$site_title =get_the_title();
-					$site_description= print_description();
-					$site_screenshot= $this->print_screenshot('site_screenshot',get_the_ID());
-                    $site_id= get_the_ID();
-					include plugin_dir_path( __DIR__ ) . '/views/portfolio-box.php';
+					$template_Loader = new Inc\My_Template_Loader;
+					$template_Loader->set_template_data($template_data);
+					
+
+					$template_Loader->get_template_part("portfolio","box",true);
+					$template_Loader->unset_template_data();
 	
          endwhile;
 
@@ -198,7 +210,7 @@ class Init{
 
 
 	function print_screenshot($field,$post_id){
-		if(get_post_meta(get_the_ID(),'site_description') and (!empty(get_post_meta(get_the_ID(),'site_description')[0]) ))
+		if(get_post_meta(get_the_ID(),'site_screenshot') and (!empty(get_post_meta(get_the_ID(),'site_screenshot')[0]) ))
 		{
 			$image = $this->get_image($post_id,'site_screenshot');
 			if(!is_wp_error($image)){
@@ -218,8 +230,4 @@ class Init{
 	function get_image($post_id,$field){
 		return get_post_meta($post_id, $field,true);
 	}
-
-
-
-
 }

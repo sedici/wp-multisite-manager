@@ -34,7 +34,9 @@
         ?>
         <p style="font-weight:bold"> Screenshot actual </p> 
             <img class="header-image" style="max-height:25vh; border:5px solid black; border-radius:5px" src="<?php echo  wp_get_attachment_url(get_post_info('site_screenshot')); ?>"></img>
-        <?php } ?>
+        <?php 
+        } 
+    ?>
 
 
 
