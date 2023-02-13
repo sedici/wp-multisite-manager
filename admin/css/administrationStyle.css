@@ -66,8 +66,14 @@
 
 .image-row{
     display: grid;
-    grid-template-columns: auto auto;
-    column-gap: 5px;
+    grid-template-columns:min-content min-content;
+    column-gap: 40px;
+}
+
+.section-heading{
+    color:rgb(42, 120, 222);
+    text-align: center;
+    justify-content: center;
 }
 
 .button-containers{

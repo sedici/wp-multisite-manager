@@ -29,7 +29,7 @@
 
     <hr> 
 
-    <h1> <?php _e("Sección de imagenes") ?></h1>
+    <h1 class="section-heading"> <?php _e("Sección de imágenes") ?></h1>
     <div class="general-form-field image-row">
         <div>
             <h2 class="filds-titles"> <?php _e("Imagen"); ?> </h2>
@@ -54,6 +54,8 @@
 
     </div>
 
+<hr>
+    <h1 class="section-heading"> <?php _e("Sección de CSS") ?></h1>
 
     <div class="general-form-field">
         <h2 class="filds-titles"> <?php _e("CSS del header"); ?> </h2>

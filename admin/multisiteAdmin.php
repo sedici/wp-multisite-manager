@@ -139,7 +139,11 @@ class multisiteAdmin{
 
     }
 
-    // Register all the header settings
+
+    /**
+     * Registra toda la configuración del header con la API de Settings de Wordpress
+     *      
+    */
     function header_settings() {
         register_setting( 'header_settings', 'enabled' );
         register_setting( 'header_settings', 'title_text' );
@@ -148,17 +152,32 @@ class multisiteAdmin{
         register_setting( 'header_settings', 'image_link' );
         register_setting( 'header_settings', 'header_css');
 
-      /*  register_setting( 'header_settings', 'header_images');
+      
+        register_setting( 'header_settings', 'header_images');
 
-        $fake = [
-                    ["image_id"=>1,"image_link"=>"www.pablo.com"],
-                    ["image_id"=>2,"image_link"=>"www.juancito.com"],
-        ];
-        update_site_option('header_array', $fake);
-        */
+          /*  Header Settings => Array de imagenes con la siguiente estructura:
+            [
+                [0] {
+                    "image_id" => id_De_Media_Upload,
+                    "image_link" => link
+                },
+                  [1] {
+                    "image_id" => id_De_Media_Upload,
+                    "image_link" => link
+                }
+            ]
+         */
+
     }
 
-    // Register all the footer settings
+
+    
+
+
+    /**
+     * Registra toda la configuración del footer con la API de Settings de Wordpress
+     *      
+    */
     function footer_settings() {
         register_setting( 'footer_settings', 'footer_enabled' );
         
@@ -186,10 +205,13 @@ class multisiteAdmin{
 
     function header_update_network_options(){
         #check_admin_referer('config-header-options');
+       // $this->process_header_images();
+       
         global $new_allowed_options;
         $options = $new_allowed_options['header_settings'];
+        
         foreach ($options as $option) {
-            if($option == "image"){
+            if($option == "header_images"){
                 if($_FILES[$option]['name'] !== null ){
                     $image_id = media_handle_upload($option,0 );
                     update_site_option($option, $image_id);
@@ -205,6 +227,48 @@ class multisiteAdmin{
         wp_redirect(add_query_arg(array('page' => 'config-header',
         'updated' => 'true'), network_admin_url('admin.php')));
         exit;
+    }
+
+    /**
+     * Itera sobre $_FILES buscando todas las imágenes que se hayan subido, y busca el link para cada una.
+     *      
+    */
+    function process_header_images(){
+
+        $images_array = get_site_option('header_images');
+        if($images_array === null){
+            $images_array = array();
+        }
+
+        // Itero sobre el array de FILES para quedarme con todos los campos que sean imagenes
+        foreach ($_FILES as $index => $file_data){
+
+
+            if(strpos($index,"image") !== false){
+
+                // Me quedo con el número de imagen
+                $imageNumber = str_replace("image",'', $index);
+
+                // Construyo el nombre de link para buscarlo
+                $imageLink= "image_link" . $imageNumber;
+
+                if(isset($_POST[$imageLink])){
+
+                    $image_id = media_handle_upload($index,0 );
+
+                    $imageElement = [
+                       "image_id" => $image_id,
+                       "image_link"=> $_POST[$imageLink]
+                    ];
+
+                    array_push($images_array,$imageElement) ;
+                    
+                }
+               
+            }
+        }
+
+        update_site_option('header_images', $images_array);
     }
     
     function footer_update_network_options(){
