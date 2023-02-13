@@ -29,6 +29,7 @@
 
     <hr> 
 
+    <h1> <?php _e("Sección de imagenes") ?></h1>
     <div class="general-form-field image-row">
         <div>
             <h2 class="filds-titles"> <?php _e("Imagen"); ?> </h2>
@@ -44,8 +45,8 @@
 
 <div class="button-containers"">
 
-    <button id="add-img-input" type="button" class="add-btn" value=0 onClick=""> + </button>
-    <button id="delete-img-input" type="button" class="delete-btn" value=0 onClick="return addInput(this);"> - </button>
+    <button id="add-img-input" type="button" class="add-btn" value=1 > + </button>
+    <button id="delete-img-input" type="button" class="delete-btn" value=0 > - </button>
 
 </div>
 
