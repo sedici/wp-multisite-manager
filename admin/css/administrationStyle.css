@@ -61,5 +61,16 @@
 }
 
 .add-btn:hover , .delete-btn:hover {
-    border: solid 4px black;
+    transform: scale(1.1);
+}
+
+.image-row{
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 5px;
+}
+
+.button-containers{
+    display: flex;
+    gap:10px;
 }

@@ -1,14 +1,3 @@
-<script type="text/javascript">
-
-function addInput(e){
-    e.value++;
-    return false;
-}
-
-</script>
-
-
-
 <h1>Formulario del header</h1>
 
 <p class="comments-about-section"> <?php _e("En esta sección usted podrá editar partes del header global que desea mostrar
@@ -31,29 +20,37 @@ function addInput(e){
         <input type="text" name="title_text" value="<?php echo esc_attr( get_site_option('title_text') ); ?>" >
     </div>
 
-    
+    <div id="images-container">
 
     <div class="general-form-field">
     <h2 class="filds-titles"> <?php _e("Enlace del texto"); ?> </h2>
     <input name="title_link" type="text" value="<?php echo esc_attr( get_site_option('title_link') ); ?>"  >
     </div>
 
-    <hr>
+    <hr> 
 
-    <div class="general-form-field">
-        <h2 class="filds-titles"> <?php _e("Imagen"); ?> </h2>
-        <input type="file" name="image" value="" >
+    <div class="general-form-field image-row">
+        <div>
+            <h2 class="filds-titles"> <?php _e("Imagen"); ?> </h2>
+            <input type="file" name="image" value="" >
+        </div>
+        <div>
+            <h2 class="filds-titles"> <?php _e("Enlace de la imagen"); ?> </h2>
+            <input type="url" name="image_link" value="<?php echo esc_attr( get_site_option('image_link') ); ?>" >
+        </div>
     </div>
 
+</div>
 
+<div class="button-containers"">
 
-    <button id="add-img-input" class="add-btn" value=0 onClick="return addInput(this);"> + </button>
-    <button id="delete-img-input" class="delete-btn" value=0 onClick="return addInput(this);"> - </button>
+    <button id="add-img-input" type="button" class="add-btn" value=0 onClick=""> + </button>
+    <button id="delete-img-input" type="button" class="delete-btn" value=0 onClick="return addInput(this);"> - </button>
 
+</div>
 
     <div class="general-form-field">
-        <h2 class="filds-titles"> <?php _e("Enlace de la imagen"); ?> </h2>
-        <input type="url" name="image_link" value="<?php echo esc_attr( get_site_option('image_link') ); ?>" >
+
     </div>
 
 

@@ -57,9 +57,16 @@ class Init{
 	# Register ADMIN Styles and Scripts --------------------------------------------------------------------
 
 	function reg_admin_styles(){
+
+		$js_url = MM\PLUGIN_NAME_URL.'admin/js/';
+
+		wp_register_script('dinamicHeader', $js_url . 'dinamicHeader.js', array('jquery'),'1.1', true);
+ 
+		wp_enqueue_script('dinamicHeader');
+		
+
+
 		$css_url = MM\PLUGIN_NAME_URL.'admin/css/administrationStyle.css';
-
-
 
 		wp_register_style("administrationStyle", $css_url);
 

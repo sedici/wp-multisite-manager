@@ -48,6 +48,9 @@ class multisiteAdmin{
 
 	}
 
+
+
+
 	function update_all_cpt(){
 
         // Recupero los sitios en $sites, creo el array vacío $sitesArray
