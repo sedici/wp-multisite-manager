@@ -126,6 +126,10 @@ class Init{
 			// Llama a la función que registra los shortcodes
 			add_action('init', array($this,'shortcodes_init'));
 
+			/* wp_enqueue_scripts es el hook usado para encolar el script insertar_modal_js
+			que sera usado en el frontend */
+			add_action('wp_enqueue_scripts',array($this,'insert_modal_js'));
+
 		}
 
 		if ( ! defined('ABSPATH') ) {
@@ -191,7 +195,6 @@ class Init{
 						'box-color'=> $parameters['box_color']
 					];
 
-					
 
 					$templateLoader = Inc\My_Template_Loader::getInstance();
 
@@ -224,16 +227,18 @@ class Init{
 		}
 	}
 
-	
-	/* Registra el ajax del modal */
-	function update_modal_ajax(){
-		wp_register_script('update_modal_cpt',  MM\PLUGIN_NAME_URL . 'templates/js/modal-ajax.js', array('jquery'), '1', true );
-		wp_enqueue_script('update_modal_cpt');	
-		wp_localize_script('update_modal_cpt','modal_vars');
+
+	function insert_modal_js (){ 
+		wp_register_script('identify-modal',  MM\PLUGIN_NAME_URL . 'templates/js/modal-ajax.js', array('jquery'), '1', true );
+		wp_enqueue_script('identify-modal');	
+		wp_localize_script('identify-modal','imjs_vars',array('url'=>admin_url('admin-ajax.php')));
 	}
 
+	function charge_modal() {
+		
+	}
 
-	function print_modal($field,$post_id,$data){
+	function print_modal(){
 		
 	}
 	
