@@ -231,11 +231,14 @@ class Init{
 	function insert_modal_js (){ 
 		wp_register_script('identify-modal',  MM\PLUGIN_NAME_URL . 'templates/js/modal-ajax.js', array('jquery'), '1', true );
 		wp_enqueue_script('identify-modal');	
-		wp_localize_script('identify-modal','imjs_vars',array('url'=>admin_url('admin-ajax.php')));
+		wp_localize_script('identify-modal','imjs_vars',array('url'=>admin_url(get_template_directory_uri() . '/core/class-init.php')));
 	}
 
 	function charge_modal() {
-		
+		/*
+		$data = $_POST['box_id'];
+		var_dump($data);
+		*/
 	}
 
 	function print_modal(){
