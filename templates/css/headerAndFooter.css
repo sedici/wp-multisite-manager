@@ -1,5 +1,5 @@
     .header-container{
-        height: 8vh;
+        height: 9vh;
         margin-top: 0%;
         display:grid;
         grid-template-columns: 50% 50%;
@@ -7,17 +7,25 @@
 
     .header-col1 {
         float: left;
+        display: flex;
     }
 
     .header-title{
+        align-items: center;
         margin-left: 5vh;
+        margin-top: auto;
+        margin-bottom: auto;
     }
 
     .header-col2{
         display: flex;
-        justify-content: end;
+        justify-content: center;
         margin-right: 1vw;
         margin-bottom: 1vh;
+        margin-top: 1vh;
+
+        gap: 20px;
+
     }
 
     .header-image{

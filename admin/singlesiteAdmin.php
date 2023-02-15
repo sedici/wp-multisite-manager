@@ -37,9 +37,12 @@ class SinglesiteAdmin{
 
         $enabled = get_site_option('enabled');
         if ($enabled == 1){ 
-
+            $template_data = ["logos" => $this->print_header_logos()];
             $templateLoader = Inc\My_Template_Loader::getInstance();	
+            $templateLoader->set_template_data($template_data);
 		    $templateLoader->get_template_part("banner","structure",true);
+            $templateLoader->unset_template_data();
+
 
         }
     }
@@ -52,7 +55,19 @@ class SinglesiteAdmin{
         }
     }
 
-
+    function print_header_logos(){
+        $content ="";
+        $images = get_site_option('header_images');
+        if($images){
+            foreach ($images as $image){
+                $content = $content .  "<a href=" . $image['link'] .  '>
+                                <img class="header-image" src="' . wp_get_attachment_url($image['id']) . '"></img>
+                            </a>';
+            }
+        }
+        return $content;
+       
+    }
 
 }
 
