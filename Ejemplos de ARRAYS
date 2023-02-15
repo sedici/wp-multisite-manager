@@ -1,0 +1,68 @@
+
+------------------ FILES
+
+array(3) { 
+
+	["image"]=> array(5) 
+	{ 
+		["name"]=> string(13) "Logo-UNLP.png" 
+		["type"]=> string(9) "image/png" 
+		["tmp_name"]=> string(14) "/tmp/phpobvY3z" 
+		["error"]=> int(0) ["size"]=> int(7987) 
+	} 
+	
+	["image-2"]=> array(5) 
+	{ 	
+		["name"]=> string(24) "cartoonIllustration1.png" 
+		["type"]=> string(9) "image/png" 
+		["tmp_name"]=> string(14) "/tmp/phpVKOyuB" 
+		["error"]=> int(0) ["size"]=> int(49018) 
+	} 
+	
+	["image-3"]=> array(5) 
+	{ 
+		["name"]=> string(37) "Captura desde 2023-02-01 11-14-47.png" 
+		["type"]=> string(9) "image/png" 
+		["tmp_name"]=> string(14) "/tmp/phpeAATbz" 
+		["error"]=> int(0) ["size"]=> int(35830) 
+	} 
+} 
+
+
+------------------ POST
+
+array(12) 
+	{ 
+	
+	["option_page"]=> string(15) "header_settings" 
+	
+	["action"]=> string(6) "update" 
+	
+	["enabled"]=> string(1) "1" ["title_text"]=> string(10) "Pablo Corp" 
+	
+	["title_link"]=> string(43) "https://www.youtube.com/watch?v=s5Ph-sxMBB8" 
+	
+	["image_link"]=> string(62) "http://localhost/wp-admin/network/admin.php?page=config-header" 
+	
+	["image_link-2"]=> string(54) "https://www.youtube.com/results?search_query=lofi+jazz" 
+	
+	["image_link-3"]=> string(129) "https://es.stackoverflow.com/questions/428811" 
+	
+	["header_css"]=> string(49) ".header-container{ background-color:red; } " ["submit"]=> string(12) "Save Changes" 
+	
+	} 
+	
+	
+	
+	--------------------------------------------------------------------------------- EL ARRAY QUE ARME YO
+	
+array(3) { 
+	[0]=> array(2) { 
+		["image_id"]=> int(373) 
+		["image_link"]=> string(62) "http://localhost/wp-admin/network/admin.php?page=config-header" } 
+	[1]=> array(2) { 
+		["image_id"]=> int(374) 
+		["image_link"]=> string(43) "https://www.youtube.com/watch?v=N2DglZjKvBU" } 
+	[2]=> array(2) { 
+		["image_id"]=> int(375) 
+		["image_link"]=> string(54) "https://www.youtube.com/results?search_query=lofi+jazz" } }

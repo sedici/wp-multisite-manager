@@ -30,6 +30,8 @@
     <hr> 
 
     <h1 class="section-heading"> <?php _e("Sección de imágenes") ?></h1>
+    <br></br>
+    <?php $this->print_option_images('header_images'); ?>
     <div class="general-form-field image-row">
         <div>
             <h2 class="filds-titles"> <?php _e("Imagen"); ?> </h2>

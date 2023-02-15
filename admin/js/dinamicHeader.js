@@ -6,9 +6,9 @@ jQuery(document).ready(function(){
 
     document.getElementById("delete-img-input").addEventListener("click",removeLastInput)
 
-
-
-
+    document.querySelectorAll('.trashImg').forEach(occurence => {
+        occurence.addEventListener('click', deleteImage);
+      });
 
     // Función para agregar inputs dinamicamente
 
@@ -29,16 +29,16 @@ jQuery(document).ready(function(){
             '<div><h2 class="filds-titles"> Enlace de imagen '+ count + ' </h2>' +
             '<input type="url" name="image_link-' + count + '" ></div></div>'
 
-
         // Parseo el String a HTML y lo agrego al div que contiene los campos de imagen
+        var parser = new DOMParser();
+        var doc = parser.parseFromString(content, 'text/html');
 
-        document.getElementById("images-container").append(stringToHTML(content))
+        document.getElementById("images-container").append(doc.body)
 
         if (button.value > 1){
             document.getElementById("delete-img-input").hidden = false
         }
     }
-
 
 
 
@@ -63,14 +63,15 @@ jQuery(document).ready(function(){
         }
     }
 
+    function deleteImage(e){
+        confirm("Estás seguro de que quieres borrar este elemento?")
+        button = e.target.parentElement
+        button.parentElement.remove()
+    }
 
 
-    // Func. Auxiliar para parsear string a HTML
-    var stringToHTML = function (str) {
-        var parser = new DOMParser();
-        var doc = parser.parseFromString(str, 'text/html');
-        return doc.body;
-    };  
+
+
 
 
 })

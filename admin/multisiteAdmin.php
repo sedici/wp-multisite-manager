@@ -57,8 +57,6 @@ class multisiteAdmin{
         $sites = get_sites();
         $sitesArray= array();
 
-        $cant= 0;
-
         // Guardo todos los IDS de los sitios en el array $sitesArray
         foreach ($sites as $site){
             array_push($sitesArray,$site->blog_id);
@@ -109,7 +107,6 @@ class multisiteAdmin{
      * @param integer $site Es el ID de sitio para el cual vamos a crear el CPT
     */
     function create_cpt_post($site){
-
         switch_to_blog($site);
 
         global $wpdb;
@@ -136,7 +133,6 @@ class multisiteAdmin{
             add_post_meta($post_id, 'site_creation_date', $site_creation);
 
          }
-
     }
 
 
@@ -148,31 +144,22 @@ class multisiteAdmin{
         register_setting( 'header_settings', 'enabled' );
         register_setting( 'header_settings', 'title_text' );
         register_setting( 'header_settings', 'title_link' );
-        register_setting( 'header_settings', 'image', 'header_image_save' );
-        register_setting( 'header_settings', 'image_link' );
+     //   register_setting( 'header_settings', 'image', 'header_image_save' );
+     //   register_setting( 'header_settings', 'image_link' );
         register_setting( 'header_settings', 'header_css');
-
       
         register_setting( 'header_settings', 'header_images');
-
-          /*  Header Settings => Array de imagenes con la siguiente estructura:
-            [
-                [0] {
-                    "image_id" => id_De_Media_Upload,
-                    "image_link" => link
+        /*  Header Settings => Array de imagenes con la siguiente estructura:
+            [   [0] {
+                    "id" => id_De_Media_Upload,
+                    "link" => link
                 },
-                  [1] {
-                    "image_id" => id_De_Media_Upload,
-                    "image_link" => link
-                }
-            ]
-         */
-
+               [1] {
+                    "id" => id_De_Media_Upload,
+                    "link" => link
+               }
+            ] */
     }
-
-
-    
-
 
     /**
      * Registra toda la configuración del footer con la API de Settings de Wordpress
@@ -212,10 +199,7 @@ class multisiteAdmin{
         
         foreach ($options as $option) {
             if($option == "header_images"){
-                if($_FILES[$option]['name'] !== null ){
-                    $image_id = media_handle_upload($option,0 );
-                    update_site_option($option, $image_id);
-                }
+                $this->process_header_images();
             }
             else if (isset($_POST[$option])) {
                     update_site_option($option, $_POST[$option]);
@@ -234,42 +218,59 @@ class multisiteAdmin{
      *      
     */
     function process_header_images(){
-
         $images_array = get_site_option('header_images');
         if($images_array === null){
             $images_array = array();
         }
-
+        else{
+            $images_array = $this->check_updated_image_data($images_array);
+        }
         // Itero sobre el array de FILES para quedarme con todos los campos que sean imagenes
         foreach ($_FILES as $index => $file_data){
-
-
-            if(strpos($index,"image") !== false){
+            if(  (strpos($index,"image") !== false) and (!is_wp_error($file_data['name']))  ){
 
                 // Me quedo con el número de imagen
                 $imageNumber = str_replace("image",'', $index);
-
                 // Construyo el nombre de link para buscarlo
                 $imageLink= "image_link" . $imageNumber;
 
-                if(isset($_POST[$imageLink])){
+                if (isset($_POST[$imageLink]) and (!is_wp_error($_POST[$imageLink])) ){
 
                     $image_id = media_handle_upload($index,0 );
 
                     $imageElement = [
-                       "image_id" => $image_id,
-                       "image_link"=> $_POST[$imageLink]
+                       "id" => $image_id,
+                       "link"=> $_POST[$imageLink]
                     ];
-
                     array_push($images_array,$imageElement) ;
-                    
                 }
-               
             }
         }
 
         update_site_option('header_images', $images_array);
     }
+
+    function check_updated_image_data($images){
+
+        $updatedImages = $images;
+
+        // Reviso si los ids que tenia en la BD estan presentes en el POST
+        foreach ($images as $key=>$image){
+            $link = "link_" . strval($image["id"]);
+
+            // Si estan presentes actualizo el link por las dudas
+            if(array_key_exists($link, $_POST)){
+                $updatedImages[$key]["link"] = $_POST[$link];
+            }
+            // Si no esta presente, elimino el dato de la BD
+            else{
+                unset($updatedImages[$key]);
+            }
+        }
+
+        return $updatedImages;
+    }
+
     
     function footer_update_network_options(){
         #check_admin_referer('config-header-options');
@@ -317,22 +318,15 @@ class multisiteAdmin{
         if ( ! class_exists( 'WP_List_Table' ) ) {
             require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
         }
-
-
         include plugin_dir_path( __DIR__ ) . 'admin/views/administration-menu.php';
         
     }
 
     private function print_sites_count(){
         $sites = count(get_sites());
-
         $sites_cpt = wp_count_posts('cpt-sitios')->publish + wp_count_posts('cpt-sitios')->pending;
-
         echo  "<span style='font-weight:bold;'> " . $sites .  __(" sitios / ") . $sites_cpt . __(" CPT de sitios");
-
     }
-
-    
 
 	private function add_block_subpages(){
 
@@ -357,6 +351,28 @@ class multisiteAdmin{
         );
 	}
 
+    /**
+     * Imprime las imágenes que se encuentran cargadas, ya sea en Header o en Footer
+     * @param String $option indica que opción recuperar (header_images o footer_images)
+    */
+    public function print_option_images($option){
+        $HeaderImages = get_site_option($option);
+        if ($HeaderImages !== null){
+            echo "<div class='form-image-container'>";
+            foreach ($HeaderImages as $image){
+                
+                echo '<div class="form-image-box"> 
+                            <img class="form-image" src="' . wp_get_attachment_url($image["id"]) . '"></img>
+                            <input type="url" style="overflow:hidden;" required="" name="link_'. $image['id'] . '" value="'. $image["link"] . '">
+                            <a style="text-decoration:none;" class="trashImg"> 
+                            <span style="font-size: 30px;margin-bottom:10px;"  class="dashicons dashicons-trash"></span> </a>
+                      </div>';
+            }
+            echo "</div>";
+        }
+        
+    }
+
 	public function ajax_form_header_page_content()
     {
         include_once dirname(__DIR__) . '/admin/views/html-form-header-view-ajax.php';
@@ -373,8 +389,5 @@ class multisiteAdmin{
         $sites_list = get_sites();
     }
 
-
 }
-
-
 ?>

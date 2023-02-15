@@ -68,7 +68,7 @@ require_once plugin_dir_path( __DIR__ ) . 'helpers.php';
             $screenshot_filter = ( isset( $_GET['ss'] ) ) ? $_GET['ss'] : 'false';
 
             if($screenshot_filter !== "false"){
-                $result =  array_filter($items,fn($post)=> (
+                $items =  array_filter($items,fn($post)=> (
                                             $this->has_screenshot($post['ID']) == "Si")
                                         );
             }

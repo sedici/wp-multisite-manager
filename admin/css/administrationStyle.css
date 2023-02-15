@@ -80,3 +80,33 @@
     display: flex;
     gap:10px;
 }
+.form-image-container{
+    display: flex;
+    column-gap: 50px;
+}
+
+.form-image-box{
+    display: grid;
+    grid-template-columns: 100%;
+    align-items: center;
+    row-gap: 20px;
+
+    justify-content: center;
+
+    border: solid 2px black;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.form-image{
+    display: flex;
+    max-height: 150px;
+    max-width: 250px;
+    border: solid 3px black;
+    border-radius: 4px;
+    margin: auto;
+}
+
+.dashicons-trash:hover{
+    transform: scale(1.1); 
+}
