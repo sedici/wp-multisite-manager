@@ -29,16 +29,21 @@
 
     <hr> 
 
-    <h1 class="section-heading"> <?php _e("Sección de imágenes") ?></h1>
+    <h1 class="section-heading"> <?php _e("Sección de imágenes a mostrar en el header") ?></h1>
     <br></br>
+    <h2 style="font-size:x-large"> Editar imágenes actuales </h2>
     <?php $this->print_option_images('header_images'); ?>
+
+    <br></br>
+
+    <h2 style="font-size:x-large"> Agregar imágenes al Header </h2>
     <div class="general-form-field image-row">
         <div>
-            <h2 class="filds-titles"> <?php _e("Imagen"); ?> </h2>
+            <h2 class="filds-titles"> <?php _e("Subir imagen"); ?> </h2>
             <input type="file" name="image" >
         </div>
         <div>
-            <h2 class="filds-titles"> <?php _e("Enlace de la imagen"); ?> </h2>
+            <h2 class="filds-titles"> <?php _e("Link asociado a la imagen"); ?> </h2>
             <input type="url" name="image_link" >
         </div>
     </div>

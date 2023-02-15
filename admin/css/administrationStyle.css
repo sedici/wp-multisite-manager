@@ -68,10 +68,15 @@
     display: grid;
     grid-template-columns:min-content min-content;
     column-gap: 40px;
+    border-radius: 5px;
+    width: fit-content;
+    padding: 10px;
+    background-color: rgb(186, 194, 202);
 }
 
 .section-heading{
-    color:rgb(42, 120, 222);
+    color:rgb(22, 104, 212);
+
     text-align: center;
     justify-content: center;
 }

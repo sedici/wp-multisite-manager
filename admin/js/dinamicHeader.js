@@ -23,10 +23,10 @@ jQuery(document).ready(function(){
         // Creo el input en un string
 
         var content= '<hr><div class="general-form-field image-row">' +
-                        '<div><h2 class="filds-titles"> Imagen '+ count + '</h2>' +
+                        '<div><h2 class="filds-titles"> Subir imagen '+ count + '</h2>' +
             '<input type="file" name="image-'+ count + '" value="" ></div>' + 
 
-            '<div><h2 class="filds-titles"> Enlace de imagen '+ count + ' </h2>' +
+            '<div><h2 class="filds-titles"> Link asociado a la imagen '+ count + ' </h2>' +
             '<input type="url" name="image_link-' + count + '" ></div></div>'
 
         // Parseo el String a HTML y lo agrego al div que contiene los campos de imagen
