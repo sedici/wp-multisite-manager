@@ -168,7 +168,6 @@ class multisiteAdmin{
     function footer_settings() {
         register_setting( 'footer_settings', 'footer_enabled' );
         
-        // Social Media LINKS
         register_setting( 'footer_settings', 'footer_fb' );
         register_setting( 'footer_settings', 'footer_tw' );
         register_setting( 'footer_settings', 'footer_ig' );
@@ -219,30 +218,34 @@ class multisiteAdmin{
     */
     function process_header_images(){
         $images_array = get_site_option('header_images');
-        if($images_array === null){
+        if($images_array === false){
             $images_array = array();
         }
         else{
+
             $images_array = $this->check_updated_image_data($images_array);
         }
         // Itero sobre el array de FILES para quedarme con todos los campos que sean imagenes
         foreach ($_FILES as $index => $file_data){
-            if(  (strpos($index,"image") !== false) and (!is_wp_error($file_data['name']))  ){
+            if(  (strpos($index,"image") !== false) ){
+                if($file_data["error"] == false){
+                    // Me quedo con el número de imagen
+                    $imageNumber = str_replace("image",'', $index);
+                    if( !is_wp_error($file_data["name"])){
+                    // Construyo el nombre de link para buscarlo
+                    $imageLink= "image_link" . $imageNumber;
 
-                // Me quedo con el número de imagen
-                $imageNumber = str_replace("image",'', $index);
-                // Construyo el nombre de link para buscarlo
-                $imageLink= "image_link" . $imageNumber;
+                    if (isset($_POST[$imageLink]) and (!is_wp_error($_POST[$imageLink])) ){
 
-                if (isset($_POST[$imageLink]) and (!is_wp_error($_POST[$imageLink])) ){
+                        $image_id = media_handle_upload($index,0 );
 
-                    $image_id = media_handle_upload($index,0 );
-
-                    $imageElement = [
-                       "id" => $image_id,
-                       "link"=> $_POST[$imageLink]
-                    ];
-                    array_push($images_array,$imageElement) ;
+                        $imageElement = [
+                        "id" => $image_id,
+                        "link"=> $_POST[$imageLink]
+                        ];
+                        array_push($images_array,$imageElement) ;
+                    }
+                    } 
                 }
             }
         }
@@ -253,7 +256,6 @@ class multisiteAdmin{
     function check_updated_image_data($images){
 
         $updatedImages = $images;
-
         // Reviso si los ids que tenia en la BD estan presentes en el POST
         foreach ($images as $key=>$image){
             $link = "link_" . strval($image["id"]);
@@ -264,6 +266,7 @@ class multisiteAdmin{
             }
             // Si no esta presente, elimino el dato de la BD
             else{
+                wp_delete_attachment($updatedImages[$key]['id']);
                 unset($updatedImages[$key]);
             }
         }
@@ -356,11 +359,12 @@ class multisiteAdmin{
      * @param String $option indica que opción recuperar (header_images o footer_images)
     */
     public function print_option_images($option){
+        
         $HeaderImages = get_site_option($option);
-        if ($HeaderImages !== null){
+
+        if ($HeaderImages !== false){
             echo "<div class='form-image-container'>";
             foreach ($HeaderImages as $image){
-                
                 echo '<div class="form-image-box"> 
                             <img class="form-image" src="' . wp_get_attachment_url($image["id"]) . '"></img>
                             <input type="url" style="overflow:hidden;" required="" name="link_'. $image['id'] . '" value="'. $image["link"] . '">

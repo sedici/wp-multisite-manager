@@ -35,11 +35,11 @@
     <div class="general-form-field image-row">
         <div>
             <h2 class="filds-titles"> <?php _e("Imagen"); ?> </h2>
-            <input type="file" name="image" value="" >
+            <input type="file" name="image" >
         </div>
         <div>
             <h2 class="filds-titles"> <?php _e("Enlace de la imagen"); ?> </h2>
-            <input type="url" name="image_link" value="<?php echo esc_attr( get_site_option('image_link') ); ?>" >
+            <input type="url" name="image_link" >
         </div>
     </div>
 
