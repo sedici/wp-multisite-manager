@@ -11,8 +11,9 @@
 				box_id: id,
 				action: 'charge_modal',
 			},
-			success: function(){
+			success: function(e){
 			    console.log('Exito');
+				console.log(e);
 			},
 
 			error : function(e){

@@ -2,7 +2,7 @@
 <div 
     class='sites-portfolio-box' 
     style='background-color:<?php echo $data->box-color ?>' 
-    id='<?php echo $data->site_id; ?> '
+    id='<?php echo $data->site_id; ?>'
 >
 
 	<?php echo $data->site_screenshot ?>

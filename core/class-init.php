@@ -129,6 +129,8 @@ class Init{
 			/* wp_enqueue_scripts es el hook usado para encolar el script insertar_modal_js
 			que sera usado en el frontend */
 			add_action('wp_enqueue_scripts',array($this,'insert_modal_js'));
+
+			add_action('wp_ajax_charge_modal',array($this,'charge_modal')  );
 			add_action( 'wp_ajax_nopriv_charge_modal', array($this,'charge_modal') );
 
 		}
@@ -230,13 +232,26 @@ class Init{
 
 
 	function insert_modal_js (){ 
+
 		wp_register_script('identify-modal',  MM\PLUGIN_NAME_URL . 'templates/js/modal-ajax.js', array('jquery'), '1', true );
 		wp_enqueue_script('identify-modal');	
-		wp_localize_script('identify-modal','imjs_vars',array('url'=>admin_url(get_template_directory_uri() . '/core/class-init.php')));
+		wp_localize_script('identify-modal','imjs_vars',array('url'=>admin_url('admin-ajax.php')));
 	}
 
 	function charge_modal() {
-		
+		$template_data= [
+			'site_title' => get_the_title(),
+			'site_description' => print_description(),
+			'site_screenshot' => $this->print_screenshot('site_screenshot',get_the_ID()),
+			'site_id' => get_the_ID(),
+		];
+			
+			$templateLoader = Inc\My_Template_Loader::getInstance();
+
+			$templateLoader->set_template_data($template_data);
+			$templateLoader->get_template_part("modal.php",true);
+			$templateLoader->unset_template_data();
+
 	}
 
 	function send_modal(){
