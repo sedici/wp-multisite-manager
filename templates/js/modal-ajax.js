@@ -6,9 +6,10 @@
 		var id = e.target.parentElement.parentElement.id; /* Obtengo el id de la box que tengo que enviarle al server */
 		jQuery.ajax({
 			url : imjs_vars.url,
-            type: 'post',
+            type: 'POST',
 			data : {
 				box_id: id,
+				action: 'charge_modal',
 			},
 			success: function(){
 			    console.log('Exito');

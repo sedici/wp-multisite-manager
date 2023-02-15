@@ -129,6 +129,7 @@ class Init{
 			/* wp_enqueue_scripts es el hook usado para encolar el script insertar_modal_js
 			que sera usado en el frontend */
 			add_action('wp_enqueue_scripts',array($this,'insert_modal_js'));
+			add_action( 'wp_ajax_nopriv_charge_modal', array($this,'charge_modal') );
 
 		}
 
@@ -235,13 +236,10 @@ class Init{
 	}
 
 	function charge_modal() {
-		/*
-		$data = $_POST['box_id'];
-		var_dump($data);
-		*/
+		
 	}
 
-	function print_modal(){
+	function send_modal(){
 		
 	}
 	
