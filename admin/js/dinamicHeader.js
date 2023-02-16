@@ -64,9 +64,11 @@ jQuery(document).ready(function(){
     }
 
     function deleteImage(e){
-        confirm("Estás seguro de que quieres borrar este elemento?")
-        button = e.target.parentElement
-        button.parentElement.remove()
+        if(confirm("Estás seguro de que quieres borrar este elemento?")){
+            button = e.target.parentElement
+            button.parentElement.remove()
+        }
+
     }
 
 
