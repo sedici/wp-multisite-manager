@@ -52,14 +52,11 @@
 
 <div class="button-containers"">
 
-    <button id="add-img-input" type="button" class="add-btn" value=1 > + </button>
-    <button id="delete-img-input" type="button" class="delete-btn" value=0 > - </button>
+    <button id="add-img-input" type="button" class="add-btn" value=1 > Agregar imagen </button>
+    <button id="delete-img-input" type="button" class="delete-btn" value=0 > Eliminar imagen </button>
 
 </div>
 
-    <div class="general-form-field">
-
-    </div>
 
 <hr>
     <h1 class="section-heading"> <?php _e("Sección de CSS") ?></h1>

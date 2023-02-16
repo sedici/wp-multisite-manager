@@ -21,12 +21,8 @@
     </div>
 
     <!-- THIRD COLUMN -->
-    <div class="footer_column">
-       <?php $result = print_logos(); 
-       if ( is_wp_error($result) ){
-        echo $result->get_error_message();
-     }
-       ?>
+    <div class="footer_column footer-image-container">
+       <? echo $data->logos; ?>
     </div>
 
 

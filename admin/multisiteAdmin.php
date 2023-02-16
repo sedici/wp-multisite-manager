@@ -178,11 +178,8 @@ class multisiteAdmin{
         register_setting( 'footer_settings', 'footer_email' );
         register_setting( 'footer_settings', 'footer_phone' );
 
-        register_setting( 'footer_settings', 'footer_logo_1' );
-        register_setting( 'footer_settings', 'footer_logo_link_1' );
 
-        register_setting( 'footer_settings', 'footer_logo_2' );
-        register_setting( 'footer_settings', 'footer_logo_link_2' );
+        register_setting( 'footer_settings', 'footer_images');
 
         register_setting( 'footer_settings', 'footer_css' );
 
@@ -198,7 +195,7 @@ class multisiteAdmin{
         
         foreach ($options as $option) {
             if($option == "header_images"){
-                $this->process_header_images();
+                $this->process_images($option);
             }
             else if (isset($_POST[$option])) {
                     update_site_option($option, $_POST[$option]);
@@ -214,10 +211,10 @@ class multisiteAdmin{
 
     /**
      * Itera sobre $_FILES buscando todas las imágenes que se hayan subido, y busca el link para cada una.
-     *      
+     * @param String $option Nos indica que setting debemos cargar, puede ser header_images o footer_images
     */
-    function process_header_images(){
-        $images_array = get_site_option('header_images');
+    function process_images($option){
+        $images_array = get_site_option($option);
         if($images_array === false){
             $images_array = array();
         }
@@ -250,7 +247,7 @@ class multisiteAdmin{
             }
         }
 
-        update_site_option('header_images', $images_array);
+        update_site_option($option, $images_array);
     }
 
     function check_updated_image_data($images){
@@ -280,12 +277,11 @@ class multisiteAdmin{
         global $new_allowed_options;
         $options = $new_allowed_options['footer_settings'];
         foreach ($options as $option) {
-            if(($option == "footer_logo_1")|| ($option == "footer_logo_2")) {
-                if($_FILES[$option]['name'] !== null ){
-                    $image_id = media_handle_upload($option,0 );
-                    update_site_option($option, $image_id);
-                }
+
+            if($option == "footer_images"){
+                $this->process_images($option);
             }
+
             else if (isset($_POST[$option])) {
                 update_site_option($option, $_POST[$option]);
             } else {
@@ -360,11 +356,11 @@ class multisiteAdmin{
     */
     public function print_option_images($option){
         
-        $HeaderImages = get_site_option($option);
+        $images = get_site_option($option);
 
-        if ($HeaderImages !== false){
+        if ($images !== false){
             echo "<div class='form-image-container'>";
-            foreach ($HeaderImages as $image){
+            foreach ($images as $image){
                 echo '<div class="form-image-box"> 
                             <img class="form-image" src="' . wp_get_attachment_url($image["id"]) . '"></img>
                             <input type="url" style="overflow:hidden;" required="" name="link_'. $image['id'] . '" value="'. $image["link"] . '">
@@ -373,6 +369,9 @@ class multisiteAdmin{
                       </div>';
             }
             echo "</div>";
+        }
+                else{
+            echo "<p style='font-size:medium'> No hay imágenes actualmente</p>";
         }
         
     }

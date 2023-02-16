@@ -37,12 +37,11 @@ class SinglesiteAdmin{
 
         $enabled = get_site_option('enabled');
         if ($enabled == 1){ 
-            $template_data = ["logos" => $this->print_header_logos()];
+            $template_data = ["logos" => $this->print_logos('header_images','header-image')];
             $templateLoader = Inc\My_Template_Loader::getInstance();	
             $templateLoader->set_template_data($template_data);
 		    $templateLoader->get_template_part("banner","structure",true);
             $templateLoader->unset_template_data();
-
 
         }
     }
@@ -50,21 +49,28 @@ class SinglesiteAdmin{
     function registerFooter(){
         $enabled = get_site_option('footer_enabled');
         if ($enabled == 1){ 
+            $template_data = ["logos" => $this->print_logos('footer_images','footer-image')];
             $templateLoader = Inc\My_Template_Loader::getInstance();	
+            $templateLoader->set_template_data($template_data);
 		    $templateLoader->get_template_part("footer","structure",true);
+            $templateLoader->unset_template_data();
+
         }
     }
 
-    function print_header_logos(){
+    function print_logos($option, $cssClass){
+        switch_to_blog(1);
+
         $content ="";
-        $images = get_site_option('header_images');
+        $images = get_site_option($option);
         if($images){
             foreach ($images as $image){
                 $content = $content .  "<a href=" . $image['link'] .  '>
-                                <img class="header-image" src="' . wp_get_attachment_url($image['id']) . '"></img>
+                                <img class="' . $cssClass . '" src="' . wp_get_attachment_url($image['id']) . '"></img>
                             </a>';
             }
         }
+
         return $content;
        
     }

@@ -63,27 +63,37 @@
         <input type="url" name="footer_text_link" value=<?php getValue('footer_text_link') ?> >
     <div>
 
-    
+    <h1 class="section-heading"> <?php _e("Sección de imágenes a mostrar en el footer") ?></h1>
 
-    <div class="general-form-field">
-        <h4 class="filds-titles"><?php _e("Imagen logo 1");?></h4>
-        <input type="file" name="footer_logo_1" >
+
+
+
+
+ <div id="images-container">
+ <br></br>
+    <h2 style="font-size:x-large"> Editar imágenes actuales </h2>
+ <?php $this->print_option_images('footer_images'); ?>
+
+ <h2 style="font-size:x-large"> Agregar imágenes al footer </h2>
+
+<div class="general-form-field image-row">
+        <div>
+            <h2 class="filds-titles"> <?php _e("Subir logo"); ?> </h2>
+            <input type="file" name="image" >
+        </div>
+        <div>
+            <h2 class="filds-titles"> <?php _e("Link asociado al logo"); ?> </h2>
+            <input type="url" name="image_link" >
+        </div>
+    </div>
+</div>
+
+
+    <div class="button-containers"">
+        <button id="add-img-input" type="button" class="add-btn" value=1 > Agregar imagen </button>
+        <button id="delete-img-input" type="button" class="delete-btn" value=0 > Eliminar imagen </button>
     </div>
 
-    <div class="general-form-field">
-        <h4 class="filds-titles"><?php _e("Enlace del logo 1 ");?></h4>
-        <input type="url" name="footer_logo_link_1" value=<?php getValue('footer_logo_link_1')?>>
-    </div>
-
-    <div class="general-form-field">
-        <h4 class="filds-titles"><?php _e("Imagen logo 2");?></h4>
-        <input type="file" name="footer_logo_2" >
-    </div>
-
-    <div class="general-form-field">
-        <h4 class="filds-titles"><?php _e("Enlace del logo 2 ");?></h4>
-        <input type="url" name="footer_logo_link_2" value=<?php getValue('footer_logo_link_2')?>>
-    </div>
 
     
     <div class="general-form-field">
