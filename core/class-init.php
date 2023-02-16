@@ -132,7 +132,6 @@ class Init{
 
 			add_action('wp_ajax_charge_modal',array($this,'charge_modal')  );
 			add_action( 'wp_ajax_nopriv_charge_modal', array($this,'charge_modal') );
-
 		}
 
 		if ( ! defined('ABSPATH') ) {
@@ -232,26 +231,45 @@ class Init{
 
 
 	function insert_modal_js (){ 
+		$title_nonce = wp_create_nonce( 'esta_es_mi_request' );
 
 		wp_register_script('identify-modal',  MM\PLUGIN_NAME_URL . 'templates/js/modal-ajax.js', array('jquery'), '1', true );
 		wp_enqueue_script('identify-modal');	
-		wp_localize_script('identify-modal','imjs_vars',array('url'=>admin_url('admin-ajax.php')));
+		wp_localize_script('identify-modal','imjs_vars',array('url'=>admin_url('admin-ajax.php'),'nonce' => $title_nonce,));
 	}
 
 	function charge_modal() {
-		$template_data= [
-			'site_title' => get_the_title(),
-			'site_description' => print_description(),
-			'site_screenshot' => $this->print_screenshot('site_screenshot',get_the_ID()),
-			'site_id' => get_the_ID(),
-		];
+		/* Verifica la request de ajax, para prevenir procesar request externas */
+		/* Deberia devolver el valor 1 o 2, cualquier otra cosa esta mal */
+		$valor = check_ajax_referer( 'esta_es_mi_request', 'nonce', false);
+
+		/* Deberia checkear $valor */
+
+		$args = array(
+			'p'         => $_POST['box_id'], // ID of a page, post, or custom type
+			'post_type' => 'cpt-sitios',
+			'post_status' => array('publish', 'pending', 'draft', 'future', 'private', 'inherit'),
+		  );
+		
+		$the_query = new \WP_Query($args);
+
+		if($the_query->have_posts()) {
+
+			$the_query->the_post();
 			
-			$templateLoader = Inc\My_Template_Loader::getInstance();
+			$response = [
+				'site_title' => get_the_title(),
+				'site_description' => print_description(),
+				'site_screenshot' => $this->print_screenshot('site_screenshot',get_the_ID()),
+				'site_URL' => '',
+			];
 
-			$templateLoader->set_template_data($template_data);
-			$templateLoader->get_template_part("modal.php",true);
-			$templateLoader->unset_template_data();
-
+			wp_send_json($response);
+			
+		}
+		else console.log('No hay posts con el id indicado');
+		
+		
 	}
 
 	function send_modal(){
