@@ -34,6 +34,9 @@ class Init{
 
 	protected $multisite_administrator;
 
+	protected $singlesite_administrator;
+
+
 	public function __construct() {
 
 		$this->plugin_name = MM\PLUGIN_NAME;
@@ -135,6 +138,8 @@ class Init{
 
 		}
 
+
+
 		if ( ! defined('ABSPATH') ) {
 			/** Set up WordPress environment */
 			require_once( dirname( __FILE__ ) . '/wp-load.php' );
@@ -169,10 +174,10 @@ class Init{
 
     function shortcodes_init(){
         add_shortcode('show_sites_portfolio',array($this,'show_portfolio'));
-
+		add_shortcode('show_sites_carrousel',array($this,'show_carrousel'));
     }
 
-    function show_portfolio($attr){
+	function show_portfolio($attr){
 
 		$parameters = shortcode_atts( array(
 			'widget_color'=>'dark',
@@ -195,7 +200,7 @@ class Init{
 						'site_description' => print_description(),
 						'site_screenshot' => $this->print_screenshot('site_screenshot',get_the_ID()),
                     	'site_id' => get_the_ID(),
-						'box-color'=> $parameters['box_color']
+						'box_color'=> $parameters['box_color']
 					];
 
 					$templateLoader = Inc\My_Template_Loader::getInstance();
@@ -209,8 +214,11 @@ class Init{
         wp_reset_postdata();
 	}
 
+   
 
-	function print_screenshot($field,$post_id){
+
+
+    function print_screenshot($field,$post_id){
 		if(get_post_meta(get_the_ID(),'site_screenshot') and (!empty(get_post_meta(get_the_ID(),'site_screenshot')[0]) ))
 		{
 			$image = $this->get_image($post_id,'site_screenshot');
@@ -228,7 +236,17 @@ class Init{
 		}
 	}
 
+
 	function get_image($post_id,$field){
 		return get_post_meta($post_id, $field,true);
 	}
+
+
+    function show_carrousel($attr){
+        echo "<p> Esto es un carrousel </p>";
+    }
+
+
+
+
 }
