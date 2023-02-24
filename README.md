@@ -18,7 +18,6 @@ Las principales son:
 ## Shortcodes
 
 - **[show_sites_portfolio ]** => Muestra todos los CPT de sitios disponibles, al estilo "Portafolio".
-    - Parámetros disponibles:
         - 'widget_color' : Sirve para elegir el color que va a tener el contenedor de todo el widget de portafolio. 
         - 'box_color' : Nos permite indicar que color queremos que tenga el contenedor de cada "caja" individual del portafolio.
 
