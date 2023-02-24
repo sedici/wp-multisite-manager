@@ -53,6 +53,33 @@
     font-weight:bold
 }
 
+.swiper{
+    width: 600px;
+    height: 300px;
+    margin-top: 10vh;
+    border: solid 3px black;
+    border-radius: 10px;
+
+  }
+
+.carrousel-box{
+    text-align: center;
+    align-items: center;
+    display: grid;
+    grid-template-columns: 80%;
+    justify-content: center;
+}
+.carrousel-title{
+    font-weight: bold;
+    text-align: center;
+    font-size: large;
+}
+
+.carrousel-image{
+    max-height: 150px;
+    border: solid 5px rgb(188, 179, 179);
+    border-radius: 3px;
+}
 
 @media only screen and (max-width: 959px) {
     .sites-portfolio{
@@ -71,5 +98,7 @@
         width: 100%;
     }
 
+
+      
 
 }

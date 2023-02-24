@@ -66,8 +66,7 @@ class Init{
 		wp_register_script('dinamicHeader', $js_url . 'dinamicHeader.js', array('jquery'),'1.1', true);
  
 		wp_enqueue_script('dinamicHeader');
-		
-
+	
 
 		$css_url = MM\PLUGIN_NAME_URL.'admin/css/administrationStyle.css';
 
@@ -80,6 +79,19 @@ class Init{
 	# Register PUBLIC Styles and Scripts --------------------------------------------------------------------
 	
 	function reg_public_styles() {
+		$js_url = MM\PLUGIN_NAME_URL.'admin/js/';
+
+		// Register Swiper Carrousel
+		wp_enqueue_script( 'swiper', "https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js", false );		
+		
+		wp_register_style("swiper-carrousel","https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css");
+
+		wp_enqueue_style("swiper-carrousel");
+
+
+		wp_register_script('carrousel', $js_url . 'carrouselJs.js', true);
+
+		wp_enqueue_script('carrousel');
 		
 		$public_css_HYF_url = MM\PLUGIN_NAME_URL.'templates/css/headerAndFooter.css';
 
@@ -97,7 +109,15 @@ class Init{
 
 	# End of Styles and Scripts register --------------------------------------------------------------------
 
-
+	function add_type_attribute($tag, $handle, $src) {
+		// if not your script, do nothing and return original $tag
+		if ( 'carrousel' !== $handle ) {
+			return $tag;
+		}
+		// change the script tag by adding type="module" and return it.
+		$tag = '<script type="module" src="' . esc_url( $src ) . '"></script>';
+		return $tag;
+	}
 
 	# Register ADMIN Hooks --------------------------------------------------------------------
 
@@ -139,7 +159,6 @@ class Init{
 		}
 
 
-
 		if ( ! defined('ABSPATH') ) {
 			/** Set up WordPress environment */
 			require_once( dirname( __FILE__ ) . '/wp-load.php' );
@@ -164,7 +183,12 @@ class Init{
 	
 		  
 		add_action( 'plugins_loaded', 'load_plugin_textdomain' );
+
+		add_filter('script_loader_tag', array($this,'add_type_attribute') , 10, 3);
+
 		add_action('wp_enqueue_scripts',array($this,'reg_public_styles'),30);
+
+
 		
 
 	}
@@ -198,7 +222,7 @@ class Init{
 					$template_data= [
 						'site_title' => get_the_title(),
 						'site_description' => print_description(),
-						'site_screenshot' => $this->print_screenshot('site_screenshot',get_the_ID()),
+						'site_screenshot' => $this->print_screenshot(get_the_ID(),'sites-portfolio-img'),
                     	'site_id' => get_the_ID(),
 						'box_color'=> $parameters['box_color']
 					];
@@ -218,14 +242,14 @@ class Init{
 
 
 
-    function print_screenshot($field,$post_id){
+    function print_screenshot($post_id,$css_class){
 		if(get_post_meta(get_the_ID(),'site_screenshot') and (!empty(get_post_meta(get_the_ID(),'site_screenshot')[0]) ))
 		{
 			$image = $this->get_image($post_id,'site_screenshot');
 			if(!is_wp_error($image)){
 				$content ='
-					<div><img class="sites-portfolio-img" src="';
-				$image_src = wp_get_attachment_url($this->get_image($post_id,$field)) ;
+					<div><img class="' . $css_class .' " src="';
+				$image_src = wp_get_attachment_url($this->get_image($post_id,'site_screenshot')) ;
 
 				$content = $content . $image_src .  '"></img></div>';
 				return $content;
@@ -243,7 +267,40 @@ class Init{
 
 
     function show_carrousel($attr){
-        echo "<p> Esto es un carrousel </p>";
+		$args = array(
+            'post_type' => 'cpt-sitios',
+            'posts_per_page' => -1,
+			'post_status' => array('publish', 'pending', 'draft', 'future', 'private', 'inherit'),
+        );
+
+        $query = new \WP_Query($args);
+
+        echo ' <div class="swiper">
+					<div class="swiper-wrapper">';
+		
+		while ( $query->have_posts() ): $query->the_post();
+	
+		$template_data= [
+			'site_title' => get_the_title(),
+			'site_description' => print_description(),
+			'site_screenshot' => $this->print_screenshot(get_the_ID(),'carrousel-image'),
+			'site_id' => get_the_ID(),
+		];
+
+		$templateLoader = Inc\My_Template_Loader::getInstance();
+
+		$templateLoader->set_template_data($template_data);
+		$templateLoader->get_template_part("PUBLIC","carrousel_box",true);
+		$templateLoader->unset_template_data();
+
+		endwhile;
+		echo '</div>
+				<div class="swiper-pagination"></div>
+					<div class="swiper-button-prev"></div>
+					<div class="swiper-button-next"></div>
+			</div>
+		';
+		
     }
 
 
