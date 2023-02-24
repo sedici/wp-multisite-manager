@@ -8,7 +8,7 @@
 		</div>
 			<?php echo $data->site_screenshot ?>
 		<div class="carrousel-description">
-			<?php echo $data->site_description; ?>
+			<p>	<?php echo $data->site_description; ?> </p>
 		</div>
 </div>
 

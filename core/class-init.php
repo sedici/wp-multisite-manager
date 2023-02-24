@@ -256,7 +256,7 @@ class Init{
 		 } 
 		}
 		else{
-			return "<span style='color:red;font-weight:bold'> No hay screenshot </p>";
+			return "<span style='font-weight:bold'> No hay screenshot </span>";
 		}
 	}
 
