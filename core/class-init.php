@@ -34,6 +34,9 @@ class Init{
 
 	protected $multisite_administrator;
 
+	protected $singlesite_administrator;
+
+
 	public function __construct() {
 
 		$this->plugin_name = MM\PLUGIN_NAME;
@@ -63,8 +66,7 @@ class Init{
 		wp_register_script('dinamicHeader', $js_url . 'dinamicHeader.js', array('jquery'),'1.1', true);
  
 		wp_enqueue_script('dinamicHeader');
-		
-
+	
 
 		$css_url = MM\PLUGIN_NAME_URL.'admin/css/administrationStyle.css';
 
@@ -77,6 +79,16 @@ class Init{
 	# Register PUBLIC Styles and Scripts --------------------------------------------------------------------
 	
 	function reg_public_styles() {
+		$js_url = MM\PLUGIN_NAME_URL.'admin/js/';
+
+		// Register Swiper Carrousel
+		wp_enqueue_script( 'swiper', "https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js", false );		
+		
+		wp_register_style("swiper-carrousel","https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css");
+
+		wp_enqueue_style("swiper-carrousel");
+
+
 		
 		$public_css_HYF_url = MM\PLUGIN_NAME_URL.'templates/css/headerAndFooter.css';
 
@@ -94,7 +106,15 @@ class Init{
 
 	# End of Styles and Scripts register --------------------------------------------------------------------
 
-
+	function add_type_attribute($tag, $handle, $src) {
+		// if not your script, do nothing and return original $tag
+		if ( 'carrousel' !== $handle ) {
+			return $tag;
+		}
+		// change the script tag by adding type="module" and return it.
+		$tag = '<script type="module" src="' . esc_url( $src ) . '"></script>';
+		return $tag;
+	}
 
 	# Register ADMIN Hooks --------------------------------------------------------------------
 
@@ -135,13 +155,11 @@ class Init{
 
 		}
 
+
 		if ( ! defined('ABSPATH') ) {
 			/** Set up WordPress environment */
 			require_once( dirname( __FILE__ ) . '/wp-load.php' );
 		}
-
-
-
 	
 		// Register Scripts and Styles
 		
@@ -159,7 +177,12 @@ class Init{
 	
 		  
 		add_action( 'plugins_loaded', 'load_plugin_textdomain' );
+
+		add_filter('script_loader_tag', array($this,'add_type_attribute') , 10, 3);
+
 		add_action('wp_enqueue_scripts',array($this,'reg_public_styles'),30);
+
+
 		
 
 	}
@@ -169,10 +192,10 @@ class Init{
 
     function shortcodes_init(){
         add_shortcode('show_sites_portfolio',array($this,'show_portfolio'));
-
+		add_shortcode('show_sites_carrousel',array($this,'show_carrousel'));
     }
 
-    function show_portfolio($attr){
+	function show_portfolio($attr){
 
 		$parameters = shortcode_atts( array(
 			'widget_color'=>'dark',
@@ -193,9 +216,9 @@ class Init{
 					$template_data= [
 						'site_title' => get_the_title(),
 						'site_description' => print_description(),
-						'site_screenshot' => $this->print_screenshot('site_screenshot',get_the_ID()),
+						'site_screenshot' => $this->print_screenshot(get_the_ID(),'sites-portfolio-img'),
                     	'site_id' => get_the_ID(),
-						'box-color'=> $parameters['box_color']
+						'box_color'=> $parameters['box_color']
 					];
 
 					$templateLoader = Inc\My_Template_Loader::getInstance();
@@ -209,26 +232,101 @@ class Init{
         wp_reset_postdata();
 	}
 
+   
 
-	function print_screenshot($field,$post_id){
+
+
+    function print_screenshot($post_id,$css_class){
 		if(get_post_meta(get_the_ID(),'site_screenshot') and (!empty(get_post_meta(get_the_ID(),'site_screenshot')[0]) ))
 		{
 			$image = $this->get_image($post_id,'site_screenshot');
 			if(!is_wp_error($image)){
 				$content ='
-					<div><img class="sites-portfolio-img" src="';
-				$image_src = wp_get_attachment_url($this->get_image($post_id,$field)) ;
+					<div><img class="' . $css_class .' " src="';
+				$image_src = wp_get_attachment_url($this->get_image($post_id,'site_screenshot')) ;
 
 				$content = $content . $image_src .  '"></img></div>';
 				return $content;
 		 } 
 		}
 		else{
-			return "<span style='color:red;font-weight:bold'> No hay screenshot </p>";
+			return "<span style='font-weight:bold'> No hay screenshot </span>";
 		}
 	}
+
 
 	function get_image($post_id,$field){
 		return get_post_meta($post_id, $field,true);
 	}
+
+
+    function show_carrousel($attr){
+
+		$parameters = shortcode_atts( array(
+			'per_view'=>3,
+            'background_color' => 'white',
+			'font_color' => 'black',
+			'autoplay_seconds'=>0
+        ), $attr );
+		
+		if($parameters["autoplay_seconds"]>0){
+			$miliseconds = $parameters["autoplay_seconds"] * 1000;
+			$parameters["autoplay_seconds"] = $miliseconds;
+		}
+
+		$js_url = MM\PLUGIN_NAME_URL.'admin/js/';
+
+		wp_register_script('carrousel', $js_url . 'carrouselJs.js', true);
+
+		wp_enqueue_script('carrousel');
+
+		wp_localize_script('carrousel', 'params', $parameters );
+
+		
+		$args = array(
+            'post_type' => 'cpt-sitios',
+            'posts_per_page' => -1,
+			'post_status' => array('publish', 'pending', 'draft', 'future', 'private', 'inherit'),
+        );
+        $query = new \WP_Query($args);
+
+
+
+        $content = ' <div class="swiper" style="background:' . $parameters["background_color"] .'">
+					<div class="swiper-wrapper">';
+		
+		while ( $query->have_posts() ): $query->the_post();
+	
+		$content = $content . 
+
+		'<div class="swiper-slide">
+
+			<div class="carrousel-box" id='. get_the_ID() . '>
+
+				<div class="carrousel-title" style="color:'. $parameters["font_color"] .'"> ' .
+					get_the_title() . '
+				</div>'.
+				
+				$this->print_screenshot(get_the_ID(),'carrousel-image') .
+			
+				'<div class="carrousel-description">
+					<p style="color:'. $parameters["font_color"] . '">' .	print_description() . '</p>
+				</div>
+			</div>
+		</div>';
+		
+
+		endwhile;
+		$content = $content .  '</div>
+				<div class="swiper-pagination"></div>
+					<div class="swiper-button-prev"></div>
+					<div class="swiper-button-next"></div>
+			</div>
+		';
+		return $content;
+    }
+
+
+
+
 }
