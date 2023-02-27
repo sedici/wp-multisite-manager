@@ -56,19 +56,37 @@
 /* CSS Para Modal */
 
 #modal-container{
-    display: none;
+    opacity: 1;
+    background-color: rgb(0, 0 , 0.5);
 }
 
 .modal {
+    background: #bb5454;
+    width: 70%;
+    height: 80%;
+    text-align: center;
+
 
 }
 
 .cta {
-
+   
 }
 
 .modal-close {
+    size: 30px;
+    position: absolute;
+    top: 10%;
+    right: 2%;
+    
+}
 
+.dot {
+  height: 25px;
+  width: 25px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
 }
 
 

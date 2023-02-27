@@ -130,8 +130,8 @@ class Init{
 			que sera usado en el frontend */
 			add_action('wp_enqueue_scripts',array($this,'insert_modal_js'));
 
-			add_action('wp_ajax_charge_modal',array($this,'charge_modal')  );
-			add_action( 'wp_ajax_nopriv_charge_modal', array($this,'charge_modal') );
+			add_action('wp_ajax_procesar_request_modal',array($this,'procesar_request_modal')  );
+			add_action( 'wp_ajax_nopriv_procesar_request_modal', array($this,'procesar_request_modal') );
 		}
 
 		if ( ! defined('ABSPATH') ) {
@@ -202,12 +202,13 @@ class Init{
 
 					$templateLoader->set_template_data($template_data);
 					$templateLoader->get_template_part("PUBLIC","portfolio_box",true);
+
 					$templateLoader->unset_template_data();
          endwhile;
 
 		echo "</div>";
         wp_reset_postdata();
-	return true;
+	//return true;
 	}
 
 
@@ -217,7 +218,7 @@ class Init{
 			$image = $this->get_image($post_id,'site_screenshot');
 			if(!is_wp_error($image)){
 				$content ='
-					<div class="cta"><img class="sites-portfolio-img" src="';
+					<div><img class="sites-portfolio-img" src="';
 				$image_src = wp_get_attachment_url($this->get_image($post_id,$field)) ;
 
 				$content = $content . $image_src .  '"></img></div>';
@@ -238,7 +239,7 @@ class Init{
 		wp_localize_script('identify-modal','imjs_vars',array('url'=>admin_url('admin-ajax.php'),'nonce' => $title_nonce,));
 	}
 
-	function charge_modal() {
+	function procesar_request_modal() {
 		/* Verifica la request de ajax, para prevenir procesar request externas */
 		/* Deberia devolver el valor 1 o 2, cualquier otra cosa esta mal */
 		$valor = check_ajax_referer( 'esta_es_mi_request', 'nonce', false);
@@ -251,29 +252,34 @@ class Init{
 			'post_status' => array('publish', 'pending', 'draft', 'future', 'private', 'inherit'),
 		  );
 		
+
+		/* Proceso el html del modal para poder enviarlo como respuesta */  
+		
 		$the_query = new \WP_Query($args);
 
 		if($the_query->have_posts()) {
 
 			$the_query->the_post();
-			
-			$response = [
+
+			$template_data = [
 				'site_title' => get_the_title(),
 				'site_description' => print_description(),
 				'site_screenshot' => $this->print_screenshot('site_screenshot',get_the_ID()),
 				'site_URL' => '',
 			];
 
-			wp_send_json($response);
+			$templateLoader = Inc\My_Template_Loader::getInstance();
+
+			$templateLoader->set_template_data($template_data);
+			$templateLoader->get_template_part("portfolio","modal",true);
+
+			$templateLoader->unset_template_data();
+
+			die();
 			
 		}
 		else console.log('No hay posts con el id indicado');
-		
-		
-	}
 
-	function send_modal(){
-		
 	}
 	
 

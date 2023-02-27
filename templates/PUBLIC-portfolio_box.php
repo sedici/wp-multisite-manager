@@ -1,6 +1,6 @@
 
 <div 
-    class='sites-portfolio-box' 
+    class='sites-portfolio-box cta'
     style='background-color:<?php echo $data->box-color ?>' 
     id='<?php echo $data->site_id; ?>'
 >
@@ -10,4 +10,6 @@
     <span class='sites-portfolio-title' id='site-title'> <?php echo $data->site_title;?> </span>	
     <br>
 	<span class='sites-portfolio-title' id='site-desc'> Descripción: </span>
-    <p> <?php echo $data->site_description; ?> </div>
+    <p> <?php echo $data->site_description; ?> 
+
+</div>
