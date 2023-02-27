@@ -89,9 +89,6 @@ class Init{
 		wp_enqueue_style("swiper-carrousel");
 
 
-		wp_register_script('carrousel', $js_url . 'carrouselJs.js', true);
-
-		wp_enqueue_script('carrousel');
 		
 		$public_css_HYF_url = MM\PLUGIN_NAME_URL.'templates/css/headerAndFooter.css';
 
@@ -163,9 +160,6 @@ class Init{
 			/** Set up WordPress environment */
 			require_once( dirname( __FILE__ ) . '/wp-load.php' );
 		}
-
-
-
 	
 		// Register Scripts and Styles
 		
@@ -267,40 +261,68 @@ class Init{
 
 
     function show_carrousel($attr){
+
+		$parameters = shortcode_atts( array(
+			'per_view'=>3,
+            'background' => 'white',
+			'autoplay_seconds'=>0
+        ), $attr );
+		
+		if($parameters["autoplay_seconds"]>0){
+			$miliseconds = $parameters["autoplay_seconds"] * 1000;
+			$parameters["autoplay_seconds"] = $miliseconds;
+		}
+
+		$js_url = MM\PLUGIN_NAME_URL.'admin/js/';
+
+		wp_register_script('carrousel', $js_url . 'carrouselJs.js', true);
+
+		wp_enqueue_script('carrousel');
+
+		wp_localize_script('carrousel', 'params', $parameters );
+
+		
 		$args = array(
             'post_type' => 'cpt-sitios',
             'posts_per_page' => -1,
 			'post_status' => array('publish', 'pending', 'draft', 'future', 'private', 'inherit'),
         );
-
         $query = new \WP_Query($args);
 
-        echo ' <div class="swiper">
+
+
+        $content = ' <div class="swiper">
 					<div class="swiper-wrapper">';
 		
 		while ( $query->have_posts() ): $query->the_post();
 	
-		$template_data= [
-			'site_title' => get_the_title(),
-			'site_description' => print_description(),
-			'site_screenshot' => $this->print_screenshot(get_the_ID(),'carrousel-image'),
-			'site_id' => get_the_ID(),
-		];
+		$content = $content . 
 
-		$templateLoader = Inc\My_Template_Loader::getInstance();
+		'<div class="swiper-slide">
 
-		$templateLoader->set_template_data($template_data);
-		$templateLoader->get_template_part("PUBLIC","carrousel_box",true);
-		$templateLoader->unset_template_data();
+			<div class="carrousel-box" id='. get_the_ID() . '>
+
+				<div class="carrousel-title"> ' .
+					get_the_title() . '
+				</div>'.
+				
+				$this->print_screenshot(get_the_ID(),'carrousel-image') .
+			
+				'<div class="carrousel-description">
+					<p>' .	print_description() . '</p>
+				</div>
+			</div>
+		</div>';
+		
 
 		endwhile;
-		echo '</div>
+		$content = $content .  '</div>
 				<div class="swiper-pagination"></div>
 					<div class="swiper-button-prev"></div>
 					<div class="swiper-button-next"></div>
 			</div>
 		';
-		
+		return $content;
     }
 
 

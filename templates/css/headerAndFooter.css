@@ -21,6 +21,12 @@
         margin-left: 20px;
         margin-bottom: auto;
         font-weight: 600;
+        text-decoration: none;
+
+    }
+
+    .header-title:hover{
+        transform: scale(1.03);
     }
 
     .header-col2{
@@ -56,7 +62,7 @@
     }
 
     .footer_column {
-        height:20vh;
+        height:10vh;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -65,7 +71,6 @@
     }
 
     .footer_row:after {
-
         content: "";
         display: table;
         clear: both;
@@ -102,7 +107,7 @@
 
     .footer-image{
         max-width: 50%;
-        max-height: 15vh;
+        max-height: 10vh;
         align-self: flex-start;
     }
 
