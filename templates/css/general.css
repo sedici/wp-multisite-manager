@@ -55,7 +55,7 @@
 
 .swiper{
     width: 100%;
-    height: 300px;
+    height: 350px;
     margin-top: 10vh;
     border: solid 3px black;
     border-radius: 10px;
@@ -77,10 +77,11 @@
 }
 
 .carrousel-image{
-    max-height: 150px;
+    max-height: 175px;
     border: solid 5px rgb(188, 179, 179);
     border-radius: 3px;
     align-items: center;
+    align-content: center;
 }
 
 @media only screen and (max-width: 959px) {
@@ -99,7 +100,11 @@
         grid-template-columns: 100%;
         width: 100%;
     }
-
+    .swiper{
+        align-items: center;
+        display: grid;
+        grid-template-columns: 100%;
+    }
 
       
 

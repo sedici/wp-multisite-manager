@@ -266,7 +266,8 @@ class Init{
 			'per_view'=>3,
             'background_color' => 'white',
 			'font_color' => 'black',
-			'autoplay_seconds'=>0
+			'autoplay_seconds'=>0,
+			'arrow_color'=>'',
         ), $attr );
 		
 		if($parameters["autoplay_seconds"]>0){
@@ -319,8 +320,8 @@ class Init{
 		endwhile;
 		$content = $content .  '</div>
 				<div class="swiper-pagination"></div>
-					<div class="swiper-button-prev"></div>
-					<div class="swiper-button-next"></div>
+					<div class="swiper-button-prev" style="color:'. $parameters['arrow_color'] .'"></div>
+					<div class="swiper-button-next" style="color:'. $parameters['arrow_color'] .'"></div>
 			</div>
 		';
 		return $content;

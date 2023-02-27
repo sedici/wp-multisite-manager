@@ -24,8 +24,9 @@ Las principales son:
 - **[show_sites_portfolio ]** => Muestra todos los CPT de sitios disponibles, al estilo "Carrousel".
     - 'per_view'=> Permite seleccionar cuantos sitios se van a mostrar a la vez en el carrousel.
     - 'autoplay_seconds' => (Default = 0) Indíca cada cuantos segundos se cambia a la próxima página. Si no se especifica, queda desactivada por defecto la opción de cambiar de página automáticamente
-    - 'background_color' => Sirve para elegir el color que va a tener de fondo el carrousel.
-    - 'font_color' => Sirve para elegir que el color de las letras (Título + Descripción).
+    - 'background_color' => Determina el color que va a tener de fondo el carrousel.
+    - 'font_color' => Determina el color de las letras (Título + Descripción).
+    - 'arrow_color' => Determina el color de las flechas de navegación.
 
 
 *Los parámetros de color aceptan 3 representaciones : Colores en ingles (Ej. Red), en hexadecimal (Ej. #0000FF) o RGB(Ej. rgb(0, 0, 255) )*.
