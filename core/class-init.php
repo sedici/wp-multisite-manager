@@ -264,7 +264,8 @@ class Init{
 
 		$parameters = shortcode_atts( array(
 			'per_view'=>3,
-            'background' => 'white',
+            'background_color' => 'white',
+			'font_color' => 'black',
 			'autoplay_seconds'=>0
         ), $attr );
 		
@@ -291,7 +292,7 @@ class Init{
 
 
 
-        $content = ' <div class="swiper">
+        $content = ' <div class="swiper" style="background:' . $parameters["background_color"] .'">
 					<div class="swiper-wrapper">';
 		
 		while ( $query->have_posts() ): $query->the_post();
@@ -302,14 +303,14 @@ class Init{
 
 			<div class="carrousel-box" id='. get_the_ID() . '>
 
-				<div class="carrousel-title"> ' .
+				<div class="carrousel-title" style="color:'. $parameters["font_color"] .'"> ' .
 					get_the_title() . '
 				</div>'.
 				
 				$this->print_screenshot(get_the_ID(),'carrousel-image') .
 			
 				'<div class="carrousel-description">
-					<p>' .	print_description() . '</p>
+					<p style="color:'. $parameters["font_color"] . '">' .	print_description() . '</p>
 				</div>
 			</div>
 		</div>';
