@@ -20,8 +20,13 @@
     
     <h3 style="font-weight:bold"><?php _e("Referencias de clases CSS"); ?> </h3>
     <ul>
-        <li> <span style="font-weight:bold"> footer-container: </span> <?php _e("esta clase envuelve todo el footer. (Aquí se pueden poner los colores de fondo)");?> </li>
-        <li> <span style="font-weight:bold"> footer_column: </span> <?php _e("esta clase maneja las 3 columnas del footer"); ?> </li>
+        <li> <span style="font-weight:bold"> swiper: </span> <?php _e("esta clase contiene todo el carrousel, desde aca se puede manejar el ancho, alto, color de fondo, etc.");?> </li>
+        <li> <span style="font-weight:bold"> carrousel-box: </span> <?php _e("esta clase maneja cada caja individual del carrousel"); ?> </li>
+        <li> <span style="font-weight:bold"> carrousel-title: </span> <?php _e("esta clase maneja los títulos dentro del carrousel"); ?> </li>
+        <li> <span style="font-weight:bold"> carrousel-image: </span> <?php _e("esta clase maneja cada imagen dentro del carrousel"); ?> </li>
+        <li> <span style="font-weight:bold"> swiper-button-next: </span> <?php _e("esta clase maneja la flecha para pasar a la siguiente sección"); ?> </li>
+        <li> <span style="font-weight:bold"> swiper-button-prev: </span> <?php _e("esta clase maneja la flecha para pasar a la sección previa"); ?> </li>
+
     </ul>
 
 

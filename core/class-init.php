@@ -254,6 +254,8 @@ class Init{
 
     function show_carrousel($attr){
 
+
+
 		$parameters = shortcode_atts( array(
 			'per_view'=>3,
             'background_color' => 'white',
@@ -285,7 +287,10 @@ class Init{
 
 
 
-        $content = ' <div class="swiper" style="background:' . $parameters["background_color"] .'">
+        $content = 
+		"<style>" .
+		get_site_option('carrousel_css') .
+		'</style><div class="swiper" style="background:' . $parameters["background_color"] .'">
 					<div class="swiper-wrapper">';
 		
 		while ( $query->have_posts() ): $query->the_post();
