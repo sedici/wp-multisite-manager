@@ -23,19 +23,23 @@ class multisiteAdmin{
         #  add_action('template_redirect', 'check_for_event_submissions');
       
         add_action('network_admin_menu',array($this,'add_Multisite_Menu_Pages'),30); 
+
         add_action( 'admin_init', array($this,'header_settings'), 30 );
         add_action( 'admin_init', array($this,'footer_settings'), 30 );
-        add_action('admin-init','update_button_js');
+        add_action( 'admin_init', array($this,'carrousel_settings'), 30 );
+
+        // Registro las settings para formularios de CARROUSEL, HEADER Y FOOTER
         add_action('network_admin_edit_header_update_network_options',array($this,'header_update_network_options'));
         add_action('network_admin_edit_footer_update_network_options',array($this,'footer_update_network_options'));
-
-
+        add_action('network_admin_edit_carrousel_update_network_options',array($this,'carrousel_update_network_options'));
+        
+        
         // Registro la acción Update_all_cpt para la llamada AJAX
         add_action('wp_ajax_update_sites_cpt',array($this,'update_all_cpt')  );
         add_action( 'wp_ajax_nopriv_update_sites_cpt', array($this,'update_all_cpt') );
 
 
-		// Registro la llamada ajax para invocar
+		// Registro la llamada ajax para actualizar los Custom Post Type de sitios
 		add_action('admin_enqueue_scripts', array($this,'update_cpt_ajax') );
 
     }
@@ -144,8 +148,6 @@ class multisiteAdmin{
         register_setting( 'header_settings', 'enabled' );
         register_setting( 'header_settings', 'title_text' );
         register_setting( 'header_settings', 'title_link' );
-     //   register_setting( 'header_settings', 'image', 'header_image_save' );
-     //   register_setting( 'header_settings', 'image_link' );
         register_setting( 'header_settings', 'header_css');
       
         register_setting( 'header_settings', 'header_images');
@@ -182,6 +184,32 @@ class multisiteAdmin{
         register_setting( 'footer_settings', 'footer_images');
 
         register_setting( 'footer_settings', 'footer_css' );
+
+    }
+
+    /**
+     * Registra toda la configuración del CARROUSEL con la API de Settings de Wordpress
+     *      
+    */
+    function carrousel_settings() {
+        register_setting( 'carrousel_settings', 'carrousel_css' );
+    }
+
+    function carrousel_update_network_options(){
+        global $new_allowed_options;
+        $options = $new_allowed_options['carrousel_settings'];
+
+        foreach ($options as $option) {
+            if (isset($_POST[$option])) {
+                    update_site_option($option, $_POST[$option]);
+            } else {
+                delete_site_option($option);
+            }
+        }
+
+        wp_redirect(add_query_arg(array('page' => 'config-carrousel',
+        'updated' => 'true'), network_admin_url('admin.php')));
+        exit;
 
     }
 
@@ -317,7 +345,7 @@ class multisiteAdmin{
         if ( ! class_exists( 'WP_List_Table' ) ) {
             require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
         }
-        include plugin_dir_path( __DIR__ ) . 'admin/views/administration-menu.php';
+        include plugin_dir_path( __DIR__ ) . 'admin/views/adminMenu/administration-menu.php';
         
     }
 
@@ -336,7 +364,7 @@ class multisiteAdmin{
             __('Header', $this->plugin_text_domain), //menu title
             'manage_options', //capability
             'config-header', //menu_slug
-            array($this, 'ajax_form_header_page_content')// página que va a manejar la sección
+            array($this, 'header_menu_page')// página que va a manejar la sección
         );
 
 		## Agregar subpágina FOOTER
@@ -346,7 +374,17 @@ class multisiteAdmin{
             __('Footer', $this->plugin_text_domain), //menu title
             'manage_options', //capability
             'config-footer', //menu_slug
-            array($this, 'ajax_form_footer_page_content') // página que va a manejar la sección
+            array($this, 'footer_menu_page') // página que va a manejar la sección
+        );
+
+        ## Agregar subpágina CARROUSEL
+		$ajax_form_page_hook = add_submenu_page(
+            $this->plugin_name, //parent slug
+            __('Carrousel CSS', $this->plugin_text_domain), //page title
+            __('Carrousel CSS', $this->plugin_text_domain), //menu title
+            'manage_options', //capability
+            'config-carrousel', //menu_slug
+            array($this, 'carrousel_menu_page') // página que va a manejar la sección
         );
 	}
 
@@ -376,17 +414,21 @@ class multisiteAdmin{
         
     }
 
-	public function ajax_form_header_page_content()
+	public function header_menu_page()
     {
-        include_once dirname(__DIR__) . '/admin/views/html-form-header-view-ajax.php';
+        include_once dirname(__DIR__) . '/admin/views/adminMenu/header-form.php';
     }
 
 
-	public function ajax_form_footer_page_content()
+	public function footer_menu_page()
     {
-        include_once dirname(__DIR__) . '/admin/views/html-form-footer-view-ajax.php';
+        include_once dirname(__DIR__) . '/admin/views/adminMenu/footer-form.php';
     }
 
+    public function carrousel_menu_page()
+    {
+        include_once dirname(__DIR__) . '/admin/views/adminMenu/carrousel-form.php';
+    }
 
     public function update_sites_cpt(){
         $sites_list = get_sites();
