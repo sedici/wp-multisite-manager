@@ -258,10 +258,7 @@ class Init{
 
 		$parameters = shortcode_atts( array(
 			'per_view'=>3,
-            'background_color' => 'white',
-			'font_color' => 'black',
 			'autoplay_seconds'=>0,
-			'arrow_color'=>'',
         ), $attr );
 		
 		if($parameters["autoplay_seconds"]>0){
@@ -290,7 +287,7 @@ class Init{
         $content = 
 		"<style>" .
 		get_site_option('carrousel_css') .
-		'</style><div class="swiper" style="background:' . $parameters["background_color"] .'">
+		'</style><div class="swiper" >
 					<div class="swiper-wrapper">';
 		
 		while ( $query->have_posts() ): $query->the_post();
@@ -301,14 +298,14 @@ class Init{
 
 			<div class="carrousel-box" id='. get_the_ID() . '>
 
-				<div class="carrousel-title" style="color:'. $parameters["font_color"] .'"> ' .
+				<div class="carrousel-title" > ' .
 					get_the_title() . '
 				</div>'.
 				
 				$this->print_screenshot(get_the_ID(),'carrousel-image') .
 			
 				'<div class="carrousel-description">
-					<p style="color:'. $parameters["font_color"] . '">' .	print_description() . '</p>
+					<p >' .	print_description() . '</p>
 				</div>
 			</div>
 		</div>';
@@ -317,8 +314,8 @@ class Init{
 		endwhile;
 		$content = $content .  '</div>
 				<div class="swiper-pagination"></div>
-					<div class="swiper-button-prev" style="color:'. $parameters['arrow_color'] .'"></div>
-					<div class="swiper-button-next" style="color:'. $parameters['arrow_color'] .'"></div>
+					<div class="swiper-button-prev" ></div>
+					<div class="swiper-button-next" ></div>
 			</div>
 		';
 		return $content;
