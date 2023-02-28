@@ -1,9 +1,8 @@
 // Chequeo el tamaño de la ventana para corregir los parametros
-var queryPhone = window.matchMedia("(max-width: 700px)")
-var queryMedium = window.matchMedia("(max-width: 1300px)")
+var queryPhone = window.matchMedia("(max-width: 780px)")
 
 
-function checkDisplay(queryPhone,queryMedium){
+function checkDisplay(queryPhone){
   if(queryPhone.matches){
     params["per_view"] = 1;
   }
@@ -24,7 +23,7 @@ function getMs(){
   }
 }
 
-checkDisplay(queryPhone, queryMedium);
+checkDisplay(queryPhone);
 
  export let swiper = new Swiper('.swiper', {
     // Optional parameters
