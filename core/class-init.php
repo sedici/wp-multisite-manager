@@ -239,11 +239,11 @@ class Init{
 		wp_localize_script('identify-modal','imjs_vars',array('url'=>admin_url('admin-ajax.php'),'nonce' => $title_nonce,));
 	}
 
+	/* Esta funcion imprime el modal del portfolio de sitios enviandole a js (modal-ajax) un html con la info. de un sitio ya cargada */
 	function procesar_request_modal() {
 		/* Verifica la request de ajax, para prevenir procesar request externas */
 		/* Deberia devolver el valor 1 o 2, cualquier otra cosa esta mal */
-		$valor = check_ajax_referer( 'esta_es_mi_request', 'nonce', false);
-
+		/* $valor = check_ajax_referer( 'mi_req_123', 'nonce', false); */
 		/* Deberia checkear $valor */
 
 		$args = array(
