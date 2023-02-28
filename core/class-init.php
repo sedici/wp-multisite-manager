@@ -186,7 +186,7 @@ class Init{
         );
 
         $query = new \WP_Query($args);
-		echo "<div class='sites-portfolio' style='background-color:". $parameters['widget_color'] . "'>";
+		$content = "<div class='sites-portfolio' style='background-color:". $parameters['widget_color'] . "'>";
 
 		while ( $query->have_posts() ): $query->the_post();
 					$template_data= [
@@ -196,19 +196,25 @@ class Init{
                     	'site_id' => get_the_ID(),
 						'box-color'=> $parameters['box_color']
 					];
+		$content = $content.	
+			"<div class='sites-portfolio-box cta'
+					style='background-color:" . $parameters['box_color'] ."' 
+			id='" . get_the_ID() . "'>"
 
+			. $this->print_screenshot('site_screenshot',get_the_ID()) .
 
-					$templateLoader = Inc\My_Template_Loader::getInstance();
+			"<span class='sites-portfolio-title' id='site-title'>" . get_the_title() . "</span>	
+			<br>
+			<span class='sites-portfolio-title' id='site-desc'> Descripción: </span>
+			<p>" . print_description() .
 
-					$templateLoader->set_template_data($template_data);
-					$templateLoader->get_template_part("PUBLIC","portfolio_box",true);
-
-					$templateLoader->unset_template_data();
+			"</p></div>";
+	
          endwhile;
 
 		echo "</div>";
         wp_reset_postdata();
-	//return true;
+		return $content;
 	}
 
 
