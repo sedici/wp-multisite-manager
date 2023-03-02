@@ -189,13 +189,6 @@ class Init{
 		$content = "<div class='sites-portfolio' style='background-color:". $parameters['widget_color'] . "'>";
 
 		while ( $query->have_posts() ): $query->the_post();
-					$template_data= [
-						'site_title' => get_the_title(),
-						'site_description' => print_description(),
-						'site_screenshot' => $this->print_screenshot('site_screenshot',get_the_ID()),
-                    	'site_id' => get_the_ID(),
-						'box-color'=> $parameters['box_color']
-					];
 		$content = $content.	
 			"<div class='sites-portfolio-box cta'
 					style='background-color:" . $parameters['box_color'] ."' 
