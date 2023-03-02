@@ -66,12 +66,16 @@
     left: 0;
     height: auto;
     z-index: 105;
+
     display: flex;
     justify-content: center;
     align-items: center;
+    
+
 }
 
 .modal {
+    
     background: #ede6e6;
     width: 70%;
     height: 400px;

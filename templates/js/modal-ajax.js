@@ -22,8 +22,6 @@
 			},
 			success: function(response){
 			    console.log('Data sent');
-
-				jQuery('body').prepend("<div class='black-screen'> <div>");
 				
 				jQuery('body').append(response);
 				jQuery('.modal').show();
