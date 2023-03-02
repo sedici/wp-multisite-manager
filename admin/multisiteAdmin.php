@@ -243,7 +243,7 @@ class multisiteAdmin{
     */
     function process_images($option){
         $images_array = get_site_option($option);
-        if($images_array === false){
+        if($images_array == false){
             $images_array = array();
         }
         else{
@@ -263,12 +263,19 @@ class multisiteAdmin{
                     if (isset($_POST[$imageLink]) and (!is_wp_error($_POST[$imageLink])) ){
 
                         $image_id = media_handle_upload($index,0 );
+                        if(!is_wp_error($image_id)){
 
-                        $imageElement = [
-                        "id" => $image_id,
-                        "link"=> $_POST[$imageLink]
-                        ];
-                        array_push($images_array,$imageElement) ;
+                            $imageElement = [
+                                "id" => $image_id,
+                                "link"=> $_POST[$imageLink]
+                                ];
+                                array_push($images_array,$imageElement) ;
+                        }
+                        else{
+                            echo "<script> alert('Ocurrio un error al subir la imagen número ". $index ."') </script>";
+                        }
+
+    
                     }
                     } 
                 }
@@ -282,21 +289,24 @@ class multisiteAdmin{
 
         $updatedImages = $images;
         // Reviso si los ids que tenia en la BD estan presentes en el POST
-        foreach ($images as $key=>$image){
-            $link = "link_" . strval($image["id"]);
 
-            // Si estan presentes actualizo el link por las dudas
-            if(array_key_exists($link, $_POST)){
-                $updatedImages[$key]["link"] = $_POST[$link];
+        if(isset($images)){
+            foreach ($images as $key=>$image){
+                $link = "link_" . strval($image["id"]);
+    
+                // Si estan presentes actualizo el link por las dudas
+                if(array_key_exists($link, $_POST)){
+                    $updatedImages[$key]["link"] = $_POST[$link];
+                }
+                // Si no esta presente, elimino el dato de la BD
+                else{
+                    wp_delete_attachment($updatedImages[$key]['id']);
+                    unset($updatedImages[$key]);
+                }
             }
-            // Si no esta presente, elimino el dato de la BD
-            else{
-                wp_delete_attachment($updatedImages[$key]['id']);
-                unset($updatedImages[$key]);
-            }
+            return $updatedImages;    
         }
-
-        return $updatedImages;
+        return false;
     }
 
     

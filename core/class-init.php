@@ -153,6 +153,12 @@ class Init{
 			// Llama a la función que registra los shortcodes
 			add_action('init', array($this,'shortcodes_init'));
 
+			/* wp_enqueue_scripts es el hook usado para encolar el script insertar_modal_js
+			que sera usado en el frontend */
+			add_action('wp_enqueue_scripts',array($this,'insert_modal_js'));
+
+			add_action('wp_ajax_procesar_request_modal',array($this,'procesar_request_modal')  );
+			add_action( 'wp_ajax_nopriv_procesar_request_modal', array($this,'procesar_request_modal') );
 		}
 
 
@@ -205,26 +211,28 @@ class Init{
         );
 
         $query = new \WP_Query($args);
-		echo "<div class='sites-portfolio' style='background-color:". $parameters['widget_color'] . "'>";
+		$content = "<div class='sites-portfolio' style='background-color:". $parameters['widget_color'] . "'>";
 
 		while ( $query->have_posts() ): $query->the_post();
-					$template_data= [
-						'site_title' => get_the_title(),
-						'site_description' => print_description(),
-						'site_screenshot' => $this->print_screenshot(get_the_ID(),'sites-portfolio-img'),
-                    	'site_id' => get_the_ID(),
-						'box_color'=> $parameters['box_color']
-					];
+		$content = $content.	
+			"<div class='sites-portfolio-box cta'
+					style='background-color:" . $parameters['box_color'] ."' 
+			id='" . get_the_ID() . "'>"
 
-					$templateLoader = Inc\My_Template_Loader::getInstance();
+			. $this->print_screenshot('site_screenshot',get_the_ID()) .
 
-					$templateLoader->set_template_data($template_data);
-					$templateLoader->get_template_part("PUBLIC","portfolio_box",true);
-					$templateLoader->unset_template_data();
+			"<span class='sites-portfolio-title' id='site-title'>" . get_the_title() . "</span>	
+			<br>
+			<span class='sites-portfolio-title' id='site-desc'> Descripción: </span>
+			<p>" . print_description() .
+
+			"</p></div>";
+	
          endwhile;
 
 		echo "</div>";
         wp_reset_postdata();
+		return $content;
 	}
 
 
@@ -246,6 +254,58 @@ class Init{
 		}
 	}
 
+
+	function insert_modal_js (){ 
+		$title_nonce = wp_create_nonce( 'esta_es_mi_request' );
+
+		wp_register_script('identify-modal',  MM\PLUGIN_NAME_URL . 'templates/js/modal-ajax.js', array('jquery'), '1', true );
+		wp_enqueue_script('identify-modal');	
+		wp_localize_script('identify-modal','imjs_vars',array('url'=>admin_url('admin-ajax.php'),'nonce' => $title_nonce,));
+	}
+
+	/* Esta funcion imprime el modal del portfolio de sitios enviandole a js (modal-ajax) un html con la info. de un sitio ya cargada */
+	function procesar_request_modal() {
+		/* Verifica la request de ajax, para prevenir procesar request externas */
+		/* Deberia devolver el valor 1 o 2, cualquier otra cosa esta mal */
+		/* $valor = check_ajax_referer( 'mi_req_123', 'nonce', false); */
+		/* Deberia checkear $valor */
+
+		$args = array(
+			'p'         => $_POST['box_id'], // ID of a page, post, or custom type
+			'post_type' => 'cpt-sitios',
+			'post_status' => array('publish', 'pending', 'draft', 'future', 'private', 'inherit'),
+		  );
+		
+
+		/* Proceso el html del modal para poder enviarlo como respuesta */  
+		
+		$the_query = new \WP_Query($args);
+
+		if($the_query->have_posts()) {
+
+			$the_query->the_post();
+
+			$template_data = [
+				'site_title' => get_the_title(),
+				'site_description' => print_description(),
+				'site_screenshot' => $this->print_screenshot('site_screenshot',get_the_ID()),
+				'site_URL' => '',
+			];
+
+			$templateLoader = Inc\My_Template_Loader::getInstance();
+
+			$templateLoader->set_template_data($template_data);
+			$templateLoader->get_template_part("portfolio","modal",true);
+
+			$templateLoader->unset_template_data();
+
+			die();
+			
+		}
+		else console.log('No hay posts con el id indicado');
+
+	}
+	
 
 	function get_image($post_id,$field){
 		return get_post_meta($post_id, $field,true);
