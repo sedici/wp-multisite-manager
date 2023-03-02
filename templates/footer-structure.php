@@ -2,7 +2,7 @@
 <style>
      <?php echo get_site_option('footer_css'); ?>
 </style>
-<div class="footer-container">
+<footer class="footer-container">
 
 
     <!-- FIRST COLUMN -->
@@ -13,7 +13,7 @@
     <!-- SECOND COLUMN -->
     <div class="col2 footer_column"> 
             <h1  class="footer-title">  
-                <a href="<?php echo get_site_option('footer_text_link'); ?> "> <?php echo get_site_option('footer_text'); ?> </a>
+                <a class="footer-title" href="<?php echo get_site_option('footer_text_link'); ?> "> <?php echo get_site_option('footer_text'); ?> </a>
             </h1>
         <div class="media-container">
             <?php print_media() ?>
@@ -27,7 +27,7 @@
 
 
 
-</div>
+</footer>
 
 
 <?php

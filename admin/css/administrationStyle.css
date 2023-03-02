@@ -99,8 +99,8 @@
     row-gap: 20px;
 
     justify-content: center;
-
-    border: solid 2px black;
+    background-color: rgb(221, 221, 221);
+    border: solid 2px rgb(181, 170, 170);;
     border-radius: 5px;
     padding: 5px;
 }
@@ -109,9 +109,10 @@
     display: flex;
     max-height: 150px;
     max-width: 250px;
-    border: solid 3px black;
+    border: solid 2px rgb(146, 143, 143);
     border-radius: 4px;
     margin: auto;
+    background-color: white;
 }
 
 .dashicons-trash:hover{
