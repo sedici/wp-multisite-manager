@@ -1,6 +1,6 @@
 <div id='modal-container'> 
 
-    <div class='modal'>
+    <div class='modal-main-box'>
 
     <div class='modal-close dot'> <p>X</p> </div> 
     <span class='modal-title'> <?php echo $data->site_title;?> </span>	
