@@ -219,7 +219,7 @@ class Init{
 					style='background-color:" . $parameters['box_color'] ."' 
 			id='" . get_the_ID() . "'>"
 
-			. $this->print_screenshot('site_screenshot',get_the_ID()) .
+			. $this->print_screenshot(get_the_ID(),'site_screenshot') .
 
 			"<span class='sites-portfolio-title' id='site-title'>" . get_the_title() . "</span>	
 			<br>
@@ -288,7 +288,7 @@ class Init{
 			$template_data = [
 				'site_title' => get_the_title(),
 				'site_description' => print_description(),
-				'site_screenshot' => $this->print_screenshot('site_screenshot',get_the_ID()),
+				'site_screenshot' => $this->print_screenshot(get_the_ID(),'site_screenshot'),
 				'site_URL' => '',
 			];
 

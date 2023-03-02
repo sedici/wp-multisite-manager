@@ -59,15 +59,17 @@
     .footer-container{
 
         width: 100%;
-        height: 130px  ;
+        height: 130px;
 
         display:grid;
         grid-template-columns: 40% 20% 40%;
         padding-top: 10px;
+        padding-bottom: 10px;
+        overflow: hidden;
     }
 
     .footer_column {
-        height: 90%;
+        height:inherit ;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -102,8 +104,6 @@
         text-justify: inter-word;
         font-size: 16px;
         font-weight: 600;
-
-        text
     }
 
     .media-container{
@@ -124,7 +124,6 @@
         column-gap: 10px;
         align-items: center;
 
-        flex-wrap: no-wrap
     }
 
 
