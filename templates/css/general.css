@@ -74,7 +74,7 @@
 
 }
 
-.modal {
+.modal-main-box {
     
     background: #ede6e6;
     width: 70%;
@@ -120,8 +120,8 @@
 .modal-close {
     size: 30px;
     position: absolute;
-    top: 10%;
-    right: 2%;
+    top: 24.5%;
+    right: 16%;
     
 }
 

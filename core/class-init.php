@@ -264,8 +264,10 @@ class Init{
 				'site_title' => get_the_title(),
 				'site_description' => print_description(),
 				'site_screenshot' => $this->print_screenshot('site_screenshot',get_the_ID()),
-				'site_URL' => '',
+				'site_URL' => get_post_meta($args[p],'site_url',true),
+				'site_date_creation' => ''
 			];
+
 
 			$templateLoader = Inc\My_Template_Loader::getInstance();
 

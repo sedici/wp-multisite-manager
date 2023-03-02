@@ -1,11 +1,16 @@
 <div id='modal-container'> 
 
-    <div class='modal'>
+    <div class='modal-main-box'>
 
     <div class='modal-close dot'> <p>X</p> </div> 
+
     <span class='modal-title'> <?php echo $data->site_title;?> </span>	
 
+    <span class='sites-portfolio-title'> URL: <a href='<?php echo $data->site_URL; ?>'> <?php echo $data->site_URL; ?> </a>
+    </span> 
+
     <div class="modal-box">
+
         <div class="modal-img">
             <?php echo $data->site_screenshot ?>
         </div>
