@@ -116,7 +116,7 @@
 
 .modal-box{
     display: grid;
-    grid-template-columns: 60% 40%;
+    grid-template-columns: 70% 30%;
     height: 100%;
     width: 100%;
     align-items: center;
