@@ -243,7 +243,7 @@ class Init{
 	function procesar_request_modal() {
 
 		$args = array(
-			'id'         => $_POST['box_id'], // ID of a page, post, or custom type
+			'p'         => $_POST['box_id'], // ID of a page, post, or custom type
 			'post_type' => 'cpt-sitios',
 			'post_status' => array('publish', 'pending', 'draft', 'future', 'private', 'inherit'),
 		  );

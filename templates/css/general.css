@@ -81,7 +81,7 @@
     
     background: #ede6e6;
     width: 70%;
-    height: 400px;
+    height: 500px;
     text-align: center;
     display: grid;
     grid-template-columns: 90%;
@@ -93,7 +93,7 @@
 .modal-close {
     size: 30px;
     position: absolute;
-    top: 24.5%;
+    top: 16.5%;
     right: 16%;
     
 }
@@ -109,8 +109,29 @@
 .modal-title{
     display: block;
     font-weight: bold;
-    font-size: x-large;
+    font-size:45px;
     align-self: left;
+    
+}
+
+.modal-box{
+    display: grid;
+    grid-template-columns: 60% 40%;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    column-gap: 2px;
+}
+
+/* ============================= Modal Box ================================== */
+
+.modal-img{
+    width: 90%;
+    border-radius: 5px;
+    object-fit: contain;
+    border: solid 3px black;
+    border-radius: 5px;
+
 }
 
 /* ======================= Modal Data =================================== */
@@ -140,22 +161,9 @@
     text-align: justify;
 }
 
-.modal-img{
-    width: 90%;
-    border-radius: 5px;
-    object-fit: contain;
-    border: solid 3px black;
-    border-radius: 5px;
-}
-.modal-box{
-    display: grid;
-    grid-template-columns: 60% 40%;
-    height: 100%;
-    width: 100%;
-    align-items: center;
-    column-gap: 2px;
-}
+/* =============================== Fin Modal data ============================== */
 
+/* =============================== Fin Modal box ============================== */
 
 
 @media only screen and (max-width: 959px) {
