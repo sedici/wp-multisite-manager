@@ -12,6 +12,11 @@
         
     }
 
+    body {
+        position: relative;
+        min-height: 100vh!important;
+      }
+
     .header-col1 {
         float: left;
         display: flex;
