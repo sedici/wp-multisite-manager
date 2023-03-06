@@ -154,10 +154,20 @@ class CPT_Sitios {
        }
     }
 
-        // Permite cargar imagenes en el formulario de CPT Sitios
-        public function update_edit_form() {
-            echo 'enctype="multipart/form-data"';
+    function delete_cpt_screenshot($post_id){
+
+        if('cpt-sitios' == get_post_type($post_id)){
+            if(get_post_meta($post_id,'site_screenshot')){
+                wp_delete_attachment(get_post_meta($post_id,'site_screenshot')[0]);
+            }
+            
         }
+    }
+
+    // Permite cargar imagenes en el formulario de CPT Sitios
+    public function update_edit_form() {
+        echo 'enctype="multipart/form-data"';
+    }
         
         #FIXME: Hay que hacer un refactoring para eliminar los condicionales
        

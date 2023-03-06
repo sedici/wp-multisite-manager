@@ -1,10 +1,15 @@
     .header-container{
         height: 70px  ;
+        position: relative;
         margin-top: 0%;
         display:grid;
         grid-template-columns: 50% 50%;
         object-fit: contain;
 
+        top:0;
+        left:0;
+        right: 0;
+        
     }
 
     .header-col1 {
@@ -64,8 +69,17 @@
         display:grid;
         grid-template-columns: 40% 20% 40%;
         padding-top: 10px;
-        padding-bottom: 10px;
+        clear: both;
+        
         overflow: hidden;
+
+        position: relative;
+        bottom:0;
+        left:0;
+        right: 0;
+        
+    
+    
     }
 
     .footer_column {
@@ -74,7 +88,7 @@
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        
+        padding-bottom: 20px;
     }
 
     .footer_row:after {

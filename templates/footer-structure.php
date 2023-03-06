@@ -23,8 +23,9 @@
     <!-- THIRD COLUMN -->
     <div class="footer_column footer-image-container">
        <? echo $data->logos; ?>
-    </div>
+       <br>
 
+    </div>
 
 
 </footer>

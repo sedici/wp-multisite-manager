@@ -147,6 +147,9 @@ class Init{
 			// Guarda los campos meta
 			add_action('save_post', array($sitiosCPT, 'sitios_save_metas'));
 
+			// Se encarga de eliminar la imagen del CPT en el caso de que el mismo sea borrado
+			add_action('before_delete_post', array($sitiosCPT,'delete_cpt_screenshot'));
+
 			// Permite que se guarden imagenes en el formulario del CPT de Sitios
 			add_action('post_edit_form_tag', array($sitiosCPT, 'update_edit_form'));
 
