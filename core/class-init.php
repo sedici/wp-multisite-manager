@@ -206,6 +206,7 @@ class Init{
          endwhile;
 
 		echo "</div>";
+
         wp_reset_postdata();
 		return $content;
 	}
@@ -240,10 +241,6 @@ class Init{
 
 	/* Esta funcion imprime el modal del portfolio de sitios enviandole a js (modal-ajax) un html con la info. de un sitio ya cargada */
 	function procesar_request_modal() {
-		/* Verifica la request de ajax, para prevenir procesar request externas */
-		/* Deberia devolver el valor 1 o 2, cualquier otra cosa esta mal */
-		/* $valor = check_ajax_referer( 'mi_req_123', 'nonce', false); */
-		/* Deberia checkear $valor */
 
 		$args = array(
 			'p'         => $_POST['box_id'], // ID of a page, post, or custom type
@@ -265,8 +262,9 @@ class Init{
 				'site_description' => print_description(),
 				'site_screenshot' => $this->print_screenshot('site_screenshot',get_the_ID()),
 				'site_URL' => get_post_meta($args[p],'site_url',true),
-				'site_date_creation' => ''
+				'site_fecha_creacion' => get_post_meta($args[p],'site_creation_date',true),
 			];
+
 
 
 			$templateLoader = Inc\My_Template_Loader::getInstance();
