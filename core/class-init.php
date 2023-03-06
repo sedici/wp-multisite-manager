@@ -196,9 +196,9 @@ class Init{
 
 			. $this->print_screenshot('site_screenshot',get_the_ID()) .
 
-			"<span class='sites-portfolio-title' id='site-title'>" . get_the_title() . "</span>	
+			"<span class='site-title'>" . get_the_title() . "</span>	
 			<br>
-			<span class='sites-portfolio-title' id='site-desc'> Descripción: </span>
+			<span class='site-desc'> Descripción: </span>
 			<p>" . print_description() .
 
 			"</p></div>";
@@ -243,7 +243,7 @@ class Init{
 	function procesar_request_modal() {
 
 		$args = array(
-			'p'         => $_POST['box_id'], // ID of a page, post, or custom type
+			'id'         => $_POST['box_id'], // ID of a page, post, or custom type
 			'post_type' => 'cpt-sitios',
 			'post_status' => array('publish', 'pending', 'draft', 'future', 'private', 'inherit'),
 		  );
