@@ -6,6 +6,8 @@
 
     <h1 class='modal-title'> <?php echo $data->site_title;?> </h1>	
 
+    <hr>
+
     <div class="modal-box">
 
         <div class="modal-img">
