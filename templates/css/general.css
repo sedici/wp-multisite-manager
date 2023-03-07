@@ -8,8 +8,8 @@
     grid-template-columns: 33% 33% 33%;
 
     width: 100%;
-    grid-column-gap: 10px;
-    grid-row-gap: 20px;
+    grid-column-gap: 25px;
+    grid-row-gap: 25px;
 
     font-family:'Times New Roman';
 }
@@ -17,7 +17,7 @@
 .sites-portfolio-box{
     text-align: left;
     padding: 2vh;
-    border: solid 1px rgb(218, 180, 180); 
+    border: solid 1px rgb(185, 180, 180); 
     border-radius: 15px;
     height: 100%;
     width: 100%;
@@ -25,8 +25,11 @@
 }
 
 .sites-portfolio-box:hover{
+    transform: scale(1.05);
+    border: solid 2px rgb(194, 186, 186); 
     cursor: pointer;
 }
+
 
 .sites-portfolio-img{
     object-fit:fill; 
@@ -156,6 +159,7 @@
   height: 25px;
   width: 25px;
   background-color: #bbb;
+  border: solid 2px #9c9696;
   border-radius: 50%;
   display: inline-block;
   position: inherit;
@@ -165,7 +169,7 @@
 
 .dot:hover{
     cursor: pointer;
-
+    transform: scale(1.1);
 }
 
 .modal-title{
