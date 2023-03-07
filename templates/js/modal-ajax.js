@@ -6,10 +6,7 @@
 	$(document).on('click','.cta',function(e){
 	 	e.preventDefault();
 
-		id = e.target.parentElement.parentElement.id; /* Obtengo el id de la box que tengo que enviarle al server */
-
-		if (id == "") console.log('There is no screenshot to show');
-		else {
+		id = e.currentTarget.id; /* Obtengo el id de la box que tengo que enviarle al server */
 
 		the_url = imjs_vars.url;
 		
@@ -33,9 +30,7 @@
 
 		})
 
-		}
-
-	})		
+		})		
 
 })(jQuery);
 

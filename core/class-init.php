@@ -218,9 +218,10 @@ class Init{
 
 		while ( $query->have_posts() ): $query->the_post();
 		$content = $content.	
-			"<div class='sites-portfolio-box cta'
+			"<div class='cta' id='" . get_the_ID() . "'>
+			<div class='sites-portfolio-box'
 					style='background-color:" . $parameters['box_color'] ."' 
-			id='" . get_the_ID() . "'>"
+			>"
 
 			. $this->print_screenshot(get_the_ID(),'site_screenshot') .
 
@@ -229,7 +230,7 @@ class Init{
 			<span class='site-desc'> </span>
 			<p>" . print_description() .
 
-			"</p></div>";
+			"</p></div></div>";
 	
          endwhile;
 
