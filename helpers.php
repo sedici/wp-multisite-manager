@@ -6,7 +6,7 @@ function print_description(){
             return get_post_meta(get_the_ID(),'site_description',true);
     }	
     else{
-        return "<span style='color:red;font-weight:bold'> No hay descripción </span>";
+        return "<span> No hay descripción </span>";
     }
 }
 
