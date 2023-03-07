@@ -22,8 +22,6 @@
 			},
 			success: function(response){
 			    console.log('Data sent');
-
-				jQuery('body').prepend("<div class='black-screen'> <div>");
 				
 				jQuery('body').append(response);
 				jQuery('.modal').show();
@@ -46,7 +44,6 @@
 	// e es informacion sobre el evento
 	$(document).on('click','.modal-close',function(e){
 	 	e.preventDefault();
-		id_close = e.target.parentElement.parentElement.parentElement; 
-		id_close.remove();
+		$(".modal-container").remove();
 	})
 })(jQuery);

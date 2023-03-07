@@ -224,16 +224,17 @@ class Init{
 
 			. $this->print_screenshot(get_the_ID(),'site_screenshot') .
 
-			"<span class='sites-portfolio-title' id='site-title'>" . get_the_title() . "</span>	
+			"<span class='site-title'>" . get_the_title() . "</span>	
 			<br>
-			<span class='sites-portfolio-title' id='site-desc'> Descripción: </span>
+			<span class='site-desc'> Descripción: </span>
 			<p>" . print_description() .
 
 			"</p></div>";
 	
          endwhile;
 
-		echo "</div>";
+		$content = $content. "</div>";
+
         wp_reset_postdata();
 		return $content;
 	}
@@ -268,10 +269,6 @@ class Init{
 
 	/* Esta funcion imprime el modal del portfolio de sitios enviandole a js (modal-ajax) un html con la info. de un sitio ya cargada */
 	function procesar_request_modal() {
-		/* Verifica la request de ajax, para prevenir procesar request externas */
-		/* Deberia devolver el valor 1 o 2, cualquier otra cosa esta mal */
-		/* $valor = check_ajax_referer( 'mi_req_123', 'nonce', false); */
-		/* Deberia checkear $valor */
 
 		$args = array(
 			'p'         => $_POST['box_id'], // ID of a page, post, or custom type
@@ -291,9 +288,12 @@ class Init{
 			$template_data = [
 				'site_title' => get_the_title(),
 				'site_description' => print_description(),
-				'site_screenshot' => $this->print_screenshot(get_the_ID(),'site_screenshot'),
-				'site_URL' => '',
+				'site_screenshot' => $this->print_screenshot(get_the_ID(),'modal-img-elem'),
+				'site_URL' => get_post_meta($args['p'],'site_url',true),
+				'site_fecha_creacion' => get_post_meta($args['p'],'site_creation_date',true),
 			];
+
+
 
 			$templateLoader = Inc\My_Template_Loader::getInstance();
 
@@ -302,10 +302,8 @@ class Init{
 
 			$templateLoader->unset_template_data();
 
-			die();
 			
 		}
-		else console.log('No hay posts con el id indicado');
 
 	}
 	
