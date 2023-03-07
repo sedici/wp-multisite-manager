@@ -255,11 +255,7 @@ class Init{
 		 } 
 		}
 		else{
-<<<<<<< HEAD
-			return "<span> No hay screenshot </p>";
-=======
 			return "<span style='font-weight:bold'> No hay screenshot </span>";
->>>>>>> development
 		}
 	}
 
