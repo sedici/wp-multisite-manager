@@ -94,7 +94,7 @@
   }
 
   .swiper-button-prev{
-    margin-right: 20px;
+    margin-right: 10px;
   }
 
   .swiper-button-next{
@@ -102,7 +102,7 @@
   }
 
 .carrousel-box{
-
+    width: 90%;
     display: grid;
     grid-template-columns: 80%;
     row-gap: 10px;
@@ -111,6 +111,11 @@
     align-items: center;
     justify-content: center;
 }
+
+.carrousel-box:hover{
+    transform: scale(1.05);
+}
+
 
 .carrousel-title{
     font-weight: bold;

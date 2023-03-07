@@ -358,7 +358,7 @@ class Init{
 
 		'<div class="swiper-slide">
 
-			<div class="carrousel-box" id='. get_the_ID() . '>
+			<div class="carrousel-box cta" id='. get_the_ID() . '>
 
 				<div class="carrousel-title" > ' .
 					get_the_title() . '
