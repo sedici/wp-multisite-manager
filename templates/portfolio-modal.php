@@ -15,7 +15,7 @@
         <div class="modal-data">
 
             <span class='sites-portfolio-title'> Fecha de creacion: 
-                <p class='modal-data-text'> <?php echo $data->site_fecha_creacion; ?> </p>
+                <span class='modal-data-text'> <?php echo $data->site_fecha_creacion; ?> </span>
             </span> 
 
             <span class='sites-portfolio-title'> URL: 

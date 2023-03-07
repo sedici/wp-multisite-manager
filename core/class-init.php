@@ -210,7 +210,7 @@ class Init{
 		$args = array(
             'post_type' => 'cpt-sitios',
             'posts_per_page' => -1,
-			'post_status' => array('publish', 'pending', 'draft', 'future', 'private', 'inherit'),
+			'post_status' => 'publish',
         );
 
         $query = new \WP_Query($args);
@@ -226,7 +226,7 @@ class Init{
 
 			"<span class='site-title'>" . get_the_title() . "</span>	
 			<br>
-			<span class='site-desc'> Descripción: </span>
+			<span class='site-desc'> </span>
 			<p>" . print_description() .
 
 			"</p></div>";
@@ -339,7 +339,7 @@ class Init{
 		$args = array(
             'post_type' => 'cpt-sitios',
             'posts_per_page' => -1,
-			'post_status' => array('publish', 'pending', 'draft', 'future', 'private', 'inherit'),
+			'post_status' => 'publish'
         );
         $query = new \WP_Query($args);
 

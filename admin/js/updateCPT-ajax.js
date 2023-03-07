@@ -15,8 +15,13 @@
 			    $('#update-result').html('Sitios recuperados correctamente');
                 $('#update-result').css("color", "green");
                 console.log(resultado);
+			},
+			error: function(resu){
+				$('#update-result').html('No se pudieron recuperar los sitios correctamente');
+				$('#update-result').css("color", "red");
 
-			}
+
+			},
 
 		});
 

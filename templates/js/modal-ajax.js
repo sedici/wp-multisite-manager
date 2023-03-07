@@ -43,7 +43,7 @@
 (function($){
 	// e es informacion sobre el evento
 	$(document).on('click','.modal-close',function(e){
-	 	e.preventDefault();
 		$(".modal-container").remove();
 	})
+
 })(jQuery);

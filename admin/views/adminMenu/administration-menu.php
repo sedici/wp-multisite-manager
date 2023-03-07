@@ -5,7 +5,9 @@
 		dentro de una red de Multisitio. </p>
 
         <h2> Actualizar información de los CPT de sitios </h2>
-        <button id='update-cpt-button' > Actualizar </button> <br></br>
+        <button id='update-cpt-button' > Actualizar </button> 
+        <p style="font-style:italic"> *Los CPT creados con este botón, seran puestos en un estado de "Pendiente", es necesario ir manualmente a publicarlo. 
+        <br></br>
        
        <?php $this->print_sites_count(); ?>
         <p id='update-result'></p>
