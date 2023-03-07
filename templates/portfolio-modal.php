@@ -2,7 +2,7 @@
 
     <div class='modal-main-box'>
     <div class="modal-header">
-        <div class='modal-close dot'> <p>X</p> </div> 
+         <button class='modal-close dot'>X</button> 
 
         <h1 class='modal-title'> <?php echo $data->site_title;?> </h1>	
     </div>
