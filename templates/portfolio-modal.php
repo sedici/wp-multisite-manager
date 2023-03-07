@@ -4,17 +4,8 @@
     <div class="modal-header">
          <button class='modal-close dot'>X</button> 
 
-<<<<<<< HEAD
-    <div class='modal-close dot'> <p>X</p> </div> 
-
-    <h1 class='modal-title'> <?php echo $data->site_title;?> </h1>	
-
-    <hr>
-
-=======
         <h1 class='modal-title'> <?php echo $data->site_title;?> </h1>	
     </div>
->>>>>>> development
     <div class="modal-box">
 
         <div class="modal-img">
