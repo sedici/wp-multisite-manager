@@ -367,7 +367,7 @@ class Init{
 				$this->print_screenshot(get_the_ID(),'carrousel-image') .
 			
 				'<div class="carrousel-description">
-					<p >' .	print_description() . '</p>
+					<p >' .	print_description(true) . '</p>
 				</div>
 			</div>
 		</div>';

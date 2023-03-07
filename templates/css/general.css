@@ -2,14 +2,18 @@
 /* ============================ CSS Para vista de Portafolio ============================= */
 
 .sites-portfolio{
-    background-color:rgb(255, 255, 255);
-    margin: auto;
+
     display: grid;
     grid-template-columns: 33% 33% 33%;
-
-    width: 100%;
     grid-column-gap: 25px;
     grid-row-gap: 25px;
+       
+    margin: auto;
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+
+    width: 100%;
+    background-color:rgb(255, 255, 255);
 
 }
 
@@ -70,10 +74,17 @@
     font-weight:bold
 }
 
+
+/* ============================ CSS Para Carrousel ============================= */
+
+
 .swiper{
     width: 100%;
     height: 350px;
+
     margin-top: 10vh;
+    margin-bottom: 10vh;
+
     border: solid 3px black;
     border-radius: 10px;
 
@@ -82,14 +93,25 @@
 
   }
 
+  .swiper-button-prev{
+    margin-right: 20px;
+  }
+
+  .swiper-button-next{
+    margin-left: 10px;
+  }
+
 .carrousel-box{
-    text-align: center;
-    align-items: center;
+
     display: grid;
     grid-template-columns: 80%;
-    justify-content: center;
     row-gap: 10px;
+
+    text-align: center;
+    align-items: center;
+    justify-content: center;
 }
+
 .carrousel-title{
     font-weight: bold;
     text-align: center;
@@ -97,13 +119,14 @@
 }
 
 .carrousel-image{
-    max-width: 100%;
+    max-width: 90%;
     border: solid 5px rgb(188, 179, 179);
     border-radius: 3px;
     align-items: center;
     align-content: center;
 }
-/* CSS Para Modal */
+
+/* ============================ CSS Para Modal ============================= */
 
 .modal-container{
     opacity: 2;
@@ -203,7 +226,7 @@
 .modal-img-elem{
     width: 100%;
     border: solid 3px black;
-    border-radius: 5px;
+    border-radius: 10px;
 
 
 }
