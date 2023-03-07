@@ -24,6 +24,10 @@
     overflow:scroll;
 }
 
+.sites-portfolio-box:hover{
+    cursor: pointer;
+}
+
 .sites-portfolio-img{
     object-fit:fill; 
     border: solid 1px;
