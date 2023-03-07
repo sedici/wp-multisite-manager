@@ -6,6 +6,9 @@ require_once plugin_dir_path( __DIR__ ) . 'helpers.php';
 
 
     class Sites_table extends TablitaDemo\WP_List_Table{
+
+
+    // ---------------------- FUNCIONES ORIGINALES DE WP_LIST_TABLE ------------------------------------
         
         function __construct() {
             parent::__construct( array(
@@ -14,22 +17,6 @@ require_once plugin_dir_path( __DIR__ ) . 'helpers.php';
            'ajax'   => false //We won't support Ajax for this table
            ) );
          }
-
-         /**
-         * Agrega información arriba y abajo de la tabla
-         * @param string $which, es el que permite saber si agregamos la "marca" antes (bottom) o después (top) de la tabla
-         
-        * function extra_tablenav( $which ) {
-        *    if ( $which == "top" ){
-        *       //Código para agregar arriba de la tabla
-
-        *    }
-        *    if ( $which == "bottom" ){
-        *       //Código para agregar abajo de la tabla
-        *       echo "";
-        *    }
-        * }
-        */
 
          /**
          * Define las columnas de la tabla
@@ -70,13 +57,50 @@ require_once plugin_dir_path( __DIR__ ) . 'helpers.php';
             'creation'=>'creation',
             );
         }
+ 
+
+        public function prepare_items(){
+
+            // Obtengo todos los CPT de sitios
+            $items = $this->get_cpt_data();
+
+            // Si esta activo el filtro, elimino los posts que no tienen screenshot
+            $screenshot_filter = ( isset( $_GET['ss'] ) ) ? $_GET['ss'] : 'false';
+
+            if($screenshot_filter !== "false"){
+                $items =  array_filter($items,fn($post)=> (
+                                            $this->has_screenshot($post['ID']) == "Si")
+                                        );
+            }
+
+            // Ordeno los items
+            $items = $this->order_items($items);
+
+            // Pagino los items
+            $this->paginate_items($items);
+        }
+
+        public function column_default( $item, $column_name ) {		
+            switch ( $column_name ) {			
+                case 'post_title':  
+                case 'description':
+                case 'url':
+                case 'creation':
+                case 'post_ID':
+                    return $item[$column_name];
+                default:
+                  return $item[$column_name];
+            }
+        }
+
+    // ---------------------- FUNCIONES PROPIAS de esta clase ------------------------------------
+
       
-
+        /**  Obtiene todos los CPT de sitios.
+         * 
+         * @return array , devuelve un array donde cada elemento es un array que representa a un CPT de sitios
+         */
         public function get_cpt_data(){
-
-            // Agarro el campo según el que ordenar, y si es ascendente o descendente
-            $orderby = ( isset( $_GET['orderby'] ) ) ? esc_sql( $_GET['orderby'] ) : 'post_title';
-            $order = ( isset( $_GET['order'] ) ) ? esc_sql( $_GET['order'] ) : 'ASC';
 
             $args = array(
                 'post_type' => 'cpt-sitios',
@@ -95,34 +119,73 @@ require_once plugin_dir_path( __DIR__ ) . 'helpers.php';
                                                 "screenshot"=>$this->has_screenshot($post->ID)
                                             ]
                                         ), $query->get_posts() );
-
-            // Si esta activo el filtro, elimino los posts que no tienen screenshot
-            $screenshot_filter = ( isset( $_GET['ss'] ) ) ? $_GET['ss'] : 'false';
-            if($screenshot_filter !== "false"){
-              $result =  array_filter($result,fn($post)=> ($this->has_screenshot($post['ID']) == "Si")
-
-            );
-            }
-
-            $key = array_column($result, $orderby);
-                                                                                
-            if($order == "desc"){
-                array_multisort($key, SORT_DESC, $result);
-            }
-            else{
-                array_multisort($key, SORT_ASC, $result);
-            }
-          
             return $result;
-
         }
 
-        
+            
+         /**  Encargada de paginar los CPT de sitios que ya recuperamos
+         * 
+         * @param array $items, es un array de CPT de sitios.
+         * 
+         * @return array , devuelve solo los datos a mostrar según la página que estemos
+         */
+        private function paginate_items($items){
+            $sites_per_page = 10;
+
+            $table_page = $this->get_pagenum();
+
+            // Dividimos manualmente el array para obtenerlo paginado
+
+
+            $this->items = array_slice( $items, ( ( $table_page - 1 ) * $sites_per_page ), $sites_per_page );
+
+	        // set the pagination arguments		
+	        $total_sites = count( $items );
+	        $this->set_pagination_args( array (
+		                                        'total_items' => $total_sites,
+		                                        'per_page'    => $sites_per_page,
+		                                        'total_pages' => ceil( $total_sites/$sites_per_page )
+	                                    ) );
+            return $items;
+        }
+
+
+        /**  Ordena los items de un arreglo según los criterios dados.
+         * 
+         * @param array $items, es un array de CPT de sitios.
+         * 
+         * @return array , devuelve el mismo array que recibe como parámetro, pero ordenado
+         */
+        function order_items($items){
+
+            // Obtengo el campo según el que ordenar, y si es ascendente o descendente
+            $orderby = ( isset( $_GET['orderby'] ) ) ? esc_sql( $_GET['orderby'] ) : 'post_title';
+            $order = ( isset( $_GET['order'] ) ) ? esc_sql( $_GET['order'] ) : 'ASC';
+   
+            $key = array_column($items, $orderby);
+                                                                                
+            if($order == "desc"){
+                array_multisort($key, SORT_DESC, $items);
+            }
+            else{
+                array_multisort($key, SORT_ASC, $items);
+            }
+
+            return $items;
+        }
+
 
         function get_image($post_id,$field){
             return get_post_meta($post_id, $field,true);
         }
 
+
+        /**  En base a un id de post, si es posible obtiene su imagen e indica si tiene o no.
+         * 
+         * @param integer $post_id , es el ID de un Custom Post Type de sitios.
+         * 
+         * @return string "Si" o "No", indica si el post tiene screenshot o no 
+         */
         public function has_screenshot($post_id){
             if(get_post_meta($post_id,'site_screenshot') and (!empty(get_post_meta($post_id,'site_screenshot')[0]) ))
             {
@@ -136,24 +199,9 @@ require_once plugin_dir_path( __DIR__ ) . 'helpers.php';
             }
         }
 
-        public function prepare_items(){
 
-            $this->items = $this->get_cpt_data();
-     
-        }
 
-        public function column_default( $item, $column_name ) {		
-            switch ( $column_name ) {			
-                case 'post_title':  
-                case 'description':
-                case 'url':
-                case 'creation':
-                case 'post_ID':
-                    return $item[$column_name];
-                default:
-                  return $item[$column_name];
-            }
-        }
+       
 
 
 }

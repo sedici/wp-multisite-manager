@@ -8,8 +8,8 @@
     grid-template-columns: 33% 33% 33%;
 
     width: 100%;
-    grid-column-gap: 10px;
-    grid-row-gap: 20px;
+    grid-column-gap: 25px;
+    grid-row-gap: 25px;
 
     font-family:'Times New Roman';
 }
@@ -17,12 +17,19 @@
 .sites-portfolio-box{
     text-align: left;
     padding: 2vh;
-    border: solid 1px rgb(218, 180, 180); 
-    border-radius: 5px;
+    border: solid 1px rgb(185, 180, 180); 
+    border-radius: 15px;
     height: 100%;
     width: 100%;
     overflow:scroll;
 }
+
+.sites-portfolio-box:hover{
+    transform: scale(1.05);
+    border: solid 2px rgb(194, 186, 186); 
+    cursor: pointer;
+}
+
 
 .sites-portfolio-img{
     object-fit:fill; 
@@ -32,8 +39,13 @@
     margin-bottom: 5%;
 }
 
+.site_screenshot{
+    border: solid 2px rgb(201, 198, 198);
+    border-radius: 15px;
+}
+
 .site-title{
-    font-size:xx-large;
+    font-size:x-large;
 
     font-weight: bold;
 
@@ -57,7 +69,40 @@
     font-weight:bold
 }
 
-/* ========================= CSS Para modal =================================== */
+.swiper{
+    width: 100%;
+    height: 350px;
+    margin-top: 10vh;
+    border: solid 3px black;
+    border-radius: 10px;
+
+    display: flex;
+    align-items: center;
+
+  }
+
+.carrousel-box{
+    text-align: center;
+    align-items: center;
+    display: grid;
+    grid-template-columns: 80%;
+    justify-content: center;
+    row-gap: 10px;
+}
+.carrousel-title{
+    font-weight: bold;
+    text-align: center;
+    font-size: large;
+}
+
+.carrousel-image{
+    max-width: 100%;
+    border: solid 5px rgb(188, 179, 179);
+    border-radius: 3px;
+    align-items: center;
+    align-content: center;
+}
+/* CSS Para Modal */
 
 .modal-container{
     opacity: 2;
@@ -70,6 +115,8 @@
     height: auto;
     z-index: 105;
 
+
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -77,8 +124,7 @@
 
 }
 
-.modal-main-box {
-    
+.modal-main-box{
     background: #ede6e6;
     width: 70%;
     height: 500px;
@@ -87,6 +133,12 @@
     grid-template-columns: 90%;
     align-items: center;
     justify-content: center;
+
+    border: solid 1px black;
+    border-radius: 15px;
+
+    padding-top: 20px;
+    padding-bottom: 35px;
 }
 
 
@@ -98,12 +150,26 @@
     
 }
 
+.modal-header{
+    display: grid;
+    grid-template-columns:20% 60% ;
+}
+
 .dot {
   height: 25px;
   width: 25px;
   background-color: #bbb;
+  border: solid 2px #9c9696;
   border-radius: 50%;
   display: inline-block;
+  position: inherit;
+  font-weight: bold;
+  text-align: center;
+}
+
+.dot:hover{
+    cursor: pointer;
+    transform: scale(1.1);
 }
 
 .modal-title{
@@ -116,7 +182,7 @@
 
 .modal-box{
     display: grid;
-    grid-template-columns: 70% 30%;
+    grid-template-columns: 60% 40%;
     height: 100%;
     width: 100%;
     align-items: center;
@@ -126,11 +192,16 @@
 /* ============================= Modal Box ================================== */
 
 .modal-img{
-    width: 90%;
+    width: 70%;
     border-radius: 5px;
     object-fit: contain;
     border: solid 3px black;
     border-radius: 5px;
+
+}
+
+.modal-img-elem{
+    width: 100%;
 
 }
 
@@ -173,6 +244,11 @@
         width: 100%;
     }
 
+    .carrousel-image{
+        max-width: 80%;
+    }
+    
+
 }
 
 @media only screen and (max-width: 600px) {
@@ -182,6 +258,12 @@
         grid-template-columns: 100%;
         width: 100%;
     }
+    .swiper{
+        align-items: center;
+        display: grid;
+        grid-template-columns: 100%;
+    }
 
+      
 
 }

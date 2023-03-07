@@ -1,29 +1,61 @@
     .header-container{
-        height: 8vh;
+        height: 70px  ;
+        position: relative;
         margin-top: 0%;
         display:grid;
         grid-template-columns: 50% 50%;
+        object-fit: contain;
+
+        top:0;
+        left:0;
+        right: 0;
+        
     }
+
+    body {
+        position: relative;
+        min-height: 100vh!important;
+      }
 
     .header-col1 {
         float: left;
+        display: flex;
+        text-align: center;
+        align-content: center;
     }
 
     .header-title{
-        margin-left: 5vh;
+        font-size: xx-large;
+        align-items: center;
+        margin-top: auto;
+        margin-left: 20px;
+        margin-bottom: auto;
+        font-weight: 600;
+        text-decoration: none;
+
+    }
+
+    .header-title:hover{
+        transform: scale(1.03);
     }
 
     .header-col2{
         display: flex;
-        justify-content: end;
+        justify-content: center;
+        align-items: center;
         margin-right: 1vw;
         margin-bottom: 1vh;
+        margin-top: 1vh;
+
+        gap: 20px;
+
     }
 
     .header-image{
-        max-height:7vh;
+        max-height:50px;
         object-fit: contain;
-       
+        justify-content: center;
+        align-items: center;
     }
 
 
@@ -35,21 +67,36 @@
     /* FOOOTER CSS */
 
     .footer-container{
+
+        width: 100%;
+        height: 130px;
+
         display:grid;
         grid-template-columns: 40% 20% 40%;
+        padding-top: 10px;
+        clear: both;
+        
+        overflow: hidden;
+
+        position: relative;
+        bottom:0;
+        left:0;
+        right: 0;
+        
+    
+    
     }
 
     .footer_column {
-        height:20vh;
+        height:inherit ;
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        
+        padding-bottom: 20px;
     }
 
     .footer_row:after {
-
         content: "";
         display: table;
         clear: both;
@@ -72,9 +119,9 @@
     .footer-title{
         font-family: inherit;
         font-style: inherit;
-
-
-        font-size: 23px;
+        text-align: center;
+        text-justify: inter-word;
+        font-size: 16px;
         font-weight: 600;
     }
 
@@ -85,11 +132,17 @@
     }
 
     .footer-image{
-        display:block;
         max-width: 50%;
-        max-height: 15vh;
-        margin-left: auto;
-        margin-right: auto;
+        max-height: 10vh;
+        align-self: flex-start;
+    }
+
+    .footer-image-container{
+        display: flex;
+        flex-direction: row;
+        column-gap: 10px;
+        align-items: center;
+
     }
 
 
@@ -103,8 +156,7 @@
         }
 
         .header-image{
-            max-height:100%; 
-            max-width: 100%;
+            max-height:50px; 
             object-fit: contain;
            
         }

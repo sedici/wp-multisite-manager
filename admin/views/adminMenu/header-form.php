@@ -20,27 +20,46 @@
         <input type="text" name="title_text" value="<?php echo esc_attr( get_site_option('title_text') ); ?>" >
     </div>
 
-    
+    <div id="images-container">
 
     <div class="general-form-field">
     <h2 class="filds-titles"> <?php _e("Enlace del texto"); ?> </h2>
     <input name="title_link" type="text" value="<?php echo esc_attr( get_site_option('title_link') ); ?>"  >
     </div>
 
-    <hr>
+    <hr> 
 
-    <div class="general-form-field">
-        <h2 class="filds-titles"> <?php _e("Imagen"); ?> </h2>
-        <input type="file" name="image" value="" >
+    <h1 class="section-heading"> <?php _e("Sección de imágenes a mostrar en el header") ?></h1>
+    <br></br>
+    <h2 style="font-size:x-large"> Editar imágenes actuales </h2>
+    <?php $this->print_option_images('header_images'); ?>
+
+    <br></br>
+
+    <h2 style="font-size:x-large"> Agregar imágenes al Header </h2>
+    <div class="general-form-field image-row">
+        <div>
+            <h2 class="filds-titles"> <?php _e("Subir imagen"); ?> </h2>
+            <input type="file" name="image" >
+        </div>
+        <div>
+            <h2 class="filds-titles"> <?php _e("Link asociado a la imagen"); ?> </h2>
+            <input type="url" name="image_link" >
+        </div>
     </div>
 
-    
+</div>
 
-    <div class="general-form-field">
-        <h2 class="filds-titles"> <?php _e("Enlace de la imagen"); ?> </h2>
-        <input type="url" name="image_link" value="<?php echo esc_attr( get_site_option('image_link') ); ?>" >
-    </div>
+<div class="button-containers"">
 
+    <button id="add-img-input" type="button" class="add-btn" value=1 > Agregar imagen </button>
+    <button id="delete-img-input" type="button" class="delete-btn" value=0 > Eliminar imagen </button>
+
+</div>
+
+
+<hr>
+    <h1 class="section-heading"> <?php _e("Sección de CSS") ?></h1>
 
     <div class="general-form-field">
         <h2 class="filds-titles"> <?php _e("CSS del header"); ?> </h2>
