@@ -28,7 +28,7 @@
 }
 
 .sites-portfolio-box:hover{
-    transform: scale(1.05);
+    transform: scale(1.02);
     border: solid 2px rgb(194, 186, 186); 
     cursor: pointer;
 }
@@ -40,6 +40,7 @@
     width:200%;
     height:200%;  
     margin-bottom: 5%;
+
 }
 
 .site_screenshot{
@@ -101,10 +102,15 @@
     margin-left: 10px;
   }
 
+  .swiper-slide{
+    display: flex;
+    justify-content: center;
+  }
+
 .carrousel-box{
-    width: 90%;
+    width: 80%;
     display: grid;
-    grid-template-columns: 80%;
+    grid-template-columns: 90%;
     row-gap: 10px;
 
     text-align: center;
@@ -124,11 +130,13 @@
 }
 
 .carrousel-image{
-    max-width: 90%;
+    max-width: 100%;
     border: solid 5px rgb(188, 179, 179);
     border-radius: 3px;
     align-items: center;
     align-content: center;
+    cursor: pointer;
+
 }
 
 /* ============================ CSS Para Modal ============================= */

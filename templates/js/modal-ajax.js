@@ -31,14 +31,11 @@
 		})
 
 		})		
-
-})(jQuery);
-
-/* Esta funciona maneja el cierre del modal cuando se clickea en el elemento modal-close */
-(function($){
-	// e es informacion sobre el evento
-	$(document).on('click','.modal-close',function(e){
-		$(".modal-container").remove();
-	})
-
+			/* Esta funciona maneja el cierre del modal cuando se clickea en el elemento modal-close */
+			// e es informacion sobre el evento
+			$(document).on('click','.modal-close',function(e){
+				$(".modal-container").remove();
+			})
+		
+		
 })(jQuery);

@@ -358,15 +358,15 @@ class Init{
 
 		'<div class="swiper-slide">
 
-			<div class="carrousel-box cta" id='. get_the_ID() . '>
+			<div class="carrousel-box " >
 
 				<div class="carrousel-title" > ' .
 					get_the_title() . '
-				</div>'.
-				
+				</div>
+				<div class="cta" id='. get_the_ID() . '>'. 
 				$this->print_screenshot(get_the_ID(),'carrousel-image') .
 			
-				'<div class="carrousel-description">
+				'</div><div class="carrousel-description">
 					<p >' .	print_description(true) . '</p>
 				</div>
 			</div>
@@ -376,10 +376,12 @@ class Init{
 		endwhile;
 		$content = $content .  '</div>
 				<div class="swiper-pagination"></div>
-					<div class="swiper-button-prev" ></div>
-					<div class="swiper-button-next" ></div>
+				
+			<div class="swiper-button-prev" ></div>
+			<div class="swiper-button-next" ></div>
+				</div>
 
-			</div>
+
 		';
 		return $content;
     }
