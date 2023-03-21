@@ -258,6 +258,19 @@
     text-align: justify;
 }
 
+.show-more {
+    font-size:x-large;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.show-more:hover{
+    transform: scale(1.05);
+    border: solid 2px rgb(194, 186, 186); 
+    cursor: pointer;
+}
+
 /* =============================== Fin Modal data ============================== */
 
 /* =============================== Fin Modal box ============================== */
