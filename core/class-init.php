@@ -75,6 +75,13 @@ class Init{
 		wp_enqueue_style("administrationStyle");
 	}
 
+
+	function insert_modal_js (){ 
+		wp_register_script('identify-modal',  MM\PLUGIN_NAME_URL . 'templates/js/modal-ajax.js', array('jquery'), '1', true );
+		wp_enqueue_script('identify-modal');	
+		wp_localize_script('identify-modal','imjs_vars',array('url'=>admin_url('admin-ajax.php')));
+	}
+
 	
 	# Register PUBLIC Styles and Scripts --------------------------------------------------------------------
 	
@@ -168,8 +175,10 @@ class Init{
 			que sera usado en el frontend */
 			add_action('wp_enqueue_scripts',array($this,'dynamic_view_js'));
 
-			add_action('wp_ajax_show_portfolio',array($this,'show_portfolio')  );
-			add_action( 'wp_ajax_nopriv_show_portfolio', array($this,'show_portfolio') );
+
+			add_action('wp_ajax_load_more',array($this,'load_more')  );
+			add_action( 'wp_ajax_nopriv_load_More', array($this,'load_more') );
+
 		}
 
 
@@ -227,7 +236,7 @@ class Init{
         );
 
         $query = new \WP_Query($args);
-		$vista_portfolio = "<div class='sites-portfolio' style='background-color:". $parameters['widget_color'] . "'>";
+		$vista_portfolio = "  <input type='hidden' id='portfolio-count' value=2 ><div class='sites-portfolio' style='background-color:". $parameters['widget_color'] . "'>";
 
 		$array_sitios = array(); /*En cada posicion se guarda una vista de post sitio */
 
@@ -257,12 +266,12 @@ class Init{
 			$i++;
         endwhile;
 
-		$tam_array = array_count_values($array_sitios);
+		$tam_array = count($array_sitios);
 
 		$i = 0; 
 		for( ; $i <= 2 ; $i++ ) $vista_portfolio = $vista_portfolio . $array_sitios[$i];
 
-		wp_localize_script('dynamic_addition','cd_vars',array('actual_pos'=>$i,'tam_max'=>$tam_array,'url'=>admin_url('admin-ajax.php'),));
+		wp_localize_script('dynamic_addition','cd_vars',array('tam_max'=>$tam_array,'box_color'=> $parameters['box_color'],'url'=>admin_url('admin-ajax.php'),));
 
 
 		$vista_portfolio = $vista_portfolio. "</div>"."<div class='show-more'><span>Mostrar más!</span></div>";
@@ -271,6 +280,49 @@ class Init{
 		return $vista_portfolio;
 	}
 
+	function load_more(){
+	
+		$args = array(
+            'post_type' => 'cpt-sitios',
+            'posts_per_page' => 3,
+			'post_status' => 'publish',
+			'paged' => $_POST['actual_count'],
+        );
+
+        $query = new \WP_Query($args);
+
+		$array_sitios = array(); /*En cada posicion se guarda una vista de post sitio */
+
+		/* Carga en un arreglo todos los post de sitios */
+		while ( $query->have_posts() ): $query->the_post();
+
+			$vista_unica_post_sitio = ""; /*Se guarda la vista de cada post sitio unico */
+
+			$vista_unica_post_sitio =
+				"<div class='cta' id='" . get_the_ID() . "'>
+				<div class='sites-portfolio-box'
+						style='background-color:" . $_POST['box_color'] ."' 
+				>"
+
+				. $this->print_screenshot(get_the_ID(),'site_screenshot') .
+
+				"<span class='site-title'>" . get_the_title() . "</span>	
+				<br>
+				<span class='site-desc'> </span>
+				<p>" . print_description() .
+
+				"</p></div></div>";
+		
+			array_push($array_sitios, $vista_unica_post_sitio);
+			
+        endwhile;
+
+        wp_reset_postdata();
+		foreach($array_sitios as $array){
+			echo $array;
+		}
+		return $array_sitios;
+	}
 
     function print_screenshot($post_id,$css_class){
 		if(get_post_meta(get_the_ID(),'site_screenshot') and (!empty(get_post_meta(get_the_ID(),'site_screenshot')[0]) ))
@@ -291,11 +343,6 @@ class Init{
 	}
 
 
-	function insert_modal_js (){ 
-		wp_register_script('identify-modal',  MM\PLUGIN_NAME_URL . 'templates/js/modal-ajax.js', array('jquery'), '1', true );
-		wp_enqueue_script('identify-modal');	
-		wp_localize_script('identify-modal','imjs_vars',array('url'=>admin_url('admin-ajax.php'),'nonce' => $title_nonce,));
-	}
 
 	/* Esta funcion imprime el modal del portfolio de sitios enviandole a js (modal-ajax) un html con la info. de un sitio ya cargada */
 	function procesar_request_modal() {

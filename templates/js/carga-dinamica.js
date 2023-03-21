@@ -6,20 +6,33 @@
     $(document).on('click','.show-more',function(e){
         e.preventDefault();
 
-        var posts_being_showed = cd_vars.num;
+		count = $("#portfolio-count").val();
+
+        var pagesCount = Math.ceil(cd_vars.tam_max / 3);
+
+		var box_color = cd_vars.box_color;
+
         var the_url = cd_vars.url;
+
+
         
         jQuery.ajax({
 			url : the_url,
             type: 'post',
 			data : {
-				res : 
+				actual_count: count,
+				box_color:box_color,
+				action: 'load_more'
 			},
 			success: function(response){
-			    console.log('Data sent');
-				
+				console.log(response);				
 				jQuery('body').append(response);
 				jQuery('.modal').show();
+				$("#portfolio-count").val(count + 1);
+
+				if(count + 1 > pagesCount){
+					$('.show-more').hide();
+				}
 			},
 
 			error : function(e){
@@ -35,4 +48,4 @@
 
     })
 
-})(jQuery);
+(jQuery);

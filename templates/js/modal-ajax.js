@@ -17,9 +17,7 @@
 				'box_id': id,
 				action: 'procesar_request_modal',
 			},
-			success: function(response){
-			    console.log('Data sent');
-				
+			success: function(response){				
 				jQuery('body').append(response);
 				jQuery('.modal').show();
 			},
