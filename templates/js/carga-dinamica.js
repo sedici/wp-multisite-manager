@@ -25,11 +25,8 @@
 				action: 'load_more'
 			},
 			success: function(response){
-				console.log(response);				
-				jQuery('body').append(response);
-				jQuery('.modal').show();
 				$("#portfolio-count").val(count + 1);
-
+				$(".sites-portfolio").append(response)
 				if(count + 1 > pagesCount){
 					$('.show-more').hide();
 				}

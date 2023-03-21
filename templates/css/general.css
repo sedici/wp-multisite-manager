@@ -15,6 +15,11 @@
     width: 100%;
     background-color:rgb(255, 255, 255);
 
+    border: solid 2px #bbb; 
+
+    padding: 10px;
+
+    align-items: center;
 }
 
 .sites-portfolio-box{
@@ -23,7 +28,7 @@
     border: solid 1px rgb(185, 180, 180); 
     border-radius: 15px;
     height: 100%;
-    width: 100%;
+    width: 90%;
     overflow:scroll;
 }
 
@@ -261,15 +266,23 @@
 }
 
 .show-more {
-    font-size:x-large;
+    font-size:large;
     font-weight: 700;
     text-align: center;
     margin-top: 10px;
+    background-color: rgb(73, 168, 232);
+    width: fit-content;
+    color: white;
+    font-weight: 600;
+    padding-left: 15px;
+    padding-right: 15px;
+
+    border: solid 2px rgb(73, 168, 232);
+    border-radius: 5px;
 }
 
 .show-more:hover{
     transform: scale(1.05);
-    border: solid 2px rgb(194, 186, 186); 
     cursor: pointer;
 }
 

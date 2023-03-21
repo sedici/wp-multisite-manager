@@ -274,7 +274,7 @@ class Init{
 		wp_localize_script('dynamic_addition','cd_vars',array('tam_max'=>$tam_array,'box_color'=> $parameters['box_color'],'url'=>admin_url('admin-ajax.php'),));
 
 
-		$vista_portfolio = $vista_portfolio. "</div>"."<div class='show-more'><span>Mostrar más!</span></div>";
+		$vista_portfolio = $vista_portfolio. "<div class='show-more'><span>Mostrar más!</span></div></div>";
 
         wp_reset_postdata();
 		return $vista_portfolio;
