@@ -321,7 +321,7 @@ class Init{
 		foreach($array_sitios as $array){
 			echo $array;
 		}
-		return $array_sitios;
+		exit();
 	}
 
     function print_screenshot($post_id,$css_class){
@@ -379,7 +379,7 @@ class Init{
 
 			$templateLoader->unset_template_data();
 
-			
+			exit();
 		}
 
 	}
