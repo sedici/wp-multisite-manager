@@ -83,6 +83,11 @@
     justify-content: center;
 }
 
+.area_texto {
+    width:400px;
+    height: 100px;
+}
+
 .button-containers{
     display: flex;
     gap:10px;
