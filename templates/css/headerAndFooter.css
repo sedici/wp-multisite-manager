@@ -170,3 +170,25 @@
             grid-template-columns: 100%;
         } 
       }
+
+
+      @media only screen and (max-width: 700px) {
+
+        .header-container{
+            display:grid;
+            grid-template-columns: 50% 50%; 
+            height: 200px;
+
+        }
+
+        .header-image{
+            max-height:50px; 
+            object-fit: contain;
+            margin-left: 0px;
+        }
+
+        .header-title{
+            margin-left: 10vw;;
+        }
+
+      }
