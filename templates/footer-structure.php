@@ -6,12 +6,12 @@
 
 
     <!-- FIRST COLUMN -->
-    <div class="contact-container footer_column">   
+    <div class="col1 contact-container footer_column">   
        <?php print_contacto(); ?>
     </div>
 
     <!-- SECOND COLUMN -->
-    <div class="col2 footer_column"> 
+    <div class="footer_column col2"> 
             <h1  class="footer-title">  
                 <a class="footer-title" href="<?php echo get_site_option('footer_text_link'); ?> "> <?php echo get_site_option('footer_text'); ?> </a>
             </h1>
@@ -21,7 +21,7 @@
     </div>
 
     <!-- THIRD COLUMN -->
-    <div class="footer_column footer-image-container">
+    <div class="col3 footer_column footer-image-container">
        <? echo $data->logos; ?>
        <br>
 

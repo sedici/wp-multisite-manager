@@ -94,9 +94,10 @@
     border: solid 3px black;
     border-radius: 10px;
 
-    display: flex;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
 
+    justify-content: center;
   }
 
   .swiper-button-prev{
@@ -143,6 +144,11 @@
     cursor: pointer;
 
 }
+
+.carrousel-description {
+    text-align: justify;
+}
+
 
 /* ============================ CSS Para Modal ============================= */
 
@@ -327,8 +333,9 @@
         align-items: center;
         display: grid;
         grid-template-columns: 100%;
+        width: 100%;
     }
 
-      
-
 }
+  
+
