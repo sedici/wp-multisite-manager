@@ -257,10 +257,11 @@ class Init{
 
 				"<span class='site-title'>" . get_the_title() . "</span>	
 				<br>
+				<div>
 				<span class='site-desc'> </span>
 				<p>" . print_description() .
 
-				"</p></div></div>";
+				"</p></div></div></div>";
 		
 			$array_sitios[$i] = $vista_unica_post_sitio;
 			$i++;

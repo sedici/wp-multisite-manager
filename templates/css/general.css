@@ -30,8 +30,8 @@
     border: solid 1px rgb(185, 180, 180); 
     border-radius: 15px;
 
-    height: 250px;
-    width: 250px;
+    height: 330px;
+    width: 280px;
     text-align: left;
 
     overflow:scroll;
@@ -55,17 +55,19 @@
 
 }
 
-.site_screenshot{
+div > img.site_screenshot {
+    height: 140px;
     border: solid 2px rgb(201, 198, 198);
     border-radius: 15px;
+    margin-bottom: 4px;
 }
 
 .site-title{
-    font-size: large;
+    font-size: 14px;
 
     font-weight: bold;
 
-    margin-bottom: 3%;
+    margin-bottom: 5%;
 
     width: fit-content;
 
@@ -75,6 +77,7 @@
 }
 
 .site-desc{
+
     font-size: medium;
 
     font-weight: 500;
@@ -86,6 +89,7 @@
     color: black;
 }
 
+
 .sites-empty-field{
     color:red;
     font-weight:bold
@@ -96,7 +100,7 @@
 
 
 .swiper{
-    width: 100%;
+    width: 900px;
     height: 350px;
 
     margin-top: 10vh;
@@ -116,16 +120,16 @@
   }
 
 .swiper-button-prev{
-margin-right: 20px;
+    margin-right: 20px;
 }
 
 .swiper-button-next{
-margin-left: 20px;
+    margin-left: 20px;
 }
 
 .swiper-slide{
-display: flex;
-justify-content: center;
+    display: flex;
+    justify-content: center;
 }
 
 .swiper-wrapper {
@@ -162,9 +166,10 @@ justify-content: center;
     font-size: large;
 }
 
-.carrousel-image{
+div > img.carrousel-image{
     max-width: 100%;
-    border: solid 5px rgb(188, 179, 179);
+    height: 140px;
+    border: solid 2px rgb(188, 179, 179);
     border-radius: 3px;
     align-items: center;
     align-content: center;
@@ -192,21 +197,23 @@ justify-content: center;
     z-index: 105;
 
 
-
     display: flex;
     justify-content: center;
     align-items: center;
-    
-
 }
 
 .modal-main-box{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    column-gap: 15px;
+
+
     background: #ede6e6;
     width: 70%;
-    height: 500px;
+    height: 480px;
     text-align: center;
-    display: grid;
-    grid-template-columns: 90%;
+
     align-items: center;
     justify-content: center;
 
@@ -217,30 +224,62 @@ justify-content: center;
     padding-bottom: 35px;
 }
 
-
-.modal-close {
-    size: 30px;
-    position: absolute;
-    top: 16.5%;
-    right: 16%;
-    
+.modal-columna1 {
+   max-height: 100%;
+   height: 100%;
+   display:grid;
+   grid-template-rows: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
 }
 
-.modal-header{
+.modal-columna2 {
+    display: grid; 
+    grid-column: 2;
+    grid-template-rows: 25% 75%;
+    row-gap: 39px;
+}
+
+
+.modal-img{
+    grid-row: 4;
+    
+
+    margin-left: 15px;
+
+    max-width: 100%;
+    height: inherit;
+    max-height: inherit;
+    border-radius: 5px;
+}
+
+.modal-img-elem {
+    width: 100%;
+    height: inherit;
+    max-height: inherit;
+    border: solid 3px black;
+    border-radius: 10px;
+}
+
+#modal-header {
     display: grid;
-    grid-template-columns:20% 60% ;
+    grid-template-columns: 90% 10%;
+}
+
+
+.modal-close {
+    grid-column: 2;
+    size: 30px;
 }
 
 .dot {
-  height: 25px;
-  width: 25px;
-  background-color: #bbb;
-  border: solid 2px #9c9696;
-  border-radius: 50%;
-  display: inline-block;
-  position: inherit;
-  font-weight: bold;
-  text-align: center;
+    height: 30px;
+    width: 30px;
+    background-color: #bbb;
+    border: solid 2px #9c9696;
+    border-radius: 50%;
+    display: inline-block;
+    position: inherit;
+    font-weight: bold;
+    text-align: center;
 }
 
 .dot:hover{
@@ -249,58 +288,29 @@ justify-content: center;
 }
 
 .modal-title{
-    display: block;
+    grid-column: 1;
+    margin: 5px;
+
+    display: flex;
+    justify-content: center;
     font-weight: bold;
-    font-size:45px;
-    align-self: left;
-    
-}
-
-.modal-box{
-    margin-top: 25px;
-    display: grid;
-    grid-template-columns: 50% 50%;
-    height: 100%;
-    width: 100%;
-    align-items: center;
-    column-gap: 60px;
-}
-
-/* ============================= Modal Box ================================== */
-
-.modal-img{
-    width: 100%;
-    object-fit: contain;
-    border-radius: 5px;
-    height: 100%;
-}
-
-.modal-img-elem{
-    width: 100%;
-    border: solid 3px black;
-    border-radius: 10px;
-
-
+    font-size:20px;
 }
 
 /* ======================= Modal Data =================================== */
 
-.modal-data{
+.modal-data {
     display:grid;
-    grid-template-columns: auto;
-    row-gap: 5px;
+    grid-template-rows: 1fr 1fr 1fr;
+    row-gap: 3px;
+
     height: 100%;
     justify-content:left;
-    align-content: baseline;
 }
 
-.sites-portfolio-title{
+.modal-subtitle{
     font-size: medium;
-
     font-weight: bold;
-
-    margin-bottom: 3%;
-
     width: fit-content;
 }
 
@@ -308,6 +318,12 @@ justify-content: center;
     font-weight: lighter;
     font-size:small;
     text-align: justify;
+}
+
+p.modal-data-text {
+    overflow: scroll;
+    width: 400px;
+    height: 170px;
 }
 
 .show-more {
@@ -332,9 +348,6 @@ justify-content: center;
 }
 
 /* =============================== Fin Modal data ============================== */
-
-/* =============================== Fin Modal box ============================== */
-
 
 @media only screen and (max-width: 959px) {
     .sites-portfolio{
