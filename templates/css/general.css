@@ -239,8 +239,9 @@ div > img.carrousel-image{
 }
 
 .modal-img-elem {
-    max-width: 400px;
-    height: 300px;
+    max-width: 450px;
+    height: 410px;
+
     
 
     border: solid 3px black;
