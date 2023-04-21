@@ -3,9 +3,7 @@
     <div class='modal-main-box'>
 
         <div class="modal-columna1">
-            <div class="modal-img">
-                <?php echo $data->site_screenshot ?>
-            </div>
+            <?php echo $data->site_screenshot ?>
         </div>  
 
         
