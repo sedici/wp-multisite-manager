@@ -89,8 +89,8 @@ class Init{
 		$js_url = MM\PLUGIN_NAME_URL.'admin/js/';
 
 		// Register Swiper Carrousel
-		wp_enqueue_script( 'swiper', "https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js", false );		
-		
+		wp_enqueue_script( 'swiper', "https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js", false );	
+				
 		wp_register_style("swiper-carrousel","https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css");
 
 		wp_enqueue_style("swiper-carrousel");
@@ -285,7 +285,7 @@ class Init{
 	
 		$args = array(
             'post_type' => 'cpt-sitios',
-            'posts_per_page' => 3,
+            'posts_per_page' => 2,
 			'post_status' => 'publish',
 			'paged' => $_POST['actual_count'],
         );
@@ -396,7 +396,7 @@ class Init{
 
 
 		$parameters = shortcode_atts( array(
-			'per_view'=>3,
+			'per_view'=> 2,
 			'autoplay_seconds'=>0,
         ), $attr );
 		

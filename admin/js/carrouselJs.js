@@ -30,7 +30,7 @@ checkDisplay(queryPhone);
     direction: 'horizontal',
     autoHeight: true,
     autoplay: getMs(),
-    loop: true,
+    loop: false,
     slidesPerView: params["per_view"],
     // If we need pagination
     pagination: {

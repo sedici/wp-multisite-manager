@@ -15,7 +15,7 @@
     padding: 10px;
 
     width: 900px;
-    height: 400px;
+    height: auto;
     align-items: center;
 
     background-color:rgb(255, 255, 255);
@@ -242,8 +242,6 @@ div > img.carrousel-image{
     max-width: 450px;
     height: 410px;
 
-    
-
     border: solid 3px black;
     border-radius: 10px;
 }
@@ -334,27 +332,65 @@ p.modal-data-text {
 
 /* =============================== Fin Modal data ============================== */
 
-@media only screen and (max-width: 959px) {
-    .sites-portfolio{
-        display:grid;
-        grid-template-columns: 50% 50%;
-        width: 100%;
-    }
-
-    .carrousel-image{
-        max-width: 80%;
-    }
-    
-
-}
-
 @media only screen and (max-width: 600px) {
 
     .sites-portfolio{
         display:grid;
         grid-template-columns: 100%;
-        width: 100%;
+        width: 340px;
+        height: auto;
+        justify-items: center;
     }
+
+    .sites-portfolio-box {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .modal-main-box {
+        width: 400px;
+        height: auto;
+
+        display: grid;
+        grid-template-rows: 50% 50%;
+        grid-template-columns: 100%;
+        row-gap: 5px;
+
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .modal-columna1 {
+       grid-row:1;
+    }
+
+
+    .modal-columna2 {
+        grid-row:2;
+    }
+
+
+    .modal-img-elem {
+        max-width: 350px;
+        height: 350px;
+    
+        border: solid 3px black;
+        border-radius: 10px;
+    }
+    
+
+    .modal-data {
+        display:grid;
+        grid-template-rows: 1fr 1fr 1fr;
+        row-gap: 3px;
+    
+        height: 100%;
+        justify-content:left;
+    }
+
+
+
     .swiper{
         align-items: center;
         display: grid;
