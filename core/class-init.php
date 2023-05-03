@@ -331,10 +331,10 @@ class Init{
 			$image = $this->get_image($post_id,'site_screenshot');
 			if(!is_wp_error($image)){
 				$vista_unica_post_sitio ='
-					<div><img class="' . $css_class .' " src="';
+					<img class="' . $css_class .' " src="';
 				$image_src = wp_get_attachment_url($this->get_image($post_id,'site_screenshot')) ;
 
-				$vista_unica_post_sitio = $vista_unica_post_sitio . $image_src .  '"></img></div>';
+				$vista_unica_post_sitio = $vista_unica_post_sitio . $image_src .  '"></img>';
 				return $vista_unica_post_sitio;
 		 } 
 		}

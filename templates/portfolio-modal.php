@@ -2,34 +2,35 @@
 
     <div class='modal-main-box'>
 
-        <div class="modal-columna1">
-            <?php echo $data->site_screenshot ?>
-        </div>  
+        <button class='modal-close dot'>X</button>
 
-        
+        <?php echo $data->site_screenshot ?>
 
-        <div class="modal-columna2">
-            <div id="modal-header">
-                <h1 class='modal-title'> <?php echo $data->site_title;?> </h1>	
+        <div class="barra-transparente">
 
-                <button class='modal-close dot'>X</button>
-                
+            <div id='elem-bar-modal1' class='elemento-barra-modal'> 
+                <span class='modal-subtitle'> <?php echo $data->site_title;?> </span> 
             </div>
-            
-            <div class="modal-data">
 
+            <div id='elem-bar-modal2' class='elemento-barra-modal'>
                 <span class='modal-subtitle'> Fecha de creacion: 
-                    <span class='modal-data-text'> <?php echo $data->site_fecha_creacion; ?> </span>
+                    <p class='modal-data-text'> <?php echo $data->site_fecha_creacion; ?> </p> 
                 </span> 
-
-                <span class='modal-subtitle'> URL: 
-                    <a class='modal-data-text' href='<?php echo $data->site_URL; ?>'> <?php echo $data->site_URL; ?> </a>
-                </span> 
-
-                <span class='modal-subtitle'> Descripción: </span> 
-                <p class='modal-data-text'> <?php echo $data->site_description; ?> </p>
-
             </div>
+
+            <div id='elem-bar-modal3' class='elemento-barra-modal'>
+                <span class='modal-subtitle'> URL: 
+                    <a class='modal-data-text' id='link-al-sitio' href='<?php echo $data->site_URL; ?>'> <?php echo $data->site_URL; ?> </a>
+                </span> 
+            </div>  
+            
+            <div id='elem-bar-modal4' class='elemento-barra-modal'>
+                <span class='modal-subtitle'> Descripción: 
+                    <p class='modal-data-text'> <?php echo $data->site_description; ?> </p>
+                </span>
+            </div>
+
+
         </div>
 
 

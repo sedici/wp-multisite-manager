@@ -128,6 +128,7 @@ div > img.site_screenshot {
 }
 
 .swiper-slide{
+    grid-row: 2;
     display: flex;
     justify-content: center;
 }
@@ -137,10 +138,6 @@ div > img.site_screenshot {
     align-items: center;
 
     grid-column: 2;
-    grid-row: 2;
-}
-
-.swiper-slide {
     grid-row: 2;
 }
 
@@ -196,65 +193,26 @@ div > img.carrousel-image{
     height: auto;
     z-index: 105;
 
-
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .modal-main-box{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-
-    column-gap: 5px;
-
 
     background: #ede6e6;
     width: 70%;
-    height: 480px;
-    text-align: center;
-
-    align-items: center;
-    justify-content: center;
+    height: 540px;
 
     border: solid 1px black;
     border-radius: 15px;
 
-    padding-top: 20px;
-    padding-bottom: 35px;
 }
 
-.modal-columna1 {
-   
-   
-}
-
-.modal-columna2 {
-    display: grid; 
-    grid-column: 2;
-    grid-template-rows: 25% 75%;
-    row-gap: 39px;
-
-    text-align: left;
-}
-
-.modal-img-elem {
-    max-width: 450px;
-    height: 410px;
-
-    border: solid 3px black;
-    border-radius: 10px;
-}
-
-#modal-header {
-    display: grid;
-    grid-template-columns: 90% 10%;
-}
-
-
-.modal-close {
-    grid-column: 2;
-    size: 30px;
+div > .modal-close {
+    position: absolute;
+    left: 1190px;
+    bottom: 570px;
 }
 
 .dot {
@@ -274,24 +232,63 @@ div > img.carrousel-image{
     transform: scale(1.1);
 }
 
-.modal-title{
-    grid-column: 1;
-    font-weight: bold;
-    font-size:20px;
+.modal-img-elem {
+    width:100%;
+    height: auto;
+
+    border: solid 1px black;
+    border-radius: 10px;
 }
 
-/* ======================= Modal Data =================================== */
+.barra-transparente {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 50% 50%;
 
-.modal-data {
-    display:grid;
-    grid-template-rows: 1fr 1fr 1fr;
-    row-gap: 3px;
+    width: 50%;
+    height: 140px;
+    padding-top: 10px;
+    padding-left: 12px;
+    border-radius: 15px;
 
-    height: 100%;
-    justify-content:left;
+    opacity: 0.8;
+    background-color: rgb(0, 0 , 0.5);
+
+    position: absolute;
+    left: 230px;
+
+
+    position: absolute;
+    bottom: 100px;
+}
+
+.elemento-barra-modal {
+    height: 80px;
+    margin-left: 10px;
+}
+
+div#elem-bar-modal1{
+    grid-column: 1;
+    grid-row: 1;
+}
+
+div#elem-bar-modal2{
+    grid-column: 1;
+    grid-row: 2;
+}
+
+div#elem-bar-modal3{
+    grid-column: 2;
+    grid-row: 1;
+}
+
+div#elem-bar-modal4{
+    grid-column: 2;
+    grid-row: 2;
 }
 
 .modal-subtitle{
+    color: white;
     font-size: medium;
     font-weight: bold;
     width: fit-content;
@@ -303,10 +300,8 @@ div > img.carrousel-image{
     text-align: justify;
 }
 
-p.modal-data-text {
-    overflow: scroll;
-    width: 400px;
-    height: 170px;
+#link-al-sitio {
+    color: aqua;
 }
 
 .show-more {
@@ -334,6 +329,43 @@ p.modal-data-text {
 
 @media only screen and (max-width: 600px) {
 
+    div.sites-portfolio {
+        width: 305px;
+    }
+
+
+    .modal-main-box {
+        width: 400px;
+        height: 730px;
+    }
+
+    .modal-img-elem {
+
+        border: solid 3px black;
+        border-radius: 10px;
+    }
+ 
+
+    .modal-close {
+        position: absolute;
+        bottom: 104px;
+        right: 17px;
+    }
+
+    .modal-title {
+        margin-top: 20px;
+        font-size: 15px;
+    }
+
+    .modal-data {
+        row-gap: 18px;
+    }
+
+    p.modal-data-text {
+        width: 360px;
+        height: 110px;
+    }
+
     .sites-portfolio{
         display:grid;
         grid-template-columns: 100%;
@@ -347,57 +379,48 @@ p.modal-data-text {
         margin-bottom: 10px;
     }
 
-    .modal-main-box {
-        width: 400px;
-        height: auto;
-
-        display: grid;
-        grid-template-rows: 50% 50%;
-        grid-template-columns: 100%;
-        row-gap: 5px;
-
-        text-align: center;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .modal-columna1 {
-       grid-row:1;
-    }
-
-
-    .modal-columna2 {
-        grid-row:2;
-    }
-
-
-    .modal-img-elem {
-        max-width: 350px;
-        height: 350px;
-    
-        border: solid 3px black;
-        border-radius: 10px;
-    }
-    
-
-    .modal-data {
-        display:grid;
-        grid-template-rows: 1fr 1fr 1fr;
-        row-gap: 3px;
-    
-        height: 100%;
-        justify-content:left;
-    }
-
-
 
     .swiper{
-        align-items: center;
         display: grid;
         grid-template-columns: 100%;
+
         width: 100%;
+        height: 500px;
     }
 
-}
-  
+    .swiper-wrapper {
+        grid-column: 1;
+    }
 
+    div.swiper-wrapper > div.swiper-slide {
+        height: 200px;
+        margin-bottom: 20px;
+    }
+
+
+}
+
+
+@media only screen and (max-width: 360px) {
+
+    .modal-data {
+        margin-left: 20px;
+    }
+
+    .modal-title {
+        margin-left: 20px;
+    }
+
+    p.modal-data-text {
+        width: 265px;
+    }
+
+    .modal-close {
+        bottom: 15px;
+        right: 14px;
+    }
+
+
+}
+
+  
