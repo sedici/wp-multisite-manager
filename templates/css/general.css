@@ -241,11 +241,7 @@ div > .modal-close {
 }
 
 .barra-transparente {
-    display: grid;
-    grid-template-columns: 50% 50%;
-    grid-template-rows: 50% 50%;
-
-    width: 50%;
+    width: 52%;
     height: 140px;
     padding-top: 10px;
     padding-left: 12px;
@@ -257,13 +253,18 @@ div > .modal-close {
     position: absolute;
     left: 230px;
 
-
     position: absolute;
     bottom: 100px;
 }
 
+.sub-barra-transparente {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 33% 33% 33%;
+}
+
 .elemento-barra-modal {
-    height: 80px;
+    height: 30px;
     margin-left: 10px;
 }
 
@@ -272,14 +273,21 @@ div#elem-bar-modal1{
     grid-row: 1;
 }
 
+#modal-site-title {
+    color: aqua;
+    margin-left: 10px;
+    font-size: 18px;
+    text-align: left;
+}
+
 div#elem-bar-modal2{
     grid-column: 1;
-    grid-row: 2;
+    grid-row: 3;
 }
 
 div#elem-bar-modal3{
-    grid-column: 2;
-    grid-row: 1;
+    grid-column: 1;
+    grid-row: 2;
 }
 
 div#elem-bar-modal4{
@@ -298,6 +306,10 @@ div#elem-bar-modal4{
     font-weight: lighter;
     font-size:small;
     text-align: justify;
+
+    overflow: scroll;
+    white-space:nowrap ;
+    text-overflow: ellipsis;
 }
 
 #link-al-sitio {
@@ -325,7 +337,7 @@ div#elem-bar-modal4{
     cursor: pointer;
 }
 
-/* =============================== Fin Modal data ============================== */
+/* ========================================================================================= */
 
 @media only screen and (max-width: 600px) {
 
@@ -335,33 +347,21 @@ div#elem-bar-modal4{
 
 
     .modal-main-box {
-        width: 400px;
-        height: 730px;
+        
     }
 
     .modal-img-elem {
-
-        border: solid 3px black;
+        border: solid 1px black;
         border-radius: 10px;
     }
  
-
     .modal-close {
         position: absolute;
         bottom: 104px;
         right: 17px;
     }
 
-    .modal-title {
-        margin-top: 20px;
-        font-size: 15px;
-    }
-
-    .modal-data {
-        row-gap: 18px;
-    }
-
-    p.modal-data-text {
+    .modal-data-text {
         width: 360px;
         height: 110px;
     }
@@ -402,23 +402,6 @@ div#elem-bar-modal4{
 
 
 @media only screen and (max-width: 360px) {
-
-    .modal-data {
-        margin-left: 20px;
-    }
-
-    .modal-title {
-        margin-left: 20px;
-    }
-
-    p.modal-data-text {
-        width: 265px;
-    }
-
-    .modal-close {
-        bottom: 15px;
-        right: 14px;
-    }
 
 
 }
