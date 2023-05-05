@@ -258,8 +258,7 @@ class Init{
 				"<span class='site-title'>" . get_the_title() . "</span>	
 				<br>
 				<div>
-				<span class='site-desc'> </span>
-				<p>" . print_description() .
+				<p class='site-desc'>" . print_description() .
 
 				"</p></div></div></div>";
 		
@@ -309,8 +308,7 @@ class Init{
 
 				"<span class='site-title'>" . get_the_title() . "</span>	
 				<br>
-				<span class='site-desc'> </span>
-				<p>" . print_description() .
+				<p class='site-desc'>" . print_description() .
 
 				"</p></div></div>";
 		
