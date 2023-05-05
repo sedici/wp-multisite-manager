@@ -202,7 +202,7 @@ div > img.carrousel-image{
 
     background: #ede6e6;
     width: 70%;
-    height: 540px;
+    height: 460px;
 
     border: solid 1px black;
     border-radius: 15px;
@@ -211,8 +211,8 @@ div > img.carrousel-image{
 
 div > .modal-close {
     position: absolute;
-    left: 1190px;
-    bottom: 570px;
+    left: 1192px;
+    bottom: 535px;
 }
 
 .dot {
@@ -254,7 +254,7 @@ div > .modal-close {
     left: 230px;
 
     position: absolute;
-    bottom: 100px;
+    bottom: 125px;
 }
 
 .sub-barra-transparente {
@@ -347,18 +347,41 @@ div#elem-bar-modal4{
 
 
     .modal-main-box {
-        
+        width: 95%;
+        height: 746px;
     }
 
-    .modal-img-elem {
+    div > .modal-img-elem {
         border: solid 1px black;
         border-radius: 10px;
+        transform: rotate(90deg);
+
+        position: absolute;
+        left: -183px;
+        bottom: 244px;
+        width: 189%;
+        height: 42.6%;
+        max-width: 196%;
     }
  
-    .modal-close {
+    div > .modal-close {
         position: absolute;
-        bottom: 104px;
-        right: 17px;
+        bottom: 787px;
+        left: 361px;
+        z-index: 150;
+    }
+
+    div > .barra-transparente {
+        width: 145%;
+        height: 195px;
+        transform: rotate(90deg);  
+        
+        left: -178px;
+        bottom: 415px;
+    }
+
+    .elemento-barra-modal {
+        height: 60px;
     }
 
     .modal-data-text {
