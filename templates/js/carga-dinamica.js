@@ -27,7 +27,7 @@
 			success: function(response){
 				$("#portfolio-count").val(auxCount);
 				$(".sites-portfolio").append(response)
-				if(auxCount+1 > pagesCount){
+				if(auxCount++ >= pagesCount){
 					$('.show-more').hide();
 				}
 			},

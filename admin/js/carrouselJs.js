@@ -31,6 +31,8 @@ checkDisplay(queryPhone);
     autoHeight: true,
     autoplay: getMs(),
     loop: false,
+    spaceBetween: 50,
+
     slidesPerView: params["per_view"],
     // If we need pagination
     pagination: {

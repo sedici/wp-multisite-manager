@@ -236,7 +236,7 @@ class Init{
         );
 
         $query = new \WP_Query($args);
-		$vista_portfolio = "  <input type='hidden' id='portfolio-count' value=1 ><div class='sites-portfolio' style='background-color:". $parameters['widget_color'] . "'>";
+		$vista_portfolio = "  <input type='hidden' id='portfolio-count' value=1 ><div style='display:flex,flex-direction:column'><div class='sites-portfolio' style='background-color:". $parameters['widget_color'] . "'>";
 
 		$array_sitios = array(); /*En cada posicion se guarda una vista de post sitio */
 
@@ -274,7 +274,7 @@ class Init{
 		wp_localize_script('dynamic_addition','cd_vars',array('tam_max'=>$tam_array,'box_color'=> $parameters['box_color'],'url'=>admin_url('admin-ajax.php'),));
 
 
-		$vista_portfolio = $vista_portfolio. "<div class='show-more'><span>Mostrar más!</span></div></div>";
+		$vista_portfolio = $vista_portfolio. "</div><div class='show-more' style='align-self:center'><span>Mostrar más!</span></div></div>";
 
         wp_reset_postdata();
 		return $vista_portfolio;
