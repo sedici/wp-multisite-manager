@@ -284,7 +284,7 @@ class Init{
 	
 		$args = array(
             'post_type' => 'cpt-sitios',
-            'posts_per_page' => 2,
+            'posts_per_page' => 3,
 			'post_status' => 'publish',
 			'paged' => $_POST['actual_count'],
         );
