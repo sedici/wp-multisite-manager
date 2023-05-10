@@ -6,28 +6,28 @@
     $(document).on('click','.show-more',function(e){
         e.preventDefault();
 
-		count = $("#portfolio-count").val();
+		var count = $("#portfolio-count").val();
 
         var pagesCount = Math.ceil(cd_vars.tam_max / 3);
 
 		var box_color = cd_vars.box_color;
 
         var the_url = cd_vars.url;
-
-
-        
+	
+		var auxCount = parseInt(count);
+		auxCount++;
         jQuery.ajax({
 			url : the_url,
             type: 'post',
 			data : {
-				actual_count: count,
+				actual_count: auxCount,
 				box_color:box_color,
 				action: 'load_more'
 			},
 			success: function(response){
-				$("#portfolio-count").val(count + 1);
+				$("#portfolio-count").val(auxCount);
 				$(".sites-portfolio").append(response)
-				if(count + 1 > pagesCount){
+				if(auxCount+1 > pagesCount){
 					$('.show-more').hide();
 				}
 			},

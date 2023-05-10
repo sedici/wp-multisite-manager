@@ -236,7 +236,7 @@ class Init{
         );
 
         $query = new \WP_Query($args);
-		$vista_portfolio = "  <input type='hidden' id='portfolio-count' value=2 ><div class='sites-portfolio' style='background-color:". $parameters['widget_color'] . "'>";
+		$vista_portfolio = "  <input type='hidden' id='portfolio-count' value=1 ><div class='sites-portfolio' style='background-color:". $parameters['widget_color'] . "'>";
 
 		$array_sitios = array(); /*En cada posicion se guarda una vista de post sitio */
 
