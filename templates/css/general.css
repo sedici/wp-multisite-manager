@@ -176,8 +176,8 @@ div > img.carrousel-image{
 
 div > .modal-close {
     position: absolute;
+    top: 16px;
     right: 16px;
-    top: 10px;
 
 }
 
@@ -206,13 +206,13 @@ div > .modal-close {
 
 .barra-transparente {
     width: 45%;
-    height: 140px;
+    height: 125px;
     border-radius: 15px;
     opacity: 0.8;
     background-color: rgb(0, 0 , 0.5);
 
     position: absolute;
-    bottom: 150px;
+    bottom: 127px;
 
 }
 
