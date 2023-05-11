@@ -21,7 +21,7 @@ Las principales son:
     - 'widget_color' : Sirve para elegir el color que va a tener el contenedor de todo el widget de portafolio. 
     - 'box_color' : Nos permite indicar que color queremos que tenga el contenedor de cada "caja" individual del portafolio.
 
-- **[show_sites_portfolio ]** => Muestra todos los CPT de sitios disponibles, al estilo "Carrousel".
+- **[show_sites_carrousel ]** => Muestra todos los CPT de sitios disponibles, al estilo "Carrousel".
     - 'per_view'=> Permite seleccionar cuantos sitios se van a mostrar a la vez en el carrousel.
     - 'autoplay_seconds' => (Default = 0) Indíca cada cuantos segundos se cambia a la próxima página. Si no se especifica, queda desactivada por defecto la opción de cambiar de página automáticamente
 
