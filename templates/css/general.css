@@ -107,6 +107,10 @@ p.site-desc{
     border-radius: 10px;
   }
 
+.swiper-wrapper {
+    padding-top: 65px;
+}
+
 .carrousel-box{
     display: grid;
     justify-content: center;
@@ -159,7 +163,7 @@ div > img.carrousel-image{
 
 .modal-main-box{
 
-    width: 85%;
+    width: 100%;
     height: 65%;
     display: flex;
     justify-content: center;
@@ -171,7 +175,9 @@ div > img.carrousel-image{
 }
 
 div > .modal-close {
-    position: inherit;
+    position: absolute;
+    right: 16px;
+    top: 10px;
 
 }
 
@@ -193,28 +199,21 @@ div > .modal-close {
 }
 
 .modal-img-elem {
-    height: 100%;
-
     border: solid 1px black;
     border-radius: 10px;
 
 }
 
 .barra-transparente {
-    width: 52%;
+    width: 45%;
     height: 140px;
-    padding-top: 10px;
-    padding-left: 12px;
     border-radius: 15px;
-
     opacity: 0.8;
     background-color: rgb(0, 0 , 0.5);
 
     position: absolute;
-    left: 230px;
+    bottom: 150px;
 
-    position: absolute;
-    bottom: 125px;
 }
 
 .sub-barra-transparente {

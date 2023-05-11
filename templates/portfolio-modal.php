@@ -2,11 +2,11 @@
 
     <div class='modal-main-box'>
 
-        <button class='modal-close dot'>X</button>
-
         <?php echo $data->site_screenshot ?>
 
         <div class="barra-transparente">
+
+            <button class='modal-close dot'>X</button>
 
             <span class='modal-subtitle' id='modal-site-title'> <?php echo $data->site_title;?> </span> 
 
