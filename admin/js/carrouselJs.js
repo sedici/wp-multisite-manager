@@ -34,7 +34,7 @@ checkDisplay(queryPhone);
     loop: false,
     slidesOffsetAfter:0,
 
-    slidesPerView: 2,
+    slidesPerView: params["per_view"],
     // If we need pagination
     
     // Navigation arrows
