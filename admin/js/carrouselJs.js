@@ -47,6 +47,4 @@ checkDisplay(queryPhone);
 
   });
 
-  console.log(swiper);
-
 
