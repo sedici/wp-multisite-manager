@@ -1,94 +1,151 @@
 
-/* CSS Para vista de Portafolio (Shortcode) */
+/* ============================ CSS Para vista de Portafolio ============================= */
 
 .sites-portfolio{
-    background-color:rgb(255, 255, 255);
-    margin: auto;
+
     display: grid;
     grid-template-columns: 33% 33% 33%;
-
-    width: 100%;
+    grid-template-rows: 100%;
     grid-column-gap: 10px;
     grid-row-gap: 20px;
+       
+    margin: auto;
+    margin-top: 10vh;
+    margin-bottom: 1vh;
+    padding: 15px;
 
-    font-family:'Times New Roman';
+    width: 900px;
+    height: auto;
+    align-items: center;
+
+    background-color:rgb(255, 255, 255);
 }
 
 .sites-portfolio-box{
-    text-align: left;
+    position: relative;
+
     padding: 2vh;
-    border: solid 1px rgb(218, 180, 180); 
-    border-radius: 5px;
-    height: 100%;
-    width: 100%;
-    overflow:scroll;
+    border: solid 1px rgb(185, 180, 180); 
+    border-radius: 15px;
+
+    height: 281px;
+    width: 280px;
+    text-align: left;
+
+
+    color: black;
 }
+
+.sites-portfolio-box:hover{
+    transform: scale(1.02);
+    border: solid 2px rgb(194, 186, 186); 
+    cursor: pointer;
+}
+
 
 .sites-portfolio-img{
     object-fit:fill; 
     border: solid 1px;
-    width:200%;
-    height:200%;  
+    width:100%;
+    height:100%;  
     margin-bottom: 5%;
+
 }
 
-.sites-portfolio-title{
-    font-size: medium;
+div > img.site_screenshot {
+    height: 140px;
+    border: solid 2px rgb(201, 198, 198);
+    border-radius: 15px;
+    margin-bottom: 4px;
+}
+
+.site-title{
+    font-size: 12px;
+
     font-weight: bold;
-    margin-bottom: 10%;
+
+    margin-bottom: 5%;
+
     width: fit-content;
+
+    font-family: Gill Sans, sans-serif ;
+
+    color: black;
 }
 
-#site-title{
-    font-size:200%;
-    color: dimgray;
+p.site-desc{
+    font-size: small;
+    font-weight: 500;
+    margin-bottom: 3%;
+
+    overflow: scroll;
+    text-overflow: ellipsis;
+    height: 63px;
 }
 
-#site-desc{
-    color: darkgray;
-    font-size:150%;
-}
 
 .sites-empty-field{
     color:red;
     font-weight:bold
 }
 
+
+/* ============================ CSS Para Carrousel ============================= */
+
+
 .swiper{
     width: 100%;
     height: 350px;
+
+
+    justify-content: center;
+
     margin-top: 10vh;
+    margin-bottom: 10vh;
+
     border: solid 3px black;
     border-radius: 10px;
-
-    align-items: center;
-
   }
 
-.carrousel-box{
-    text-align: center;
-    align-items: center;
-    display: grid;
-    grid-template-columns: 80%;
-    justify-content: center;
-    row-gap: 10px;
+.swiper-wrapper {
+    padding-top: 65px;
 }
+
+.carrousel-box{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+.carrousel-box:hover{
+    transform: scale(1.05);
+}
+
 .carrousel-title{
     font-weight: bold;
     text-align: center;
-    font-size: large;
+    font-size: 13px;
 }
 
-.carrousel-image{
+div > img.carrousel-image{
     max-width: 100%;
-    border: solid 5px rgb(188, 179, 179);
+    height: 140px;
+    border: solid 2px rgb(188, 179, 179);
     border-radius: 3px;
     align-items: center;
     align-content: center;
-}
-/* CSS Para Modal */
+    cursor: pointer;
 
-#modal-container{
+}
+
+.carrousel-description {
+    text-align: justify;
+    display: none;
+}
+
+/* ============================ CSS Para Modal ============================= */
+
+.modal-container{
     opacity: 2;
     background-color: rgb(0, 0 , 0.5);
     position: fixed;
@@ -98,97 +155,237 @@
     left: 0;
     height: auto;
     z-index: 105;
+
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .modal-main-box{
-    background: #ede6e6;
-    width: 70%;
-    height: 400px;
-    text-align: center;
-    display: grid;
-    grid-template-columns: 90%;
-    align-items: center;
-    justify-content: center;
-}
 
-.modal-title{
-    font-weight: bold;
-    font-size: x-large;
-    align-self: center;
-}
-
-.modal-data{
-    display:flex;
-    justify-content:left;
-    align-items: flex-start;
-    align-content: baseline;
-}
-
-.modal-img{
-    width: 80%;
-    border-radius: 5px;
-    object-fit: contain;
-    border: solid 3px black;
-    border-radius: 5px;
-}
-.modal-box{
-    display: grid;
-    grid-template-columns: 40% 60%;
-    height: 100%;
     width: 100%;
-    align-items: center;
-}
-.cta {
-   
+    height: 65%;
+    display: flex;
+    justify-content: center;
+
+    border: solid 1px black;
+    border-radius: 15px;
+    margin: auto;
+
 }
 
-.modal-close {
-    size: 30px;
+div > .modal-close {
     position: absolute;
-    top: 10%;
-    right: 2%;
-    
+    top: 16px;
+    right: 16px;
+
 }
 
 .dot {
-  height: 25px;
-  width: 25px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
+    height: 30px;
+    width: 30px;
+    background-color: #bbb;
+    border: solid 2px #9c9696;
+    border-radius: 50%;
+    display: inline-block;
+    position: inherit;
+    font-weight: bold;
+    text-align: center;
 }
 
+.dot:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+}
 
-@media only screen and (max-width: 959px) {
-    .sites-portfolio{
-        display:grid;
-        grid-template-columns: 50% 50%;
-        width: 100%;
-    }
-
-    .carrousel-image{
-        max-width: 80%;
-    }
-    
+.modal-img-elem {
+    border: solid 1px black;
+    border-radius: 10px;
 
 }
+
+.barra-transparente {
+    width: 45%;
+    height: 125px;
+    border-radius: 15px;
+    opacity: 0.8;
+    background-color: rgb(0, 0 , 0.5);
+
+    position: absolute;
+    bottom: 127px;
+
+}
+
+.sub-barra-transparente {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 33% 33% 33%;
+}
+
+.elemento-barra-modal {
+    height: 30px;
+    margin-left: 10px;
+}
+
+div#elem-bar-modal1{
+    grid-column: 1;
+    grid-row: 1;
+}
+
+#modal-site-title {
+    color: aqua;
+    margin-left: 10px;
+    font-size: 18px;
+    text-align: left;
+}
+
+div#elem-bar-modal2{
+    grid-column: 1;
+    grid-row: 3;
+}
+
+div#elem-bar-modal3{
+    grid-column: 1;
+    grid-row: 2;
+}
+
+div#elem-bar-modal4{
+    grid-column: 2;
+    grid-row: 2;
+}
+
+.modal-subtitle{
+    color: white;
+    font-size: medium;
+    font-weight: bold;
+    width: fit-content;
+}
+
+.modal-data-text {
+    font-weight: lighter;
+    font-size:small;
+    text-align: justify;
+
+    overflow: scroll;
+    white-space:nowrap ;
+    text-overflow: ellipsis;
+}
+
+#link-al-sitio {
+    color: aqua;
+}
+
+.show-more {
+    font-size:large;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 10px;
+    background-color: rgb(73, 168, 232);
+    width: fit-content;
+    color: white;
+    font-weight: 600;
+    padding-left: 15px;
+    padding-right: 15px;
+
+    border: solid 2px rgb(73, 168, 232);
+    border-radius: 5px;
+}
+
+.show-more:hover{
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+/* ========================================================================================= */
 
 @media only screen and (max-width: 600px) {
 
+    div.sites-portfolio {
+        width: 305px;
+    }
+
+
+    .modal-main-box {
+        width: 95%;
+        height: 746px;
+    }
+
+    div > .modal-img-elem {
+        border: solid 1px black;
+        border-radius: 10px;
+        transform: rotate(90deg);
+
+        position: absolute;
+        left: -183px;
+        bottom: 244px;
+        width: 189%;
+        height: 42.6%;
+        max-width: 196%;
+    }
+ 
+    div > .modal-close {
+        position: absolute;
+        bottom: 787px;
+        left: 361px;
+        z-index: 150;
+    }
+
+    div > .barra-transparente {
+        width: 145%;
+        height: 195px;
+        transform: rotate(90deg);  
+        
+        left: -178px;
+        bottom: 415px;
+    }
+
+    .elemento-barra-modal {
+        height: 60px;
+    }
+
+    .modal-data-text {
+        width: 360px;
+        height: 110px;
+    }
+
     .sites-portfolio{
         display:grid;
         grid-template-columns: 100%;
-        width: 100%;
+        width: 340px;
+        height: auto;
+        justify-items: center;
     }
+
+    .sites-portfolio-box {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+
     .swiper{
-        align-items: center;
         display: grid;
         grid-template-columns: 100%;
+
+        width: 100%;
+        height: 500px;
     }
 
-      
+    .swiper-wrapper {
+        grid-column: 1;
+    }
+
+    div.swiper-wrapper > div.swiper-slide {
+        height: 200px;
+        margin-bottom: 20px;
+    }
+
 
 }
+
+
+@media only screen and (max-width: 360px) {
+
+
+}
+
+  

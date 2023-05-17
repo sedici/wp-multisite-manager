@@ -115,6 +115,10 @@ class multisiteAdmin{
 
         global $wpdb;
         $site_creation= $wpdb->get_var( $wpdb->prepare( "SELECT registered FROM $wpdb->blogs WHERE blog_id = %d",$site) );
+        $formatedDate = new \DateTime($site_creation);
+
+        $site_creation = $formatedDate->format('Y-m-d');
+
         $site_name = get_bloginfo('name');
         $site_description = get_bloginfo('description');
         $site_url = get_bloginfo('url');

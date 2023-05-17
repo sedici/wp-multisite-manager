@@ -28,15 +28,15 @@ checkDisplay(queryPhone);
  export let swiper = new Swiper('.swiper', {
     // Optional parameters
     direction: 'horizontal',
-    autoHeight: true,
+    autoHeight: false,
+    centeredSlides: true,
     autoplay: getMs(),
-    loop: true,
+    loop: false,
+    slidesOffsetAfter:0,
+
     slidesPerView: params["per_view"],
     // If we need pagination
-    pagination: {
-      el: '.swiper-pagination',
-    },
-  
+    
     // Navigation arrows
     navigation: {
       nextEl: '.swiper-button-next',
@@ -44,11 +44,7 @@ checkDisplay(queryPhone);
     },
   
     // And if we need scrollbar
-    scrollbar: {
-      el: '.swiper-scrollbar',
-    },
-  });
 
-  console.log(swiper);
+  });
 
 

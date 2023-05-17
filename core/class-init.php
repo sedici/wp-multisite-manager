@@ -75,6 +75,13 @@ class Init{
 		wp_enqueue_style("administrationStyle");
 	}
 
+
+	function insert_modal_js (){ 
+		wp_register_script('identify-modal',  MM\PLUGIN_NAME_URL . 'templates/js/modal-ajax.js', array('jquery'), '1', true );
+		wp_enqueue_script('identify-modal');	
+		wp_localize_script('identify-modal','imjs_vars',array('url'=>admin_url('admin-ajax.php')));
+	}
+
 	
 	# Register PUBLIC Styles and Scripts --------------------------------------------------------------------
 	
@@ -82,8 +89,8 @@ class Init{
 		$js_url = MM\PLUGIN_NAME_URL.'admin/js/';
 
 		// Register Swiper Carrousel
-		wp_enqueue_script( 'swiper', "https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js", false );		
-		
+		wp_enqueue_script( 'swiper', "https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js", false );	
+				
 		wp_register_style("swiper-carrousel","https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css");
 
 		wp_enqueue_style("swiper-carrousel");
@@ -147,6 +154,9 @@ class Init{
 			// Guarda los campos meta
 			add_action('save_post', array($sitiosCPT, 'sitios_save_metas'));
 
+			// Se encarga de eliminar la imagen del CPT en el caso de que el mismo sea borrado
+			add_action('before_delete_post', array($sitiosCPT,'delete_cpt_screenshot'));
+
 			// Permite que se guarden imagenes en el formulario del CPT de Sitios
 			add_action('post_edit_form_tag', array($sitiosCPT, 'update_edit_form'));
 
@@ -159,6 +169,16 @@ class Init{
 
 			add_action('wp_ajax_procesar_request_modal',array($this,'procesar_request_modal')  );
 			add_action( 'wp_ajax_nopriv_procesar_request_modal', array($this,'procesar_request_modal') );
+
+
+			/* wp_enqueue_scripts es el hook usado para encolar el script carga-dinamica.js
+			que sera usado en el frontend */
+			add_action('wp_enqueue_scripts',array($this,'dynamic_view_js'));
+
+
+			add_action('wp_ajax_load_more',array($this,'load_more')  );
+			add_action( 'wp_ajax_nopriv_load_More', array($this,'load_more') );
+
 		}
 
 
@@ -196,57 +216,124 @@ class Init{
 		add_shortcode('show_sites_carrousel',array($this,'show_carrousel'));
     }
 
+	function dynamic_view_js (){ 
+		wp_register_script('dynamic_addition',  MM\PLUGIN_NAME_URL . 'templates/js/carga-dinamica.js', array('jquery'), '1', true );
+		wp_enqueue_script('dynamic_addition');	
+	}
+
 	function show_portfolio($attr){
 
 		$parameters = shortcode_atts( array(
 			'widget_color'=>'dark',
             'box_color' => 'white', 
         ), $attr );
-		$content = "";
+		$vista_portfolio = "";
 
 		$args = array(
             'post_type' => 'cpt-sitios',
             'posts_per_page' => -1,
-			'post_status' => array('publish', 'pending', 'draft', 'future', 'private', 'inherit'),
+			'post_status' => 'publish',
         );
 
         $query = new \WP_Query($args);
-		$content = "<div class='sites-portfolio' style='background-color:". $parameters['widget_color'] . "'>";
+		$vista_portfolio = "  <input type='hidden' id='portfolio-count' value=1 ><div style='display:flex;flex-direction:column'><div class='sites-portfolio' style='background-color:". $parameters['widget_color'] . "'>";
 
+		$array_sitios = array(); /*En cada posicion se guarda una vista de post sitio */
+
+		$i = 0; /* Indice para iterar dentro del while el array_sitios */
+
+		/* Carga en un arreglo todos los post de sitios */
 		while ( $query->have_posts() ): $query->the_post();
-		$content = $content.	
-			"<div class='sites-portfolio-box cta'
-					style='background-color:" . $parameters['box_color'] ."' 
-			id='" . get_the_ID() . "'>"
 
-			. $this->print_screenshot(get_the_ID(),'site_screenshot') .
+			$vista_unica_post_sitio = ""; /*Se guarda la vista de cada post sitio unico */
 
-			"<span class='sites-portfolio-title' id='site-title'>" . get_the_title() . "</span>	
-			<br>
-			<span class='sites-portfolio-title' id='site-desc'> Descripción: </span>
-			<p>" . print_description() .
+			$vista_unica_post_sitio =
+				"<div class='cta' id='" . get_the_ID() . "'>
+				<div class='sites-portfolio-box'
+						style='background-color:" . $parameters['box_color'] ."' 
+				>"
 
-			"</p></div>";
-	
-         endwhile;
+				. $this->print_screenshot(get_the_ID(),'site_screenshot') .
 
-		echo "</div>";
+				"<span class='site-title'>" . get_the_title() . "</span>	
+				<br>
+				<div>
+				<p class='site-desc'>" . print_description() .
+
+				"</p></div></div></div>";
+		
+			$array_sitios[$i] = $vista_unica_post_sitio;
+			$i++;
+        endwhile;
+
+		$tam_array = count($array_sitios);
+
+		$i = 0; 
+		for( ; $i <= 2 ; $i++ ) $vista_portfolio = $vista_portfolio . $array_sitios[$i];
+
+		wp_localize_script('dynamic_addition','cd_vars',array('tam_max'=>$tam_array,'box_color'=> $parameters['box_color'],'url'=>admin_url('admin-ajax.php'),));
+
+
+		$vista_portfolio = $vista_portfolio. "</div><div class='show-more' style='align-self:center'><span>Mostrar más!</span></div></div>";
+
         wp_reset_postdata();
-		return $content;
+		return $vista_portfolio;
 	}
 
+	function load_more(){
+	
+		$args = array(
+            'post_type' => 'cpt-sitios',
+            'posts_per_page' => 3,
+			'post_status' => 'publish',
+			'paged' => $_POST['actual_count'],
+        );
+
+        $query = new \WP_Query($args);
+
+		$array_sitios = array(); /*En cada posicion se guarda una vista de post sitio */
+
+		/* Carga en un arreglo todos los post de sitios */
+		while ( $query->have_posts() ): $query->the_post();
+
+			$vista_unica_post_sitio = ""; /*Se guarda la vista de cada post sitio unico */
+
+			$vista_unica_post_sitio =
+				"<div class='cta' id='" . get_the_ID() . "'>
+				<div class='sites-portfolio-box'
+						style='background-color:" . $_POST['box_color'] ."' 
+				>"
+
+				. $this->print_screenshot(get_the_ID(),'site_screenshot') .
+
+				"<span class='site-title'>" . get_the_title() . "</span>	
+				<br>
+				<p class='site-desc'>" . print_description() .
+
+				"</p></div></div>";
+		
+			array_push($array_sitios, $vista_unica_post_sitio);
+			
+        endwhile;
+
+        wp_reset_postdata();
+		foreach($array_sitios as $array){
+			echo $array;
+		}
+		exit();
+	}
 
     function print_screenshot($post_id,$css_class){
 		if(get_post_meta(get_the_ID(),'site_screenshot') and (!empty(get_post_meta(get_the_ID(),'site_screenshot')[0]) ))
 		{
 			$image = $this->get_image($post_id,'site_screenshot');
 			if(!is_wp_error($image)){
-				$content ='
-					<div><img class="' . $css_class .' " src="';
+				$vista_unica_post_sitio ='
+					<img class="' . $css_class .' " src="';
 				$image_src = wp_get_attachment_url($this->get_image($post_id,'site_screenshot')) ;
 
-				$content = $content . $image_src .  '"></img></div>';
-				return $content;
+				$vista_unica_post_sitio = $vista_unica_post_sitio . $image_src .  '"></img>';
+				return $vista_unica_post_sitio;
 		 } 
 		}
 		else{
@@ -255,20 +342,9 @@ class Init{
 	}
 
 
-	function insert_modal_js (){ 
-		$title_nonce = wp_create_nonce( 'esta_es_mi_request' );
-
-		wp_register_script('identify-modal',  MM\PLUGIN_NAME_URL . 'templates/js/modal-ajax.js', array('jquery'), '1', true );
-		wp_enqueue_script('identify-modal');	
-		wp_localize_script('identify-modal','imjs_vars',array('url'=>admin_url('admin-ajax.php'),'nonce' => $title_nonce,));
-	}
 
 	/* Esta funcion imprime el modal del portfolio de sitios enviandole a js (modal-ajax) un html con la info. de un sitio ya cargada */
 	function procesar_request_modal() {
-		/* Verifica la request de ajax, para prevenir procesar request externas */
-		/* Deberia devolver el valor 1 o 2, cualquier otra cosa esta mal */
-		/* $valor = check_ajax_referer( 'mi_req_123', 'nonce', false); */
-		/* Deberia checkear $valor */
 
 		$args = array(
 			'p'         => $_POST['box_id'], // ID of a page, post, or custom type
@@ -288,9 +364,12 @@ class Init{
 			$template_data = [
 				'site_title' => get_the_title(),
 				'site_description' => print_description(),
-				'site_screenshot' => $this->print_screenshot(get_the_ID(),'site_screenshot'),
-				'site_URL' => '',
+				'site_screenshot' => $this->print_screenshot(get_the_ID(),'modal-img-elem'),
+				'site_URL' => get_post_meta($args['p'],'site_url',true),
+				'site_fecha_creacion' => get_post_meta($args['p'],'site_creation_date',true),
 			];
+
+
 
 			$templateLoader = Inc\My_Template_Loader::getInstance();
 
@@ -299,10 +378,8 @@ class Init{
 
 			$templateLoader->unset_template_data();
 
-			die();
-			
+			exit();
 		}
-		else console.log('No hay posts con el id indicado');
 
 	}
 	
@@ -317,7 +394,7 @@ class Init{
 
 
 		$parameters = shortcode_atts( array(
-			'per_view'=>3,
+			'per_view'=> 2,
 			'autoplay_seconds'=>0,
         ), $attr );
 		
@@ -338,7 +415,7 @@ class Init{
 		$args = array(
             'post_type' => 'cpt-sitios',
             'posts_per_page' => -1,
-			'post_status' => array('publish', 'pending', 'draft', 'future', 'private', 'inherit'),
+			'post_status' => 'publish'
         );
         $query = new \WP_Query($args);
 
@@ -356,16 +433,16 @@ class Init{
 
 		'<div class="swiper-slide">
 
-			<div class="carrousel-box" id='. get_the_ID() . '>
+			<div class="carrousel-box " >
 
 				<div class="carrousel-title" > ' .
 					get_the_title() . '
-				</div>'.
-				
+				</div>
+				<div class="cta" id='. get_the_ID() . '>'. 
 				$this->print_screenshot(get_the_ID(),'carrousel-image') .
 			
-				'<div class="carrousel-description">
-					<p >' .	print_description() . '</p>
+				'</div><div class="carrousel-description">
+					<p >' .	print_description(true) . '</p>
 				</div>
 			</div>
 		</div>';
@@ -374,9 +451,12 @@ class Init{
 		endwhile;
 		$content = $content .  '</div>
 				<div class="swiper-pagination"></div>
-					<div class="swiper-button-prev" ></div>
-					<div class="swiper-button-next" ></div>
-			</div>
+				
+			<div class="swiper-button-prev" ></div>
+			<div class="swiper-button-next" ></div>
+				</div>
+
+
 		';
 		return $content;
     }

@@ -6,10 +6,7 @@
 	$(document).on('click','.cta',function(e){
 	 	e.preventDefault();
 
-		id = e.target.parentElement.parentElement.id; /* Obtengo el id de la box que tengo que enviarle al server */
-
-		if (id == "") console.log('There is no screenshot to show');
-		else {
+		id = e.currentTarget.id; /* Obtengo el id de la box que tengo que enviarle al server */
 
 		the_url = imjs_vars.url;
 		
@@ -20,11 +17,7 @@
 				'box_id': id,
 				action: 'procesar_request_modal',
 			},
-			success: function(response){
-			    console.log('Data sent');
-
-				jQuery('body').prepend("<div class='black-screen'> <div>");
-				
+			success: function(response){				
 				jQuery('body').append(response);
 				jQuery('.modal').show();
 			},
@@ -35,18 +28,12 @@
 
 		})
 
-		}
-
-	})		
-
-})(jQuery);
-
-/* Esta funciona maneja el cierre del modal cuando se clickea en el elemento modal-close */
-(function($){
-	// e es informacion sobre el evento
-	$(document).on('click','.modal-close',function(e){
-	 	e.preventDefault();
-		id_close = e.target.parentElement.parentElement.parentElement; 
-		id_close.remove();
-	})
+		})		
+			/* Esta funciona maneja el cierre del modal cuando se clickea en el elemento modal-close */
+			// e es informacion sobre el evento
+			$(document).on('click','.modal-close',function(e){
+				$(".modal-container").remove();
+			})
+		
+		
 })(jQuery);

@@ -98,7 +98,7 @@
     
     <div class="general-form-field">
         <h2 class="filds-titles"> <?php _e("CSS del footer"); ?> </h2>
-        <textarea name="footer_css" value=""><?php echo esc_attr( get_site_option('footer_css')); ?></textarea>
+        <textarea class='area_texto'name="footer_css" value=""><?php echo esc_attr( get_site_option('footer_css')); ?></textarea>
     </div>
     
     <h3 style="font-weight:bold"><?php _e("Referencias de clases CSS"); ?> </h3>
