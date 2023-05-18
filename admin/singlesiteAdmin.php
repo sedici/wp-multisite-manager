@@ -40,9 +40,8 @@ class SinglesiteAdmin{
             $template_data = ["logos" => $this->print_logos('header_images','header-image')];
             $templateLoader = Inc\My_Template_Loader::getInstance();	
             $templateLoader->set_template_data($template_data);
-		    $templateLoader->get_template_part("banner","structure",true);
-            $templateLoader->unset_template_data();
-
+	        $templateLoader->get_template_part("banner","structure",true);
+            $templateLoader->unset_template_data(); 
         }
     }
 
@@ -63,13 +62,17 @@ class SinglesiteAdmin{
 
         $content ="";
         $images = get_site_option($option);
+
         if($images){
             foreach ($images as $image){
+                $url = wp_get_attachment_url($image['id']);
                 $content = $content .  "<a href=" . $image['link'] .  '>
-                                <img class="' . $cssClass . '" src="' . wp_get_attachment_url($image['id']) . '"></img>
+                                <img class="' . $cssClass . '" src="' . $url . '"></img>
                             </a>';
             }
         }
+
+        restore_current_blog();
 
         return $content;
        
