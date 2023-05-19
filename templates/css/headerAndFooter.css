@@ -232,9 +232,12 @@
 
         .header-container{
             display:grid;
-            grid-template-columns: 50% 50%; 
-            height: 200px;
+            grid-template-columns: 100%; 
+            height: 10rem;
 
+        }
+        .header-col2{
+            display:none;
         }
 
         .header-image{
