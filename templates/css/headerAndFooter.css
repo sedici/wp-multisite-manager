@@ -56,10 +56,11 @@
     .header-image-container{
         height: 100%;
         display: flex;
+        justify-content: center;
     }
 
     .header-image{
-        max-height:90%;
+        max-height:80%;
         object-fit: contain;
         justify-content: center;
         margin: auto;
@@ -140,9 +141,7 @@
     }
 
     .footer-image{
-        max-width: 1000%;
-        max-height: 17vh;
-        align-self: flex-start;
+       
     }
 
     .footer-image-container{
