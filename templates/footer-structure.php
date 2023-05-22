@@ -22,7 +22,7 @@
 
     <!-- THIRD COLUMN -->
     <div class="col3 footer_column footer-image-container">
-       <? echo $data->logos; ?>
+       <?php echo $data->logos; ?>
        <br>
 
     </div>
