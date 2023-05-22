@@ -55,10 +55,10 @@ function print_media(){
 function print_contacto(){
     $section ="<p class='contact-text'>";
     if (exist('footer_phone')){
-        $section= $section . "<p>" . get_site_option('footer_phone') . "</p>";
+        $section= $section . "<p class='contact-text'>" . get_site_option('footer_phone') . "</p>";
     }
     if (exist('footer_email')){
-        $section= $section . "<p>" . get_site_option('footer_email') . "</p>";
+        $section= $section . "<p class='contact-text'>" . get_site_option('footer_email') . "</p>";
     }
 
     echo $section . "</p>";
