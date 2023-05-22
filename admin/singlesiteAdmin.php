@@ -66,7 +66,7 @@ class SinglesiteAdmin{
         if($images){
             foreach ($images as $image){
                 $url = wp_get_attachment_url($image['id']);
-                $content = $content .  "<a href=" . $image['link'] .  '>
+                $content = $content .  "<a class='header-image-container' href=" . $image['link'] .  '>
                                 <img class="' . $cssClass . '" src="' . $url . '"></img>
                             </a>';
             }

@@ -1,5 +1,5 @@
     .header-container{
-        height: 70px  ;
+        height: 4rem  ;
         position: relative;
         margin-top: 0%;
         display:grid;
@@ -22,6 +22,7 @@
         display: flex;
         text-align: center;
         align-content: center;
+
     }
 
     .header-title{
@@ -32,11 +33,15 @@
         margin-bottom: auto;
         font-weight: 600;
         text-decoration: none;
-
+        align-self:center;
     }
 
     .header-title:hover{
         transform: scale(1.03);
+    }
+
+    .header-column{
+        height: inherit;
     }
 
     .header-col2{
@@ -44,18 +49,21 @@
         justify-content: center;
         align-items: center;
         margin-right: 1vw;
-        margin-bottom: 1vh;
-        margin-top: 1vh;
-
         gap: 20px;
 
     }
 
+    .header-image-container{
+        height: 100%;
+        display: flex;
+    }
+
     .header-image{
-        max-height:50px;
+        max-height:90%;
         object-fit: contain;
         justify-content: center;
-        align-items: center;
+        margin: auto;
+        align-self: center;
     }
 
 
@@ -145,17 +153,18 @@
 
     }
 
+/* ====================     CSS Responsive Design     ======================= */
 
   
 
     @media only screen and (max-width: 600px) {
-
+/*
         .header-container{
             display:grid;
             grid-template-columns: 50% 50%; 
             height: 200px;
         }
-
+*/
         .header-image{
             max-height:50px; 
             object-fit: contain;

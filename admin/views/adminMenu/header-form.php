@@ -73,6 +73,7 @@
         <li> <span style="font-weight:bold"> header-column: </span> <?php _e("esta clase maneja las 2 columnas del header"); ?> </li>
         <li> <span style="font-weight:bold"> header-col1 y header-col2: </span> <?php _e("estas clases manejan la columna de texto (col1) y la columna de imagen (col2)"); ?> </li>
         <li> <span style="font-weight:bold"> header-image: </span> <?php _e("esta clase maneja la imagen del header"); ?> </li>
+        <li> <span style="font-weight:bold"> header-image-container: </span> <?php _e("esta clase maneja el contenedor individual de cada imagen, ayuda a regular altura y ancho"); ?> </li>
 
     </ul>
 
