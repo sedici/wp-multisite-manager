@@ -5,7 +5,7 @@
 <div class="header-container">
     <div class="header-col1 header-column">   
         <h1  class="header-title">  
-            <a href="<?php echo get_site_option('title_link'); ?> "> <?php echo get_site_option('title_text'); ?> </a>
+            <a class="header-title" href="<?php echo get_site_option('title_link'); ?> "> <?php echo get_site_option('title_text'); ?> </a>
         </h1>
     </div>
 

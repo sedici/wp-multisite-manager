@@ -156,14 +156,14 @@ class multisiteAdmin{
       
         register_setting( 'header_settings', 'header_images');
         /*  Header Settings => Array de imagenes con la siguiente estructura:
-            [   [0] {
+            [[0] {
                     "id" => id_De_Media_Upload,
                     "link" => link
                 },
-               [1] {
+             [1] {
                     "id" => id_De_Media_Upload,
                     "link" => link
-               }
+            }
             ] */
     }
 
