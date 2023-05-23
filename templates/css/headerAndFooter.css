@@ -1,9 +1,16 @@
+body {
+    position: relative;
+    min-height: 100vh!important;
+  }
+
+/*---------- HEADER CSS ----------*/
+
     .header-container{
         height: 4rem  ;
         position: relative;
         margin-top: 0%;
         display:grid;
-        grid-template-columns: 50% 50%;
+        grid-template-columns: 33% 33% 33%;
         object-fit: contain;
 
         top:0;
@@ -12,18 +19,10 @@
         
     }
 
-    body {
-        position: relative;
-        min-height: 100vh!important;
-      }
-
-    .header-col1 {
-        float: left;
-        display: flex;
-        text-align: center;
-        align-content: center;
-
+    a{
+        text-decoration: none;
     }
+/* Header TEXTs */
 
     .header-title{
         font-size: xx-large;
@@ -40,19 +39,35 @@
         transform: scale(1.03);
     }
 
-    .header-column{
-        height: inherit;
+    .header-subtext{
+        margin: 0;
+        justify-self:end;
     }
 
-    .header-col2{
+    /* HEADER COLUMNS */
+
+    .header-column{
+        display: flex;
+        height: inherit;
+        align-items: center;
+    }
+    .header-col1 {
+        float: left;
+        display: flex;
+        text-align: center;
+        align-content: center;
+    }
+
+    .header-col3{
         display: flex;
         justify-content: center;
         align-items: center;
         margin-right: 1vw;
         gap: 20px;
-
     }
 
+    /* Header IMAGEs */
+    
     .header-image-container{
         height: 100%;
         display: flex;
@@ -69,12 +84,7 @@
     }
 
 
-    a{
-        text-decoration: none;
-    }
-
-
-    /* FOOOTER CSS */
+    /*---------- FOOOTER CSS ----------*/
 
     .footer-container{
 
@@ -258,7 +268,7 @@
             height: 10rem;
 
         }
-        .header-col2{
+        .header-col3{
             display:none;
         }
 

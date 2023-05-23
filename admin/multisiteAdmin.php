@@ -152,6 +152,8 @@ class multisiteAdmin{
         register_setting( 'header_settings', 'enabled' );
         register_setting( 'header_settings', 'title_text' );
         register_setting( 'header_settings', 'title_link' );
+        register_setting( 'header_settings', 'header_text' );
+
         register_setting( 'header_settings', 'header_css');
       
         register_setting( 'header_settings', 'header_images');

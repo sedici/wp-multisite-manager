@@ -14,22 +14,34 @@
         <h2 class="filds-titles"> <?php _e("Habilitado"); ?> </h2>
         <input type="checkbox" name="enabled" value=1   <?php checked(get_site_option('enabled')); ?> />
     </div>
+
+    <h2 class="section-heading"> <?php _e("Sección de título (Columna N°1) ") ?></h2>
+
+
     <!-- Podria agregarse algun placeholder -->
     <div class="general-form-field">
-        <h2 class="filds-titles"> <?php _e("Texto"); ?> </h2>
+        <h2 class="filds-titles"> <?php _e("Título principal"); ?> </h2>
         <input type="text" name="title_text" value="<?php echo esc_attr( get_site_option('title_text') ); ?>" >
     </div>
 
-    <div id="images-container">
 
     <div class="general-form-field">
-    <h2 class="filds-titles"> <?php _e("Enlace del texto"); ?> </h2>
-    <input name="title_link" type="text" value="<?php echo esc_attr( get_site_option('title_link') ); ?>"  >
+    <h2 class="filds-titles"> <?php _e("Enlace del título"); ?> </h2>
+    <input type="text" name="title_link"  value="<?php echo esc_attr( get_site_option('title_link') ); ?>"  >
+    </div>
+    <hr>
+    <h2 class="section-heading"> <?php _e("Sección de texto (Columna N°2) ") ?></h2>
+
+
+    <div class="general-form-field">
+        <h2 class="filds-titles"> <?php _e("Texto"); ?> </h2>
+        <input type="text" name="header_text" value="<?php echo esc_attr( get_site_option('header_text') ); ?>" >
     </div>
 
     <hr> 
+<div id="images-container">
 
-    <h1 class="section-heading"> <?php _e("Sección de imágenes a mostrar en el header") ?></h1>
+    <h2 class="section-heading"> <?php _e("Sección de imágenes a mostrar en el header (Columna N°3) ") ?></h2>
     <br></br>
     <h2 style="font-size:x-large"> Editar imágenes actuales </h2>
     <?php $this->print_option_images('header_images'); ?>
@@ -71,7 +83,7 @@
         <li> <span style="font-weight:bold"> header-container: </span> <?php _e("esta clase envuelve todo el header. (Aquí se pueden poner los colores de fondo)");?> </li>
         <li> <span style="font-weight:bold"> header-title / header-txt: </span> <?php _e("estas clases manejan la etiqueta de texto");?> </li>
         <li> <span style="font-weight:bold"> header-column: </span> <?php _e("esta clase maneja las 2 columnas del header"); ?> </li>
-        <li> <span style="font-weight:bold"> header-col1 y header-col2: </span> <?php _e("estas clases manejan la columna de texto (col1) y la columna de imagen (col2)"); ?> </li>
+        <li> <span style="font-weight:bold"> header-col1 ,header-col2 y header-col3: </span> <?php _e("estas clases manejan la columna de título (col1), la de texto (col2) y la columna de imagen (col3)"); ?> </li>
         <li> <span style="font-weight:bold"> header-image: </span> <?php _e("esta clase maneja la imagen del header"); ?> </li>
         <li> <span style="font-weight:bold"> header-image-container: </span> <?php _e("esta clase maneja el contenedor individual de cada imagen, ayuda a regular altura y ancho"); ?> </li>
 

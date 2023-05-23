@@ -8,8 +8,12 @@
             <a class="header-txt" href="<?php echo get_site_option('title_link'); ?> "> <?php echo get_site_option('title_text'); ?> </a>
         </h1>
     </div>
-
     <div class="header-col2 header-column"> 
+
+       <p class="header-subtext"> <?php echo get_site_option('header_text'); ?> </p>
+
+    </div>
+    <div class="header-col3 header-column"> 
 
        <?php echo $data->logos;?>
 
