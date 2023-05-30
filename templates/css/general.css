@@ -326,7 +326,7 @@ div#elem-bar-modal4{
     div > .modal-close {
         position: absolute;
         bottom: 787px;
-        left: 361px;
+        left: 553px;
         z-index: 150;
     }
 
@@ -344,8 +344,8 @@ div#elem-bar-modal4{
     }
 
     .modal-data-text {
-        width: 360px;
-        height: 110px;
+        width: 232px;
+        height: 25px;
     }
 
     .sites-portfolio{
@@ -382,10 +382,5 @@ div#elem-bar-modal4{
 
 }
 
-
-@media only screen and (max-width: 360px) {
-
-
-}
 
   
