@@ -396,6 +396,7 @@ class Init{
 		$parameters = shortcode_atts( array(
 			'per_view'=> 2,
 			'autoplay_seconds'=>0,
+			'direction' => 'horizontal'
         ), $attr );
 		
 		if($parameters["autoplay_seconds"]>0){

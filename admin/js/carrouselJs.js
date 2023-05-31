@@ -5,6 +5,7 @@ var queryPhone = window.matchMedia("(max-width: 780px)")
 function checkDisplay(queryPhone){
   if(queryPhone.matches){
     params["per_view"] = 1;
+    params["direction"] = 'vertical'
   }
 
 }
@@ -27,7 +28,7 @@ checkDisplay(queryPhone);
 
  export let swiper = new Swiper('.swiper', {
     // Optional parameters
-    direction: 'horizontal',
+    direction: params["direction"],
     autoHeight: false,
     centeredSlides: true,
     autoplay: getMs(),
