@@ -63,6 +63,7 @@ class multisiteAdmin{
 
         // Guardo todos los IDS de los sitios en el array $sitesArray
         foreach ($sites as $site){
+            var_dump($site);
             array_push($sitesArray,$site->blog_id);
         }
 
@@ -85,7 +86,9 @@ class multisiteAdmin{
             *    para solo dejar los sitios que no tengan un CPT asociado
             */
             if (in_array($cpt_site_id,$sitesArray)){
-
+                if (is_archived($cpt_site_id)){
+                    wp_delete_post(get_the_ID());
+                }
                 $key = array_search($cpt_site_id, $sitesArray);
                 if( $key !== false ){
                     unset($sitesArray[$key]);
@@ -97,8 +100,9 @@ class multisiteAdmin{
 
         // Para cada ID de sitio que no tiene un CPT, llamo a la función create_cpt_post
         foreach ($sitesArray as $site){
-
-            $this->create_cpt_post($site);
+            if (!is_archived($site)){
+                $this->create_cpt_post($site);
+            }
         }
         return $sitesArray;
 }
