@@ -26,7 +26,7 @@
                 
                 <div id='elem-bar-modal4' class='elemento-barra-modal'>
                     <span class='modal-subtitle'> Descripción: 
-                        <p class='modal-data-text'> <?php echo $data->site_description; ?> </p>
+                        <p id='modal-description-text' class='modal-data-text'> <?php echo $data->site_description; ?> </p>
                     </span>
                 </div>
             </div>
