@@ -313,39 +313,43 @@ div#elem-bar-modal4{
     div > .modal-img-elem {
         border: solid 1px black;
         border-radius: 10px;
-        transform: rotate(90deg);
 
-        position: absolute;
-        left: -183px;
-        bottom: 244px;
-        width: 189%;
-        height: 42.6%;
-        max-width: 196%;
+        width: 100%;
+        height: 74%;
     }
  
     div > .modal-close {
         position: absolute;
-        bottom: 787px;
-        left: 361px;
         z-index: 150;
     }
 
     div > .barra-transparente {
-        width: 145%;
-        height: 195px;
-        transform: rotate(90deg);  
-        
-        left: -178px;
-        bottom: 415px;
+        width: 85%;
+        height: 20%;
+
+        position: absolute;
+        top: 40%;
     }
 
     .elemento-barra-modal {
         height: 60px;
+        margin-bottom: 15px;
     }
 
     .modal-data-text {
-        width: 360px;
-        height: 110px;
+        width: 130px;
+        height: 25px;
+        white-space: normal;
+    }
+
+    #link-al-sitio {
+        display: inline-block;
+        width: 130px;
+    }
+
+    #modal-description-text {
+        height: 75px;
+
     }
 
     .sites-portfolio{
@@ -382,10 +386,5 @@ div#elem-bar-modal4{
 
 }
 
-
-@media only screen and (max-width: 360px) {
-
-
-}
 
   

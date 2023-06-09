@@ -255,7 +255,7 @@ class Init{
 
 				. $this->print_screenshot(get_the_ID(),'site_screenshot') .
 
-				"<span class='site-title'>" . get_the_title() . "</span>	
+				"<br><span class='site-title'>" . get_the_title() . "</span>	
 				<br>
 				<div>
 				<p class='site-desc'>" . print_description() .
@@ -396,6 +396,7 @@ class Init{
 		$parameters = shortcode_atts( array(
 			'per_view'=> 2,
 			'autoplay_seconds'=>0,
+			'direction' => 'horizontal'
         ), $attr );
 		
 		if($parameters["autoplay_seconds"]>0){
