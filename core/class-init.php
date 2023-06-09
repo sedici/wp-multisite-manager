@@ -374,7 +374,7 @@ class Init{
 			$templateLoader = Inc\My_Template_Loader::getInstance();
 
 			$templateLoader->set_template_data($template_data);
-			$templateLoader->get_template_part("portfolio","modal",true);
+			$templateLoader->get_template_part("modal",true);
 
 			$templateLoader->unset_template_data();
 

@@ -78,7 +78,7 @@ p.site-desc{
     font-weight: 500;
     margin-bottom: 3%;
 
-    overflow: scroll;
+    overflow: overlay;
     text-overflow: ellipsis;
     height: 63px;
 }
@@ -220,6 +220,7 @@ div > .modal-close {
     display: grid;
     grid-template-columns: 50% 50%;
     grid-template-rows: 33% 33% 33%;
+    grid-row-gap: 5px;
 }
 
 .elemento-barra-modal {
@@ -239,19 +240,19 @@ div#elem-bar-modal1{
     text-align: left;
 }
 
-div#elem-bar-modal2{
+div#modal-div-fecha-creacion{
     grid-column: 1;
-    grid-row: 3;
+    grid-row: 1;
 }
 
-div#elem-bar-modal3{
+div#modal-div-url{
     grid-column: 1;
     grid-row: 2;
 }
 
-div#elem-bar-modal4{
+div#modal-div-desc{
     grid-column: 2;
-    grid-row: 2;
+    grid-row: 1;
 }
 
 .modal-subtitle{
@@ -266,9 +267,12 @@ div#elem-bar-modal4{
     font-size:small;
     text-align: justify;
 
-    overflow: scroll;
+    overflow: overlay;
     white-space:nowrap ;
-    text-overflow: ellipsis;
+}
+
+#modal-description-text {
+    height: 40px;
 }
 
 #link-al-sitio {
