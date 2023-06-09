@@ -63,7 +63,6 @@ class multisiteAdmin{
 
         // Guardo todos los IDS de los sitios en el array $sitesArray
         foreach ($sites as $site){
-            var_dump($site);
             array_push($sitesArray,$site->blog_id);
         }
 
