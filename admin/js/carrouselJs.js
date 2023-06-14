@@ -45,7 +45,4 @@ checkDisplay(queryPhone);
     },
   
     // And if we need scrollbar
-
   });
-
-
