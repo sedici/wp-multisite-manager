@@ -284,8 +284,6 @@ div#modal-div-desc{
 
 #modal-description-text {
     height: 50px;
-    overflow: hidden;
-    white-space: unset;
 }
 
 #link-al-sitio {
