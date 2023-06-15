@@ -319,7 +319,13 @@ div#modal-div-desc{
 
 
 /* Estos estilos se aplican cuando max-widht ES IGUAL O MENOR a 926 */
-@media only screen and (max-width: 926px) {
+@media only screen and (max-width: 950px) {
+
+    .sites-portfolio{
+        grid-template-columns: 50% 50%;
+        width: 640px;
+        grid-column-gap: 0px ;
+    }
 
     div > .barra-transparente {
 
@@ -332,6 +338,7 @@ div#modal-div-desc{
     .sub-barra-transparente {
         grid-row-gap : 15px;
     }
+
 }
 
 
@@ -355,17 +362,8 @@ div#modal-div-desc{
     }
 }
 
-@media only screen and (max-width: 800px) {
-    .sites-portfolio{
-        grid-template-columns: 100%;
-        grid-column-gap:0px;
-        width: 90%;
-    }
-}
-
-
 /* Estos estilos se aplican cuando max-widht ES IGUAL O MENOR a 600px */
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 650px) {
 
     div.sites-portfolio {
         width: 305px;

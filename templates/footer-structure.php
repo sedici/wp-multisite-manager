@@ -53,15 +53,15 @@ function print_media(){
 }
 
 function print_contacto(){
-    $section ="<p class='contact-text'>";
+    $section ="<span class='contact-text'>";
     if (exist('footer_phone')){
-        $section= $section . "<p>" . get_site_option('footer_phone') . "</p>";
+        $section= $section . "<span>" . get_site_option('footer_phone') . "</span>";
     }
     if (exist('footer_email')){
-        $section= $section . "<p>" . get_site_option('footer_email') . "</p>";
+        $section= $section . "<br><span>" . get_site_option('footer_email') . "</span>";
     }
 
-    echo $section . "</p>";
+    echo $section . "</span>";
 }
 
 function print_logos(){
