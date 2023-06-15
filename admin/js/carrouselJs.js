@@ -5,7 +5,8 @@ var queryPhone = window.matchMedia("(max-width: 780px)")
 function checkDisplay(queryPhone){
   if(queryPhone.matches){
     params["per_view"] = 1;
-    params["direction"] = 'vertical'
+    params["direction"] = 'horizontal'
+    console.log(true);
   }
 
 }

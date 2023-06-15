@@ -13,6 +13,7 @@
     margin-bottom: 1vh;
     padding: 15px;
 
+    justify-items: center;
     width: 900px;
     height: auto;
     align-items: center;
@@ -102,7 +103,7 @@ p.site-desc{
     margin-top: 10vh;
     margin-bottom: 10vh;
 
-    border: solid 3px black;
+    border: solid 1px #ded8d8;
     border-radius: 10px;
   }
 
@@ -354,6 +355,14 @@ div#modal-div-desc{
     }
 }
 
+@media only screen and (max-width: 800px) {
+    .sites-portfolio{
+        grid-template-columns: 100%;
+        grid-column-gap:0px;
+        width: 90%;
+    }
+}
+
 
 /* Estos estilos se aplican cuando max-widht ES IGUAL O MENOR a 600px */
 @media only screen and (max-width: 600px) {
@@ -407,7 +416,6 @@ div#modal-div-desc{
 
     #modal-description-text {
         height: 75px;
-
     }
 
     div > .sites-portfolio{
@@ -423,13 +431,11 @@ div#modal-div-desc{
         margin-bottom: 10px;
     }
 
-
     .swiper{
         display: grid;
         grid-template-columns: 100%;
 
         width: 100%;
-        height: 500px;
     }
 
     .swiper-wrapper {
