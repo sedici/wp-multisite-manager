@@ -5,7 +5,6 @@
 
     display: grid;
     grid-template-columns: 33% 33% 33%;
-    grid-template-rows: 100%;
     grid-column-gap: 10px;
     grid-row-gap: 20px;
        
@@ -14,6 +13,7 @@
     margin-bottom: 1vh;
     padding: 15px;
 
+    justify-items: center;
     width: 900px;
     height: auto;
     align-items: center;
@@ -78,7 +78,7 @@ p.site-desc{
     font-weight: 500;
     margin-bottom: 3%;
 
-    overflow: scroll;
+    overflow: overlay;
     text-overflow: ellipsis;
     height: 63px;
 }
@@ -103,7 +103,7 @@ p.site-desc{
     margin-top: 10vh;
     margin-bottom: 10vh;
 
-    border: solid 3px black;
+    border: solid 1px #ded8d8;
     border-radius: 10px;
   }
 
@@ -139,8 +139,18 @@ div > img.carrousel-image{
 }
 
 .carrousel-description {
+    padding-top: 2px;
+    margin-top: 10px;
     text-align: justify;
-    display: none;
+    justify-content: center;
+    font-weight: 600;
+    background-color: #edebeb;
+    display: flex;
+}
+
+.carrousel-site-link {
+    color:rgb(47, 67, 112);
+    text-decoration:none;
 }
 
 /* ============================ CSS Para Modal ============================= */
@@ -219,7 +229,8 @@ div > .modal-close {
 .sub-barra-transparente {
     display: grid;
     grid-template-columns: 50% 50%;
-    grid-template-rows: 33% 33% 33%;
+    grid-template-rows: 50% 50%;
+    grid-row-gap: 5px;
 }
 
 .elemento-barra-modal {
@@ -239,19 +250,20 @@ div#elem-bar-modal1{
     text-align: left;
 }
 
-div#elem-bar-modal2{
+div#modal-div-fecha-creacion{
     grid-column: 1;
-    grid-row: 3;
+    grid-row: 1;
 }
 
-div#elem-bar-modal3{
+div#modal-div-url{
     grid-column: 1;
     grid-row: 2;
 }
 
-div#elem-bar-modal4{
+div#modal-div-desc{
     grid-column: 2;
-    grid-row: 2;
+    grid-row: 1;
+    padding-right: 15px;
 }
 
 .modal-subtitle{
@@ -266,9 +278,12 @@ div#elem-bar-modal4{
     font-size:small;
     text-align: justify;
 
-    overflow: scroll;
+    overflow: overlay;
     white-space:nowrap ;
-    text-overflow: ellipsis;
+}
+
+#modal-description-text {
+    height: 50px;
 }
 
 #link-al-sitio {
@@ -296,9 +311,59 @@ div#elem-bar-modal4{
     cursor: pointer;
 }
 
-/* ====================     CSS Responsive Design     ======================= */
 
-@media only screen and (max-width: 600px) {
+/* ========================================================================================= */
+
+/* Estilos responsive (Aplicados a dispotivios celulares) */
+
+
+
+/* Estos estilos se aplican cuando max-widht ES IGUAL O MENOR a 926 */
+@media only screen and (max-width: 950px) {
+
+    .sites-portfolio{
+        grid-template-columns: 50% 50%;
+        width: 640px;
+        grid-column-gap: 0px ;
+    }
+
+    div > .barra-transparente {
+
+        width: 55%;
+        height: 145px;
+
+        bottom: 213px;
+    }
+
+    .sub-barra-transparente {
+        grid-row-gap : 15px;
+    }
+
+}
+
+
+/* Estilos aplicados para pantallas en horizontal y con ancho maximo MENOR O IGUAL a 926px */
+@media only screen and (orientation: landscape) and (max-width: 926px) {
+
+    div > .barra-transparente {
+        width: 60%;
+        height: 145px;
+        bottom: 80px;
+    }
+
+    .sub-barra-transparente {
+        grid-row-gap : 15px;
+    }
+
+    .sites-portfolio {
+        grid-template-columns: 50% 50%;
+        width: 640px;
+        grid-column-gap: 0px ;
+    }
+}
+
+/* Estos estilos se aplican cuando max-widht ES IGUAL O MENOR a 600px */
+@media only screen and (max-width: 650px) {
 
     div.sites-portfolio {
         width: 305px;
@@ -325,10 +390,10 @@ div#elem-bar-modal4{
 
     div > .barra-transparente {
         width: 85%;
-        height: 20%;
+        height: 35%;
 
         position: absolute;
-        top: 40%;
+        top: 45%;
     }
 
     .elemento-barra-modal {
@@ -349,12 +414,11 @@ div#elem-bar-modal4{
 
     #modal-description-text {
         height: 75px;
-
     }
 
-    .sites-portfolio{
-        display:grid;
-        grid-template-columns: 100%;
+    div > .sites-portfolio{
+        display:flex;
+        flex-direction: column;
         width: 340px;
         height: auto;
         justify-items: center;
@@ -365,13 +429,11 @@ div#elem-bar-modal4{
         margin-bottom: 10px;
     }
 
-
     .swiper{
         display: grid;
         grid-template-columns: 100%;
 
         width: 100%;
-        height: 500px;
     }
 
     .swiper-wrapper {
@@ -385,6 +447,33 @@ div#elem-bar-modal4{
 
 
 }
+
+
+/* Estos estilos se aplican cuando max-widht ES IGUAL O MENOR a 500px */
+@media only screen and (max-width: 500px) {
+
+    div > .barra-transparente {
+        height: 20%;
+    }
+
+    div > .sub-barra-transparente {
+        grid-row-gap:unset;
+    }
+
+}
+
+/* Estos estilos se aplican cuando max-widht ES IGUAL O MENOR a 400px */
+@media only screen and (max-width: 400px) {
+    div > .barra-transparente {
+        height: 25%;
+    }
+
+    div > .sub-barra-transparente {
+        grid-row-gap: 10px;
+    }
+}
+
+
 
 
   

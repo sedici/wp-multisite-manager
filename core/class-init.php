@@ -337,7 +337,7 @@ class Init{
 		 } 
 		}
 		else{
-			return "<span style='font-weight:bold'> No hay screenshot </span>";
+			return "<span style='font-weight:bold'> No hay imagen para mostrar </span>";
 		}
 	}
 
@@ -374,7 +374,7 @@ class Init{
 			$templateLoader = Inc\My_Template_Loader::getInstance();
 
 			$templateLoader->set_template_data($template_data);
-			$templateLoader->get_template_part("portfolio","modal",true);
+			$templateLoader->get_template_part("modal",true);
 
 			$templateLoader->unset_template_data();
 
@@ -387,7 +387,6 @@ class Init{
 	function get_image($post_id,$field){
 		return get_post_meta($post_id, $field,true);
 	}
-
 
     function show_carrousel($attr){
 
@@ -429,7 +428,7 @@ class Init{
 					<div class="swiper-wrapper">';
 		
 		while ( $query->have_posts() ): $query->the_post();
-	
+		
 		$content = $content . 
 
 		'<div class="swiper-slide">
@@ -443,7 +442,7 @@ class Init{
 				$this->print_screenshot(get_the_ID(),'carrousel-image') .
 			
 				'</div><div class="carrousel-description">
-					<p >' .	print_description(true) . '</p>
+					<a class="carrousel-site-link" href=' . get_post_meta(get_the_ID(),'site_url',true) . '> Visitar el sitio </a>
 				</div>
 			</div>
 		</div>';

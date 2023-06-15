@@ -12,19 +12,19 @@
 
             <div class='sub-barra-transparente'>
 
-                <div id='elem-bar-modal2' class='elemento-barra-modal'>
+                <div id='modal-div-fecha-creacion' class='elemento-barra-modal'>
                     <span class='modal-subtitle'> Fecha de creacion: 
-                        <p class='modal-data-text'> <?php echo $data->site_fecha_creacion; ?> </p> 
+                        <span class='modal-data-text'> <?php echo $data->site_fecha_creacion; ?> </span> 
                     </span> 
                 </div>
 
-                <div id='elem-bar-modal3' class='elemento-barra-modal'>
+                <div id='modal-div-url' class='elemento-barra-modal'>
                     <span class='modal-subtitle'> URL: 
                         <a class='modal-data-text' id='link-al-sitio' href='<?php echo $data->site_URL; ?>'> <?php echo $data->site_URL; ?> </a>
                     </span> 
                 </div>  
                 
-                <div id='elem-bar-modal4' class='elemento-barra-modal'>
+                <div id='modal-div-desc' class='elemento-barra-modal'>
                     <span class='modal-subtitle'> Descripción: 
                         <p id='modal-description-text' class='modal-data-text'> <?php echo $data->site_description; ?> </p>
                     </span>
