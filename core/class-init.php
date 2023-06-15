@@ -442,7 +442,7 @@ class Init{
 				$this->print_screenshot(get_the_ID(),'carrousel-image') .
 			
 				'</div><div class="carrousel-description">
-					<a class="carrousel-site-link" href=' . get_post_meta(get_the_ID(),'site_url',true) . '> Link al sitio </a>
+					<a class="carrousel-site-link" href=' . get_post_meta(get_the_ID(),'site_url',true) . '> Visitar el sitio </a>
 				</div>
 			</div>
 		</div>';

@@ -5,7 +5,6 @@
 
     display: grid;
     grid-template-columns: 33% 33% 33%;
-    grid-template-rows: 100%;
     grid-column-gap: 10px;
     grid-row-gap: 20px;
        
@@ -150,7 +149,7 @@ div > img.carrousel-image{
 
 .carrousel-site-link {
     color:rgb(47, 67, 112);
-    
+    text-decoration:none;
 }
 
 /* ============================ CSS Para Modal ============================= */
@@ -412,8 +411,8 @@ div#modal-div-desc{
     }
 
     div > .sites-portfolio{
-        display:grid;
-        grid-template-columns: 100%;
+        display:flex;
+        flex-direction: column;
         width: 340px;
         height: auto;
         justify-items: center;
