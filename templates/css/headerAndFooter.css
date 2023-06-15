@@ -171,6 +171,7 @@ body {
     }
 
 
+
 /* ====================     CSS Responsive Design     ======================= */
 
   
@@ -198,7 +199,13 @@ body {
         
             grid-template-columns: 100%;
             height: auto;
+
+            grid-row-gap:20px;
         } 
+
+        .contacto{
+            text-align: center;
+        }
 
         .footer_column {
             height:auto;
