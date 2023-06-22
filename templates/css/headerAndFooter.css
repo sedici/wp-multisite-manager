@@ -180,8 +180,9 @@ body {
 
         .header-container{
             display:grid;
-            grid-template-columns: 50% 50%; 
+            grid-template-columns: 100%; 
             height: 200px;
+            grid-row-gap: 15px;
         }
 */
         .header-image{
@@ -219,6 +220,13 @@ body {
             max-height: 8vh;
         }
 
+        .col3{
+            align-items: center;
+            display: grid;
+            grid-template-columns: 100%;
+        }
+
+
     }
 
   
@@ -254,4 +262,8 @@ body {
 
       }
 
-      
+      @media only screen and (max-width: 600px){
+        .header-col3{
+            display: none;
+        }
+      }
