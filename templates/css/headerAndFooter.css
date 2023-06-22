@@ -69,14 +69,13 @@ body {
     /* Header IMAGEs */
     
     .header-image-container{
-        height: 100%;
+        height: min-content;
         display: flex;
         justify-content: center;
         align-items: center;
     }
 
     .header-image{
-        max-height:80%;
         object-fit: contain;
         justify-content: center;
         margin: auto;
@@ -94,7 +93,6 @@ body {
         display:grid;
         grid-template-columns: 33% 33% 33%;
         grid-row-gap: 10px;
-        padding-top: 10px;
         clear: both;
         grid-row-gap:15px;
         overflow: hidden;

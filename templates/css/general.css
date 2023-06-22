@@ -164,7 +164,7 @@ div > img.carrousel-image{
     bottom: 0;
     left: 0;
     height: auto;
-    z-index: 105;
+    z-index: 2000;
 
     display: flex;
     justify-content: center;
@@ -385,7 +385,7 @@ div#modal-div-desc{
  
     div > .modal-close {
         position: absolute;
-        z-index: 150;
+        z-index: 2001;
     }
 
     div > .barra-transparente {
