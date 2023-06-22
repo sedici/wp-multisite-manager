@@ -69,7 +69,7 @@ body {
     /* Header IMAGEs */
     
     .header-image-container{
-        height: min-content;
+        height: min-content!important;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -95,6 +95,8 @@ body {
         clear: both;
         grid-row-gap:15px;
         overflow: hidden;
+
+
 
         position: relative;
         bottom:0;
@@ -162,7 +164,6 @@ body {
         flex-direction: row;
         column-gap: 10px;
         align-items: center;
-        padding: 15px;
 
     }
     .footer-image {
@@ -200,6 +201,8 @@ body {
             height: min-content;
 
             grid-row-gap:15px;
+
+            padding: 15px;
         } 
 
         .contacto{
