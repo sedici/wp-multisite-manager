@@ -92,7 +92,6 @@ body {
 
         display:grid;
         grid-template-columns: 33% 33% 33%;
-        grid-row-gap: 10px;
         clear: both;
         grid-row-gap:15px;
         overflow: hidden;
@@ -124,6 +123,7 @@ body {
 
     
     .contact-text {
+        text-align: center;
         font-weight: bold;
         margin: auto;
     }
@@ -162,6 +162,7 @@ body {
         flex-direction: row;
         column-gap: 10px;
         align-items: center;
+        padding: 15px;
 
     }
     .footer-image {
@@ -194,11 +195,11 @@ body {
 
         footer.footer-container{
             display:grid;
-        
+            
             grid-template-columns: 100%;
-            height: auto;
+            height: min-content;
 
-            grid-row-gap:20px;
+            grid-row-gap:15px;
         } 
 
         .contacto{
@@ -211,43 +212,20 @@ body {
             align-items: center;
         }
 
-    }
-
-  
-
-
-      @media only screen and (max-width: 700px) {
-
-        .header-container{
-            display:grid;
-            grid-template-columns: 50% 50%; 
-            height: 200px;
-
-        }
-
-        .header-image{
-            max-height:50px; 
-            object-fit: contain;
-            margin-left: 0px;
-        }
-
-        .header-title{
-            margin-left: 10vw;;
-        }
-
         .footer-image {
             max-height: 8vh;
         }
 
-      }
+    }
 
+  
           /* Si pasa 450px no aplica esto */
-    @media only screen and (max-width: 450px){
+    @media only screen and (max-width: 500px){
 
    
 
         .footer_column {
-            height:100px;
+            height: min-content;
             justify-content: center;
             align-items: center;
         }
