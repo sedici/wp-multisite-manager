@@ -188,6 +188,20 @@ div > .modal-close {
     position: absolute;
     top: 16px;
     right: 16px;
+    color: black;
+    margin: 0;
+    border: 0;
+    padding: 0;
+    background: #ccd1d8;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 150ms;
 
 }
 
@@ -218,9 +232,9 @@ div > .modal-close {
     width: 45%;
     height: 125px;
     border-radius: 15px;
-    opacity: 0.8;
+    opacity: 0.9;
     background-color: rgb(0, 0 , 0.5);
-
+    border: solid 1px white;
     position: absolute;
     bottom: 127px;
 
