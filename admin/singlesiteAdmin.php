@@ -33,16 +33,16 @@ class SinglesiteAdmin{
 
 
     function registerHeader(){
-
-
+       
         $enabled = get_site_option('enabled');
-        if ($enabled == 1){ 
+        if (($enabled == 1)&&( is_page())){ 
             $template_data = ["logos" => $this->print_logos('header_images','header-image')];
             $templateLoader = Inc\My_Template_Loader::getInstance();	
             $templateLoader->set_template_data($template_data);
-	        $templateLoader->get_template_part("banner","structure",true);
+            $templateLoader->get_template_part("banner","structure",true);
             $templateLoader->unset_template_data(); 
         }
+    
     }
 
     function registerFooter(){
@@ -51,7 +51,7 @@ class SinglesiteAdmin{
             $template_data = ["logos" => $this->print_logos('footer_images','footer-image')];
             $templateLoader = Inc\My_Template_Loader::getInstance();	
             $templateLoader->set_template_data($template_data);
-		    $templateLoader->get_template_part("footer","structure",true);
+            $templateLoader->get_template_part("footer","structure",true);
             $templateLoader->unset_template_data();
 
         }
