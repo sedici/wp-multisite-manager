@@ -92,69 +92,198 @@ p.site-desc{
 
 /* ============================ CSS Para Carrousel ============================= */
 
-
-.swiper{
+.swiper {
     width: 100%;
-    height: 350px;
-
-
-    justify-content: center;
-
-    margin-top: 1vh;
-    margin-bottom: 1vh;
-
-    border: solid 1px #ded8d8;
-    border-radius: 10px;
-  }
+    margin: 20px 0;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+}
 
 .swiper-wrapper {
-    padding-top: 65px;
-}
-
-.carrousel-box{
-    display: grid;
-    justify-content: center;
-    align-items: center;
-}
-
-.carrousel-box:hover{
-    transform: scale(1.05);
-}
-
-.carrousel-title{
-    font-weight: bold;
-    text-align: center;
-    font-size: 13px;
-}
-
-div > img.carrousel-image{
-    max-width: 100%;
-    height: 140px;
-    border: solid 2px rgb(188, 179, 179);
-    border-radius: 3px;
-    align-items: center;
-    align-content: center;
-    cursor: pointer;
-
-}
-
-.carrousel-description {
-    padding-top: 2px;
-    margin-top: 10px;
-    text-align: justify;
-    justify-content: center;
-    font-weight: 600;
-    background-color: #edebeb;
     display: flex;
 }
 
-.carrousel-site-link {
-    color:rgb(47, 67, 112);
-    text-decoration:none;
+.swiper-container {
+    width: 100%;
+    margin: 20px 0;
 }
+
+.swiper-slide {
+    text-align: center;
+    display: flex;
+    align-self: center;
+    margin: 20px;
+}
+
+.carrousel-box {
+    width: 350px;
+    height: 300px;
+
+    justify-content: center;
+
+    margin: 0 auto;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.carrousel-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.cta {
+    margin-bottom: 15px;
+}
+
+.cta:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.carrousel-description {
+    font-size: 14px;
+    margin: 0 10px 10px;
+}
+
+.carrousel-site-link {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.swiper-pagination {
+    margin-top: 10px;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+    color: #253f8c;
+    font-size: 18px;
+}
+
+.carrousel-image {
+    width: 300px !important;
+    height: 150px !important;
+}
+
 
 /* ============================ CSS Para Modal ============================= */
 
+.modal-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2000;
+}
+
+.modal-main-box {
+    width: 80%;
+    height: 85%;
+
+    margin: auto;
+    background-color: #fff;
+    border: solid 1px black;
+    border-radius: 15px;
+
+    overflow: hidden; 
+
+}
+
+.barra-transparente {
+    display: flex;
+    flex-direction: column; /* Alinea los elementos verticalmente */
+    
+    height: 30%;
+
+    position: relative; 
+    z-index: 2; 
+    bottom: 35%;
+
+    opacity: 0.6;
+    background-color: rgb(0, 0 , 0.5);
+    
+    font-size: 16px;
+    color: #333;
+
+    overflow: scroll;
+
+    padding: 10px;
+    margin: 10px;
+
+    border-radius: 15px;
+
+    border-width: 1px; 
+    border-style: solid; 
+
+    border-color: lightgray
+
+}
+
+.barra-transparente > * {
+    margin-bottom: 10px; /* Espacio entre elementos */
+}
+
+.sub-barra-transparente {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.modal-img-elem {
+    width: 100%;
+    height: 100%;
+    display: block;
+    margin: 0 auto;
+
+    object-fit: cover; 
+}
+
+.modal-close {
+    display: contents;
+}
+
+#link-al-sitio {
+    color: aqua;
+}
+
+.modal-subtitle {
+    color: rgb(230, 230, 230);
+    font-weight: bold;
+}
+
+.modal-data-text {
+    color: white;
+    font-weight: normal;
+}
+
+.dot {
+    color: white;
+}
+
+.dot:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+    color: white;
+
+}
+
+  
+/* ==================================== */
+
+/*
 .modal-container{
     opacity: 2;
     background-color: rgb(0, 0 , 0.5);
@@ -303,6 +432,8 @@ div#modal-div-desc{
 #link-al-sitio {
     color: aqua;
 }
+
+*/
 
 .show-more {
     font-size:large;
