@@ -235,7 +235,7 @@ p.site-desc{
 }
 
 .barra-transparente > * {
-    margin-bottom: 10px; /* Espacio entre elementos */
+    margin-bottom: 10px; 
 }
 
 .sub-barra-transparente {
@@ -280,6 +280,19 @@ p.site-desc{
     transform: scale(1.1);
     color: white;
 
+}
+
+.site-no-image-container {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    display: flex;
+    justify-content: center;
+}
+
+#site-no-image {
+  align-self: center;
+  display: flex;
 }
 
   

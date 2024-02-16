@@ -338,7 +338,7 @@ class Init{
 		 } 
 		}
 		else{
-			return "<span style='font-weight:bold'> No hay imagen para mostrar </span>";
+			return "<div class='site-no-image-container'> <span id='site-no-image' style='font-weight:bold'> No hay imagen para mostrar </span> </div>";
 		}
 	}
 
