@@ -214,8 +214,7 @@ p.site-desc{
     bottom: 30%;
     left: 25%;
 
-    opacity: 0.6;
-    background-color: rgb(0, 0 , 0.5);
+    background-color: rgba(0, 0, 1, 0.561);
     
     font-size: 16px;
     color: #333;
