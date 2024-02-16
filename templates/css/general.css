@@ -271,15 +271,31 @@ p.site-desc{
     font-weight: normal;
 }
 
-.dot {
-    color: white;
+.modal-close {
+    color: rgb(255, 255, 255);
+    background-color: #b11818dd;
+
+    display: block;
+    width: 3%;
+
+    border-width: 1px; 
+    border-style: solid; 
+    border-color: #333;
+    border-radius: 40%;
+
+    font-weight: bolder;
+    font-size: 15px;
+
+
+    position: absolute;
+    bottom: 85%;
+    left: 10%;
+    margin: 10px; 
 }
 
-.dot:hover{
+.modal-close:hover{
     cursor: pointer;
-    transform: scale(1.1);
-    color: white;
-
+    transform: scale(1.0);
 }
 
 .site-no-image-container {

@@ -4,9 +4,9 @@
 
         <?php echo $data->site_screenshot ?>
 
-        <div class="barra-transparente">
+        <button class='modal-close'>X</button>
 
-            <button class='modal-close dot'>X</button>
+        <div class="barra-transparente">
 
             <span class='modal-subtitle' id='modal-site-title'> <?php echo $data->site_title;?> </span> 
 
@@ -33,7 +33,6 @@
 
 
         </div>
-
 
     </div>
 
