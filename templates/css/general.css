@@ -204,13 +204,15 @@ p.site-desc{
 
 .barra-transparente {
     display: flex;
-    flex-direction: column; /* Alinea los elementos verticalmente */
+    flex-direction: column; 
     
-    height: 30%;
+    height: 25%;
+    width: 50%;
 
     position: relative; 
     z-index: 2; 
-    bottom: 35%;
+    bottom: 30%;
+    left: 25%;
 
     opacity: 0.6;
     background-color: rgb(0, 0 , 0.5);
