@@ -69,7 +69,7 @@ require_once plugin_dir_path( __DIR__ ) . 'helpers.php';
 
             if($screenshot_filter !== "false"){
                 $items =  array_filter($items,fn($post)=> (
-                                            $this->has_screenshot($post['ID']) == "Si")
+                                            $this->has_screenshot($post['ID']) == "No")
                                         );
             }
 
