@@ -5,7 +5,7 @@
 
     display: grid;
     grid-template-columns: 33% 33% 33%;
-    grid-column-gap: 10px;
+    grid-column-gap: 30px;
     grid-row-gap: 20px;
        
     margin: auto;
@@ -23,17 +23,17 @@
 
 .sites-portfolio-box{
     position: relative;
+    height: 250px;
 
     padding: 2vh;
     border: solid 1px rgb(185, 180, 180); 
     border-radius: 15px;
 
-    height: 281px;
-    width: 280px;
     text-align: left;
-
-
     color: black;
+
+    display: flex;
+    flex-direction: column;
 }
 
 .sites-portfolio-box:hover{
@@ -43,44 +43,26 @@
 }
 
 
-.sites-portfolio-img{
-    object-fit:fill; 
-    border: solid 1px;
-    width:100%;
-    height:100%;  
-    margin-bottom: 5%;
-
-}
-
-div > img.site_screenshot {
-    height: 140px;
-    border: solid 2px rgb(201, 198, 198);
+img.site_screenshot{
     border-radius: 15px;
-    margin-bottom: 4px;
+    width: 250px !important;
+    height: 150px !important;
+
 }
 
-.site-title{
+span.site-title{
     font-size: 12px;
-
     font-weight: bold;
-
-    margin-bottom: 5%;
-
-    width: fit-content;
-
     font-family: Gill Sans, sans-serif ;
-
     color: black;
+
+    padding-bottom: 20px;
+   
 }
 
-p.site-desc{
+.site-desc{
     font-size: small;
     font-weight: 500;
-    margin-bottom: 3%;
-
-    overflow: overlay;
-    text-overflow: ellipsis;
-    height: 63px;
 }
 
 
@@ -88,7 +70,6 @@ p.site-desc{
     color:red;
     font-weight:bold
 }
-
 
 /* ============================ CSS Para Carrousel ============================= */
 
@@ -153,6 +134,13 @@ p.site-desc{
     margin: 0 10px 10px;
 }
 
+.carrousel-description-portfolio {
+    font-size: 14px;
+    display: flex;
+    padding-top: 10px;
+    
+}
+
 .carrousel-site-link {
     color: #007bff;
     text-decoration: none;
@@ -168,9 +156,10 @@ p.site-desc{
     font-size: 18px;
 }
 
-.carrousel-image {
+img.carrousel-image {
     width: 300px !important;
     height: 150px !important;
+    border-radius: 15px;
 }
 
 
@@ -297,12 +286,19 @@ p.site-desc{
     transform: scale(1.0);
 }
 
-.site-no-image-container {
+.site-no-image-container-carrousel {
     width: 100%;
     height: 100%;
     object-fit: cover; 
     display: flex;
     justify-content: center;
+}
+
+.site-no-image-container-portfolio {
+    width: 100%;
+    object-fit: cover; 
+    display: flex;
+    padding-bottom: 20px;
 }
 
 #site-no-image {

@@ -246,22 +246,24 @@ class Init{
 		/* Carga en un arreglo todos los post de sitios */
 		while ( $query->have_posts() ): $query->the_post();
 
-			$vista_unica_post_sitio = ""; /*Se guarda la vista de cada post sitio unico */
+			$vista_unica_post_sitio = ""; 
 
 			$vista_unica_post_sitio =
-				"<div class='cta' id='" . get_the_ID() . "'>
-				<div class='sites-portfolio-box'
-						style='background-color:" . $parameters['box_color'] ."' 
-				>"
+				"<div class='cta' id='" . get_the_ID() . "'> 
+					<div class='sites-portfolio-box' style='background-color:" . $parameters['box_color'] ."' >"
 
-				. $this->print_screenshot(get_the_ID(),'site_screenshot') .
+					. "<span class='site-title'>" . get_the_title() . "</span>"
 
-				"<br><span class='site-title'>" . get_the_title() . "</span>	
-				<br>
-				<div>
-				<p class='site-desc'>" . print_description() .
+					. $this->print_screenshot(get_the_ID(),'site_screenshot',false) .
 
-				"</p></div></div></div>";
+					"
+						<div class='carrousel-description-portfolio'>
+							<a class='carrousel-site-link' href=" . get_post_meta(get_the_ID(),'site_url',true) . "> Visitar el sitio </a>
+						</div>
+
+					</div>
+
+				</div>";
 		
 			$array_sitios[$i] = $vista_unica_post_sitio;
 			$i++;
@@ -301,17 +303,18 @@ class Init{
 
 			$vista_unica_post_sitio =
 				"<div class='cta' id='" . get_the_ID() . "'>
-				<div class='sites-portfolio-box'
-						style='background-color:" . $_POST['box_color'] ."' 
-				>"
+				
+					<div class='sites-portfolio-box' style='background-color:" . $_POST['box_color'] ."' >"
 
-				. $this->print_screenshot(get_the_ID(),'site_screenshot') .
+						. $this->print_screenshot(get_the_ID(),'site_screenshot', false) .
 
-				"<span class='site-title'>" . get_the_title() . "</span>	
-				<br>
-				<p class='site-desc'>" . print_description() .
+						"<span class='site-title'>" . get_the_title() . "</span>	
+				
+						<div class='carrousel-description-portfolio'> <a class='carrousel-site-link' href=" . get_post_meta(get_the_ID(),'site_url',true) . "> Visitar el sitio </a> </div>
+					
+					</div>
 
-				"</p></div></div>";
+				</div>";
 		
 			array_push($array_sitios, $vista_unica_post_sitio);
 			
@@ -324,7 +327,12 @@ class Init{
 		exit();
 	}
 
-    function print_screenshot($post_id,$css_class){
+    function print_screenshot($post_id,$css_class, $is_for_carrousel){
+
+		if($is_for_carrousel) $class = "class='site-no-image-container-carrousel'";
+		else $class = "class='site-no-image-container-portfolio'";
+	
+
 		if(get_post_meta(get_the_ID(),'site_screenshot') and (!empty(get_post_meta(get_the_ID(),'site_screenshot')[0]) ))
 		{
 			$image = $this->get_image($post_id,'site_screenshot');
@@ -338,7 +346,7 @@ class Init{
 		 } 
 		}
 		else{
-			return "<div class='site-no-image-container'> <span id='site-no-image' style='font-weight:bold'> No hay imagen para mostrar </span> </div>";
+			return "<div " . $class . "> <span id='site-no-image' style='font-weight:bold'> No hay imagen para mostrar </span> </div>";
 		}
 	}
 
@@ -365,7 +373,7 @@ class Init{
 			$template_data = [
 				'site_title' => get_the_title(),
 				'site_description' => print_description(),
-				'site_screenshot' => $this->print_screenshot(get_the_ID(),'modal-img-elem'),
+				'site_screenshot' => $this->print_screenshot(get_the_ID(),'modal-img-elem',true),
 				'site_URL' => get_post_meta($args['p'],'site_url',true),
 				'site_fecha_creacion' => get_post_meta($args['p'],'site_creation_date',true),
 			];
@@ -421,7 +429,6 @@ class Init{
         $query = new \WP_Query($args);
 
 
-
         $content = 
 		"<style>" .
 		get_site_option('carrousel_css') .
@@ -440,7 +447,7 @@ class Init{
 					get_the_title() . ' 
 				</div>
 				<div class="cta" id='. get_the_ID() . '>'. 
-				$this->print_screenshot(get_the_ID(),'carrousel-image') .
+				$this->print_screenshot(get_the_ID(),'carrousel-image',true) .
 			
 				'</div><div class="carrousel-description">
 					<a class="carrousel-site-link" href=' . get_post_meta(get_the_ID(),'site_url',true) . '> Visitar el sitio </a>
