@@ -21,9 +21,12 @@
     background-color:rgb(255, 255, 255);
 }
 
-.sites-portfolio-box{
+.sites-portfolio-box {
+    transition: transform 0.3s ease-in-out;
+
     position: relative;
     height: 250px;
+    width: 300px;
 
     padding: 2vh;
     border: solid 1px rgb(185, 180, 180); 
@@ -34,6 +37,7 @@
 
     display: flex;
     flex-direction: column;
+
 }
 
 .sites-portfolio-box:hover{
@@ -50,13 +54,17 @@ img.site_screenshot{
 
 }
 
-span.site-title{
+.site-title{
     font-size: 12px;
     font-weight: bold;
     font-family: Gill Sans, sans-serif ;
     color: black;
 
     padding-bottom: 20px;
+
+    white-space: nowrap;       
+    overflow: hidden;          
+    text-overflow: ellipsis;
    
 }
 
@@ -122,6 +130,7 @@ span.site-title{
 
 .cta {
     margin-bottom: 15px;
+    transition: transform 0.3s ease-in-out;
 }
 
 .cta:hover {

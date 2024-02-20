@@ -252,7 +252,7 @@ class Init{
 				"<div class='cta' id='" . get_the_ID() . "'> 
 					<div class='sites-portfolio-box' style='background-color:" . $parameters['box_color'] ."' >"
 
-					. "<span class='site-title'>" . get_the_title() . "</span>"
+					. "<div class='site-title'>" . get_the_title() . "</div>"
 
 					. $this->print_screenshot(get_the_ID(),'site_screenshot',false) .
 
@@ -308,7 +308,7 @@ class Init{
 
 						. $this->print_screenshot(get_the_ID(),'site_screenshot', false) .
 
-						"<span class='site-title'>" . get_the_title() . "</span>	
+						"<div class='site-title'>" . get_the_title() . "</div>	
 				
 						<div class='carrousel-description-portfolio'> <a class='carrousel-site-link' href=" . get_post_meta(get_the_ID(),'site_url',true) . "> Visitar el sitio </a> </div>
 					
