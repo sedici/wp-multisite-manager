@@ -141,6 +141,8 @@ img.site_screenshot{
 .carrousel-description {
     font-size: 14px;
     margin: 0 10px 10px;
+    border-radius: 15px;
+    background-color: #f0efef;
 }
 
 .carrousel-description-portfolio {
