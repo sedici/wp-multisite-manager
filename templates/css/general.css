@@ -345,25 +345,64 @@ img.carrousel-image {
 
 /* Estilos responsive (Aplicados a dispotivios celulares) */
 
-/* Estos estilos se aplican cuando max-widht ES IGUAL O MENOR a 926 */
+/* Estos estilos se aplican cuando max-widht ES IGUAL O MENOR a 950 */
 @media only screen and (max-width: 950px) {
 
-    .sites-portfolio{
-        grid-template-columns: 50% 50%;
-        width: 640px;
-        grid-column-gap: 0px ;
+
+/* ====== CSS Para Carrousel ====== */
+
+    .carrousel-title {
+        font-size: 12px;
     }
 
-    div > .barra-transparente {
-
-        width: 55%;
-        height: 145px;
-
-        bottom: 213px;
+    img.carrousel-image {
+        width: 250px !important;
+        height: 150px !important;
     }
 
-    .sub-barra-transparente {
-        grid-row-gap : 15px;
+    .swiper {
+        border:none;
+    }
+
+    div.swiper-slide {
+        margin: 0;
+    }
+
+    .cta:hover {
+        transform: scale(1.05);
+        cursor: pointer;
+    }
+
+/* ====== CSS Para Modal ====== */
+
+
+    .modal-container {
+        display: flex;
+        justify-content: unset;
+        align-items: center;
+
+    }
+
+    .modal-main-box {
+        width: 370px;
+        height: 450px;
+        margin: 20px;
+        justify-self: center;
+
+    }
+
+    .barra-transparente {
+        left: 0;
+        width: 95%;
+    }
+
+
+/* ====== CSS Para Portfolio ====== */
+
+    .sites-portfolio {
+        grid-template-columns: 100% 1fr;
+        justify-items: unset;
+        width: 340px;
     }
 
 }

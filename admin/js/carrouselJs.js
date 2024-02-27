@@ -1,12 +1,11 @@
 // Chequeo el tamaño de la ventana para corregir los parametros
-var queryPhone = window.matchMedia("(max-width: 780px)")
+var queryPhone = window.matchMedia("(max-width: 950px)")
 
 
 function checkDisplay(queryPhone){
   if(queryPhone.matches){
     params["per_view"] = 1;
-    params["direction"] = 'horizontal'
-    console.log(true);
+    params["direction"] = 'horizontal';
   }
 
 }
