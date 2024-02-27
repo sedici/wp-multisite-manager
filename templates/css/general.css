@@ -280,21 +280,20 @@ img.carrousel-image {
     border-width: 1px; 
     border-style: solid; 
     border-color: #333;
-    border-radius: 40%;
+    border-radius: 55%;
 
     font-weight: bolder;
     font-size: 15px;
 
 
     position: absolute;
-    bottom: 85%;
-    left: 10%;
-    margin: 10px; 
+    bottom: 83%;
+    left: 12%;
 }
 
 .modal-close:hover{
     cursor: pointer;
-    transform: scale(1.0);
+    transform: scale(1.2);
 }
 
 .site-no-image-container-carrousel {
@@ -369,8 +368,10 @@ img.carrousel-image {
 
 }
 
+/*
 
-/* Estilos aplicados para pantallas en horizontal y con ancho maximo MENOR O IGUAL a 926px */
+
+/* Estilos aplicados para pantallas en horizontal y con ancho maximo MENOR O IGUAL a 926px 
 @media only screen and (orientation: landscape) and (max-width: 926px) {
 
     div > .barra-transparente {
@@ -390,7 +391,7 @@ img.carrousel-image {
     }
 }
 
-/* Estos estilos se aplican cuando max-widht ES IGUAL O MENOR a 600px */
+/* Estos estilos se aplican cuando max-widht ES IGUAL O MENOR a 600px 
 @media only screen and (max-width: 650px) {
 
     div.sites-portfolio {
@@ -477,7 +478,7 @@ img.carrousel-image {
 }
 
 
-/* Estos estilos se aplican cuando max-widht ES IGUAL O MENOR a 500px */
+/* Estos estilos se aplican cuando max-widht ES IGUAL O MENOR a 500px 
 @media only screen and (max-width: 500px) {
 
     div > .barra-transparente {
@@ -490,7 +491,7 @@ img.carrousel-image {
 
 }
 
-/* Estos estilos se aplican cuando max-widht ES IGUAL O MENOR a 400px */
+/* Estos estilos se aplican cuando max-widht ES IGUAL O MENOR a 400px 
 @media only screen and (max-width: 400px) {
     div > .barra-transparente {
         height: 25%;
