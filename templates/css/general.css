@@ -147,14 +147,14 @@ img.site_screenshot{
 
 .carrousel-description-portfolio {
     font-size: 14px;
-    display: flex;
+    display: inline-grid;
     padding-top: 10px;
     
 }
 
 .carrousel-site-link {
     color: #007bff;
-    text-decoration: none;
+    justify-self: center;
 }
 
 .swiper-pagination {
@@ -175,6 +175,10 @@ img.carrousel-image {
 
 
 /* ============================ CSS Para Modal ============================= */
+
+#link-modal-img {
+    display: none;
+}
 
 .modal-container {
     display: flex;
@@ -316,8 +320,6 @@ img.carrousel-image {
   display: flex;
 }
 
-  
-
 
 .show-more {
     font-size:large;
@@ -349,7 +351,7 @@ img.carrousel-image {
 @media only screen and (max-width: 950px) {
 
 
-/* ====== CSS Para Carrousel ====== */
+/* ====== CSS Para Carrousel Responsive ====== */
 
     .carrousel-title {
         font-size: 12px;
@@ -373,175 +375,58 @@ img.carrousel-image {
         cursor: pointer;
     }
 
-/* ====== CSS Para Modal ====== */
+/* ====== CSS Para Modal Responsive ====== */
 
 
     .modal-container {
         display: flex;
-        justify-content: unset;
+        justify-content: center;
         align-items: center;
 
     }
 
     .modal-main-box {
-        width: 370px;
-        height: 450px;
-        margin: 20px;
-        justify-self: center;
+        width: 80%;
+        height: 42%;
+    }
 
+    
+    .modal-img-elem {
+        display: none;
     }
 
     .barra-transparente {
-        left: 0;
-        width: 95%;
-    }
-
-
-/* ====== CSS Para Portfolio ====== */
-
-    .sites-portfolio {
-        grid-template-columns: 100% 1fr;
-        justify-items: unset;
-        width: 340px;
-    }
-
-}
-
-/*
-
-
-/* Estilos aplicados para pantallas en horizontal y con ancho maximo MENOR O IGUAL a 926px 
-@media only screen and (orientation: landscape) and (max-width: 926px) {
-
-    div > .barra-transparente {
-        width: 60%;
-        height: 145px;
-        bottom: 80px;
-    }
-
-    .sub-barra-transparente {
-        grid-row-gap : 15px;
-    }
-
-    .sites-portfolio {
-        grid-template-columns: 50% 50%;
-        width: 640px;
-        grid-column-gap: 0px ;
-    }
-}
-
-/* Estos estilos se aplican cuando max-widht ES IGUAL O MENOR a 600px 
-@media only screen and (max-width: 650px) {
-
-    div.sites-portfolio {
-        width: 305px;
-    }
-
-
-    .modal-main-box {
-        width: 95%;
-        height: 746px;
-    }
-
-    div > .modal-img-elem {
-        border: solid 1px black;
-        border-radius: 10px;
-
         width: 100%;
-        height: 74%;
-    }
- 
-    div > .modal-close {
-        position: absolute;
-        z-index: 2001;
-    }
+        height: 100%;
+        bottom: 0%;
 
-    div > .barra-transparente {
-        width: 85%;
-        height: 35%;
-
-        position: absolute;
-        top: 45%;
+        position: unset;
+        margin: 0;
+        border: none;
+        border-radius: 0%;
     }
 
-    .elemento-barra-modal {
-        height: 60px;
-        margin-bottom: 15px;
+
+    .modal-close {
+        width: 8%;
+
+        bottom: 66%;
+        left: 78%;
     }
 
-    .modal-data-text {
-        width: 130px;
-        height: 25px;
-        white-space: normal;
+
+    #link-modal-img {
+        display: flex;
+        color: white;
     }
 
-    #link-al-sitio {
-        display: inline-block;
-        width: 130px;
-    }
+/* ====== CSS Para Portfolio Responsive ====== */
 
-    #modal-description-text {
-        height: 75px;
-    }
-
-    div > .sites-portfolio{
-        display:flex;
-        flex-direction: column;
-        width: 340px;
-        height: auto;
-        justify-items: center;
-    }
-
-    .sites-portfolio-box {
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
-
-    .swiper{
-        display: grid;
+    /* Arreglar esto */
+    .sites-portfolio {
         grid-template-columns: 100%;
-
-        width: 100%;
-    }
-
-    .swiper-wrapper {
-        grid-column: 1;
-    }
-
-    div.swiper-wrapper > div.swiper-slide {
-        height: 200px;
-        margin-bottom: 20px;
-    }
-
-
-}
-
-
-/* Estos estilos se aplican cuando max-widht ES IGUAL O MENOR a 500px 
-@media only screen and (max-width: 500px) {
-
-    div > .barra-transparente {
-        height: 20%;
-    }
-
-    div > .sub-barra-transparente {
-        grid-row-gap:unset;
+        justify-items: unset;
+        width: auto;
     }
 
 }
-
-/* Estos estilos se aplican cuando max-widht ES IGUAL O MENOR a 400px 
-@media only screen and (max-width: 400px) {
-    div > .barra-transparente {
-        height: 25%;
-    }
-
-    div > .sub-barra-transparente {
-        grid-row-gap: 10px;
-    }
-}
-
-
-
-
-  

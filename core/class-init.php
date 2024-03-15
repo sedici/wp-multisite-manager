@@ -374,11 +374,10 @@ class Init{
 				'site_title' => get_the_title(),
 				'site_description' => print_description(),
 				'site_screenshot' => $this->print_screenshot(get_the_ID(),'modal-img-elem',true),
+				'screenshot_url' => $this->get_image_url(get_the_ID()),
 				'site_URL' => get_post_meta($args['p'],'site_url',true),
 				'site_fecha_creacion' => get_post_meta($args['p'],'site_creation_date',true),
 			];
-
-
 
 			$templateLoader = Inc\My_Template_Loader::getInstance();
 
@@ -390,6 +389,14 @@ class Init{
 			exit();
 		}
 
+	}
+
+	function get_image_url($post_id) {
+		$img_id = $this->get_image($post_id,'site_screenshot');
+
+		$url = get_permalink($img_id);
+
+		return $url;
 	}
 	
 

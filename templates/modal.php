@@ -29,6 +29,12 @@
                         <p id='modal-description-text' class='modal-data-text'> <?php echo $data->site_description; ?> </p>
                     </span>
                 </div>
+
+                
+                <span class='modal-subtitle'>
+                    <a target="_blank" id='link-modal-img' href='<?php echo $data->screenshot_url; ?>'> Toca para ver la imagen! </a>
+                </span>
+
             </div>
 
 
