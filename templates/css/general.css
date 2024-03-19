@@ -180,7 +180,7 @@ img.carrousel-image {
     display: none;
 }
 
-.modal-container {
+#modal-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -256,10 +256,6 @@ img.carrousel-image {
     object-fit: cover; 
 }
 
-.modal-close {
-    display: contents;
-}
-
 #link-al-sitio {
     color: aqua;
 }
@@ -274,35 +270,10 @@ img.carrousel-image {
     font-weight: normal;
 }
 
-.modal-close {
-    color: rgb(255, 255, 255);
-    background-color: #b11818dd;
-
-    display: block;
-    width: 3%;
-
-    border-width: 1px; 
-    border-style: solid; 
-    border-color: #333;
-    border-radius: 55%;
-
-    font-weight: bolder;
-    font-size: 15px;
-
-
-    position: absolute;
-    bottom: 83%;
-    left: 12%;
-}
-
 #modal-button-img {
     display: none;
 }
 
-.modal-close:hover{
-    cursor: pointer;
-    transform: scale(1.2);
-}
 
 .site-no-image-container-carrousel {
     width: 100%;
@@ -382,7 +353,7 @@ img.carrousel-image {
 /* ====== CSS Para Modal Responsive ====== */
 
 
-    .modal-container {
+    #modal-container {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -391,7 +362,7 @@ img.carrousel-image {
 
     .modal-main-box {
         width: 80%;
-        height: 42%;
+        height: 45%;
     }
 
     
@@ -431,15 +402,6 @@ img.carrousel-image {
         border: none;
         border-radius: 0%;
     }
-
-
-    .modal-close {
-        width: 8%;
-
-        bottom: 66%;
-        left: 78%;
-    }
-
 
     #link-modal-img {
         display: flex;

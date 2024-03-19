@@ -1,8 +1,6 @@
-<div class='modal-container'> 
+<div onclick=remove_modal() id='modal-container'> 
 
     <div class='modal-main-box'>
-
-        <button class='modal-close'>X</button>
 
         <?php echo $data->site_screenshot;?>
 
