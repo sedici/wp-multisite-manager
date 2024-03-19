@@ -2,9 +2,9 @@
 
     <div class='modal-main-box'>
 
-        <?php echo $data->site_screenshot ?>
-
         <button class='modal-close'>X</button>
+
+        <?php echo $data->site_screenshot;?>
 
         <div class="barra-transparente">
 
@@ -30,15 +30,12 @@
                     </span>
                 </div>
 
-                
-                <span class='modal-subtitle'>
-                    <a target="_blank" id='link-modal-img' href='<?php echo $data->screenshot_url; ?>'> Toca para ver la imagen! </a>
-                </span>
-
             </div>
 
+            <button id="modal-button-img" onclick="redirect_to_image('<?php echo $data->screenshot_url; ?>')"> Toca para ver la imagen! </button>
+            
 
-        </div>
+        </div>     
 
     </div>
 

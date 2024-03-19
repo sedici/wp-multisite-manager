@@ -176,6 +176,9 @@ class Init{
 			que sera usado en el frontend */
 			add_action('wp_enqueue_scripts',array($this,'dynamic_view_js'));
 
+			/* Hook usado para encolar scripts helpers */
+			add_action('wp_enqueue_scripts',array($this,'helpers_js'));
+
 
 			add_action('wp_ajax_load_more',array($this,'load_more')  );
 			add_action( 'wp_ajax_nopriv_load_More', array($this,'load_more') );
@@ -220,6 +223,11 @@ class Init{
 	function dynamic_view_js (){ 
 		wp_register_script('dynamic_addition',  MM\PLUGIN_NAME_URL . 'templates/js/carga-dinamica.js', array('jquery'), '1', true );
 		wp_enqueue_script('dynamic_addition');	
+	}
+
+	function helpers_js() {
+		wp_register_script('helpers_multisite_js',  MM\PLUGIN_NAME_URL . 'templates/js/helpers.js');
+		wp_enqueue_script('helpers_multisite_js');
 	}
 
 	function show_portfolio($attr){
@@ -392,11 +400,20 @@ class Init{
 	}
 
 	function get_image_url($post_id) {
-		$img_id = $this->get_image($post_id,'site_screenshot');
 
-		$url = get_permalink($img_id);
+		if(get_post_meta(get_the_ID(),'site_screenshot') and (!empty(get_post_meta(get_the_ID(),'site_screenshot')[0]) ))
+		{
+			$image = $this->get_image($post_id,'site_screenshot');
 
-		return $url;
+			$image_src = '';
+
+			if(!is_wp_error($image)){
+				$image_src = wp_get_attachment_url($this->get_image($post_id,'site_screenshot')) ;
+		 	} 
+
+			return $image_src;
+
+		}
 	}
 	
 

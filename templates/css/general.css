@@ -295,6 +295,10 @@ img.carrousel-image {
     left: 12%;
 }
 
+#modal-button-img {
+    display: none;
+}
+
 .modal-close:hover{
     cursor: pointer;
     transform: scale(1.2);
@@ -393,6 +397,28 @@ img.carrousel-image {
     
     .modal-img-elem {
         display: none;
+    }
+
+    #modal-button-img {
+        display: unset;
+
+        background-color: #4CAF50; 
+        border: none; 
+        color: white; 
+        padding: 15px 32px; 
+        text-align: center; 
+        text-decoration: none; 
+        display: inline-block; 
+        font-size: 16px; 
+        margin: 4px 2px; 
+        cursor: pointer; 
+        border-radius: 8px; 
+        transition-duration: 0.4s; 
+    }
+
+    #modal-button-img:hover {
+        background-color: #45a049;
+        color: white; 
     }
 
     .barra-transparente {
