@@ -135,7 +135,7 @@ img.site_screenshot{
 
 .cta {
     margin-bottom: 15px;
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out; 
 }
 
 
@@ -211,7 +211,7 @@ img.carrousel-image {
     padding: 10px;
     margin: 10px;
     border-radius: 15px;
-    border-width: 1px; 
+    border-width: 2px; 
     border-style: solid; 
     border-color: lightgray;
 }
@@ -323,11 +323,6 @@ img.carrousel-image {
         margin: 0;
     }
 
-    .cta:hover {
-        transform: scale(1.05);
-        cursor: pointer;
-    }
-
 /* ====== CSS Para Modal Responsive ====== */
 
 
@@ -340,7 +335,7 @@ img.carrousel-image {
 
     .modal-main-box {
         width: 80%;
-        height: 45%;
+        height: 40%;
     }
 
     
@@ -377,8 +372,11 @@ img.carrousel-image {
 
         position: unset;
         margin: 0;
-        border: none;
+        border: solid;
+        border-width: 2px;
         border-radius: 0%;
+
+
     }
 
 /* ====== CSS Para Portfolio Responsive ====== */
@@ -391,3 +389,18 @@ img.carrousel-image {
     }
 
 }
+
+
+@media only screen and (max-width: 950px) and (orientation: landscape) {
+
+    .modal-main-box {
+        height: 50%;
+    }
+}
+
+@media only screen and (device-width: 810px) and (device-height: 1080px) {
+    .modal-main-box {
+        height: 25%;
+    }
+  }
+
