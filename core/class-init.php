@@ -265,7 +265,7 @@ class Init{
 					. $this->print_screenshot(get_the_ID(),'site_screenshot',false) .
 
 					"
-						<div class='carrousel-description-portfolio'>
+						<div class='portfolio-description'>
 							<a class='carrousel-site-link' href=" . get_post_meta(get_the_ID(),'site_url',true) . "> Visitar el sitio </a>
 						</div>
 

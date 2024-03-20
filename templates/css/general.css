@@ -32,7 +32,7 @@
     border: solid 1px rgb(185, 180, 180); 
     border-radius: 15px;
 
-    text-align: left;
+    text-align: center;
     color: black;
 
     display: flex;
@@ -51,6 +51,7 @@ img.site_screenshot{
     border-radius: 15px;
     width: 250px !important;
     height: 150px !important;
+    margin-bottom: 15px;
 
 }
 
@@ -68,15 +69,12 @@ img.site_screenshot{
    
 }
 
-.site-desc{
-    font-size: small;
-    font-weight: 500;
-}
-
-
-.sites-empty-field{
-    color:red;
-    font-weight:bold
+.portfolio-description {
+    font-size: 14px;
+    margin: 0 10px 10px;
+    border-radius: 15px;
+    background-color: #f0efef;
+    
 }
 
 /* ============================ CSS Para Carrousel ============================= */
@@ -117,6 +115,12 @@ img.site_screenshot{
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
+    transition: transform 0.3s ease-in-out;
+}
+
+.carrousel-box:hover {
+    transform: scale(1.02);
+    cursor: pointer;
 }
 
 .carrousel-title {
@@ -128,28 +132,18 @@ img.site_screenshot{
     text-overflow: ellipsis;
 }
 
+
 .cta {
     margin-bottom: 15px;
     transition: transform 0.3s ease-in-out;
 }
 
-.cta:hover {
-    transform: scale(1.05);
-    cursor: pointer;
-}
 
 .carrousel-description {
     font-size: 14px;
     margin: 0 10px 10px;
     border-radius: 15px;
     background-color: #f0efef;
-}
-
-.carrousel-description-portfolio {
-    font-size: 14px;
-    display: inline-grid;
-    padding-top: 10px;
-    
 }
 
 .carrousel-site-link {
@@ -175,10 +169,6 @@ img.carrousel-image {
 
 
 /* ============================ CSS Para Modal ============================= */
-
-#link-modal-img {
-    display: none;
-}
 
 #modal-container {
     display: flex;
@@ -209,32 +199,21 @@ img.carrousel-image {
 .barra-transparente {
     display: flex;
     flex-direction: column; 
-    
     height: 25%;
     width: 50%;
-
     position: relative; 
     z-index: 2; 
     bottom: 30%;
     left: 25%;
-
-    background-color: rgba(0, 0, 1, 0.561);
-    
+    background-color: rgba(0, 0, 0, 0.676);
     font-size: 16px;
-    color: #333;
-
     overflow: scroll;
-
     padding: 10px;
     margin: 10px;
-
     border-radius: 15px;
-
     border-width: 1px; 
     border-style: solid; 
-
-    border-color: lightgray
-
+    border-color: lightgray;
 }
 
 .barra-transparente > * {
@@ -322,7 +301,6 @@ img.carrousel-image {
 
 /* Estilos responsive (Aplicados a dispotivios celulares) */
 
-/* Estos estilos se aplican cuando max-widht ES IGUAL O MENOR a 950 */
 @media only screen and (max-width: 950px) {
 
 
@@ -401,11 +379,6 @@ img.carrousel-image {
         margin: 0;
         border: none;
         border-radius: 0%;
-    }
-
-    #link-modal-img {
-        display: flex;
-        color: white;
     }
 
 /* ====== CSS Para Portfolio Responsive ====== */
