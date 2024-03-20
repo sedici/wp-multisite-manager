@@ -15,6 +15,8 @@ Las principales son:
 
 - [x] Shortcode para listar los CPT de sitios al estilo "Carrousel"
 
+- [x] Shortcode para listar los CPT de sitios al estilo "Listado"
+
 ## Shortcodes
 
 - **[show_sites_portfolio ]** => Muestra todos los CPT de sitios disponibles, al estilo "Portafolio".
@@ -26,3 +28,6 @@ Las principales son:
     - 'autoplay_seconds' => (Default = 0) Indíca cada cuantos segundos se cambia a la próxima página. Si no se especifica, queda desactivada por defecto la opción de cambiar de página automáticamente
 
 *Los parámetros de color aceptan 3 representaciones : Colores en ingles (Ej. Red), en hexadecimal (Ej. #0000FF) o RGB(Ej. rgb(0, 0, 255) )*.
+
+- **[show_sites_list ]** => Muestra los CPT de sitios disponibles con fecha de creación más reciente, al estilo "Listado".
+    - 'cant' : Sirve para determinar la cantidad de sitios a mostrar. Se puede elegir valores entre 1 y 15 o por defecto se muestran todos
