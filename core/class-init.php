@@ -428,12 +428,17 @@ class Init{
 		$parameters = shortcode_atts( array(
 			'per_view'=> 2,
 			'autoplay_seconds'=>0,
-			'direction' => 'horizontal'
+			'direction' => 'horizontal',
+			'cant' => -1
         ), $attr );
-		
+
 		if($parameters["autoplay_seconds"]>0){
 			$miliseconds = $parameters["autoplay_seconds"] * 1000;
 			$parameters["autoplay_seconds"] = $miliseconds;
+		}
+
+		if ($parameters['cant'] !== -1 && ($parameters['cant'] < 1 || $parameters['cant'] > 15)) {
+			$parameters['cant'] = -1;
 		}
 
 		$js_url = MM\PLUGIN_NAME_URL.'admin/js/';
@@ -447,7 +452,7 @@ class Init{
 		
 		$args = array(
             'post_type' => 'cpt-sitios',
-            'posts_per_page' => -1,
+            'posts_per_page' => $parameters['cant'],
 			'post_status' => 'publish'
         );
         $query = new \WP_Query($args);
