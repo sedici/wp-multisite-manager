@@ -218,6 +218,7 @@ class Init{
     function shortcodes_init(){
         add_shortcode('show_sites_portfolio',array($this,'show_portfolio'));
 		add_shortcode('show_sites_carrousel',array($this,'show_carrousel'));
+		add_shortcode('show_sites_list',array($this,'show_list'));
     }
 
 	function dynamic_view_js (){ 
@@ -228,6 +229,45 @@ class Init{
 	function helpers_js() {
 		wp_register_script('helpers_multisite_js',  MM\PLUGIN_NAME_URL . 'templates/js/helpers.js');
 		wp_enqueue_script('helpers_multisite_js');
+	}
+
+
+	function show_list($attr) {
+		
+		$parameters = shortcode_atts( array(
+			'cant' => -1
+        ), $attr );
+
+
+		if ($parameters['cant'] !== -1 && ($parameters['cant'] < 1 || $parameters['cant'] > 15)) {
+			$parameters['cant'] = -1;
+		}
+
+		$args = array(
+            'post_type' => 'cpt-sitios',
+            'posts_per_page' => $parameters['cant'],
+			'orderby' => 'post_date',
+    		'order' => '',
+			'post_status' => 'publish',
+        );
+
+		
+		$query = new \WP_Query($args);
+
+		$vista_listado = '';
+
+
+		while ( $query->have_posts() ): $query->the_post();
+
+			$vista_listado = "<div> </div> "
+			the_title();
+			echo '<br>';
+			
+        endwhile;
+
+
+        wp_reset_postdata();
+
 	}
 
 	function show_portfolio($attr){
