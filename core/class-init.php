@@ -254,19 +254,33 @@ class Init{
 		
 		$query = new \WP_Query($args);
 
-		$vista_listado = '';
+		$vista_listado = "<div id='sites_list'>";
+		$elemento_lista = '';
 
+		$aux = 0;
+		$array_sitios = array();
 
 		while ( $query->have_posts() ): $query->the_post();
 
-			$vista_listado = "<div> </div> "
-			the_title();
-			echo '<br>';
+			$elemento_lista = '';
+
+			$elemento_lista = "<div class='sites_list_element' id='" . get_the_ID() . "' href='".  get_post_meta(get_the_ID(),'site_url',true) ."'> " . get_the_title() . " </div>";
+
+			$array_sitios[$aux] = $elemento_lista;
+			$aux++;
 			
         endwhile;
 
+		$tam_array = count($array_sitios);
+
+		$aux = 0; 
+		for( ; $aux < $tam_array ; $aux++ ) $vista_listado = $vista_listado . $array_sitios[$aux];
+
+		$vista_listado = $vista_listado . "</div>";
 
         wp_reset_postdata();
+
+		return $vista_listado;
 
 	}
 
