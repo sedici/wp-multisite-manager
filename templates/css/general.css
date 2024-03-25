@@ -9,19 +9,18 @@
     margin-bottom: 10px; /* Espacio entre elementos */
     padding: 10px; /* Relleno interior del elemento */
     background-color: #ededed; /* Color de fondo anaranjado claro */
-    border: 1px solid #cccccc; /* Borde del elemento */
     border-radius: 5px; /* Radio de borde del elemento */
 }
 
 .sites_list_element {
     font-weight: bold; /* Fuente en negrita */
-    color: #FFA500; /* Color de texto anaranjado */
     transition: color 0.3s; /* Transición suave del color durante 0.3 segundos */
     margin-bottom: 20px;
+    font-size: small;
 }
 
 .sites_list_element a:hover {
-    color: #FF8C00; /* Color de texto anaranjado oscuro al pasar el mouse */
+    color: #49A8E8; /* Color de texto anaranjado oscuro al pasar el mouse */
 }
 
 
