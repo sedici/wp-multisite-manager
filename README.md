@@ -31,3 +31,5 @@ Las principales son:
 
 - **[show_sites_list ]** => Muestra los CPT de sitios disponibles con fecha de creación más reciente, al estilo "Listado".
     - 'cant' : Sirve para determinar la cantidad de sitios a mostrar. Se puede elegir valores entre 1 y 15 o por defecto se muestran todos
+
+ESTO ES UNA PRUEBA
