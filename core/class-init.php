@@ -264,7 +264,7 @@ class Init{
 
 			$elemento_lista = '';
 
-			$elemento_lista = "<div class='sites_list_element' id='" . get_the_ID() . "' > <a href='".  get_post_meta(get_the_ID(),'site_url',true) ."'> " . get_the_title() . " </a> </div>";
+			$elemento_lista = " <li> <div class='sites_list_element' id='" . get_the_ID() . "' > <a href='".  get_post_meta(get_the_ID(),'site_url',true) ."'> " . get_the_title() . " </a> </div> </li>";
 
 			$array_sitios[$aux] = $elemento_lista;
 			$aux++;
