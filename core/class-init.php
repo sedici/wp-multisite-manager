@@ -314,11 +314,10 @@ class Init{
 				"<div class='cta' id='" . get_the_ID() . "'> 
 					<div class='sites-portfolio-box' style='background-color:" . $parameters['box_color'] ."' >"
 
-					. "<div class='site-title'>" . get_the_title() . "</div>"
+						.$this->print_screenshot(get_the_ID(),'site_screenshot', false) .
 
-					. $this->print_screenshot(get_the_ID(),'site_screenshot',false) .
+						"<div class='site-title'>" . get_the_title() . "</div>	
 
-					"
 						<div class='portfolio-description'>
 							<a class='carrousel-site-link' href=" . get_post_meta(get_the_ID(),'site_url',true) . "> Visitar el sitio </a>
 						</div>
@@ -409,7 +408,7 @@ class Init{
 		 } 
 		}
 		else{
-			return "<div " . $class . "> <span id='site-no-image' style='font-weight:bold'> No hay imagen para mostrar </span> </div>";
+			return "<div " . $class . "> <span id='site-no-image'> No hay imagen para mostrar </span> </div>";
 		}
 	}
 
