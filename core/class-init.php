@@ -333,8 +333,9 @@ class Init{
 
 		$tam_array = count($array_sitios);
 
-		$i = 0; 
-		for( ; $i <= 2 ; $i++ ) $vista_portfolio = $vista_portfolio . $array_sitios[$i];
+		$i = 0; //Se muestran de a 3 sitios, por eso el valor 2
+		for( ; $i <= 2 && $i < $tam_array ; $i++ ) $vista_portfolio = $vista_portfolio . $array_sitios[$i];
+		
 
 		wp_localize_script('dynamic_addition','cd_vars',array('tam_max'=>$tam_array,'box_color'=> $parameters['box_color'],'url'=>admin_url('admin-ajax.php'),));
 
