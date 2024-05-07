@@ -217,8 +217,6 @@ class Init{
 
     function shortcodes_init(){
         add_shortcode('show_sites_portfolio',array($this,'show_portfolio'));
-		add_shortcode('show_sites_carrousel',array($this,'show_carrousel'));
-		add_shortcode('show_sites_list',array($this,'show_list'));
     }
 
 	function dynamic_view_js (){ 
@@ -231,70 +229,35 @@ class Init{
 		wp_enqueue_script('helpers_multisite_js');
 	}
 
-
-	function show_list($attr) {
-		
-		$parameters = shortcode_atts( array(
-			'cant' => -1
-        ), $attr );
-
-
-		if ($parameters['cant'] !== -1 && ($parameters['cant'] < 1 || $parameters['cant'] > 15)) {
-			$parameters['cant'] = -1;
-		}
-
-		$args = array(
-            'post_type' => 'cpt-sitios',
-            'posts_per_page' => $parameters['cant'],
-			'orderby' => 'post_date',
-    		'order' => '',
-			'post_status' => 'publish',
-        );
-
-		
-		$query = new \WP_Query($args);
-
-		$vista_listado = "<div id='sites_list'> <ul>";
-		$elemento_lista = '';
-
-		$aux = 0;
-		$array_sitios = array();
-
-		while ( $query->have_posts() ): $query->the_post();
-
-			$elemento_lista = '';
-
-			$elemento_lista = " <li> <div class='sites_list_element' id='" . get_the_ID() . "' > <a href='".  get_post_meta(get_the_ID(),'site_url',true) ."'> " . get_the_title() . " </a> </div> </li>";
-
-			$array_sitios[$aux] = $elemento_lista;
-			$aux++;
-			
-        endwhile;
-
-		$tam_array = count($array_sitios);
-
-		$aux = 0; 
-		for( ; $aux < $tam_array ; $aux++ ) $vista_listado = $vista_listado . $array_sitios[$aux];
-
-		$vista_listado = $vista_listado . "</ul> </div>";
-
-        wp_reset_postdata();
-
-		return $vista_listado;
-
-	}
-
 	function show_portfolio($attr){
+
+		$cant_columnas = 3;	
+
+		$possible_values_array = array('none','post_date','ID','title','rand','modified');
 
 		$parameters = shortcode_atts( array(
 			'widget_color'=>'dark',
             'box_color' => 'white', 
+			//'cant' => -1,
+			'order_by' => 'post_date',
+			'order' => 'DESC', 
         ), $attr );
+
+		/*
+		if ($parameters['cant'] !== -1 && $parameters['cant'] < 1) {
+			$parameters['cant'] = -1;
+		}
+		*/
+
+		if( ! in_array($parameters['order_by'], $possible_values_array)) $parameters['order_by'] = 'post_date';
+
 		$vista_portfolio = "";
 
 		$args = array(
+			'posts_per_page' => -1,
+			'orderby' => $parameters['order_by'],
+    		'order' => $parameters['order'],
             'post_type' => 'cpt-sitios',
-            'posts_per_page' => -1,
 			'post_status' => 'publish',
         );
 
@@ -303,7 +266,7 @@ class Init{
 
 		$array_sitios = array(); /*En cada posicion se guarda una vista de post sitio */
 
-		$i = 0; /* Indice para iterar dentro del while el array_sitios */
+		$i = 0; 
 
 		/* Carga en un arreglo todos los post de sitios */
 		while ( $query->have_posts() ): $query->the_post();
@@ -332,19 +295,21 @@ class Init{
 
 		$tam_array = count($array_sitios);
 
-		$i = 0; //Se muestran de a 3 sitios, por eso el valor 2
-		for( ; $i <= 2 && $i < $tam_array ; $i++ ) $vista_portfolio = $vista_portfolio . $array_sitios[$i];
+		
+		for($i = 0 ; $i < $cant_columnas && $i < $tam_array ; $i++ ) $vista_portfolio = $vista_portfolio . $array_sitios[$i];
 		
 
 		wp_localize_script('dynamic_addition','cd_vars',array('tam_max'=>$tam_array,'box_color'=> $parameters['box_color'],'url'=>admin_url('admin-ajax.php'),));
 
 
-		$vista_portfolio = $vista_portfolio. "</div><div class='show-more' style='align-self:center'><span>Mostrar más!</span></div></div>";
+		$vista_portfolio = $vista_portfolio. "</div><div class='show-more'><span>Mostrar más!</span></div></div>";
 
         wp_reset_postdata();
 		return $vista_portfolio;
 	}
 
+
+	/* FIXME : load_more no deberia mostrar más sitios de los establecidos en el shortcode */
 	function load_more(){
 	
 		$args = array(
@@ -389,11 +354,9 @@ class Init{
 		exit();
 	}
 
-    function print_screenshot($post_id,$css_class, $is_for_carrousel){
+    function print_screenshot($post_id,$css_class){
 
-		if($is_for_carrousel) $class = "class='site-no-image-container-carrousel'";
-		else $class = "class='site-no-image-container-portfolio'";
-	
+		$class = "class='site-no-image-container-portfolio'";
 
 		if(get_post_meta(get_the_ID(),'site_screenshot') and (!empty(get_post_meta(get_the_ID(),'site_screenshot')[0]) ))
 		{
@@ -475,83 +438,7 @@ class Init{
 		return get_post_meta($post_id, $field,true);
 	}
 
-    function show_carrousel($attr){
-
-
-
-		$parameters = shortcode_atts( array(
-			'per_view'=> 2,
-			'autoplay_seconds'=>0,
-			'direction' => 'horizontal',
-			'cant' => -1
-        ), $attr );
-
-		if($parameters["autoplay_seconds"]>0){
-			$miliseconds = $parameters["autoplay_seconds"] * 1000;
-			$parameters["autoplay_seconds"] = $miliseconds;
-		}
-
-		if ($parameters['cant'] !== -1 && ($parameters['cant'] < 1 || $parameters['cant'] > 15)) {
-			$parameters['cant'] = -1;
-		}
-
-		$js_url = MM\PLUGIN_NAME_URL.'admin/js/';
-
-		wp_register_script('carrousel', $js_url . 'carrouselJs.js', true);
-
-		wp_enqueue_script('carrousel');
-
-		wp_localize_script('carrousel', 'params', $parameters );
-
-		
-		$args = array(
-            'post_type' => 'cpt-sitios',
-            'posts_per_page' => $parameters['cant'],
-			'post_status' => 'publish'
-        );
-        $query = new \WP_Query($args);
-
-
-        $content = 
-		"<style>" .
-		get_site_option('carrousel_css') .
-		'</style><div class="swiper" >
-					<div class="swiper-wrapper">';
-		
-		while ( $query->have_posts() ): $query->the_post();
-		
-		$content = $content . 
-
-		'<div class="swiper-slide">
-
-			<div class="carrousel-box " >
-
-				<div class="carrousel-title" > ' .
-					get_the_title() . ' 
-				</div>
-				<div class="cta" id='. get_the_ID() . '>'. 
-				$this->print_screenshot(get_the_ID(),'carrousel-image',true) .
-			
-				'</div><div class="carrousel-description">
-					<a class="carrousel-site-link" href=' . get_post_meta(get_the_ID(),'site_url',true) . '> Visitar el sitio </a>
-				</div>
-			</div>
-		</div>';
-		
-
-		endwhile;
-		wp_reset_query();
-		$content = $content .  '</div>
-				<div class="swiper-pagination"></div>
-				
-			<div class="swiper-button-prev" ></div>
-			<div class="swiper-button-next" ></div>
-				</div>
-
-
-		';
-		return $content;
-    }
+    
 
 
 
