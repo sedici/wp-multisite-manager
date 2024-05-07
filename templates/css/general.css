@@ -1,29 +1,3 @@
-
-/* ============================ CSS Para vista de Listado ============================= */
-
-#sites_list {
-    max-width: 400px; /* Ancho máximo del contenedor */
-    margin: 0 auto; /* Centrar el contenedor horizontalmente */
-    background-color: #fffaf5; /* Color de fondo anaranjado claro */
-
-    margin-bottom: 10px; /* Espacio entre elementos */
-    padding: 10px; /* Relleno interior del elemento */
-    background-color: #ededed; /* Color de fondo anaranjado claro */
-    border-radius: 5px; /* Radio de borde del elemento */
-}
-
-.sites_list_element {
-    font-weight: bold; /* Fuente en negrita */
-    transition: color 0.3s; /* Transición suave del color durante 0.3 segundos */
-    margin-bottom: 20px;
-    font-size: small;
-}
-
-.sites_list_element a:hover {
-    color: #49A8E8; /* Color de texto anaranjado oscuro al pasar el mouse */
-}
-
-
 /* ============================ CSS Para vista de Portafolio ============================= */
 
 .sites-portfolio{
@@ -48,7 +22,7 @@
     transition: transform 0.3s ease-in-out;
 
     position: relative;
-    height: 250px;
+    height: 265px;
     width: 300px;
 
     padding: 2vh;
@@ -93,101 +67,40 @@ img.site_screenshot{
 }
 
 .portfolio-description {
-    font-size: 14px;
-    margin: 0 10px 10px;
-    border-radius: 15px;
-    background-color: #f0efef;
-    
-}
-
-/* ============================ CSS Para Carrousel ============================= */
-
-.swiper {
-    width: 100%;
-    margin: 20px 0;
-    border: 2px solid #ddd;
-    border-radius: 8px;
-}
-
-.swiper-wrapper {
-    display: flex;
-}
-
-.swiper-container {
-    width: 100%;
-    margin: 20px 0;
-}
-
-.swiper-slide {
     text-align: center;
-    display: flex;
+    background-color: #dcdce6;
+    width: 80%;
     align-self: center;
-    margin: 20px;
+    border-radius: 20px;
 }
 
-.carrousel-box {
-    width: 350px;
-    height: 300px;
-
-    justify-content: center;
-
-    margin: 0 auto;
-    border: 2px solid #ddd;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.3s ease-in-out;
+.show-more {
+    font-size:medium;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 10px;
+    background-color: #959598;
+    width: fit-content;
+    color: white;
+    font-weight: 600;
+    padding-left: 15px;
+    padding-right: 15px;
+    align-self: center;
+    border: solid 2px #959598;
+    border-radius: 5px;
 }
 
-.carrousel-box:hover {
-    transform: scale(1.02);
+.show-more:hover{
+    transform: scale(1.04);
     cursor: pointer;
 }
 
-.carrousel-title {
-    font-size: 18px;
-    font-weight: bold;
-    margin: 10px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-
-.cta {
-    margin-bottom: 15px;
-    transition: transform 0.3s ease-in-out; 
-}
-
-
-.carrousel-description {
-    font-size: 14px;
-    margin: 0 10px 10px;
-    border-radius: 15px;
-    background-color: #f0efef;
-}
-
-.carrousel-site-link {
-    color: #007bff;
-    justify-self: center;
-}
-
-.swiper-pagination {
-    margin-top: 10px;
-}
-
-.swiper-button-prev,
-.swiper-button-next {
-    color: #253f8c;
-    font-size: 18px;
-}
-
-img.carrousel-image {
-    width: 300px !important;
-    height: 150px !important;
-    border-radius: 15px;
+.site-no-image-container-portfolio {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    display: flex;
+    justify-content: center;
 }
 
 
@@ -276,15 +189,6 @@ img.carrousel-image {
     display: none;
 }
 
-
-.site-no-image-container-carrousel {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; 
-    display: flex;
-    justify-content: center;
-}
-
 .site-no-image-container-portfolio {
     width: 100%;
     height: 100%;
@@ -300,53 +204,11 @@ img.carrousel-image {
 }
 
 
-.show-more {
-    font-size:large;
-    font-weight: 700;
-    text-align: center;
-    margin-top: 10px;
-    background-color: rgb(73, 168, 232);
-    width: fit-content;
-    color: white;
-    font-weight: 600;
-    padding-left: 15px;
-    padding-right: 15px;
-
-    border: solid 2px rgb(73, 168, 232);
-    border-radius: 5px;
-}
-
-.show-more:hover{
-    transform: scale(1.05);
-    cursor: pointer;
-}
-
-
 /* ========================================================================================= */
 
 /* Estilos responsive (Aplicados a dispotivios celulares) */
 
 @media only screen and (max-width: 950px) {
-
-
-/* ====== CSS Para Carrousel Responsive ====== */
-
-    .carrousel-title {
-        font-size: 12px;
-    }
-
-    img.carrousel-image {
-        width: 250px !important;
-        height: 150px !important;
-    }
-
-    .swiper {
-        border:none;
-    }
-
-    div.swiper-slide {
-        margin: 0;
-    }
 
 /* ====== CSS Para Modal Responsive ====== */
 
@@ -428,4 +290,3 @@ img.carrousel-image {
         height: 25%;
     }
   }
-

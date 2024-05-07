@@ -13,21 +13,25 @@ Las principales son:
 
 - [x] Shortcode para listar los CPT de sitios al estilo "Portafolio"
 
-- [x] Shortcode para listar los CPT de sitios al estilo "Carrousel"
-
-- [x] Shortcode para listar los CPT de sitios al estilo "Listado"
-
 ## Shortcodes
 
 - **[show_sites_portfolio ]** => Muestra todos los CPT de sitios disponibles, al estilo "Portafolio".
     - 'widget_color' : Sirve para elegir el color que va a tener el contenedor de todo el widget de portafolio. 
+    
     - 'box_color' : Nos permite indicar que color queremos que tenga el contenedor de cada "caja" individual del portafolio.
+    
+    - 'cant' : Sirve para elegir la cantidad de sitios a mostrar
+    
+    - 'order_by' : Sirve para elegir el criterio de orden de los sitios (por titulo, fecha de publicacion, etc)
+        - none
+        - ID
+        - title
+        - name (post slug)
+        - date
+        - modified (ultima fecha de modificacion)
+        - rand (orden random)
 
-- **[show_sites_carrousel ]** => Muestra todos los CPT de sitios disponibles, al estilo "Carrousel".
-    - 'per_view'=> Permite seleccionar cuantos sitios se van a mostrar a la vez en el carrousel.
-    - 'autoplay_seconds' => (Default = 0) Indíca cada cuantos segundos se cambia a la próxima página. Si no se especifica, queda desactivada por defecto la opción de cambiar de página automáticamente
+    - 'order' : Sirve para elegir en que orden mostrar los sitios (Ascendente o Descendente) 
+        - ASC
+        - DESC
 
-*Los parámetros de color aceptan 3 representaciones : Colores en ingles (Ej. Red), en hexadecimal (Ej. #0000FF) o RGB(Ej. rgb(0, 0, 255) )*.
-
-- **[show_sites_list ]** => Muestra los CPT de sitios disponibles con fecha de creación más reciente, al estilo     "Listado".
-    - 'cant' : Sirve para determinar la cantidad de sitios a mostrar. Se puede elegir valores entre 1 y 15 o por defecto se muestran todos

@@ -271,20 +271,23 @@ class Init{
 		/* Carga en un arreglo todos los post de sitios */
 		while ( $query->have_posts() ): $query->the_post();
 
-			$vista_unica_post_sitio = ""; 
+			$vista_unica_post_sitio = "";
 
 			$vista_unica_post_sitio =
-				"<div class='cta' id='" . get_the_ID() . "'> 
-					<div class='sites-portfolio-box' style='background-color:" . $parameters['box_color'] ."' >"
+				"<div class='sites-portfolio-box'>
+					<div class='cta' id='" . get_the_ID() . "'> 
+						<div style='background-color:" . $parameters['box_color'] ."' >"
 
-						.$this->print_screenshot(get_the_ID(),'site_screenshot', false) .
+							.$this->print_screenshot(get_the_ID(),'site_screenshot', false) .
 
-						"<div class='site-title'>" . get_the_title() . "</div>	
+							"<div class='site-title'>" . get_the_title() . "</div>	
 
-						<div class='portfolio-description'>
-							<a class='carrousel-site-link' href=" . get_post_meta(get_the_ID(),'site_url',true) . "> Visitar el sitio </a>
 						</div>
 
+					</div>
+					
+					<div class='portfolio-description'>
+						<a href=" . get_post_meta(get_the_ID(),'site_url',true) . "> Visitar el sitio </a>
 					</div>
 
 				</div>";
@@ -329,16 +332,21 @@ class Init{
 			$vista_unica_post_sitio = ""; /*Se guarda la vista de cada post sitio unico */
 
 			$vista_unica_post_sitio =
-				"<div class='cta' id='" . get_the_ID() . "'>
-				
-					<div class='sites-portfolio-box' style='background-color:" . $_POST['box_color'] ."' >"
+				"
+				<div class='sites-portfolio-box'>
 
-						. $this->print_screenshot(get_the_ID(),'site_screenshot', false) .
+					<div class='cta' id='" . get_the_ID() . "'>"
+
+						. $this->print_screenshot(get_the_ID(),'site_screenshot', false) . 
 
 						"<div class='site-title'>" . get_the_title() . "</div>	
-				
-						<div class='carrousel-description-portfolio'> <a class='carrousel-site-link' href=" . get_post_meta(get_the_ID(),'site_url',true) . "> Visitar el sitio </a> </div>
 					
+					</div>
+
+						<div class='portfolio-description'> 
+							<a href=" . get_post_meta(get_the_ID(),'site_url',true) . "> Visitar el sitio </a> 
+						</div>
+
 					</div>
 
 				</div>";
@@ -363,7 +371,7 @@ class Init{
 			$image = $this->get_image($post_id,'site_screenshot');
 			if(!is_wp_error($image)){
 				$vista_unica_post_sitio ='
-					<img class="' . $css_class .' " src="';
+					<img class="' . $css_class . '" src="';
 				$image_src = wp_get_attachment_url($this->get_image($post_id,'site_screenshot')) ;
 
 				$vista_unica_post_sitio = $vista_unica_post_sitio . $image_src .  '"></img>';
