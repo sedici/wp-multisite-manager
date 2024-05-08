@@ -72,19 +72,15 @@ img.site_screenshot{
     width: 80%;
     align-self: center;
     border-radius: 20px;
-    font-weight: bold;
 }
 
 
 .show-more {
     font-size:medium;
-    font-weight: 700;
     text-align: center;
     margin-top: 10px;
     background-color: #4fbf5b52;
     width: fit-content;
-    color: white;
-    font-weight: 600;
 
     padding-left: 25px;
     padding-right: 25px;
@@ -94,7 +90,7 @@ img.site_screenshot{
     align-self: center;
     border-radius: 5px;
     grid-column: 2;
-    color : #2b2828;
+    color : #3e3737;
 }
 
 .show-more:hover{
@@ -134,7 +130,6 @@ img.site_screenshot{
 
     margin: auto;
     background-color: #fff;
-    border: solid 1px black;
     border-radius: 15px;
 
     overflow: hidden; 
@@ -232,6 +227,7 @@ img.site_screenshot{
     .modal-main-box {
         width: 80%;
         height: 40%;
+        border: none;
     }
 
     
@@ -241,7 +237,6 @@ img.site_screenshot{
 
     #modal-button-img {
         display: unset;
-
         background-color: #4CAF50; 
         border: none; 
         color: white; 
@@ -280,8 +275,16 @@ img.site_screenshot{
     /* Arreglar esto */
     .sites-portfolio {
         grid-template-columns: 100%;
-        justify-items: unset;
         width: auto;
+    }
+
+    .site-no-image-container-portfolio {
+        display: none;
+    }
+
+
+    .show-more {
+        grid-column: unset;
     }
 
 }
