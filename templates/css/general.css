@@ -68,32 +68,40 @@ img.site_screenshot{
 
 .portfolio-description {
     text-align: center;
-    background-color: #dcdce6;
+    background-color: #4fbf5b52;
     width: 80%;
     align-self: center;
     border-radius: 20px;
+    font-weight: bold;
 }
+
 
 .show-more {
     font-size:medium;
     font-weight: 700;
     text-align: center;
     margin-top: 10px;
-    background-color: #959598;
+    background-color: #4fbf5b52;
     width: fit-content;
     color: white;
     font-weight: 600;
-    padding-left: 15px;
-    padding-right: 15px;
+
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-bottom: 2px;
+    padding-top: 2px;
+
     align-self: center;
-    border: solid 2px #959598;
     border-radius: 5px;
+    grid-column: 2;
+    color : #2b2828;
 }
 
 .show-more:hover{
     transform: scale(1.04);
+    transition: transform 0.3s ease-in-out;
     cursor: pointer;
-}
+}   
 
 .site-no-image-container-portfolio {
     width: 100%;

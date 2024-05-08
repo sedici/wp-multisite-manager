@@ -305,7 +305,7 @@ class Init{
 		wp_localize_script('dynamic_addition','cd_vars',array('tam_max'=>$tam_array,'box_color'=> $parameters['box_color'],'url'=>admin_url('admin-ajax.php'),));
 
 
-		$vista_portfolio = $vista_portfolio. "</div><div class='show-more'><span>Mostrar más!</span></div></div>";
+		$vista_portfolio = $vista_portfolio. "<div class='show-more'> <span>Mostrar más</span> </div> </div> </div>";
 
         wp_reset_postdata();
 		return $vista_portfolio;
@@ -335,11 +335,15 @@ class Init{
 				"
 				<div class='sites-portfolio-box'>
 
-					<div class='cta' id='" . get_the_ID() . "'>"
+					<div class='cta' id='" . get_the_ID() . "'>
+					
+						<div style='background-color:" . $parameters['box_color'] ."' >"
 
-						. $this->print_screenshot(get_the_ID(),'site_screenshot', false) . 
+							. $this->print_screenshot(get_the_ID(),'site_screenshot', false) . 
 
-						"<div class='site-title'>" . get_the_title() . "</div>	
+							"<div class='site-title'>" . get_the_title() . "</div>	
+							
+						</div>
 					
 					</div>
 
