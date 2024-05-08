@@ -87,16 +87,6 @@ class Init{
 	
 	function reg_public_styles() {
 		$js_url = MM\PLUGIN_NAME_URL.'admin/js/';
-
-		// Register Swiper Carrousel
-		
-		wp_enqueue_script( 'swiper', "https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js", false );	
-				
-		wp_register_style("swiper-carrousel","https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css");
-
-		wp_enqueue_style("swiper-carrousel");
-		
-
 		
 		$public_css_HYF_url = MM\PLUGIN_NAME_URL.'templates/css/headerAndFooter.css';
 
@@ -342,7 +332,7 @@ class Init{
 							. $this->print_screenshot(get_the_ID(),'site_screenshot', false) . 
 
 							"<div class='site-title'>" . get_the_title() . "</div>	
-							
+
 						</div>
 					
 					</div>
