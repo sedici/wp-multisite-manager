@@ -20,8 +20,6 @@ Las principales son:
     
     - 'box_color' : Nos permite indicar que color queremos que tenga el contenedor de cada "caja" individual del portafolio.
     
-    - 'cant' : Sirve para elegir la cantidad de sitios a mostrar
-    
     - 'order_by' : Sirve para elegir el criterio de orden de los sitios (por titulo, fecha de publicacion, etc)
         - none
         - ID
