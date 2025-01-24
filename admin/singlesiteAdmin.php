@@ -9,6 +9,12 @@ use Wp_multisite_manager\Inc as Inc;
 
 class SinglesiteAdmin{
 
+    private $plugin_name;
+    private $version;
+    private $plugin_basename;
+    private $plugin_text_domain;
+    
+
     public function __construct() {
 
         $this->plugin_name = MM\PLUGIN_NAME;
