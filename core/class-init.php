@@ -98,16 +98,6 @@ class Init{
 
 	# End of Styles and Scripts register --------------------------------------------------------------------
 
-	function add_type_attribute($tag, $handle, $src) {
-		// if not your script, do nothing and return original $tag
-		if ( 'carrousel' !== $handle ) {
-			return $tag;
-		}
-		// change the script tag by adding type="module" and return it.
-		$tag = '<script type="module" src="' . esc_url( $src ) . '"></script>';
-		return $tag;
-	}
-
 	# Register ADMIN Hooks --------------------------------------------------------------------
 
 	/*
@@ -145,9 +135,6 @@ class Init{
 			// Permite que se guarden imagenes en el formulario del CPT de Sitios
 			add_action('post_edit_form_tag', array($sitiosCPT, 'update_edit_form'));
 
-			/* Hook usado para encolar scripts helpers */
-			add_action('wp_enqueue_scripts',array($this,'helpers_js'));
-
 		}
 
 
@@ -171,8 +158,6 @@ class Init{
     private function define_public_hooks() {
 		add_action( 'plugins_loaded', 'load_plugin_textdomain' );
 
-		add_filter('script_loader_tag', array($this,'add_type_attribute') , 10, 3);
-
 		add_action('wp_enqueue_scripts',array($this,'reg_public_styles'),30);
 
 	}
@@ -180,11 +165,6 @@ class Init{
 	function dynamic_view_js (){ 
 		wp_register_script('dynamic_addition',  MM\PLUGIN_NAME_URL . 'templates/js/carga-dinamica.js', array('jquery'), '1', true );
 		wp_enqueue_script('dynamic_addition');	
-	}
-
-	function helpers_js() {
-		wp_register_script('helpers_multisite_js',  MM\PLUGIN_NAME_URL . 'templates/js/helpers.js');
-		wp_enqueue_script('helpers_multisite_js');
 	}
 
 
