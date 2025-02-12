@@ -7,15 +7,8 @@ use Wp_multisite_manager\Inc as Inc;
 
 require_once 'class-loader.php';
 
-require_once plugin_dir_path( __DIR__ ) . 'helpers.php'; 
-
-require plugin_dir_path( __DIR__ ) . 'Inc/class-My-Template-Loader.php';
-
-
 $dirMultisite = plugin_dir_path( __DIR__ ) . 'admin/multisiteAdmin.php';
-$dirSinglesite = plugin_dir_path( __DIR__ ) . 'admin/singlesiteAdmin.php';
 
-require  $dirSinglesite ;
 require  $dirMultisite ;
 
 
@@ -55,7 +48,7 @@ class Init{
 		$this->loader = new Loader();
 
 		$this->multisite_administrator = new admin\multisiteAdmin($this);
-		$this->singlesite_administrator = new admin\singlesiteAdmin($this);
+		//$this->singlesite_administrator = new admin\singlesiteAdmin($this);
 
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
