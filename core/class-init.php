@@ -48,7 +48,6 @@ class Init{
 		$this->loader = new Loader();
 
 		$this->multisite_administrator = new admin\multisiteAdmin($this);
-		//$this->singlesite_administrator = new admin\singlesiteAdmin($this);
 
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
@@ -61,13 +60,6 @@ class Init{
 	# Register ADMIN Styles and Scripts --------------------------------------------------------------------
 
 	function reg_admin_styles(){
-
-		$js_url = MM\PLUGIN_NAME_URL.'admin/js/';
-
-		wp_register_script('dinamicHeader', $js_url . 'dinamicHeader.js', array('jquery'),'1.1', true);
- 
-		wp_enqueue_script('dinamicHeader');
-	
 
 		$css_url = MM\PLUGIN_NAME_URL.'admin/css/administrationStyle.css';
 
@@ -160,29 +152,6 @@ class Init{
 
 		add_action('wp_enqueue_scripts',array($this,'reg_public_styles'),30);
 
-	}
-
-	function dynamic_view_js (){ 
-		wp_register_script('dynamic_addition',  MM\PLUGIN_NAME_URL . 'templates/js/carga-dinamica.js', array('jquery'), '1', true );
-		wp_enqueue_script('dynamic_addition');	
-	}
-
-
-	function get_image_url($post_id) {
-
-		if(get_post_meta(get_the_ID(),'site_screenshot') and (!empty(get_post_meta(get_the_ID(),'site_screenshot')[0]) ))
-		{
-			$image = $this->get_image($post_id,'site_screenshot');
-
-			$image_src = '';
-
-			if(!is_wp_error($image)){
-				$image_src = wp_get_attachment_url($this->get_image($post_id,'site_screenshot')) ;
-		 	} 
-
-			return $image_src;
-
-		}
 	}
 	
 
