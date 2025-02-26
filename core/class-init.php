@@ -33,8 +33,17 @@ class Init{
 	protected $plugin_basename;
 
 	protected $multisite_administrator;
-
+y
 	protected $singlesite_administrator;
+
+	protected $plugin_name;
+
+	protected $version;
+
+	protected $plugin_text_domain;
+	/**
+	 * Constructor de la clase
+	 */
 
 
 	public function __construct() {

@@ -12,6 +12,12 @@ require_once plugin_dir_path( __DIR__ ) . 'admin/class-sites_table.php';
 
 class multisiteAdmin{
 
+    protected $plugin_name;
+    protected $version;
+    protected $plugin_basename;
+    protected $plugin_text_domain;
+    protected $cpt_list_table;
+
     public function __construct() {
 
         $this->plugin_name = MM\PLUGIN_NAME;
