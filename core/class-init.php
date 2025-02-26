@@ -33,7 +33,6 @@ class Init{
 	protected $plugin_basename;
 
 	protected $multisite_administrator;
-y
 	protected $singlesite_administrator;
 
 	protected $plugin_name;
