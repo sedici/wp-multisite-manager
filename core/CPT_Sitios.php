@@ -39,8 +39,8 @@ class CPT_Sitios {
         $args = array (
             'labels'        => $labels,
             'description'   => "",
-            'public'        => false, 
-            'has_archive'   => false,
+            'public'        => true, 
+            'has_archive'   => true,
             'publicly_queryable' => true,
             'show_in_menu' => true, 
             'show_in_admin_bar' => true,
