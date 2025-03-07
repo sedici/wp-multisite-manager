@@ -106,53 +106,66 @@ class CPT_Sitios {
     /*
      * Guarda los campos personalizados del post
      */
-    function sitios_save_metas($idsitio){  
-
-        $sitio = get_post($idsitio);
-
-        // Si el post que se guardo es del tipo CPT-Sitios
-        if ($sitio->post_type == 'cpt-sitios') {
-
-            $fields = ["site_url","site_description","site_screenshot"];
-
-            foreach ($fields as $field){
-
-                // Si es la screenshot, la tengo que manejar diferente    
-                if( $field == 'site_screenshot') {
-                    $this -> process_screenshot($idsitio);
-                }
-                    // En el caso de que no sea la screenshot, subo el campo con normalidad
-                elseif(isset($_POST[$field])){
-                    update_post_meta($idsitio, $field, $_POST[$field]);
-                }  
-
+        function sitios_save_metas($idsitio) {  
+            $sitio = get_post($idsitio);
+        
+            if ($sitio->post_type === 'cpt-sitios') {
+                # Campos personalizados del CPT
+                $fields = [
+                    'site_url'        => 'text',
+                    'site_description'=> 'text',
+                    'site_screenshot' => 'image',
+                    'site_dependence'   => 'text',
+                    'site_isUNLP'    => 'bool',
+                    'site_isCIC'    => 'bool',
+                ];
+             
+                foreach ($fields as $field => $type) {
+                    $value = $_POST[$field] ?? null;
+                    update_post_meta($idsitio, $field, $this->process_field($type, $value, $idsitio));
                 }
             }
-
         }
 
 
+
+        function process_field($type,$value,$idsitio){
+            $sanitizers = [
+                'text'  => fn($value) => sanitize_text_field($value),
+                'bool'  => fn($value) => $value === "1" || $value === "on" ? 1 : 0, 
+                'image' => fn($value) => $this->process_screenshot($idsitio)
+            ];
+            return $sanitizers[$type]($value ?? '');
+        }
+        
+
+
+
+    
+        
+
     public function process_screenshot($idsitio){
         $field = "site_screenshot";
+        $image_id = null;
+        
         if( (!empty($_FILES)) and (!empty($_FILES[$field]['name'])) ){
-
-        // Si esta seteada correctamente la imagen
-           if (!is_wp_error( $_FILES[$field]['name']) ){
-                                   
-           // Si quiero cargar una imagen , y ya existe una, elimino la anterior
-                   if(get_post_meta(get_the_ID(),'site_screenshot')){
-                       wp_delete_attachment(get_post_meta(get_the_ID(),'site_screenshot')[0]);
-                   }
-                                               
-               }
-               $image_id = media_handle_upload($field,0 );
-               
-               if(!is_wp_error($image_id) ) {
-                   update_post_meta($idsitio, $field, $image_id);
-               }
-
-       }
-    }
+        
+                // Si esta seteada correctamente la imagen
+            if (!is_wp_error($_FILES[$field]['name'])){
+                    // Si quiero cargar una imagen, y ya existe una, elimino la anterior
+                if(get_post_meta(get_the_ID(),'site_screenshot')){
+                    wp_delete_attachment(get_post_meta(get_the_ID(),'site_screenshot')[0]);
+                }
+        
+                    // Manejo de la carga de la imagen
+                    $image_id = media_handle_upload($field, 0);
+                }
+            }
+        
+            // Si no hubo error, retorno el ID de la imagen
+            return is_wp_error($image_id) ? null : $image_id;
+        }
+        
 
     function delete_cpt_screenshot($post_id){
 

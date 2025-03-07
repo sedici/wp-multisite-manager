@@ -24,6 +24,22 @@
     </div>
 
     <div>
+        <h4> <?php _e("Dependencia a la que pertenece el sitio") ?> <h4>
+        <input type='text' name="site_dependence" value='<?php echo get_post_info('site_dependence')?>' > </input>
+    </div>
+
+    <div>
+        <h4> <?php _e("Es UNLP?") ?> <h4>
+        <input type="checkbox" name="site_isUNLP" value="1" <?php checked(get_post_info('site_isUNLP')); ?>>
+
+    </div>
+    <div>
+        <h4> <?php _e("Es CIC?") ?> <h4>
+        <input type="checkbox" name="site_isCIC" value="1" <?php checked(get_post_info('site_isCIC')); ?>>
+
+    </div>
+
+    <div>
         <h4> <?php _e("Ingrese una screenshot del sitio") ?> <h4>
         <input type='file' name="site_screenshot" > </input>
 
