@@ -40,7 +40,7 @@ class CPT_Sitios {
             'labels'        => $labels,
             'description'   => "",
             'public'        => true, 
-            'has_archive'   => true,
+            'has_archive'   => false,
             'publicly_queryable' => true,
             'show_in_menu' => true, 
             'show_in_admin_bar' => true,
@@ -184,6 +184,27 @@ class CPT_Sitios {
         
         #FIXME: Hay que hacer un refactoring para eliminar los condicionales
        
+
+
+    function cargar_plantillas_sitios($template) {
+        if (is_post_type_archive('cpt-sitios')) {
+            $plantilla = plugin_dir_path(__FILE__) . 'admin/views/archive-cpt-sitios.php';
+            if (file_exists($plantilla)) return $plantilla;
+        }
+        
+        if (is_singular('cpt-sitios')) {
+            $plantilla = plugin_dir_path(__FILE__) . 'admin/views/single-cpt-sitios.php';
+            if (file_exists($plantilla)) return $plantilla;
+        }
+        
+        return $template;
+    }
+
+       
+     
+
+
+    
 
 }       
 

@@ -51,6 +51,9 @@ class Init{
 
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
+		#Incluyo los shortcodes y el template para la vista single
+		$this->include_shortcodes();
+		$this->add_template_filters();
 	}
 
 	public function run() {
@@ -67,6 +70,45 @@ class Init{
 
 		wp_enqueue_style("administrationStyle");
 	}
+
+	# Register CPT Styles and Scripts --------------------------------------------------------------------
+
+	function registerCPTstyles(){
+		$css_archive_url = MM\PLUGIN_NAME_URL.'admin/css/sitio-archive.css';
+
+		wp_register_style("CPT_Sitios", $css_archive_url);
+
+		wp_enqueue_style("CPT_Sitios");
+
+		$css_single_url = MM\PLUGIN_NAME_URL.'admin/css/sitio-single.css';
+
+		if (is_singular('cpt-sitios')) {
+            $css_single_url = MM\PLUGIN_NAME_URL . 'admin/css/sitio-single.css';
+            wp_register_style("CPT_Sitios_single", $css_single_url);
+            wp_enqueue_style("CPT_Sitios_single");
+        }
+
+	}
+
+
+	private function add_template_filters() {
+        add_filter('single_template', array($this, 'load_custom_single_template'));
+    }
+
+    public function load_custom_single_template($single_template) {
+        global $post;
+
+        if ($post->post_type == 'cpt-sitios') {
+            $custom_template = plugin_dir_path(__FILE__) . '../admin/views/single-cpt-sitios.php';
+            if (file_exists($custom_template)) {
+                return $custom_template;
+            }
+        }
+
+        return $single_template;
+    }
+
+	
 
 	
 	# Register PUBLIC Styles and Scripts --------------------------------------------------------------------
@@ -127,6 +169,10 @@ class Init{
 			// Permite que se guarden imagenes en el formulario del CPT de Sitios
 			add_action('post_edit_form_tag', array($sitiosCPT, 'update_edit_form'));
 
+			
+
+			add_filter('template_include',array($sitiosCPT,'cargar_plantillas_sitios') );
+
 		}
 
 
@@ -151,6 +197,7 @@ class Init{
 		add_action( 'plugins_loaded', 'load_plugin_textdomain' );
 
 		add_action('wp_enqueue_scripts',array($this,'reg_public_styles'),30);
+		add_action('wp_enqueue_scripts',array($this,'registerCPTstyles'),30);
 
 	}
 	
@@ -160,6 +207,10 @@ class Init{
 	}
 
     
+	# Registro el shorcode 
+	private function include_shortcodes() {
+        require_once plugin_dir_path(__FILE__) . '../admin/shortcode.php';
+    }
 
 
 
