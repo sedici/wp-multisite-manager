@@ -1,35 +1,33 @@
-# Multisite Manager | 1.0 (Versión de prueba)
+# Multisite Manager | 1.0
 
-## Plugin de Wordpress para agregar funcionalidad en multisitios
+## Descripción
 
-Este plugin de wordpress brinda funcionalidades para las instalaciónes de multisitio de Wordpress.
-Las principales son:
+**Multisite Manager** es un plugin exclusivo para instalaciones multisitio de WordPress que permite gestionar y representar todos los subsitios como CPTs (Custom Post Type). Además, proporciona shortcodes personalizables para su visualización en el frontend.
 
-- [x] Permitir configurar un Header global para todos los sitios.
+### Funcionalidades principales
 
-- [x] Permitir configurar un Footer global para todos los sitios.
-
-- [x] Crear un Custom Post Type para representar a los sitios, recuperando la información automáticamente.
-
-- [x] Shortcode para listar los CPT de sitios al estilo "Portafolio"
+- Escanea automáticamente la red multisitio y crea/actualiza CPTs para cada sitio.
+- Cada CPT contiene metadatos como descripción, URL, captura de pantalla y fecha de creación.
+- Interfaz de administración para listar y gestionar los CPTs mediante una tabla paginada y ordenable.
+- Shortcode para mostrar un portafolio visual de los sitios de la red, con opciones de personalización.
+- Filtros para gestionar visibilidad (por ejemplo, mostrar solo sitios sin capturas de pantalla).
 
 ## Shortcodes
 
-- **[show_sites_portfolio ]** => Muestra todos los CPT de sitios disponibles, al estilo "Portafolio".
-    - 'widget_color' : Sirve para elegir el color que va a tener el contenedor de todo el widget de portafolio. 
-    
-    - 'box_color' : Nos permite indicar que color queremos que tenga el contenedor de cada "caja" individual del portafolio.
-    
-    - 'order_by' : Sirve para elegir el criterio de orden de los sitios (por titulo, fecha de publicacion, etc)
-        - none
-        - ID
-        - title
-        - name (post slug)
-        - date
-        - modified (ultima fecha de modificacion)
-        - rand (orden random)
+* ```[show_sites_portfolio]```
 
-    - 'order' : Sirve para elegir en que orden mostrar los sitios (Ascendente o Descendente) 
-        - ASC
-        - DESC
+Muestra un portafolio en forma de grilla con todos los sitios registrados como CPTs.
 
+**Atributos:**
+
+- `widget_color` — Color de fondo del contenedor general del widget.
+- `box_color` — Color de fondo de cada caja individual de sitio.
+- `order_by` — Criterio de ordenamiento. Valores posibles:
+  - `none`, `ID`, `title`, `name`, `date`, `modified`, `rand`
+- `order` — Dirección del ordenamiento:
+  - `ASC`, `DESC`
+
+Ejemplo:
+
+```shortcode
+[show_sites_portfolio widget_color="#f0f0f0" box_color="#ffffff" order_by="title" order="ASC"]
