@@ -3,6 +3,11 @@
     color: white !important;
 }
 
+.row-development {
+    background-color:#ffb380 !important;
+    color: white !important;
+}
+
 td {
     font-weight: bold /* Texto en negrita */ !important;
 }

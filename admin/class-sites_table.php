@@ -109,8 +109,19 @@ require_once plugin_dir_path( __DIR__ ) . 'helpers.php';
          $estado = isset($item['estado']) ? trim($item['estado']) : '';
          
 
-        // Agregar clase CSS condicional si el estado es "Archivado"
-         $row_class = (strcasecmp($estado, 'Archivado') === 0) ? 'row-archived' : '';
+        // Definir la clase de la fila según el estado
+        $row_class = '';
+        switch ($estado) {
+            case 'Archivado':
+                $row_class = 'row-archived';
+                break;
+            case 'En desarrollo':
+                $row_class = 'row-development';
+                break;
+            case 'Activo':
+                $row_class = '';
+                break;
+        }
 
           echo '<tr class="' . esc_attr( $row_class ) . '">';
           $this->single_row_columns( $item );
