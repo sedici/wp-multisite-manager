@@ -176,7 +176,7 @@ class multisiteAdmin{
 	public function add_Multisite_Menu_Pages(){
         $this->cpt_list_table = new Sites_table();
 
-		add_menu_page(__('Administrar Footer y Header', $this->plugin_text_domain),
+		add_menu_page(__('Sitios de la red', $this->plugin_text_domain),
 		__('Configurar multisitio', $this->plugin_text_domain), 
 			'manage_options',
 			$this->plugin_name,  

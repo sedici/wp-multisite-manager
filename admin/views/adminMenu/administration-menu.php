@@ -1,5 +1,5 @@
 
-        <h1> Administrar la red de multisitio </h1>
+        <h1> Sitios de la red </h1>
 
         <p>Este plugin de Wordpress permite administrar configuraciones gloables para todos los sitios
 		dentro de una red de Multisitio. </p>
