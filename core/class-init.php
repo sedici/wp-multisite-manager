@@ -69,6 +69,12 @@ class Init{
 		wp_register_style("administrationStyle", $css_url);
 
 		wp_enqueue_style("administrationStyle");
+
+		$table_css_url = MM\PLUGIN_NAME_URL . 'admin/css/sites-table.css';
+		wp_register_style("sitesTableStyle", $table_css_url);
+		wp_enqueue_style("sitesTableStyle");
+
+
 	}
 
 	# Register CPT Styles and Scripts --------------------------------------------------------------------

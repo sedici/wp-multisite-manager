@@ -99,6 +99,20 @@ require_once plugin_dir_path( __DIR__ ) . 'helpers.php';
             }
         }
 
+
+        public function single_row( $item ) {
+            // Obtener el estado del sitio
+            $estado = $item['estado'];
+        
+            // Agregar clase CSS condicional
+            $row_class = ($estado === 'Archivado') ? 'row-archived' : '';
+        
+            echo '<tr class="' . esc_attr( $row_class ) . '">';
+            $this->single_row_columns( $item );
+            echo '</tr>';
+        }
+
+
     // ---------------------- FUNCIONES PROPIAS de esta clase ------------------------------------
 
       
