@@ -42,7 +42,6 @@
     <h4><?php _e("Estado del sitio") ?></h4>
     <select name="site_status">
         <option value="Activo" <?php selected(get_post_info('site_status'), 'Activo'); ?>><?php _e("Activo") ?></option>
-        <option value="Inactivo" <?php selected(get_post_info('site_status'), 'Inactivo'); ?>><?php _e("Inactivo") ?></option>
         <option value="En desarrollo" <?php selected(get_post_info('site_status'), 'En desarrollo'); ?>><?php _e("En desarrollo") ?></option>
         <option value="Archivado" <?php selected(get_post_info('site_status'), 'Archivado'); ?>><?php _e("Archivado") ?></option>
     </select>
