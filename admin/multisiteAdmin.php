@@ -177,7 +177,7 @@ class multisiteAdmin{
         $this->cpt_list_table = new Sites_table();
 
 		add_menu_page(__('Sitios de la red', $this->plugin_text_domain),
-		__('Configurar multisitio', $this->plugin_text_domain), 
+		__('Sitios de la red', $this->plugin_text_domain), 
 			'manage_options',
 			$this->plugin_name,  
 			array($this, 'wp_multisite_manager_blocks')
