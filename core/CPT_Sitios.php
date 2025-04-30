@@ -118,6 +118,7 @@ class CPT_Sitios {
                     'site_dependence'   => 'text',
                     'site_isUNLP'    => 'bool',
                     'site_isCIC'    => 'bool',
+                    'site_status'    => 'text',
                 ];
              
                 foreach ($fields as $field => $type) {

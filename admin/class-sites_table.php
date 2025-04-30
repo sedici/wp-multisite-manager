@@ -30,7 +30,11 @@ require_once plugin_dir_path( __DIR__ ) . 'helpers.php';
                 'description'=>__('Descripción'),
                 'screenshot'=>__('Screenshot'),
                 'url'=>__('Url'),
-                'creation'=>__('Fecha de creación')
+                'creation'=>__('Fecha de creación'),
+                'estado'=>__('Estado'),
+                'dependencia'=>__('Dependencia'),
+                'isUNLP'=>__('Es UNLP?'),
+                'isCIC'=>__('Es CIC?'),
             );
             return $table_columns;
         }
@@ -85,6 +89,8 @@ require_once plugin_dir_path( __DIR__ ) . 'helpers.php';
                 case 'post_title':  
                 case 'description':
                 case 'url':
+                case 'estado':
+                case 'dependencia':
                 case 'creation':
                 case 'post_ID':
                     return $item[$column_name];
@@ -108,7 +114,7 @@ require_once plugin_dir_path( __DIR__ ) . 'helpers.php';
             );
     
             $query = new \WP_Query($args);
-                                 
+                        
             $result =  array_map( fn($post) =>
                                         array_merge(
                                             $post->to_array(),
@@ -116,9 +122,14 @@ require_once plugin_dir_path( __DIR__ ) . 'helpers.php';
                                                 "description"=>get_post_meta($post->ID,'site_description',true), 
                                                 "creation"=>get_post_meta($post->ID,'site_creation_date',true),
                                                 "url"=>get_post_meta($post->ID,'site_url',true),
+                                                "estado"=>get_post_meta($post->ID,'site_status',true),
+                                                "dependencia"=>get_post_meta($post->ID,'site_dependence',true),
+                                                "isUNLP"=>get_post_meta($post->ID,'site_isUNLP',true),
+                                                "isCIC"=>get_post_meta($post->ID,'site_isCIC',true),
                                                 "screenshot"=>$this->has_screenshot($post->ID)
                                             ]
                                         ), $query->get_posts() );
+
             return $result;
         }
 
