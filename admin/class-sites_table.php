@@ -85,12 +85,16 @@ require_once plugin_dir_path( __DIR__ ) . 'helpers.php';
         }
 
         public function column_default( $item, $column_name ) {		
-            switch ( $column_name ) {			
+            switch ( $column_name ) {		
+                case 'isUNLP':
+                    return $item['isUNLP'] == 1 ? 'Sí' : 'No';
+                case 'isCIC':
+                    return $item['isCIC'] == 1 ? 'Sí' : 'No';	
                 case 'post_title':  
                 case 'description':
                 case 'url':
-                case 'estado':
                 case 'dependencia':
+                case 'estado':
                 case 'creation':
                 case 'post_ID':
                     return $item[$column_name];
@@ -101,15 +105,16 @@ require_once plugin_dir_path( __DIR__ ) . 'helpers.php';
 
 
         public function single_row( $item ) {
-            // Obtener el estado del sitio
-            $estado = $item['estado'];
-        
-            // Agregar clase CSS condicional
-            $row_class = ($estado === 'Archivado') ? 'row-archived' : '';
-        
-            echo '<tr class="' . esc_attr( $row_class ) . '">';
-            $this->single_row_columns( $item );
-            echo '</tr>';
+         // Obtener el estado del sitio
+         $estado = isset($item['estado']) ? trim($item['estado']) : '';
+         
+
+        // Agregar clase CSS condicional si el estado es "Archivado"
+         $row_class = (strcasecmp($estado, 'Archivado') === 0) ? 'row-archived' : '';
+
+          echo '<tr class="' . esc_attr( $row_class ) . '">';
+          $this->single_row_columns( $item );
+          echo '</tr>';
         }
 
 

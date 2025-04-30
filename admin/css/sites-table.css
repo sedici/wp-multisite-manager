@@ -1,4 +1,8 @@
 .row-archived {
-    background-color: red;
-    color: white;
+    background-color: red !important;
+    color: white !important;
+}
+
+td {
+    font-weight: bold /* Texto en negrita */ !important;
 }
